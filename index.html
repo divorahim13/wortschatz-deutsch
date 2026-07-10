@@ -333,35 +333,35 @@
     }
 
     .chart-grid-line {
-      stroke: var(--border-muted);
+      stroke: rgba(255, 255, 255, 0.05);
       stroke-width: 1;
-      stroke-dasharray: 4 4;
     }
 
     .chart-bar {
       fill: var(--accent);
-      opacity: 0.8;
+      opacity: 0.95;
       transition: all var(--transition-speed) ease;
       cursor: pointer;
     }
 
     .chart-bar:hover {
       opacity: 1;
-      filter: drop-shadow(0 0 8px var(--accent));
+      filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
     }
 
     .chart-label {
       fill: var(--text-secondary);
-      font-size: 8px;
-      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
       text-anchor: middle;
     }
 
     .chart-val-label {
-      fill: var(--text-primary);
-      font-size: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
+      fill: var(--accent-text);
+      font-size: 9px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
       text-anchor: middle;
     }
 
@@ -2282,7 +2282,7 @@
             <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5;"><polyline points="15 18 9 12 15 6"></polyline></svg>
             Bulan Lalu
           </button>
-          <h3 id="calendar-month-year" style="font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 700; margin: 0; color: var(--text-primary);">Juli 2026</h3>
+          <h3 id="calendar-month-year" style="font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 700; margin: 0; color: var(--text-primary); white-space: nowrap; text-align: center; min-width: 160px;">Juli 2026</h3>
           <button class="btn btn-secondary" onclick="nextCalendarMonth()" style="padding: 6px 10px; font-size: 0.8rem; display: flex; align-items: center; gap: 4px;">
             Bulan Depan
             <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5;"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -2290,19 +2290,19 @@
         </div>
 
         <!-- Calendar Table Grid -->
-        <div style="border: 1px solid var(--border-muted); border-radius: 12px; overflow: hidden; background-color: var(--bg-secondary); margin-bottom: 20px;">
+        <div style="border: 1px solid var(--border-muted); border-radius: 16px; overflow: hidden; background-color: var(--bg-card); margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);">
           <!-- Weekdays Row -->
-          <div style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; background-color: var(--bg-card); border-bottom: 1px solid var(--border-muted); font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">
-            <div style="padding: 10px 0;">Sen</div>
-            <div style="padding: 10px 0;">Sel</div>
-            <div style="padding: 10px 0;">Rab</div>
-            <div style="padding: 10px 0;">Kam</div>
-            <div style="padding: 10px 0;">Jum</div>
-            <div style="padding: 10px 0;">Sab</div>
-            <div style="padding: 10px 0;">Min</div>
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; padding: 10px 10px 0 10px; text-align: center; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">
+            <div style="padding: 6px 0;">Sen</div>
+            <div style="padding: 6px 0;">Sel</div>
+            <div style="padding: 6px 0;">Rab</div>
+            <div style="padding: 6px 0;">Kam</div>
+            <div style="padding: 6px 0;">Jum</div>
+            <div style="padding: 6px 0;">Sab</div>
+            <div style="padding: 6px 0;">Min</div>
           </div>
           <!-- Days Grid -->
-          <div id="calendar-days-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); background-color: var(--bg-secondary);">
+          <div id="calendar-days-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; padding: 10px; background-color: var(--bg-card);">
             <!-- Populated dynamically -->
           </div>
         </div>
@@ -3487,8 +3487,10 @@
 
       for (let i = 0; i < startDayOffset; i++) {
         const emptyCell = document.createElement('div');
-        emptyCell.style.border = '1px solid rgba(255,255,255,0.03)';
-        emptyCell.style.minHeight = '72px';
+        emptyCell.style.border = '1px solid rgba(255,255,255,0.02)';
+        emptyCell.style.minHeight = '80px';
+        emptyCell.style.borderRadius = '8px';
+        emptyCell.style.backgroundColor = 'rgba(255,255,255,0.01)';
         grid.appendChild(emptyCell);
       }
 
@@ -3524,13 +3526,15 @@
 
         const cell = document.createElement('div');
         cell.style.border = '1px solid rgba(255,255,255,0.05)';
-        cell.style.padding = '8px';
-        cell.style.minHeight = '72px';
+        cell.style.padding = '10px';
+        cell.style.minHeight = '80px';
+        cell.style.borderRadius = '8px';
         cell.style.display = 'flex';
         cell.style.flexDirection = 'column';
         cell.style.justifyContent = 'space-between';
         cell.style.cursor = 'pointer';
         cell.style.transition = 'all var(--transition-speed) ease';
+        cell.style.boxSizing = 'border-box';
 
         const isSelected = calendarSelectedDate.getFullYear() === cellDate.getFullYear() &&
                            calendarSelectedDate.getMonth() === cellDate.getMonth() &&
@@ -3542,14 +3546,17 @@
         } else if (isToday) {
           cell.style.backgroundColor = 'rgba(16, 185, 129, 0.05)';
           cell.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+        } else {
+          cell.style.backgroundColor = 'var(--bg-secondary)';
+          cell.style.borderColor = 'rgba(255, 255, 255, 0.05)';
         }
 
         cell.onmouseenter = () => {
-          if (!isSelected) cell.style.backgroundColor = 'rgba(255, 255, 255, 0.02)';
+          if (!isSelected) cell.style.backgroundColor = 'rgba(255, 255, 255, 0.04)';
         };
         cell.onmouseleave = () => {
           if (!isSelected) {
-            cell.style.backgroundColor = isToday ? 'rgba(16, 185, 129, 0.05)' : 'transparent';
+            cell.style.backgroundColor = isToday ? 'rgba(16, 185, 129, 0.05)' : 'var(--bg-secondary)';
           }
         };
 
@@ -3928,7 +3935,7 @@
         text.setAttribute('x', (xStart - 8).toString());
         text.setAttribute('y', (y + 3).toString());
         text.setAttribute('fill', 'var(--text-muted)');
-        text.setAttribute('font-size', '8px');
+        text.setAttribute('font-size', '9px');
         text.setAttribute('text-anchor', 'end');
         text.textContent = val.toString();
         chartSvg.appendChild(text);
@@ -3945,8 +3952,8 @@
         rect.setAttribute('y', y.toString());
         rect.setAttribute('width', colWidth.toString());
         rect.setAttribute('height', Math.max(2, barHeight).toString());
-        rect.setAttribute('rx', '4');
-        rect.setAttribute('ry', '4');
+        rect.setAttribute('rx', '6');
+        rect.setAttribute('ry', '6');
         rect.setAttribute('class', 'chart-bar');
         rect.setAttribute('fill', 'url(#barGrad)');
         

@@ -611,11 +611,11 @@
     }
 
     .card-badge {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       background-color: rgba(255, 255, 255, 0.03);
       padding: 4px 10px;
       border-radius: 6px;
@@ -1314,7 +1314,7 @@
         <!-- Due Reviews Card -->
         <div class="stat-card">
           <div class="stat-header">
-            <span>Perlu Review</span>
+            <span id="stat-due-header">Perlu Review</span>
             <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
           </div>
           <div class="stat-value" id="stat-due-val">0</div>
@@ -1331,14 +1331,19 @@
           <div class="stat-sub">Hari berturut-turut</div>
         </div>
 
-        <!-- Mastered Card -->
+        <!-- Library breakdown Card -->
         <div class="stat-card">
           <div class="stat-header">
-            <span>Kata Dikuasai</span>
+            <span>Library Kosakata</span>
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
           </div>
           <div class="stat-value" id="stat-mastered-val">0</div>
           <div class="stat-sub" id="stat-mastered-sub">Interval review &ge; 30 hari</div>
+          <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 8px; display: flex; gap: 8px; justify-content: space-between; border-top: 1px solid var(--border-muted); padding-top: 6px;" id="stat-level-breakdown">
+            <span>B1: 0</span>
+            <span>B2: 0</span>
+            <span>C1: 0</span>
+          </div>
         </div>
       </div>
 
@@ -1369,20 +1374,52 @@
             Mulai Sesi Belajar
           </div>
           <div class="study-controls">
-            <div class="study-options-title">Pilih Mode Belajar</div>
+            <!-- Niveau & Kapitel Filter Dropdowns -->
+            <div class="study-options-title">Filter Niveau & Kapitel</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 4px;">
+              <div>
+                <label for="filter-level" style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Niveau (Tingkat)</label>
+                <select id="filter-level" class="input-field" style="padding: 8px; text-align-last: center;" onchange="updateFilterKapitelDropdown(); updateDashboardStats();">
+                  <option value="ALL">Semua Niveau</option>
+                  <option value="B1">B1</option>
+                  <option value="B2">B2</option>
+                  <option value="C1">C1</option>
+                </select>
+              </div>
+              <div>
+                <label for="filter-chapter" style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Kapitel (Bab)</label>
+                <select id="filter-chapter" class="input-field" style="padding: 8px; text-align-last: center;" onchange="updateDashboardStats();">
+                  <option value="ALL">Semua Kapitel</option>
+                  <option value="1">Kapitel 1</option>
+                  <option value="2">Kapitel 2</option>
+                  <option value="3">Kapitel 3</option>
+                  <option value="4">Kapitel 4</option>
+                  <option value="5">Kapitel 5</option>
+                  <option value="6">Kapitel 6</option>
+                  <option value="7">Kapitel 7</option>
+                  <option value="8">Kapitel 8</option>
+                  <option value="9">Kapitel 9</option>
+                  <option value="10">Kapitel 10</option>
+                  <option value="11">Kapitel 11</option>
+                  <option value="12">Kapitel 12</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="study-options-title" style="margin-top: 6px;">Pilih Mode Belajar</div>
             <div class="study-mode-select">
               <div id="mode-opt-due" class="radio-card selected" onclick="selectStudyType('due')">
                 <div class="radio-circle"></div>
                 <div class="radio-card-content">
                   <span class="radio-label">Review Kartu Jatuh Tempo</span>
-                  <span class="radio-desc" id="opt-due-desc">Fokus mereview 0 kata yang dijadwalkan hari ini.</span>
+                  <span class="radio-desc" id="opt-due-desc">Fokus mereview kata yang dijadwalkan hari ini.</span>
                 </div>
               </div>
               <div id="mode-opt-new" class="radio-card" onclick="selectStudyType('new')">
                 <div class="radio-circle"></div>
                 <div class="radio-card-content">
                   <span class="radio-label">Pelajari Kata Baru</span>
-                  <span class="radio-desc" id="opt-new-desc">Fokus mempelajari kata baru (maksimal 100 kata hari ini).</span>
+                  <span class="radio-desc" id="opt-new-desc">Fokus mempelajari kata baru.</span>
                 </div>
               </div>
               <div id="mode-opt-mixed" class="radio-card" onclick="selectStudyType('mixed')">
@@ -1517,14 +1554,42 @@
         
         <div class="input-instructions">
           Masukkan baris kata Jerman dengan format tabel dipisahkan oleh karakter pipe <strong>|</strong> atau tombol <strong>Tab</strong>.<br>
-          Format: <code>Deutsch | Indonesia | Kalimat</code><br><br>
+          Format: <code>Deutsch | Indonesia | Kalimat [ | Niveau | Kapitel ]</code><br><br>
           Contoh:<br>
-          <code>der Tisch | meja | Ich sitze am *Tisch*.</code><br>
-          <code>machen | melakukan | Was *machst* du heute?</code><br>
-          <code>schnell | cepat | Das Auto fährt sehr *schnell*.</code>
+          <code>der Tisch | meja | Ich sitze am *Tisch*.</code> (Niveau & Kapitel menggunakan default di bawah)<br>
+          <code>machen | melakukan | Was *machst* du? | B2 | 4</code> (Eksplisit Niveau B2, Kapitel 4)
         </div>
 
-        <textarea id="bulk-paste-area" class="textarea-field" placeholder="Ketik atau paste di sini...&#10;der Tisch | meja | Ich sitze am *Tisch*.&#10;machen | melakukan | Was *machst* du heute?"></textarea>
+        <!-- Target Level and Chapter selectors for Bulk Input -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+          <div>
+            <label for="import-level" style="font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 4px;">Niveau Target (Default)</label>
+            <select id="import-level" class="input-field" style="padding: 8px; text-align-last: center;">
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="C1">C1</option>
+            </select>
+          </div>
+          <div>
+            <label for="import-chapter" style="font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 4px;">Kapitel Target (Default)</label>
+            <select id="import-chapter" class="input-field" style="padding: 8px; text-align-last: center;">
+              <option value="1">Kapitel 1</option>
+              <option value="2">Kapitel 2</option>
+              <option value="3">Kapitel 3</option>
+              <option value="4">Kapitel 4</option>
+              <option value="5">Kapitel 5</option>
+              <option value="6">Kapitel 6</option>
+              <option value="7">Kapitel 7</option>
+              <option value="8">Kapitel 8</option>
+              <option value="9">Kapitel 9</option>
+              <option value="10">Kapitel 10</option>
+              <option value="11">Kapitel 11</option>
+              <option value="12">Kapitel 12</option>
+            </select>
+          </div>
+        </div>
+
+        <textarea id="bulk-paste-area" class="textarea-field" placeholder="Ketik atau paste di sini...&#10;der Tisch | meja | Ich sitze am *Tisch*.&#10;machen | melakukan | Was *machst* du? | B2 | 4"></textarea>
         
         <button class="btn" onclick="parseBulkInput()">
           <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
@@ -1641,59 +1706,59 @@
 
   <script>
     // ==========================================
-    // DEFAULT DATA (50 B1-C1 German Words)
+    // DEFAULT DATA (50 B1-C1 German Words distributed across Niveau & Kapitel)
     // ==========================================
     const DEFAULT_DECK = [
-      { id: "def-1", deutsch: "die Herausforderung", indonesia: "tantangan", sentence: "Deutsch lernen ist eine große *Herausforderung*.", category: "Nomen" },
-      { id: "def-2", deutsch: "sich bewerben", indonesia: "melamar (pekerjaan/beasiswa)", sentence: "Ich möchte *mich* um diese Stelle *bewerben*.", category: "Verben" },
-      { id: "def-3", deutsch: "entscheiden", indonesia: "memutuskan", sentence: "Wir müssen uns schnell *entscheiden*.", category: "Verben" },
-      { id: "def-4", deutsch: "der Erfolg", indonesia: "kesuksesan / keberhasilan", sentence: "Ich wünsche dir viel *Erfolg* bei der B2-Prüfung.", category: "Nomen" },
-      { id: "def-5", deutsch: "das Vorurteil", indonesia: "prasangka", sentence: "Wir müssen stereotype *Vorurteile* in der Gesellschaft abbauen.", category: "Nomen" },
-      { id: "def-6", deutsch: "beeinflussen", indonesia: "memengaruhi", sentence: "Das Wetter kann unsere tägliche Stimmung *beeinflussen*.", category: "Verben" },
-      { id: "def-7", deutsch: "nachhaltig", indonesia: "berkelanjutan", sentence: "Wir brauchen eine *nachhaltige* Entwicklung für unsere Erde.", category: "Adjektive" },
-      { id: "def-8", deutsch: "die Verantwortung", indonesia: "tanggung jawab", sentence: "Jeder trägt die *Verantwortung* für sein eigenes Leben.", category: "Nomen" },
-      { id: "def-9", deutsch: "unterstützen", indonesia: "mendukung", sentence: "Meine Familie *unterstützt* mich bei all meinen Plänen.", category: "Verben" },
-      { id: "def-10", deutsch: "die Erfahrung", indonesia: "pengalaman", sentence: "Sie hat bereits fünf Jahre *Erfahrung* im Bereich Marketing.", category: "Nomen" },
-      { id: "def-11", deutsch: "sich anpassen", indonesia: "menyesuaikan diri", sentence: "Ausländer müssen sich an die neue Kultur *anpassen*.", category: "Verben" },
-      { id: "def-12", deutsch: "vermeiden", indonesia: "menghindari", sentence: "Wir sollten Plastikmüll so gut wie möglich *vermeiden*.", category: "Verben" },
-      { id: "def-13", deutsch: "der Vorteil", indonesia: "keuntungan / kelebihan", sentence: "Diese Lernmethode bietet many praktische *Vorteile*.", category: "Nomen" },
-      { id: "def-14", deutsch: "der Nachtail", indonesia: "kerugian / kekurangan", sentence: "Der größte *Nachteil* dieses Handys ist der hohe Preis.", category: "Nomen" },
-      { id: "def-15", deutsch: "zuverlässig", indonesia: "dapat diandalkan", sentence: "Ein deutscher Kollege ist meistens sehr *zuverlässig*.", category: "Adjektive" },
-      { id: "def-16", deutsch: "die Gelegenheit", indonesia: "kesempatan / peluang", sentence: "Das Auslandsjahr ist eine hervorragende *Gelegenheit*.", category: "Nomen" },
-      { id: "def-17", deutsch: "empfehlen", indonesia: "merekomendasikan", sentence: "Kannst du mir ein gutes deutsches Restaurant *empfehlen*?", category: "Verben" },
-      { id: "def-18", deutsch: "vergleichen", indonesia: "membandingkan", sentence: "Man darf Äpfel nicht mit Birnen *vergleichen*.", category: "Verben" },
-      { id: "def-19", deutsch: "die Beziehung", indonesia: "hubungan", sentence: "Eine gute *Beziehung* basiert auf Vertrauen und Respekt.", category: "Nomen" },
-      { id: "def-20", deutsch: "geduldig", indonesia: "sabar", sentence: "Seien Sie *geduldig*, der Lernerfolg braucht Zeit.", category: "Adjektive" },
-      { id: "def-21", deutsch: "überzeugen", indonesia: "meyakinkan", sentence: "Seine Argumente konnten mich leider nicht *überzeugen*.", category: "Verben" },
-      { id: "def-22", deutsch: "die Zukunft", indonesia: "masa depan", sentence: "Niemand weiß, was in der *Zukunft* passieren wird.", category: "Nomen" },
-      { id: "def-23", deutsch: "sich verbessern", indonesia: "meningkatkan diri / membaik", sentence: "Ich möchte mein gesprochenes Deutsch weiter *verbessern*.", category: "Verben" },
-      { id: "def-24", deutsch: "das Ziel", indonesia: "tujuan / target", sentence: "Mein *Ziel* ist es, täglich 100 Wörter zu lernen.", category: "Nomen" },
-      { id: "def-25", deutsch: "aufgeben", indonesia: "menyerah", sentence: "Egal wie schwer es ist, du darfst niemals *aufgeben*.", category: "Verben" },
-      { id: "def-26", deutsch: "die Entwicklung", indonesia: "perkembangan / pengembangan", sentence: "Die technologische *Entwicklung* schreitet rasant voran.", category: "Nomen" },
-      { id: "def-27", deutsch: "erreichen", indonesia: "mencapai / meraih", sentence: "Gemeinsam können wir unser gestecktes Ziel *erreichen*.", category: "Verben" },
-      { id: "def-28", deutsch: "verstehen", indonesia: "mengerti / memahami", sentence: "Kannst du den Dialekt der Einheimischen *verstehen*?", category: "Verben" },
-      { id: "def-29", deutsch: "die Ausbildung", indonesia: "pelatihan kerja / vokasi", sentence: "Er macht eine *Ausbildung* zum Fachinformatiker.", category: "Nomen" },
-      { id: "def-30", deutsch: "kompliziert", indonesia: "rumit", sentence: "Die deutsche Grammatik ist manchmal sehr *kompliziert*.", category: "Adjektive" },
-      { id: "def-31", deutsch: "das Wissen", indonesia: "pengetahuan", sentence: "Mit diesem Buch können Sie Ihr *Wissen* vertiefen.", category: "Nomen" },
-      { id: "def-32", deutsch: "veröffentlichen", indonesia: "menerbitkan / mempublikasikan", sentence: "Der Autor wird nächsten Monat ein neues Buch *veröffentlichen*.", category: "Verben" },
-      { id: "def-33", deutsch: "die Gesellschaft", indonesia: "masyarakat", sentence: "Wir leben in einer multikulturellen *Gesellschaft*.", category: "Nomen" },
-      { id: "def-34", deutsch: "notwendig", indonesia: "perlu / mendesak", sentence: "Für das Visum sind einige Dokumente dringend *notwendig*.", category: "Adjektive" },
-      { id: "def-35", deutsch: "der Unterschied", indonesia: "perbedaan", sentence: "Was ist der genaue *Unterschied* zwischen diesen Wörtern?", category: "Nomen" },
-      { id: "def-36", deutsch: "sich konzentrieren", indonesia: "berkonsentrasi", sentence: "Ich must mich jetzt voll auf meine Arbeit *konzentrieren*.", category: "Verben" },
-      { id: "def-37", deutsch: "die Qualität", indonesia: "kualitas", sentence: "Deutsche Autos sind weltweit bekannt für ihre gute *Qualität*.", category: "Nomen" },
-      { id: "def-38", deutsch: "ablehnen", indonesia: "menolak", sentence: "Ich musste das Jobangebot leider aus familiären Gründen *ablehnen*.", category: "Verben" },
-      { id: "def-39", deutsch: "die Meinung", indonesia: "pendapat / opini", sentence: "Meiner *Meinung* nach sollten wir das Projekt starten.", category: "Nomen" },
-      { id: "def-40", deutsch: "wertvoll", indonesia: "berharga", sentence: "Diese Informationen sind sehr *wertvoll* für mich.", category: "Adjektive" },
-      { id: "def-41", deutsch: "die Untersuchung", indonesia: "penyelidikan / pemeriksaan", sentence: "Die medizinische *Untersuchung* dauerte zwei Stunden.", category: "Nomen" },
-      { id: "def-42", deutsch: "versprechen", indonesia: "berjanji", sentence: "Du musst mir *versprechen*, pünktlich zu sein.", category: "Verben" },
-      { id: "def-43", deutsch: "die Kultur", indonesia: "kebudayaan", sentence: "In Berlin kann man viele verschiedene *Kulturen* erleben.", category: "Nomen" },
-      { id: "def-44", deutsch: "erfolgreich", indonesia: "sukses / berhasil", sentence: "Sie hat ihr Studium sehr *erfolgreich* abgeschlossen.", category: "Adjektive" },
-      { id: "def-45", deutsch: "der Bereich", indonesia: "bidang / sektor", sentence: "Sie arbeitet im *Bereich* der künstlichen Intelligenz.", category: "Nomen" },
-      { id: "def-46", deutsch: "reduzieren", indonesia: "mengurangi / memotong", sentence: "Supermärkte versuchen, Plastikverpackungen zu *reduzieren*.", category: "Verben" },
-      { id: "def-47", deutsch: "die Gemeinschaft", indonesia: "komunitas / kebersamaan", sentence: "In unserem Dorf gibt es eine starke *Gemeinschaft*.", category: "Nomen" },
-      { id: "def-48", deutsch: "vorsichtig", indonesia: "hati-hati", sentence: "Seien Sie *vorsichtig* beim Überqueren der Straße.", category: "Adjektive" },
-      { id: "def-49", deutsch: "das Gesetz", indonesia: "hukum / undang-undang", sentence: "Das Parlament hat ein neues *Gesetz* verabschiedet.", category: "Nomen" },
-      { id: "def-50", deutsch: "lösen", indonesia: "memecahkan (masalah) / menyelesaikan", sentence: "Wir müssen dieses schwierige Problem schnell *lösen*.", category: "Verben" }
+      { id: "def-1", deutsch: "die Herausforderung", indonesia: "tantangan", sentence: "Deutsch lernen ist eine große *Herausforderung*.", category: "Nomen", level: "B1", chapter: 1 },
+      { id: "def-2", deutsch: "sich bewerben", indonesia: "melamar (pekerjaan/beasiswa)", sentence: "Ich möchte *mich* um diese Stelle *bewerben*.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "def-3", deutsch: "entscheiden", indonesia: "memutuskan", sentence: "Wir müssen uns schnell *entscheiden*.", category: "Verben", level: "B1", chapter: 3 },
+      { id: "def-4", deutsch: "der Erfolg", indonesia: "kesuksesan / keberhasilan", sentence: "Ich wünsche dir viel *Erfolg* bei der B2-Prüfung.", category: "Nomen", level: "B1", chapter: 4 },
+      { id: "def-5", deutsch: "das Vorurteil", indonesia: "prasangka", sentence: "Wir müssen stereotype *Vorurteile* in der Gesellschaft abbauen.", category: "Nomen", level: "B1", chapter: 5 },
+      { id: "def-6", deutsch: "beeinflussen", indonesia: "memengaruhi", sentence: "Das Wetter kann unsere daily Stimmung *beeinflussen*.", category: "Verben", level: "B1", chapter: 6 },
+      { id: "def-7", deutsch: "nachhaltig", indonesia: "berkelanjutan", sentence: "Wir brauchen eine *nachhaltige* Entwicklung für unsere Erde.", category: "Adjektive", level: "B1", chapter: 7 },
+      { id: "def-8", deutsch: "die Verantwortung", indonesia: "tanggung jawab", sentence: "Jeder trägt die *Verantwortung* für sein eigenes Leben.", category: "Nomen", level: "B1", chapter: 8 },
+      { id: "def-9", deutsch: "unterstützen", indonesia: "mendukung", sentence: "Meine Familie *unterstützt* mich bei all meinen Plänen.", category: "Verben", level: "B1", chapter: 9 },
+      { id: "def-10", deutsch: "die Erfahrung", indonesia: "pengalaman", sentence: "Sie hat bereits fünf Jahre *Erfahrung* im Bereich Marketing.", category: "Nomen", level: "B1", chapter: 10 },
+      { id: "def-11", deutsch: "sich anpassen", indonesia: "menyesuaikan diri", sentence: "Ausländer müssen sich an die neue Kultur *anpassen*.", category: "Verben", level: "B1", chapter: 11 },
+      { id: "def-12", deutsch: "vermeiden", indonesia: "menghindari", sentence: "Wir sollten Plastikmüll so gut wie möglich *vermeiden*.", category: "Verben", level: "B1", chapter: 12 },
+      { id: "def-13", deutsch: "der Vorteil", indonesia: "keuntungan / kelebihan", sentence: "Diese Lernmethode bietet many praktischen *Vorteile*.", category: "Nomen", level: "B1", chapter: 1 },
+      { id: "def-14", deutsch: "der Nachteil", indonesia: "kerugian / kekurangan", sentence: "Der größte *Nachteil* dieses Handys ist der hohe Preis.", category: "Nomen", level: "B1", chapter: 2 },
+      { id: "def-15", deutsch: "zuverlässig", indonesia: "dapat diandalkan", sentence: "Ein deutscher Kollege ist meistens sehr *zuverlässig*.", category: "Adjektive", level: "B1", chapter: 3 },
+      { id: "def-16", deutsch: "die Gelegenheit", indonesia: "kesempatan / peluang", sentence: "Das Auslandsjahr ist eine hervorragende *Gelegenheit*.", category: "Nomen", level: "B1", chapter: 4 },
+      { id: "def-17", deutsch: "empfehlen", indonesia: "merekomendasikan", sentence: "Kannst du mir ein gutes deutsches Restaurant *empfehlen*?", category: "Verben", level: "B1", chapter: 5 },
+      { id: "def-18", deutsch: "vergleichen", indonesia: "membandingkan", sentence: "Man darf Äpfel tidak dengan Birnen *vergleichen*.", category: "Verben", level: "B1", chapter: 6 },
+      { id: "def-19", deutsch: "die Beziehung", indonesia: "hubungan", sentence: "Eine gute *Beziehung* basiert auf Vertrauen und Respekt.", category: "Nomen", level: "B2", chapter: 1 },
+      { id: "def-20", deutsch: "geduldig", indonesia: "sabar", sentence: "Seien Sie *geduldig*, der Lernerfolg braucht Zeit.", category: "Adjektive", level: "B2", chapter: 2 },
+      { id: "def-21", deutsch: "überzeugen", indonesia: "meyakinkan", sentence: "Seine Argumente konnten mich leider tidak *überzeugen*.", category: "Verben", level: "B2", chapter: 3 },
+      { id: "def-22", deutsch: "die Zukunft", indonesia: "masa depan", sentence: "Niemand weiß, was in der *Zukunft* passieren wird.", category: "Nomen", level: "B2", chapter: 4 },
+      { id: "def-23", deutsch: "sich verbessern", indonesia: "meningkatkan diri / membaik", sentence: "Ich möchte mein gesprochenes Deutsch weiter *verbessern*.", category: "Verben", level: "B2", chapter: 5 },
+      { id: "def-24", deutsch: "das Ziel", indonesia: "tujuan / target", sentence: "Mein *Ziel* ist es, täglich 100 Wörter zu lernen.", category: "Nomen", level: "B2", chapter: 6 },
+      { id: "def-25", deutsch: "aufgeben", indonesia: "menyerah", sentence: "Egal wie schwer es ist, du darfst niemals *aufgeben*.", category: "Verben", level: "B2", chapter: 7 },
+      { id: "def-26", deutsch: "die Entwicklung", indonesia: "perkembangan / pengembangan", sentence: "Die technologische *Entwicklung* schreitet rasant voran.", category: "Nomen", level: "B2", chapter: 8 },
+      { id: "def-27", deutsch: "erreichen", indonesia: "mencapai / meraih", sentence: "Gemeinsam können wir unser gestecktes Ziel *erreichen*.", category: "Verben", level: "B2", chapter: 9 },
+      { id: "def-28", deutsch: "verstehen", indonesia: "mengerti / memahami", sentence: "Kannst du den Dialekt der Einheimischen *verstehen*?", category: "Verben", level: "B2", chapter: 10 },
+      { id: "def-29", deutsch: "die Ausbildung", indonesia: "pelatihan kerja / vokasi", sentence: "Er macht eine *Ausbildung* zum Fachinformatiker.", category: "Nomen", level: "B2", chapter: 11 },
+      { id: "def-30", deutsch: "kompliziert", indonesia: "rumit", sentence: "Die deutsche Grammatik ist manchmal sehr *kompliziert*.", category: "Adjektive", level: "B2", chapter: 12 },
+      { id: "def-31", deutsch: "das Wissen", indonesia: "pengetahuan", sentence: "Mit diesem Buch können Sie Ihr *Wissen* vertiefen.", category: "Nomen", level: "B2", chapter: 1 },
+      { id: "def-32", deutsch: "veröffentlichen", indonesia: "menerbitkan / mempublikasikan", sentence: "Der Autor wird berikutnya bulan ein neues Buch *veröffentlichen*.", category: "Verben", level: "B2", chapter: 2 },
+      { id: "def-33", deutsch: "die Gesellschaft", indonesia: "masyarakat", sentence: "Wir leben in einer multikulturellen *Gesellschaft*.", category: "Nomen", level: "B2", chapter: 3 },
+      { id: "def-34", deutsch: "notwendig", indonesia: "perlu / mendesak", sentence: "Für das Visum sind beberapa dokumen sangat *notwendig*.", category: "Adjektive", level: "B2", chapter: 4 },
+      { id: "def-35", deutsch: "der Unterschied", indonesia: "perbedaan", sentence: "Was ist der genaue *Unterschied* zwischen diesen Wörtern?", category: "Nomen", level: "B2", chapter: 5 },
+      { id: "def-36", deutsch: "sich konzentrieren", indonesia: "berkonsentrasi", sentence: "Ich muss mich jetzt voll auf meine Arbeit *konzentrieren*.", category: "Verben", level: "C1", chapter: 1 },
+      { id: "def-37", deutsch: "die Qualität", indonesia: "kualitas", sentence: "Deutsche Autos sind terkenal di seluruh dunia karena *Qualität*.", category: "Nomen", level: "C1", chapter: 2 },
+      { id: "def-38", deutsch: "ablehnen", indonesia: "menolak", sentence: "Ich musste das Jobangebot leider karena alasan keluarga *ablehnen*.", category: "Verben", level: "C1", chapter: 3 },
+      { id: "def-39", deutsch: "die Meinung", indonesia: "pendapat / opini", sentence: "Meiner *Meinung* nach sollten wir das Projekt starten.", category: "Nomen", level: "C1", chapter: 4 },
+      { id: "def-40", deutsch: "wertvoll", indonesia: "berharga", sentence: "Diese Informationen sind sangat *wertvoll* untuk saya.", category: "Adjektive", level: "C1", chapter: 5 },
+      { id: "def-41", deutsch: "die Untersuchung", indonesia: "penyelidikan / pemeriksaan", sentence: "Die medizinische *Untersuchung* berlangsung selama dua jam.", category: "Nomen", level: "C1", chapter: 6 },
+      { id: "def-42", deutsch: "versprechen", indonesia: "berjanji", sentence: "Du musst mir *versprechen*, tepat waktu.", category: "Verben", level: "C1", chapter: 7 },
+      { id: "def-43", deutsch: "die Kultur", indonesia: "kebudayaan", sentence: "In Berlin kann man berbagai *Kulturen* erleben.", category: "Nomen", level: "C1", chapter: 8 },
+      { id: "def-44", deutsch: "erfolgreich", indonesia: "sukses / berhasil", sentence: "Sie hat ihr Studium dengan sangat *erfolgreich* abgeschlossen.", category: "Adjektive", level: "C1", chapter: 9 },
+      { id: "def-45", deutsch: "der Bereich", indonesia: "bidang / sektor", sentence: "Sie arbeitet im *Bereich* der künstlichen Intelligenz.", category: "Nomen", level: "C1", chapter: 10 },
+      { id: "def-46", deutsch: "reduzieren", indonesia: "mengurangi / memotong", sentence: "Supermärkte versuchen, Plastikverpackungen zu *reduzieren*.", category: "Verben", level: "C1", chapter: 11 },
+      { id: "def-47", deutsch: "die Gemeinschaft", indonesia: "komunitas / kebersamaan", sentence: "In unserem Dorf terdapat *Gemeinschaft* yang kuat.", category: "Nomen", level: "C1", chapter: 12 },
+      { id: "def-48", deutsch: "vorsichtig", indonesia: "hati-hati", sentence: "Seien Sie *vorsichtig* saat menyeberang jalan.", category: "Adjektive", level: "C1", chapter: 1 },
+      { id: "def-49", deutsch: "das Gesetz", indonesia: "hukum / undang-undang", sentence: "Das Parlament hat ein neues *Gesetz* verabschiedet.", category: "Nomen", level: "C1", chapter: 2 },
+      { id: "def-50", deutsch: "lösen", indonesia: "memecahkan (masalah) / menyelesaikan", sentence: "Wir müssen dieses schwierige Problem schnell *lösen*.", category: "Verben", level: "C1", chapter: 3 }
     ];
 
     // ==========================================
@@ -1722,6 +1787,7 @@
     // ==========================================
     window.addEventListener('DOMContentLoaded', () => {
       loadData();
+      updateFilterKapitelDropdown(); // Init Kapitel options
       updateStreak();
       updateDashboardStats();
       setupKeyBindings();
@@ -1729,9 +1795,9 @@
       // Auto fill bulk input with example placeholder text
       document.getElementById('bulk-paste-area').placeholder = 
         "der Tisch | meja | Ich sitze am *Tisch*.\n" +
-        "machen | melakukan | Was *machst* du heute?\n" +
+        "machen | melakukan | Was *machst* du? | B2 | 4\n" +
         "die Hilfe | bantuan | Ich brauche deine Hilfe.\n" +
-        "das Auto | mobil | Er kauft ein neues *Auto*.";
+        "das Auto | mobil | Er kauft ein neues *Auto*. | C1 | 12";
     });
 
     function loadData() {
@@ -1770,6 +1836,8 @@
         indonesia: card.indonesia.trim(),
         sentence: card.sentence.trim(),
         category: card.category ? card.category.trim() : autoDetectCategory(card.deutsch),
+        level: card.level ? card.level.trim().toUpperCase() : 'B1',
+        chapter: card.chapter ? parseInt(card.chapter, 10) : 1,
         repetition: 0,
         interval: 0,
         ef: 2.5,
@@ -1812,7 +1880,6 @@
         updateDashboardStats();
       }
       
-      // Clear typing input if exiting study
       if (viewId !== 'study') {
         document.getElementById('answer-input').value = '';
       }
@@ -1874,6 +1941,25 @@
     }
 
     // ==========================================
+    // FILTER DYNAMIC HELPERS
+    // ==========================================
+    function updateFilterKapitelDropdown() {
+      // Optional: dynamic chapters count depending on Niveau if needed.
+      // For now, B1, B2, C1 all have 12 chapters, so keep options 1-12 static.
+    }
+
+    function getFilteredCards() {
+      const lvl = document.getElementById('filter-level').value;
+      const ch = document.getElementById('filter-chapter').value;
+      
+      return cards.filter(c => {
+        const lvlMatch = (lvl === 'ALL' || c.level === lvl);
+        const chMatch = (ch === 'ALL' || c.chapter.toString() === ch);
+        return lvlMatch && chMatch;
+      });
+    }
+
+    // ==========================================
     // DASHBOARD METRICS & ACTIVITY CHART
     // ==========================================
     function updateDashboardStats() {
@@ -1888,26 +1974,48 @@
       const progressPercent = Math.min(100, (newStudiedToday / 100) * 100);
       document.getElementById('stat-target-bar').style.width = `${progressPercent}%`;
 
+      // FILTERED Due count for Dashboard
       const nowISO = new Date().toISOString();
-      const dueCards = cards.filter(c => c.dueDate <= nowISO && c.step >= 0);
+      const filtered = getFilteredCards();
+      const dueCards = filtered.filter(c => c.dueDate <= nowISO && c.step >= 0);
+      
+      const lvlFilter = document.getElementById('filter-level').value;
+      const chFilter = document.getElementById('filter-chapter').value;
+      const isFiltered = (lvlFilter !== 'ALL' || chFilter !== 'ALL');
+      
+      document.getElementById('stat-due-header').textContent = isFiltered ? "Review (Filter)" : "Perlu Review";
       document.getElementById('stat-due-val').textContent = dueCards.length;
       document.getElementById('stat-due-sub').textContent = dueCards.length === 1 ? '1 Kartu jatuh tempo' : `${dueCards.length} Kartu jatuh tempo`;
 
-      const neverStudiedCount = cards.filter(c => c.step === -1).length;
-      document.getElementById('opt-due-desc').textContent = `Fokus mereview ${dueCards.length} kata yang jatuh tempo hari ini.`;
-      document.getElementById('opt-new-desc').textContent = `Mulai belajar kata baru (${neverStudiedCount} tersedia di library).`;
-      document.getElementById('opt-mixed-desc').textContent = `Campur acak ${dueCards.length} kartu jatuh tempo dengan kata baru.`;
+      // Update study option card descriptions based on current filters
+      const neverStudiedCount = filtered.filter(c => c.step === -1).length;
+      document.getElementById('opt-due-desc').textContent = `Review ${dueCards.length} kartu jatuh tempo sesuai filter saat ini.`;
+      document.getElementById('opt-new-desc').textContent = `Belajar kata baru (${neverStudiedCount} tersedia sesuai filter).`;
+      document.getElementById('opt-mixed-desc').textContent = `Campur ${dueCards.length} kartu review dengan kata baru sesuai filter.`;
 
       document.getElementById('mode-opt-due').style.opacity = dueCards.length === 0 ? '0.6' : '1';
       document.getElementById('mode-opt-new').style.opacity = neverStudiedCount === 0 ? '0.6' : '1';
 
+      // Streak Days
       const streak = updateStreak();
       document.getElementById('stat-streak-val').textContent = streak;
 
+      // Mastered Words (Interval >= 30 days) in filtered or total library
       const mastered = cards.filter(c => c.step >= 4 || c.interval >= 30).length;
       document.getElementById('stat-mastered-val').textContent = mastered;
       document.getElementById('stat-mastered-sub').textContent = `Dari total ${cards.length} kata`;
 
+      // Library Niveau Breakdown Display
+      const countB1 = cards.filter(c => c.level === 'B1').length;
+      const countB2 = cards.filter(c => c.level === 'B2').length;
+      const countC1 = cards.filter(c => c.level === 'C1').length;
+      document.getElementById('stat-level-breakdown').innerHTML = `
+        <span>B1: <strong>${countB1}</strong></span>
+        <span>B2: <strong>${countB2}</strong></span>
+        <span>C1: <strong>${countC1}</strong></span>
+      `;
+
+      // Render 7-day SVG Activity Chart
       renderActivityChart();
     }
 
@@ -1942,7 +2050,6 @@
 
       const maxCount = Math.max(...counts, 10);
       const chartHeight = 110;
-      const chartWidth = 360;
       const xStart = 30;
       const yStart = 10;
       const colWidth = 40;
@@ -2021,28 +2128,29 @@
 
     function launchSession() {
       const nowISO = new Date().toISOString();
+      const filtered = getFilteredCards(); // Filter level/chapter
       let selectedCards = [];
 
       if (studyType === 'due') {
-        selectedCards = cards.filter(c => c.dueDate <= nowISO && c.step >= 0);
+        selectedCards = filtered.filter(c => c.dueDate <= nowISO && c.step >= 0);
         if (selectedCards.length === 0) {
-          showToast("Tidak ada kartu jatuh tempo hari ini!");
+          showToast("Tidak ada kartu jatuh tempo sesuai filter!");
           return;
         }
       } else if (studyType === 'new') {
-        selectedCards = cards.filter(c => c.step === -1);
+        selectedCards = filtered.filter(c => c.step === -1);
         if (selectedCards.length === 0) {
-          showToast("Tidak ada kata baru tersisa di library!");
+          showToast("Tidak ada kata baru sesuai filter!");
           return;
         }
         selectedCards = selectedCards.slice(0, 20); 
       } else if (studyType === 'mixed') {
-        const due = cards.filter(c => c.dueDate <= nowISO && c.step >= 0);
-        const brandNew = cards.filter(c => c.step === -1).slice(0, 20);
+        const due = filtered.filter(c => c.dueDate <= nowISO && c.step >= 0);
+        const brandNew = filtered.filter(c => c.step === -1).slice(0, 20);
         selectedCards = [...due, ...brandNew];
         
         if (selectedCards.length === 0) {
-          showToast("Tidak ada kata yang bisa dipelajari saat ini!");
+          showToast("Tidak ada kata yang sesuai filter!");
           return;
         }
       }
@@ -2079,14 +2187,14 @@
         studyType = 'due';
         selectStudyType('due');
         const nowISO = new Date().toISOString();
-        const dueLength = cards.filter(c => c.dueDate <= nowISO && c.step >= 0).length;
+        const dueLength = getFilteredCards().filter(c => c.dueDate <= nowISO && c.step >= 0).length;
         
         if (dueLength > 0) {
           launchSession();
         } else {
           studyType = 'new';
           selectStudyType('new');
-          const newLength = cards.filter(c => c.step === -1).length;
+          const newLength = getFilteredCards().filter(c => c.step === -1).length;
           if (newLength > 0) {
             launchSession();
           } else {
@@ -2139,9 +2247,11 @@
       input.style.display = 'block';
       document.getElementById('typing-validation').style.display = 'none';
 
+      // Badge layout update: display niveau and chapter
       const catText = activeCard.category || 'Kosakata';
-      document.getElementById('front-category').textContent = catText;
-      document.getElementById('back-category').textContent = catText;
+      const badgeLabel = `${activeCard.level} - KAPITEL ${activeCard.chapter} • ${catText}`;
+      document.getElementById('front-category').textContent = badgeLabel;
+      document.getElementById('back-category').textContent = badgeLabel;
 
       document.getElementById('back-display').innerHTML = formatGermanWord(activeCard.deutsch);
       document.getElementById('back-translation').textContent = activeCard.indonesia;
@@ -2557,6 +2667,9 @@
       const text = area.value.trim();
       const logDiv = document.getElementById('import-log');
 
+      const importLvl = document.getElementById('import-level').value;
+      const importCh = parseInt(document.getElementById('import-chapter').value, 10);
+
       if (!text) {
         showToast("Area teks kosong!");
         return;
@@ -2581,11 +2694,31 @@
           const id = parts[1].trim();
           const sent = parts[2] ? parts[2].trim() : `${de} in einem Satz.`;
           
+          let lvl = importLvl;
+          let ch = importCh;
+
+          // Detect level from column 4 if explicitly provided
+          if (parts.length >= 4) {
+            const parsedLvl = parts[3].trim().toUpperCase();
+            if (['B1', 'B2', 'C1'].includes(parsedLvl)) {
+              lvl = parsedLvl;
+            }
+          }
+          // Detect chapter from column 5 if explicitly provided
+          if (parts.length >= 5) {
+            const parsedCh = parseInt(parts[4].trim(), 10);
+            if (!isNaN(parsedCh) && parsedCh >= 1 && parsedCh <= 12) {
+              ch = parsedCh;
+            }
+          }
+
           if (de && id) {
             const newCard = initSM2Properties({
               deutsch: de,
               indonesia: id,
-              sentence: sent
+              sentence: sent,
+              level: lvl,
+              chapter: ch
             });
             
             const isDuplicate = cards.some(c => c.deutsch.toLowerCase() === de.toLowerCase());

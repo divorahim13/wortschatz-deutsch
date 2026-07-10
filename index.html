@@ -3422,9 +3422,14 @@
         const toggle = document.getElementById('fc-shuffle-toggle');
         if (toggle) toggle.checked = fcShuffleEnabled;
       }
-      // Count today's rated cards from reviewHistory
+      // Count today's unique rated cards from reviewHistory
       const todayStr = getTodayString();
-      fcTodayRatedCount = reviewHistory.filter(h => h.date === todayStr && h.source === 'flashcard').length;
+      const uniqueRatedCards = new Set(
+        reviewHistory
+          .filter(h => h.date === todayStr && h.source === 'flashcard')
+          .map(h => h.cardId)
+      );
+      fcTodayRatedCount = uniqueRatedCards.size;
     }
 
     // ==========================================
@@ -3580,6 +3585,8 @@
       recordReviewInStreak();
 
       const todayStr = getTodayString();
+      const alreadyRatedToday = reviewHistory.some(h => h.date === todayStr && h.cardId === dbCard.id && h.source === 'flashcard');
+
       reviewHistory.push({
         date: todayStr,
         cardId: dbCard.id,
@@ -3591,7 +3598,9 @@
       saveCards();
       saveHistory();
 
-      fcTodayRatedCount++;
+      if (!alreadyRatedToday) {
+        fcTodayRatedCount++;
+      }
       flashcardList[flashcardIndex] = { ...dbCard };
 
       const gradeLabels = { again: 'Lagi', hard: 'Sulit', good: 'Bagus', easy: 'Mudah' };

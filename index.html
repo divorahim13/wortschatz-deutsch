@@ -18,13 +18,14 @@
       --bg-input: #0f0f11;
       --border-muted: #27272a;
       --border-focus: #3f3f46;
+      
       --text-primary: #f4f4f5;
       --text-secondary: #a1a1aa;
       --text-muted: #71717a;
       
       --accent: #8b5cf6;
       --accent-hover: #a78bfa;
-      --accent-glow: rgba(139, 92, 246, 0.15);
+      --accent-glow: rgba(139, 92, 246, 0.12);
       --accent-text: #c084fc;
       
       /* Genders */
@@ -56,17 +57,17 @@
       position: relative;
     }
 
-    /* Background glow effect like Linear.app */
+    /* Ambient background glow */
     body::before {
       content: '';
       position: absolute;
-      top: -10%;
+      top: -100px;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
-      max-width: 1200px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, rgba(9, 9, 11, 0) 70%);
+      max-width: 1000px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, rgba(9, 9, 11, 0) 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -81,9 +82,9 @@
     }
 
     .nav-container {
-      max-width: 1024px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 16px 20px;
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -98,8 +99,8 @@
     }
 
     .brand-logo {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       stroke: var(--accent);
       stroke-width: 2;
       fill: none;
@@ -108,32 +109,32 @@
     .brand-title {
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       letter-spacing: 0.5px;
     }
 
     .brand-badge {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       background: var(--accent-glow);
       color: var(--accent-text);
       padding: 2px 8px;
       border-radius: 99px;
-      border: 1px solid rgba(139, 92, 246, 0.3);
+      border: 1px solid rgba(139, 92, 246, 0.2);
     }
 
     nav {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
 
     .nav-btn {
       background: none;
       border: 1px solid transparent;
       color: var(--text-secondary);
-      padding: 8px 14px;
+      padding: 8px 12px;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
       cursor: pointer;
       display: flex;
@@ -163,10 +164,10 @@
 
     main {
       flex: 1;
-      max-width: 1024px;
+      max-width: 1000px;
       width: 100%;
       margin: 0 auto;
-      padding: 30px 20px;
+      padding: 24px 20px;
       z-index: 10;
       display: flex;
       flex-direction: column;
@@ -174,7 +175,7 @@
 
     .view-section {
       display: none;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn var(--transition-speed) ease;
     }
 
     .view-section.active {
@@ -186,33 +187,21 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .stat-card {
       background-color: var(--bg-card);
       border: 1px solid var(--border-muted);
       border-radius: 12px;
-      padding: 20px;
+      padding: 18px 20px;
       display: flex;
       flex-direction: column;
-      position: relative;
-      overflow: hidden;
+      transition: border-color var(--transition-speed);
     }
 
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background-color: transparent;
-      transition: background-color var(--transition-speed);
-    }
-
-    .stat-card:hover::after {
-      background-color: var(--accent);
+    .stat-card:hover {
+      border-color: var(--border-focus);
     }
 
     .stat-header {
@@ -220,14 +209,14 @@
       justify-content: space-between;
       align-items: center;
       color: var(--text-secondary);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 500;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .stat-header svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       stroke: var(--text-muted);
       stroke-width: 2;
       fill: none;
@@ -235,10 +224,10 @@
 
     .stat-value {
       font-family: 'Outfit', sans-serif;
-      font-size: 2rem;
+      font-size: 1.85rem;
       font-weight: 600;
-      line-height: 1;
-      margin-bottom: 6px;
+      line-height: 1.1;
+      margin-bottom: 4px;
     }
 
     .stat-sub {
@@ -246,10 +235,9 @@
       color: var(--text-muted);
     }
 
-    /* Progress bar specific styles */
     .progress-bar-container {
       width: 100%;
-      height: 6px;
+      height: 4px;
       background-color: var(--bg-input);
       border-radius: 99px;
       margin-top: 10px;
@@ -267,8 +255,8 @@
     /* Section Columns */
     .dashboard-columns {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 24px;
+      grid-template-columns: 1.40fr 1fr;
+      gap: 20px;
     }
 
     @media (max-width: 768px) {
@@ -280,23 +268,23 @@
     .dashboard-panel {
       background-color: var(--bg-card);
       border: 1px solid var(--border-muted);
-      border-radius: 16px;
-      padding: 24px;
+      border-radius: 12px;
+      padding: 20px;
     }
 
     .panel-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .panel-title svg {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       stroke: var(--accent);
       stroke-width: 2;
       fill: none;
@@ -305,10 +293,10 @@
     /* SVG Chart */
     .chart-container {
       width: 100%;
-      height: 200px;
+      height: 180px;
       display: flex;
       align-items: flex-end;
-      padding-top: 20px;
+      padding-top: 10px;
     }
 
     .chart-svg {
@@ -324,26 +312,26 @@
 
     .chart-bar {
       fill: var(--accent);
-      opacity: 0.85;
-      transition: all var(--transition-speed) ease;
+      opacity: 0.8;
+      transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease;
       cursor: pointer;
     }
 
     .chart-bar:hover {
       opacity: 1;
-      filter: drop-shadow(0 0 6px var(--accent));
+      filter: drop-shadow(0 0 4px var(--accent));
     }
 
     .chart-label {
       fill: var(--text-secondary);
-      font-size: 10px;
+      font-size: 9px;
       font-family: 'JetBrains Mono', monospace;
       text-anchor: middle;
     }
 
     .chart-val-label {
       fill: var(--text-primary);
-      font-size: 10px;
+      font-size: 9px;
       font-family: 'JetBrains Mono', monospace;
       font-weight: 500;
       text-anchor: middle;
@@ -353,33 +341,33 @@
     .study-controls {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
     }
 
     .study-options-title {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .study-mode-select {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .radio-card {
       background-color: var(--bg-primary);
       border: 1px solid var(--border-muted);
-      border-radius: 10px;
-      padding: 14px;
+      border-radius: 8px;
+      padding: 10px 12px;
       cursor: pointer;
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 10px;
       transition: all var(--transition-speed) ease;
     }
 
@@ -390,18 +378,18 @@
 
     .radio-card.selected {
       border-color: var(--accent);
-      background-color: rgba(139, 92, 246, 0.05);
+      background-color: rgba(139, 92, 246, 0.04);
     }
 
     .radio-circle {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       border: 2px solid var(--border-muted);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 2px;
+      margin-top: 1px;
       flex-shrink: 0;
       transition: all var(--transition-speed) ease;
     }
@@ -421,17 +409,17 @@
     .radio-card-content {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 2px;
     }
 
     .radio-label {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: var(--text-primary);
     }
 
     .radio-desc {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-secondary);
     }
 
@@ -440,8 +428,8 @@
       color: var(--text-primary);
       border: none;
       border-radius: 8px;
-      padding: 12px 20px;
-      font-size: 0.95rem;
+      padding: 10px 16px;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
@@ -478,8 +466,8 @@
     }
 
     .btn svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       stroke: currentColor;
       stroke-width: 2;
       fill: none;
@@ -490,14 +478,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .back-to-dashboard {
       background: none;
       border: none;
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       cursor: pointer;
       display: flex;
@@ -511,8 +499,8 @@
     }
 
     .back-to-dashboard svg {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       stroke: currentColor;
       stroke-width: 2;
       fill: none;
@@ -520,25 +508,24 @@
 
     .study-progress-info {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
       background-color: var(--bg-card);
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: 99px;
       border: 1px solid var(--border-muted);
     }
 
     .study-arena {
-      max-width: 500px;
+      max-width: 480px;
       width: 100%;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
 
-    /* Active Recall Mode Indicator Bar */
     .active-mode-indicator {
       display: flex;
       gap: 4px;
@@ -553,9 +540,9 @@
       flex: 1;
       background: none;
       border: none;
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 6px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--text-secondary);
       cursor: pointer;
@@ -572,7 +559,7 @@
     .card-container {
       perspective: 1000px;
       width: 100%;
-      height: 360px;
+      height: 330px;
       position: relative;
     }
 
@@ -593,42 +580,39 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      -webkit-backface-visibility: hidden; /* Safari */
+      -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      border-radius: 16px;
+      border-radius: 12px;
       border: 1px solid var(--border-muted);
-      padding: 30px 24px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       background-color: var(--bg-card);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
     .card-back {
       transform: rotateY(180deg);
-      justify-content: flex-start;
-      gap: 10px;
-      overflow-y: auto;
     }
 
     .card-badge {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      background-color: rgba(255, 255, 255, 0.03);
-      padding: 4px 10px;
+      background-color: rgba(255, 255, 255, 0.02);
+      padding: 3px 8px;
       border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      flex-shrink: 0;
     }
 
     .card-prompt-label {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      margin-top: 10px;
     }
 
     .card-main-content {
@@ -637,19 +621,13 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
-    }
-
-    /* Back content needs to be compact due to scrolling possibility */
-    .card-back .card-main-content {
-      justify-content: flex-start;
-      flex: unset;
     }
 
     .german-word {
       font-family: 'Outfit', sans-serif;
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
       letter-spacing: -0.5px;
       color: var(--text-primary);
@@ -657,22 +635,12 @@
       word-break: break-word;
     }
 
-    /* Gender colors */
-    .article-der {
-      color: var(--der);
-      text-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
-    }
-    .article-die {
-      color: var(--die);
-      text-shadow: 0 0 15px rgba(248, 113, 113, 0.15);
-    }
-    .article-das {
-      color: var(--das);
-      text-shadow: 0 0 15px rgba(74, 222, 128, 0.15);
-    }
+    .article-der { color: var(--der); }
+    .article-die { color: var(--die); }
+    .article-das { color: var(--das); }
 
     .indonesian-word {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 500;
       color: var(--text-primary);
       text-align: center;
@@ -681,67 +649,64 @@
 
     .sentence-container {
       width: 100%;
-      background-color: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      background-color: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
       border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 0.9rem;
-      line-height: 1.4;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      line-height: 1.35;
       color: var(--text-secondary);
       text-align: center;
-      margin-top: 10px;
     }
 
     .sentence-translation {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
-      margin-top: 3px;
+      margin-top: 2px;
       font-style: italic;
     }
 
     .highlight-word {
       color: var(--accent-text);
       font-weight: 600;
-      border-bottom: 2px solid rgba(139, 92, 246, 0.4);
-      padding-bottom: 1px;
+      border-bottom: 2px solid rgba(139, 92, 246, 0.3);
     }
 
     .blank-word {
       background-color: var(--bg-input);
       border-bottom: 2px solid var(--text-muted);
       display: inline-block;
-      min-width: 85px;
-      height: 18px;
+      min-width: 80px;
+      height: 16px;
       vertical-align: middle;
     }
 
-    /* Flip Trigger Button area */
     .card-footer-tip {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       display: flex;
       align-items: center;
       gap: 4px;
+      flex-shrink: 0;
     }
 
     .keycap {
       font-family: 'JetBrains Mono', monospace;
       background-color: var(--bg-primary);
       border: 1px solid var(--border-muted);
-      border-bottom-width: 3px;
+      border-bottom-width: 2px;
       border-radius: 4px;
-      padding: 1px 6px;
-      font-size: 0.7rem;
+      padding: 0 4px;
+      font-size: 0.65rem;
       color: var(--text-secondary);
     }
 
-    /* Active Recall Typing Input */
     .recall-input-area {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-top: 10px;
+      gap: 6px;
+      margin-top: 6px;
     }
 
     .input-field {
@@ -750,8 +715,8 @@
       border: 1px solid var(--border-muted);
       border-radius: 8px;
       color: var(--text-primary);
-      padding: 10px 14px;
-      font-size: 0.95rem;
+      padding: 8px 12px;
+      font-size: 0.9rem;
       text-align: center;
       transition: all var(--transition-speed) ease;
     }
@@ -763,28 +728,27 @@
     }
 
     .validation-badge {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      padding: 6px 12px;
+      padding: 4px 10px;
       border-radius: 6px;
       width: 100%;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      margin-top: 10px;
+      gap: 6px;
     }
 
     .validation-correct {
-      background-color: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.2);
+      background-color: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.15);
       color: var(--success);
     }
 
     .validation-incorrect {
-      background-color: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.2);
+      background-color: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.15);
       color: var(--error);
       flex-direction: column;
       gap: 2px;
@@ -792,18 +756,17 @@
 
     .speak-btn {
       background: none;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      background-color: rgba(255, 255, 255, 0.01);
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       color: var(--text-secondary);
       transition: all var(--transition-speed) ease;
-      margin-top: 5px;
     }
 
     .speak-btn:hover {
@@ -813,32 +776,30 @@
     }
 
     .speak-btn svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       stroke: currentColor;
       stroke-width: 2;
       fill: none;
     }
 
-    /* Rating buttons on back side */
     .rating-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 6px;
       width: 100%;
-      margin-top: 15px;
       flex-shrink: 0;
     }
 
     .rating-btn {
       border: 1px solid var(--border-muted);
       border-radius: 8px;
-      padding: 8px 4px;
+      padding: 6px 2px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 2px;
       background-color: var(--bg-primary);
       transition: all var(--transition-speed) ease;
     }
@@ -849,87 +810,66 @@
     }
 
     .rating-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
     }
 
     .rating-time {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: var(--text-muted);
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Color definitions for ratings */
-    .rating-again {
-      border-color: rgba(239, 68, 68, 0.2);
-    }
-    .rating-again:hover {
-      background-color: rgba(239, 68, 68, 0.05);
-      border-color: var(--error);
-    }
+    .rating-again { border-color: rgba(239, 68, 68, 0.15); }
+    .rating-again:hover { background-color: rgba(239, 68, 68, 0.04); border-color: var(--error); }
     .rating-again .rating-label { color: var(--error); }
 
-    .rating-hard {
-      border-color: rgba(245, 158, 11, 0.2);
-    }
-    .rating-hard:hover {
-      background-color: rgba(245, 158, 11, 0.05);
-      border-color: var(--warning);
-    }
+    .rating-hard { border-color: rgba(245, 158, 11, 0.15); }
+    .rating-hard:hover { background-color: rgba(245, 158, 11, 0.04); border-color: var(--warning); }
     .rating-hard .rating-label { color: var(--warning); }
 
-    .rating-good {
-      border-color: rgba(139, 92, 246, 0.2);
-    }
-    .rating-good:hover {
-      background-color: rgba(139, 92, 246, 0.05);
-      border-color: var(--accent);
-    }
+    .rating-good { border-color: rgba(139, 92, 246, 0.15); }
+    .rating-good:hover { background-color: rgba(139, 92, 246, 0.04); border-color: var(--accent); }
     .rating-good .rating-label { color: var(--accent-text); }
 
-    .rating-easy {
-      border-color: rgba(16, 185, 129, 0.2);
-    }
-    .rating-easy:hover {
-      background-color: rgba(16, 185, 129, 0.05);
-      border-color: var(--success);
-    }
+    .rating-easy { border-color: rgba(16, 185, 129, 0.15); }
+    .rating-easy:hover { background-color: rgba(16, 185, 129, 0.04); border-color: var(--success); }
     .rating-easy .rating-label { color: var(--success); }
 
     /* Bulk Input View */
     .input-panel {
       background-color: var(--bg-card);
       border: 1px solid var(--border-muted);
-      border-radius: 16px;
-      padding: 24px;
-      max-width: 700px;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
     .input-instructions {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 16px;
-      background-color: rgba(255, 255, 255, 0.02);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      background-color: rgba(255, 255, 255, 0.01);
       border: 1px solid var(--border-muted);
-      padding: 12px;
+      padding: 10px;
       border-radius: 8px;
     }
 
     .textarea-field {
       width: 100%;
-      height: 250px;
+      height: 200px;
       background-color: var(--bg-input);
       border: 1px solid var(--border-muted);
       border-radius: 8px;
       color: var(--text-primary);
-      padding: 14px;
+      padding: 12px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       resize: vertical;
-      line-height: 1.5;
-      margin-bottom: 16px;
+      line-height: 1.45;
+      margin-bottom: 12px;
     }
 
     .textarea-field:focus {
@@ -938,27 +878,27 @@
     }
 
     .import-log {
-      margin-top: 16px;
-      padding: 12px;
+      margin-top: 12px;
+      padding: 10px;
       border-radius: 8px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       background-color: var(--bg-primary);
       border: 1px solid var(--border-muted);
       display: none;
     }
 
-    /* Backup / Data Panel */
+    /* Backup Panel */
     .backup-panel {
       background-color: var(--bg-card);
       border: 1px solid var(--border-muted);
-      border-radius: 16px;
-      padding: 24px;
-      max-width: 600px;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 580px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
     .backup-row {
@@ -966,7 +906,7 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--border-muted);
-      padding-bottom: 16px;
+      padding-bottom: 14px;
     }
 
     .backup-row:last-child {
@@ -976,19 +916,19 @@
 
     .backup-info {
       flex: 1;
-      padding-right: 16px;
+      padding-right: 12px;
     }
 
     .backup-title {
       font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 4px;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
     }
 
     .backup-desc {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-secondary);
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     .backup-actions {
@@ -1012,36 +952,36 @@
       cursor: pointer;
     }
 
-    /* Session Summary View */
+    /* Summary View */
     .summary-container {
       background-color: var(--bg-card);
       border: 1px solid var(--border-muted);
-      border-radius: 16px;
-      padding: 30px;
-      max-width: 500px;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 480px;
       margin: 0 auto;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 18px;
     }
 
     .summary-icon-wrapper {
-      width: 64px;
-      height: 64px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
       background-color: var(--accent-glow);
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid var(--accent);
+      border: 1.5px solid var(--accent);
       color: var(--accent-text);
     }
 
     .summary-icon-wrapper svg {
-      width: 32px;
-      height: 32px;
+      width: 26px;
+      height: 26px;
       stroke: currentColor;
       stroke-width: 2;
       fill: none;
@@ -1049,33 +989,33 @@
 
     .summary-heading {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 700;
     }
 
     .summary-stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
       width: 100%;
     }
 
     .summary-stat-box {
       background-color: var(--bg-primary);
       border: 1px solid var(--border-muted);
-      padding: 12px;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: 8px;
     }
 
     .summary-stat-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-secondary);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .summary-stat-val {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 600;
     }
 
@@ -1085,38 +1025,22 @@
     }
 
     .summary-mistakes-title {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       border-bottom: 1px solid var(--border-muted);
-      padding-bottom: 6px;
+      padding-bottom: 4px;
     }
 
     .summary-mistakes-list {
-      max-height: 150px;
+      max-height: 120px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      padding-right: 4px;
-    }
-
-    /* Custom Scrollbar for dark theme */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-primary);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--border-muted);
-      border-radius: 99px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--border-focus);
     }
 
     .summary-mistake-item {
@@ -1124,75 +1048,30 @@
       justify-content: space-between;
       align-items: center;
       background-color: rgba(255, 255, 255, 0.01);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      padding: 6px 10px;
       border-radius: 6px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
     .summary-mistake-count {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--error);
-      background-color: rgba(239, 68, 68, 0.08);
-      border: 1px solid rgba(239, 68, 68, 0.15);
-      padding: 1px 6px;
+      background-color: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.12);
+      padding: 1px 5px;
       border-radius: 4px;
     }
 
-    /* Fade-in Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Loading Spin animation */
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-muted);
-      border-left: 4px solid var(--accent);
-      color: var(--text-primary);
-      padding: 12px 20px;
-      border-radius: 8px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 999;
-      transform: translateY(150px);
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      font-size: 0.9rem;
-    }
-
-    .toast.show {
-      transform: translateY(0);
-    }
-
-    .toast svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--accent-text);
-      stroke-width: 2;
-      fill: none;
-    }
-
-    /* Modal Styling for Double Confirms */
+    /* Modal Styling */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0,0,0,0.6);
       backdrop-filter: blur(4px);
       z-index: 100;
       display: none;
@@ -1208,51 +1087,97 @@
     .modal {
       background-color: var(--bg-card);
       border: 1px solid var(--border-muted);
-      max-width: 400px;
+      max-width: 380px;
       width: 100%;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      animation: fadeIn 0.25s ease;
+      gap: 14px;
+      animation: fadeIn 0.2s ease;
     }
 
     .modal-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: var(--error);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .modal-title svg {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       stroke: currentColor;
       stroke-width: 2;
       fill: none;
     }
 
-    .modal-desc {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-        .modal-actions {
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      border-left: 3px solid var(--accent);
+      color: var(--text-primary);
+      padding: 10px 16px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       display: flex;
-      gap: 10px;
+      align-items: center;
+      gap: 8px;
+      z-index: 999;
+      transform: translateY(120px);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 0.85rem;
     }
 
-    .modal-actions button {
-      flex: 1;
+    .toast.show {
+      transform: translateY(0);
     }
 
-    /* Prevent custom file input button overlay block on mobile Safari/Chrome */
+    .toast svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--accent-text);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Loading Spin */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-muted);
+      border-radius: 99px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--border-focus);
+    }
+
+    /* Pointer Events Fix for Custom Buttons */
     .file-input-wrapper button {
       pointer-events: none;
     }
@@ -2081,18 +2006,18 @@
       { id: "k2-141", deutsch: "der Transport, -e [B1]", indonesia: "transportasi", sentence: "Der Transport des Geräts hat extra Kosten verursacht.", category: "Nomen", level: "B1", chapter: 2 },
       { id: "k2-142", deutsch: "die Wand, -ä-e [B1]", indonesia: "dinding", sentence: "Die Farbe der Wände kann per App geändert werden.", category: "Nomen", level: "B1", chapter: 2 },
       { id: "k2-143", deutsch: "das Zentrum, Zentren [B1]", indonesia: "pusat kota", sentence: "Das Zentrum war so weit weg, dass sie den Bus nehmen musste.", category: "Nomen", level: "B1", chapter: 2 },
-      { id: "k2-144", deutsch: "an\", indonesia: "passen (an + A.)", sentence: "menyesuaikan", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-145", deutsch: "an\", indonesia: "schließen [B1]", sentence: "menyambungkan", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-146", deutsch: "auf\", indonesia: "fallen [B1]", sentence: "menarik perhatian", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-147", deutsch: "auf\", indonesia: "laden", sentence: "mengisi daya", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-148", deutsch: "aus\", indonesia: "schalten [B1]", sentence: "mematikan", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-144", deutsch: "an|passen (an + A.)", indonesia: "menyesuaikan", sentence: "Das Licht lässt sich an die Stimmung anpassen.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-145", deutsch: "an|schließen [B1]", indonesia: "menyambungkan", sentence: "Ich habe das Ladekabel an das Handy angeschlossen.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-146", deutsch: "auf|fallen [B1]", indonesia: "menarik perhatian", sentence: "Die Werbung fällt sofort auf, weil sie so bunt ist.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-147", deutsch: "auf|laden", indonesia: "mengisi daya", sentence: "Ich habe den Akku aufgeladen, weil er fast leer war.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-148", deutsch: "aus|schalten [B1]", indonesia: "mematikan", sentence: "Schalte das Handy aus, wenn du schläfst!", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-149", deutsch: "bedienen [B1]", indonesia: "mengoperasikan", sentence: "Das Gerät lässt sich einfach bedienen.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-150", deutsch: "beeinflussen [B1]", indonesia: "mempengaruhi", sentence: "Werbung beeinflusst unser Kaufverhalten.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-151", deutsch: "bemerken [B1]", indonesia: "memperhatikan/menyadari", sentence: "Ich habe bemerkt, dass das Gerät defekt ist.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-152", deutsch: "benötigen [B1]", indonesia: "membutuhkan", sentence: "Wofür benötigst du dieses Gerät?", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-153", deutsch: "berühren [B1]", indonesia: "menyentuh", sentence: "Berühre den Bildschirm, um die Tür zu öffnen.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-154", deutsch: "bestellen [B1]", indonesia: "memesan", sentence: "Ich habe das Gerät online bestellt, weil es günstiger war.", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-155", deutsch: "ein\", indonesia: "schalten [B1]", sentence: "menyalakan", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-155", deutsch: "ein|schalten [B1]", indonesia: "menyalakan", sentence: "Schalte das Gerät erst ein, wenn du die Anleitung gelesen hast!", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-156", deutsch: "erkennen [B1]", indonesia: "mengenali", sentence: "Der Sensor erkennt den Fingerabdruck des Bewohners.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-157", deutsch: "ersetzen [B1]", indonesia: "mengganti", sentence: "Das kaputte Gerät wurde durch ein neues ersetzt.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-158", deutsch: "fotografieren [B1]", indonesia: "memotret", sentence: "Ich fotografiere viel mit meinem Smartphone.", category: "Verben", level: "B1", chapter: 2 },
@@ -2114,27 +2039,27 @@
       { id: "k2-174", deutsch: "telefonieren [B1]", indonesia: "menelepon", sentence: "Ich telefoniere lieber, als SMS zu schreiben.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-175", deutsch: "testen [B1]", indonesia: "mencoba/mengetes", sentence: "Bevor ich das Gerät kaufe, möchte ich es testen.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-176", deutsch: "trainieren [B1]", indonesia: "berlatih", sentence: "Mit der Fitness-App kann ich besser trainieren.", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-177", deutsch: "um\", indonesia: "tauschen", sentence: "menukar barang", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-177", deutsch: "um|tauschen", indonesia: "menukar barang", sentence: "Ich möchte das Gerät umtauschen, weil es nicht funktioniert.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-178", deutsch: "vergleichen [B1]", indonesia: "membandingkan", sentence: "Ich habe verschiedene Werbeanzeigen verglichen.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-179", deutsch: "vertrauen [B1]", indonesia: "mempercayai", sentence: "Kunden vertrauen einem Unternehmen, dessen Werbung ehrlich ist.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-180", deutsch: "werben [B1]", indonesia: "mengiklankan", sentence: "Dieses Produkt wird überall beworben.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-181", deutsch: "wirken [B1]", indonesia: "bekerja/berpengaruh", sentence: "Werbung wirkt am besten, wenn sie Emotionen weckt.", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-182", deutsch: "zurück\", indonesia: "geben [B1]", sentence: "mengembalikan", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-183", deutsch: "an\ (schließen [B1], schloss an)", indonesia: "hat angeschlossen", sentence: "menyambungkan", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-184", deutsch: "auf\ (laden, lud auf)", indonesia: "hat aufgeladen", sentence: "mengisi daya", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-185", deutsch: "auf\ (nehmen, nahm auf)", indonesia: "hat aufgenommen", sentence: "merekam", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-186", deutsch: "aus\ (geben [B1], gab aus)", indonesia: "hat ausgegeben", sentence: "membelanjakan", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-187", deutsch: "ab\ (heben [B1], hob ab)", indonesia: "hat abgehoben", sentence: "menarik uang", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-188", deutsch: "be\ (kommen [B1], bekam)", indonesia: "hat bekommen", sentence: "mendapatkan", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-182", deutsch: "zurück|geben [B1]", indonesia: "mengembalikan", sentence: "Ich möchte das Gerät zurückgeben, weil es defekt ist.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-183", deutsch: "an|schließen [B1] (schloss an, hat angeschlossen)", indonesia: "menyambungkan", sentence: "Er hat das Kabel an den Computer angeschlossen.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-184", deutsch: "auf|laden (lud auf, hat aufgeladen)", indonesia: "mengisi daya", sentence: "Ich habe den Akku über Nacht aufgeladen.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-185", deutsch: "auf|nehmen (nahm auf, hat aufgenommen)", indonesia: "merekam", sentence: "Das Smartphone hat die Nachrichten aufgenommen.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-186", deutsch: "aus|geben [B1] (gab aus, hat ausgegeben)", indonesia: "membelanjakan", sentence: "Ich habe zu viel Geld für das neue Gerät ausgegeben.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-187", deutsch: "ab|heben [B1] (hob ab, hat abgehoben)", indonesia: "menarik uang", sentence: "Ich habe 200 Euro vom Automaten abgehoben.", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-188", deutsch: "be|kommen [B1] (bekam, hat bekommen)", indonesia: "mendapatkan", sentence: "Ich habe eine neue Powerbank als Geschenk bekommen.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-189", deutsch: "bringen [B1] (brachte, hat gebracht)", indonesia: "membawa", sentence: "Ich habe das Gerät in die Werkstatt gebracht.", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-190", deutsch: "ein\ (schlafen, schlief ein)", indonesia: "ist eingeschlafen", sentence: "tertidur", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-190", deutsch: "ein|schlafen (schlief ein, ist eingeschlafen)", indonesia: "tertidur", sentence: "Wegen des lauten Lärms konnte ich nicht einschlafen.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-191", deutsch: "erkennen [B1] (erkannte, hat erkannt)", indonesia: "mengenali", sentence: "Der Sensor hat den Fingerabdruck nicht erkannt.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-192", deutsch: "fahren [B1] (fuhr, ist gefahren)", indonesia: "pergi/mengemudi", sentence: "Ich bin trotz des schlechten Wetters mit dem Fahrrad gefahren.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-193", deutsch: "finden [B1] (fand, hat gefunden)", indonesia: "menemukan", sentence: "Ich finde, dass diese Werbung sehr kreativ ist.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-194", deutsch: "geben [B1] (gab, hat gegeben)", indonesia: "memberikan", sentence: "Der Verkäufer hat mir eine Quittung gegeben.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-195", deutsch: "geschehen (geschah, ist geschehen)", indonesia: "terjadi", sentence: "Was ist denn mit dem Gerät geschehen?", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-196", deutsch: "halten [B1] (hielt, hat gehalten)", indonesia: "menahan/memegang", sentence: "Frau Pawlowski hält die Präsentation selbst.", category: "Verben", level: "B1", chapter: 2 },
-      { id: "k2-197", deutsch: "herunter\ (laden, lud herunter)", indonesia: "hat heruntergeladen", sentence: "mengunduh", category: "Verben", level: "B1", chapter: 2 },
+      { id: "k2-197", deutsch: "herunter|laden (lud herunter, hat heruntergeladen)", indonesia: "mengunduh", sentence: "Ich habe eine neue App heruntergeladen.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-198", deutsch: "helfen [B1] (half, hat geholfen)", indonesia: "membantu", sentence: "Der Techniker hat mir geholfen, das Problem zu lösen.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-199", deutsch: "kaufen [B1] (kaufte, hat gekauft)", indonesia: "membeli", sentence: "Ich habe trotz des hohen Preises das neue Handy gekauft.", category: "Verben", level: "B1", chapter: 2 },
       { id: "k2-200", deutsch: "lassen [B1] (ließ, hat gelassen/lassen)", indonesia: "menyuruh/membiarkan", sentence: "Ich habe mein Handy reparieren lassen.", category: "Verben", level: "B1", chapter: 2 },
@@ -2319,7 +2244,7 @@
         "das Auto | mobil | Er kauft ein neues *Auto*. | C1 | 12";
     });
 
-        function loadData() {
+            function loadData() {
       // Load Cards
       const storedCards = localStorage.getItem('wortschatz_cards');
       if (storedCards) {
@@ -2563,6 +2488,12 @@
 
       // Render 7-day SVG Activity Chart
       renderActivityChart();
+    }
+
+    function setDashboardLevelFilter(lvl) {
+      document.getElementById('filter-level').value = lvl;
+      updateDashboardStats();
+      showToast(`Filter Niveau diatur ke ${lvl}`);
     }
 
     function setDashboardLevelFilter(lvl) {

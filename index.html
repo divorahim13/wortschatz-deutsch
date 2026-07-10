@@ -455,12 +455,15 @@
       width: 100%;
       background-color: var(--bg-input);
       border: 1px solid var(--border-muted);
-      border-radius: 8px;
+      border-radius: 12px;
       color: var(--text-primary);
-      padding: 10px 14px;
+      padding: 11px 16px;
       font-size: 0.9rem;
-      text-align: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+      text-align: left;
       transition: all var(--transition-speed) ease;
+      letter-spacing: 0.01em;
     }
 
     .input-field:focus {
@@ -1771,16 +1774,88 @@
     </section>
 
     <!-- View: Study Arena -->
-    <section id="study-view" class="view-section">
-      <div class="study-header">
-        <button class="back-to-dashboard" onclick="exitToDashboard()">
-          <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          Dashboard
-        </button>
-        <div class="study-progress-info" id="session-progress">0 / 0 Kartu</div>
+    <section id="study-view" class="view-section" style="width: 100%;">
+      <!-- Study Setup View (Visible if no session is active) -->
+      <div id="study-setup-container" class="backup-panel" style="max-width: 550px; margin: 0 auto 20px auto; display: none;">
+        <h2 class="panel-title" style="margin-bottom: 6px;">
+          <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: var(--accent); stroke-width: 2.5;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Setup Sesi Belajar
+        </h2>
+        <div class="study-controls">
+          <div class="study-options-title" style="font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary);">Filter Niveau & Kapitel</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+            <div>
+              <label for="study-filter-level" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Niveau (Tingkat)</label>
+              <select id="study-filter-level" class="input-field" onchange="syncStudyFiltersToDashboard()">
+                <option value="ALL">Semua Niveau</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+                <option value="C1">C1</option>
+              </select>
+            </div>
+            <div>
+              <label for="study-filter-chapter" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Kapitel (Bab)</label>
+              <select id="study-filter-chapter" class="input-field" onchange="syncStudyFiltersToDashboard()">
+                <option value="ALL">Semua Kapitel</option>
+                <option value="1">Kapitel 1</option>
+                <option value="2">Kapitel 2</option>
+                <option value="3">Kapitel 3</option>
+                <option value="4">Kapitel 4</option>
+                <option value="5">Kapitel 5</option>
+                <option value="6">Kapitel 6</option>
+                <option value="7">Kapitel 7</option>
+                <option value="8">Kapitel 8</option>
+                <option value="9">Kapitel 9</option>
+                <option value="10">Kapitel 10</option>
+                <option value="11">Kapitel 11</option>
+                <option value="12">Kapitel 12</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="study-options-title" style="font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary);">Pilih Mode Belajar</div>
+          <div class="study-mode-select" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px;">
+            <div id="study-mode-opt-due" class="radio-card selected" onclick="selectStudySetupType('due')">
+              <div class="radio-circle"></div>
+              <div class="radio-card-content">
+                <span class="radio-label" style="font-size: 0.9rem; font-weight: 600;">Review Kartu Jatuh Tempo</span>
+                <span class="radio-desc" style="font-size: 0.75rem; color: var(--text-secondary);">Fokus mereview kata yang dijadwalkan hari ini.</span>
+              </div>
+            </div>
+            <div id="study-mode-opt-new" class="radio-card" onclick="selectStudySetupType('new')">
+              <div class="radio-circle"></div>
+              <div class="radio-card-content">
+                <span class="radio-label" style="font-size: 0.9rem; font-weight: 600;">Pelajari Kata Baru</span>
+                <span class="radio-desc" style="font-size: 0.75rem; color: var(--text-secondary);">Fokus mempelajari kata baru.</span>
+              </div>
+            </div>
+            <div id="study-mode-opt-mixed" class="radio-card" onclick="selectStudySetupType('mixed')">
+              <div class="radio-circle"></div>
+              <div class="radio-card-content">
+                <span class="radio-label" style="font-size: 0.9rem; font-weight: 600;">Mixed Mode (Review & Baru)</span>
+                <span class="radio-desc" style="font-size: 0.75rem; color: var(--text-secondary);">Gabungan kartu jatuh tempo dan kata baru.</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn" onclick="launchSessionFromSetup()">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5; margin-right: 6px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Mulai Sesi Belajar
+          </button>
+        </div>
       </div>
 
-      <div class="study-arena">
+      <!-- Active Study Arena (Visible during study session) -->
+      <div id="study-arena-container" style="display: none; width: 100%;">
+        <div class="study-header">
+          <button class="back-to-dashboard" onclick="exitToDashboard()">
+            <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Dashboard
+          </button>
+          <div class="study-progress-info" id="session-progress">0 / 0 Kartu</div>
+        </div>
+
+        <div class="study-arena">
         <!-- Active Recall Mode Switcher -->
         <div class="active-mode-indicator">
           <button id="btn-recall-1" class="active-mode-btn active" onclick="switchRecallMode(1)">Indo &rarr; Deutsch</button>
@@ -1890,7 +1965,7 @@
 
           </div>
         </div>
-      </div>
+      </div> <!-- End #study-arena-container -->
     </section>
 
     <!-- View: Bulk Input Parser -->
@@ -2954,6 +3029,7 @@
       isFlipped = false;
 
       switchView('study');
+      showStudyArena();
       loadCardInArena();
     }
 
@@ -2965,37 +3041,39 @@
     }
 
     function startStudySession() {
-      if (sessionQueue.length > 0 && currentSessionIndex < sessionQueue.length) {
-        switchView('study');
-      } else {
-        studyType = 'due';
-        selectStudyType('due');
-        const nowISO = new Date().toISOString();
-        const dueLength = getFilteredCards().filter(c => c.dueDate <= nowISO && c.step >= 0).length;
-        
-        if (dueLength > 0) {
-          launchSession();
-        } else {
-          studyType = 'new';
-          selectStudyType('new');
-          const newLength = getFilteredCards().filter(c => c.step === -1).length;
-          if (newLength > 0) {
-            launchSession();
-          } else {
-            switchView('dashboard');
-            showToast("Tidak ada kartu untuk direview atau dipelajari.");
-          }
-        }
-      }
+      // Always show the setup panel when user clicks Belajar tab
+      // They can choose filter + mode then press Mulai Sesi
+      document.getElementById('study-filter-level').value = document.getElementById('filter-level').value;
+      document.getElementById('study-filter-chapter').value = document.getElementById('filter-chapter').value;
+      
+      // Sync current study type selection
+      document.querySelectorAll('#study-setup-container .radio-card').forEach(card => card.classList.remove('selected'));
+      const setupEl = document.getElementById('study-mode-opt-' + studyType);
+      if (setupEl) setupEl.classList.add('selected');
+      
+      showStudySetup();
+      switchView('study');
+    }
+    
+    function showStudySetup() {
+      document.getElementById('study-setup-container').style.display = 'block';
+      document.getElementById('study-arena-container').style.display = 'none';
+    }
+    
+    function showStudyArena() {
+      document.getElementById('study-setup-container').style.display = 'none';
+      document.getElementById('study-arena-container').style.display = 'block';
     }
 
     function exitToDashboard() {
       if (sessionQueue.length > 0 && currentSessionIndex < sessionQueue.length) {
         if (confirm("Anda sedang dalam sesi belajar. Keluar ke Dashboard? Progress kartu saat ini akan disimpan.")) {
           sessionQueue = [];
+          showStudySetup();
           switchView('dashboard');
         }
       } else {
+        showStudySetup();
         switchView('dashboard');
       }
     }
@@ -4218,6 +4296,29 @@
         statusDiv.style.color = "var(--error)";
         updateSyncIndicator('error');
       }
+    }
+
+    // ==========================================
+    // STUDY SESSION SETUP VIEW HELPERS
+    // ==========================================
+    function selectStudySetupType(type) {
+      studyType = type;
+      document.querySelectorAll('#study-setup-container .radio-card').forEach(card => card.classList.remove('selected'));
+      document.getElementById(`study-mode-opt-${type}`).classList.add('selected');
+      
+      // Sync dashboard radio cards
+      selectStudyType(type);
+    }
+
+    function syncStudyFiltersToDashboard() {
+      document.getElementById('filter-level').value = document.getElementById('study-filter-level').value;
+      document.getElementById('filter-chapter').value = document.getElementById('study-filter-chapter').value;
+      updateDashboardStats();
+    }
+
+    function launchSessionFromSetup() {
+      syncStudyFiltersToDashboard();
+      launchSession();
     }
   </script>
 

@@ -3332,6 +3332,9 @@
             <span>Target: <strong>${correctDisplay}</strong></span>
           `;
         }
+      } else {
+        // Jika input kosong, sembunyikan validasi pengetikan (langsung balik kartu untuk melihat jawaban)
+        document.getElementById('typing-validation').style.display = 'none';
       }
       
       activeCard.sessionAttempts++;

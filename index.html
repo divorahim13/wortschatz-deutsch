@@ -1330,6 +1330,26 @@
       margin: 0 auto;
     }
 
+    #free-flashcard-container {
+      min-height: 380px;
+      height: auto;
+    }
+    #free-flashcard-front, #free-flashcard-back {
+      min-height: 380px;
+      overflow-y: auto;
+    }
+    @media (max-width: 850px) {
+      #free-flashcard-container {
+        min-height: 340px !important;
+      }
+      #free-flashcard-front, #free-flashcard-back {
+        min-height: 340px !important;
+        max-height: 340px !important;
+        overflow-y: auto;
+      }
+    }
+
+
     /* Pointer Events Fix for Custom Buttons */
     .file-input-wrapper button {
       pointer-events: none;
@@ -2156,7 +2176,7 @@
               </div>
 
               <!-- Back Card -->
-              <div class="card-back" id="free-flashcard-back" style="display: flex; flex-direction: column; justify-content: flex-start; padding: 18px 18px 14px 18px; min-height: 300px;">
+              <div class="card-back" id="free-flashcard-back" style="display: flex; flex-direction: column; justify-content: flex-start; padding: 18px 18px 14px 18px;">
                 <span class="card-badge" id="free-back-category">Kategori</span>
                 
                 <!-- Scrollable Content -->
@@ -3160,14 +3180,24 @@
       document.getElementById('free-ai-explainer-panel').style.display = 'none';
       
       // Sync active state in side/bottom grid list
-      document.querySelectorAll('.flashcard-word-item').forEach((item, idx) => {
+      const items = document.querySelectorAll('.flashcard-word-item');
+      items.forEach((item, idx) => {
         if (idx === flashcardIndex) {
           item.classList.add('active-item');
-          item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
         } else {
           item.classList.remove('active-item');
         }
       });
+
+      // Scroll parent container only, avoiding window scroll
+      const grid = document.getElementById('flashcard-word-grid');
+      const activeItem = grid ? grid.children[flashcardIndex] : null;
+      if (grid && activeItem) {
+        const gridTop = grid.getBoundingClientRect().top;
+        const itemTop = activeItem.getBoundingClientRect().top;
+        const relativeTop = itemTop - gridTop;
+        grid.scrollTop = grid.scrollTop + relativeTop - (grid.clientHeight / 2) + (activeItem.clientHeight / 2);
+      }
     }
 
     function flipFlashcard() {

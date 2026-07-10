@@ -1,0 +1,2723 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wortschatz - German Flashcards</title>
+  <!-- Google Fonts: Plus Jakarta Sans for UI, Outfit for German text, JetBrains Mono for Keys -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #09090b;
+      --bg-secondary: #121214;
+      --bg-card: #18181b;
+      --bg-card-hover: #222226;
+      --bg-input: #0f0f11;
+      --border-muted: #27272a;
+      --border-focus: #3f3f46;
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      
+      --accent: #8b5cf6;
+      --accent-hover: #a78bfa;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+      --accent-text: #c084fc;
+      
+      /* Genders */
+      --der: #38bdf8;
+      --die: #f87171;
+      --das: #4ade80;
+      
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      
+      --transition-speed: 0.2s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background glow effect like Linear.app */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1200px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, rgba(9, 9, 11, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(9, 9, 11, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-muted);
+    }
+
+    .nav-container {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-logo {
+      width: 24px;
+      height: 24px;
+      stroke: var(--accent);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      background: var(--accent-glow);
+      color: var(--accent-text);
+      padding: 2px 8px;
+      border-radius: 99px;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-speed) ease;
+    }
+
+    .nav-btn:hover {
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+    }
+
+    .nav-btn.active {
+      color: var(--text-primary);
+      background-color: var(--bg-card);
+      border-color: var(--border-muted);
+    }
+
+    .nav-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1024px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 30px 20px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .view-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    /* Dashboard Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: transparent;
+      transition: background-color var(--transition-speed);
+    }
+
+    .stat-card:hover::after {
+      background-color: var(--accent);
+    }
+
+    .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .stat-header svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-muted);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Progress bar specific styles */
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background-color: var(--bg-input);
+      border-radius: 99px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--accent);
+      width: 0%;
+      border-radius: 99px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Section Columns */
+    .dashboard-columns {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dashboard-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .panel-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-title svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* SVG Chart */
+    .chart-container {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 20px;
+    }
+
+    .chart-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .chart-grid-line {
+      stroke: var(--border-muted);
+      stroke-width: 1;
+      stroke-dasharray: 4 4;
+    }
+
+    .chart-bar {
+      fill: var(--accent);
+      opacity: 0.85;
+      transition: all var(--transition-speed) ease;
+      cursor: pointer;
+    }
+
+    .chart-bar:hover {
+      opacity: 1;
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
+
+    .chart-label {
+      fill: var(--text-secondary);
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      text-anchor: middle;
+    }
+
+    .chart-val-label {
+      fill: var(--text-primary);
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      text-anchor: middle;
+    }
+
+    /* Study Controls Panel */
+    .study-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .study-options-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .study-mode-select {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .radio-card {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-muted);
+      border-radius: 10px;
+      padding: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all var(--transition-speed) ease;
+    }
+
+    .radio-card:hover {
+      border-color: var(--border-focus);
+      background-color: var(--bg-input);
+    }
+
+    .radio-card.selected {
+      border-color: var(--accent);
+      background-color: rgba(139, 92, 246, 0.05);
+    }
+
+    .radio-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      flex-shrink: 0;
+      transition: all var(--transition-speed) ease;
+    }
+
+    .radio-card.selected .radio-circle {
+      border-color: var(--accent);
+    }
+
+    .radio-card.selected .radio-circle::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    .radio-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .radio-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .radio-desc {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .btn {
+      background-color: var(--accent);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      transition: background-color var(--transition-speed) ease, transform 0.1s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:disabled {
+      background-color: var(--border-muted);
+      color: var(--text-muted);
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border: 1px solid var(--border-muted);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-secondary);
+      border-color: var(--border-focus);
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* Study View (Flashcards Arena) */
+    .study-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .back-to-dashboard {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--transition-speed) ease;
+    }
+
+    .back-to-dashboard:hover {
+      color: var(--text-primary);
+    }
+
+    .back-to-dashboard svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .study-progress-info {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      background-color: var(--bg-card);
+      padding: 4px 12px;
+      border-radius: 99px;
+      border: 1px solid var(--border-muted);
+    }
+
+    .study-arena {
+      max-width: 500px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Active Recall Mode Indicator Bar */
+    .active-mode-indicator {
+      display: flex;
+      gap: 4px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      padding: 4px;
+      border-radius: 8px;
+      width: 100%;
+    }
+
+    .active-mode-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-speed) ease;
+      text-align: center;
+    }
+
+    .active-mode-btn.active {
+      background-color: var(--border-muted);
+      color: var(--text-primary);
+    }
+
+    /* Card 3D Flip Container */
+    .card-container {
+      perspective: 1000px;
+      width: 100%;
+      height: 360px;
+      position: relative;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .card-container.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden; /* Safari */
+      backface-visibility: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--border-muted);
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--bg-card);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    .card-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background-color: rgba(255, 255, 255, 0.03);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card-prompt-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 10px;
+    }
+
+    .card-main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .german-word {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      text-align: center;
+      word-break: break-word;
+    }
+
+    /* Gender colors */
+    .article-der {
+      color: var(--der);
+      text-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+    }
+    .article-die {
+      color: var(--die);
+      text-shadow: 0 0 15px rgba(248, 113, 113, 0.15);
+    }
+    .article-das {
+      color: var(--das);
+      text-shadow: 0 0 15px rgba(74, 222, 128, 0.15);
+    }
+
+    .indonesian-word {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .sentence-container {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .sentence-translation {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      font-style: italic;
+    }
+
+    .highlight-word {
+      color: var(--accent-text);
+      font-weight: 600;
+      border-bottom: 2px solid rgba(139, 92, 246, 0.4);
+      padding-bottom: 1px;
+    }
+
+    .blank-word {
+      background-color: var(--bg-input);
+      border-bottom: 2px solid var(--text-muted);
+      display: inline-block;
+      min-width: 85px;
+      height: 18px;
+      vertical-align: middle;
+    }
+
+    /* Flip Trigger Button area */
+    .card-footer-tip {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .keycap {
+      font-family: 'JetBrains Mono', monospace;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-muted);
+      border-bottom-width: 3px;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    /* Active Recall Typing Input */
+    .recall-input-area {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .input-field {
+      width: 100%;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-muted);
+      border-radius: 8px;
+      color: var(--text-primary);
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      text-align: center;
+      transition: all var(--transition-speed) ease;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .validation-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .validation-correct {
+      background-color: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+
+    .validation-incorrect {
+      background-color: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: var(--error);
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .speak-btn {
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background-color: rgba(255, 255, 255, 0.02);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all var(--transition-speed) ease;
+      margin-top: 5px;
+    }
+
+    .speak-btn:hover {
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+      border-color: var(--border-muted);
+    }
+
+    .speak-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* Rating buttons on back side */
+    .rating-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .rating-btn {
+      border: 1px solid var(--border-muted);
+      border-radius: 8px;
+      padding: 8px 4px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background-color: var(--bg-primary);
+      transition: all var(--transition-speed) ease;
+    }
+
+    .rating-btn:hover {
+      border-color: var(--border-focus);
+      background-color: var(--bg-secondary);
+    }
+
+    .rating-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .rating-time {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Color definitions for ratings */
+    .rating-again {
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+    .rating-again:hover {
+      background-color: rgba(239, 68, 68, 0.05);
+      border-color: var(--error);
+    }
+    .rating-again .rating-label { color: var(--error); }
+
+    .rating-hard {
+      border-color: rgba(245, 158, 11, 0.2);
+    }
+    .rating-hard:hover {
+      background-color: rgba(245, 158, 11, 0.05);
+      border-color: var(--warning);
+    }
+    .rating-hard .rating-label { color: var(--warning); }
+
+    .rating-good {
+      border-color: rgba(139, 92, 246, 0.2);
+    }
+    .rating-good:hover {
+      background-color: rgba(139, 92, 246, 0.05);
+      border-color: var(--accent);
+    }
+    .rating-good .rating-label { color: var(--accent-text); }
+
+    .rating-easy {
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+    .rating-easy:hover {
+      background-color: rgba(16, 185, 129, 0.05);
+      border-color: var(--success);
+    }
+    .rating-easy .rating-label { color: var(--success); }
+
+    /* Bulk Input View */
+    .input-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .input-instructions {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-muted);
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .textarea-field {
+      width: 100%;
+      height: 250px;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-muted);
+      border-radius: 8px;
+      color: var(--text-primary);
+      padding: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      resize: vertical;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .textarea-field:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .import-log {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-muted);
+      display: none;
+    }
+
+    /* Backup / Data Panel */
+    .backup-panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .backup-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-muted);
+      padding-bottom: 16px;
+    }
+
+    .backup-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .backup-info {
+      flex: 1;
+      padding-right: 16px;
+    }
+
+    .backup-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .backup-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .backup-actions {
+      flex-shrink: 0;
+      min-width: 120px;
+    }
+
+    .file-input-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .file-input-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    /* Session Summary View */
+    .summary-container {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .summary-icon-wrapper {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background-color: var(--accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--accent);
+      color: var(--accent-text);
+    }
+
+    .summary-icon-wrapper svg {
+      width: 32px;
+      height: 32px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .summary-heading {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .summary-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+
+    .summary-stat-box {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-muted);
+      padding: 12px;
+      border-radius: 10px;
+    }
+
+    .summary-stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .summary-stat-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .summary-mistakes-panel {
+      width: 100%;
+      text-align: left;
+    }
+
+    .summary-mistakes-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border-muted);
+      padding-bottom: 6px;
+    }
+
+    .summary-mistakes-list {
+      max-height: 150px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-right: 4px;
+    }
+
+    /* Custom Scrollbar for dark theme */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-muted);
+      border-radius: 99px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--border-focus);
+    }
+
+    .summary-mistake-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .summary-mistake-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--error);
+      background-color: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      border-left: 4px solid var(--accent);
+      color: var(--text-primary);
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+      transform: translateY(150px);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 0.9rem;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    .toast svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent-text);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* Modal Styling for Double Confirms */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-muted);
+      max-width: 400px;
+      width: 100%;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .modal-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--error);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-title svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .modal-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast" class="toast">
+    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    <span id="toast-text">Tindakan Berhasil</span>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-title">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span>Reset Database</span>
+      </div>
+      <div class="modal-desc">
+        Apakah Anda yakin ingin menghapus seluruh data kartu dan riwayat belajar? Tindakan ini tidak dapat dibatalkan.
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeResetModal()">Batal</button>
+        <button class="btn" style="background-color: var(--error);" onclick="confirmResetDatabase()">Reset Total</button>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand" onclick="switchView('dashboard'); return false;">
+        <svg class="brand-logo" viewBox="0 0 24 24">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+          <polyline points="2 17 12 22 22 17"></polyline>
+          <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+        <span class="brand-title">Wortschatz</span>
+        <span class="brand-badge">B1-C1</span>
+      </a>
+      <nav>
+        <button id="nav-dashboard" class="nav-btn active" onclick="switchView('dashboard')">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+          Dashboard
+        </button>
+        <button id="nav-study" class="nav-btn" onclick="startStudySession()">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          Belajar
+        </button>
+        <button id="nav-input" class="nav-btn" onclick="switchView('input')">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Tambah Kata
+        </button>
+        <button id="nav-backup" class="nav-btn" onclick="switchView('backup')">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          Backup
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- View: Dashboard -->
+    <section id="dashboard-view" class="view-section active">
+      <div class="dashboard-grid">
+        <!-- Daily Target Card -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <span>Target Harian</span>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div class="stat-value" id="stat-target-val">0 / 100</div>
+          <div class="stat-sub">Kata baru dipelajari hari ini</div>
+          <div class="progress-bar-container">
+            <div id="stat-target-bar" class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+        
+        <!-- Due Reviews Card -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <span>Perlu Review</span>
+            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </div>
+          <div class="stat-value" id="stat-due-val">0</div>
+          <div class="stat-sub" id="stat-due-sub">Kartu jatuh tempo</div>
+        </div>
+
+        <!-- Streak Card -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <span>Streak Belajar</span>
+            <svg viewBox="0 0 24 24"><path d="M12 2c1.88 0 3.39 1.19 4.07 2.82A5.02 5.02 0 0 1 22 9.5c0 2.22-1.34 4.12-3.25 4.88A7.003 7.003 0 0 1 12 21a7.003 7.003 0 0 1-6.75-6.62C3.34 13.62 2 11.72 2 9.5a5.02 5.02 0 0 1 5.93-4.68C8.61 3.19 10.12 2 12 2z"></path></svg>
+          </div>
+          <div class="stat-value" id="stat-streak-val">0</div>
+          <div class="stat-sub">Hari berturut-turut</div>
+        </div>
+
+        <!-- Mastered Card -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <span>Kata Dikuasai</span>
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="stat-value" id="stat-mastered-val">0</div>
+          <div class="stat-sub" id="stat-mastered-sub">Interval review &ge; 30 hari</div>
+        </div>
+      </div>
+
+      <div class="dashboard-columns">
+        <!-- SVG Chart Panel -->
+        <div class="dashboard-panel">
+          <div class="panel-title">
+            <svg viewBox="0 0 24 24"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+            Aktivitas Belajar (7 Hari Terakhir)
+          </div>
+          <div class="chart-container" id="chart-wrapper">
+            <!-- Rendered via JS -->
+            <svg class="chart-svg" id="stats-chart" viewBox="0 0 400 160">
+              <defs>
+                <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--accent)" stop-opacity="1" />
+                  <stop offset="100%" stop-color="#4c1d95" stop-opacity="0.6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Study Settings Panel -->
+        <div class="dashboard-panel">
+          <div class="panel-title">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Mulai Sesi Belajar
+          </div>
+          <div class="study-controls">
+            <div class="study-options-title">Pilih Mode Belajar</div>
+            <div class="study-mode-select">
+              <div id="mode-opt-due" class="radio-card selected" onclick="selectStudyType('due')">
+                <div class="radio-circle"></div>
+                <div class="radio-card-content">
+                  <span class="radio-label">Review Kartu Jatuh Tempo</span>
+                  <span class="radio-desc" id="opt-due-desc">Fokus mereview 0 kata yang dijadwalkan hari ini.</span>
+                </div>
+              </div>
+              <div id="mode-opt-new" class="radio-card" onclick="selectStudyType('new')">
+                <div class="radio-circle"></div>
+                <div class="radio-card-content">
+                  <span class="radio-label">Pelajari Kata Baru</span>
+                  <span class="radio-desc" id="opt-new-desc">Fokus mempelajari kata baru (maksimal 100 kata hari ini).</span>
+                </div>
+              </div>
+              <div id="mode-opt-mixed" class="radio-card" onclick="selectStudyType('mixed')">
+                <div class="radio-circle"></div>
+                <div class="radio-card-content">
+                  <span class="radio-label">Interleaved Mix (Campuran)</span>
+                  <span class="radio-desc" id="opt-mixed-desc">Belajar acak gabungan kata jatuh tempo dan kata baru.</span>
+                </div>
+              </div>
+            </div>
+            
+            <button class="btn" style="margin-top: 10px;" onclick="launchSession()">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Mulai Sesi
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- View: Study Arena -->
+    <section id="study-view" class="view-section">
+      <div class="study-header">
+        <button class="back-to-dashboard" onclick="exitToDashboard()">
+          <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Dashboard
+        </button>
+        <div class="study-progress-info" id="session-progress">0 / 0 Kartu</div>
+      </div>
+
+      <div class="study-arena">
+        <!-- Active Recall Mode Switcher -->
+        <div class="active-mode-indicator">
+          <button id="btn-recall-1" class="active-mode-btn active" onclick="switchRecallMode(1)">Indo &rarr; Deutsch</button>
+          <button id="btn-recall-2" class="active-mode-btn" onclick="switchRecallMode(2)">Deutsch &rarr; Indo</button>
+          <button id="btn-recall-3" class="active-mode-btn" onclick="switchRecallMode(3)">Kontekstual (Cloze)</button>
+        </div>
+
+        <!-- 3D Flipping Card -->
+        <div class="card-container" id="flashcard-container" onclick="handleCardClick(event)">
+          <div class="card-inner">
+            
+            <!-- Front Card -->
+            <div class="card-front">
+              <span class="card-badge" id="front-category">Kategori</span>
+              
+              <div class="card-main-content">
+                <div id="front-prompt-label" class="card-prompt-label">Arti Kata</div>
+                
+                <!-- Word or Cloze Sentence display -->
+                <div id="front-display" class="german-word" style="margin-top: 10px;">Word</div>
+                
+                <!-- Context clue in Mode 3 -->
+                <div id="front-clue" class="indonesian-word" style="font-size: 1.1rem; color: var(--text-secondary); display: none;"></div>
+
+                <!-- Input area for typing active recall -->
+                <div class="recall-input-area" onclick="event.stopPropagation();">
+                  <input type="text" id="answer-input" class="input-field" placeholder="Ketik jawaban di sini (opsional)..." onkeydown="handleInputKeydown(event)">
+                </div>
+              </div>
+              
+              <div class="card-footer-tip">
+                Klik kartu atau tekan <span class="keycap">Spasi</span> / <span class="keycap">Enter</span> untuk membalik
+              </div>
+            </div>
+
+            <!-- Back Card -->
+            <div class="card-back">
+              <span class="card-badge" id="back-category">Kategori</span>
+              
+              <div class="card-main-content">
+                <div class="card-prompt-label">Jawaban Benar</div>
+                
+                <!-- Main Answer Display (with article coloring if Nomen) -->
+                <div id="back-display" class="german-word" style="margin-top: 8px;">Word</div>
+                
+                <!-- Secondary translation -->
+                <div id="back-translation" class="indonesian-word" style="font-size: 1.25rem; color: var(--text-secondary);">Translation</div>
+
+                <!-- Checked typed answer validation -->
+                <div id="typing-validation" class="validation-badge" style="display: none;"></div>
+
+                <!-- Example Sentence Container -->
+                <div class="sentence-container">
+                  <div id="back-sentence">Ich sitze am Tisch.</div>
+                  <div id="back-sentence-translation" class="sentence-translation">Saya duduk di meja.</div>
+                </div>
+
+                <!-- Native TTS Audio Speaker -->
+                <button class="speak-btn" title="Dengarkan Pengucapan" onclick="event.stopPropagation(); speakGermanWord();">
+                  <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                </button>
+              </div>
+
+              <!-- Rating Rows (Spaced Repetition SM-2) -->
+              <div class="rating-row" onclick="event.stopPropagation();">
+                <button class="rating-btn rating-again" onclick="rateCard('again')">
+                  <span class="rating-label">Lagi</span>
+                  <span class="rating-time">1h</span>
+                  <span class="keycap">1</span>
+                </button>
+                <button class="rating-btn rating-hard" onclick="rateCard('hard')">
+                  <span class="rating-label">Sulit</span>
+                  <span class="rating-time" id="time-hard">1d</span>
+                  <span class="keycap">2</span>
+                </button>
+                <button class="rating-btn rating-good" onclick="rateCard('good')">
+                  <span class="rating-label">Bagus</span>
+                  <span class="rating-time" id="time-good">3d</span>
+                  <span class="keycap">3</span>
+                </button>
+                <button class="rating-btn rating-easy" onclick="rateCard('easy')">
+                  <span class="rating-label">Mudah</span>
+                  <span class="rating-time" id="time-easy">7d</span>
+                  <span class="keycap">4</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- View: Bulk Input Parser -->
+    <section id="input-view" class="view-section">
+      <div class="input-panel">
+        <h2 class="panel-title">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Impor Kosakata Bulk
+        </h2>
+        
+        <div class="input-instructions">
+          Masukkan baris kata Jerman dengan format tabel dipisahkan oleh karakter pipe <strong>|</strong> atau tombol <strong>Tab</strong>.<br>
+          Format: <code>Deutsch | Indonesia | Kalimat</code><br><br>
+          Contoh:<br>
+          <code>der Tisch | meja | Ich sitze am *Tisch*.</code><br>
+          <code>machen | melakukan | Was *machst* du heute?</code><br>
+          <code>schnell | cepat | Das Auto fährt sehr *schnell*.</code>
+        </div>
+
+        <textarea id="bulk-paste-area" class="textarea-field" placeholder="Ketik atau paste di sini...&#10;der Tisch | meja | Ich sitze am *Tisch*.&#10;machen | melakukan | Was *machst* du heute?"></textarea>
+        
+        <button class="btn" onclick="parseBulkInput()">
+          <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          Simpan & Impor Kata
+        </button>
+
+        <div id="import-log" class="import-log"></div>
+      </div>
+    </section>
+
+    <!-- View: Backup / Export-Import JSON -->
+    <section id="backup-view" class="view-section">
+      <div class="backup-panel">
+        <h2 class="panel-title" style="margin-bottom: 5px;">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          Pencadangan & Keamanan Data
+        </h2>
+        
+        <!-- Export Row -->
+        <div class="backup-row">
+          <div class="backup-info">
+            <div class="backup-title">Ekspor Database JSON</div>
+            <div class="backup-desc">Unduh seluruh data kosakata, parameter SM-2, riwayat belajar, dan statistik harian Anda ke dalam file cadangan JSON.</div>
+          </div>
+          <div class="backup-actions">
+            <button class="btn btn-secondary" onclick="exportDataJSON()">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Unduh Backup
+            </button>
+          </div>
+        </div>
+
+        <!-- Import Row -->
+        <div class="backup-row">
+          <div class="backup-info">
+            <div class="backup-title">Impor Database JSON</div>
+            <div class="backup-desc">Pulihkan data belajar Anda dari file cadangan JSON yang telah diekspor sebelumnya. Proses ini akan menggabungkan data baru atau menimpa duplikat.</div>
+          </div>
+          <div class="backup-actions">
+            <div class="file-input-wrapper">
+              <button class="btn btn-secondary">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                Unggah Backup
+              </button>
+              <input type="file" id="import-file" accept=".json" onchange="importDataJSON(event)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Danger Zone Row -->
+        <div class="backup-row" style="border-top: 1px solid rgba(239, 68, 68, 0.2); padding-top: 20px; border-bottom: none;">
+          <div class="backup-info">
+            <div class="backup-title" style="color: var(--error);">Reset Data Kosakata</div>
+            <div class="backup-desc">Menghapus total semua kosakata, statistik, dan riwayat di browser ini secara permanen. Ekspor data terlebih dahulu jika diperlukan.</div>
+          </div>
+          <div class="backup-actions">
+            <button class="btn" style="background-color: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: var(--error);" onclick="openResetModal()">
+              <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+              Hapus Data
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- View: Session Summary -->
+    <section id="summary-view" class="view-section">
+      <div class="summary-container">
+        <div class="summary-icon-wrapper">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        
+        <div class="summary-heading">Sesi Belajar Selesai!</div>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: -10px;">Kerja bagus! Otak Anda sedang memproses memori baru.</p>
+
+        <div class="summary-stats-grid">
+          <div class="summary-stat-box">
+            <div class="summary-stat-label">Total Kartu</div>
+            <div class="summary-stat-val" id="sum-total">0</div>
+          </div>
+          <div class="summary-stat-box">
+            <div class="summary-stat-label">Akurasi Pertama</div>
+            <div class="summary-stat-val" id="sum-accuracy" style="color: var(--success);">0%</div>
+          </div>
+          <div class="summary-stat-box">
+            <div class="summary-stat-label">Benar Sekali Coba</div>
+            <div class="summary-stat-val" id="sum-correct" style="color: var(--accent-text);">0</div>
+          </div>
+          <div class="summary-stat-box">
+            <div class="summary-stat-label">Perlu Diulang (Salah)</div>
+            <div class="summary-stat-val" id="sum-incorrect" style="color: var(--error);">0</div>
+          </div>
+        </div>
+
+        <!-- Most frequently missed cards in the session -->
+        <div class="summary-mistakes-panel" id="sum-mistakes-panel">
+          <div class="summary-mistakes-title">Kata Paling Sering Salah</div>
+          <div class="summary-mistakes-list" id="sum-mistakes-list">
+            <!-- Rendered dynamically -->
+            <div class="summary-mistake-item">
+              <span>Keine Fehler! (Hebat)</span>
+              <span class="summary-mistake-count" style="color: var(--success); background-color: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.15)">0</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn" onclick="switchView('dashboard')">
+          Kembali ke Dashboard
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ==========================================
+    // DEFAULT DATA (50 B1-C1 German Words)
+    // ==========================================
+    const DEFAULT_DECK = [
+      { id: "def-1", deutsch: "die Herausforderung", indonesia: "tantangan", sentence: "Deutsch lernen ist eine große *Herausforderung*.", category: "Nomen" },
+      { id: "def-2", deutsch: "sich bewerben", indonesia: "melamar (pekerjaan/beasiswa)", sentence: "Ich möchte *mich* um diese Stelle *bewerben*.", category: "Verben" },
+      { id: "def-3", deutsch: "entscheiden", indonesia: "memutuskan", sentence: "Wir müssen uns schnell *entscheiden*.", category: "Verben" },
+      { id: "def-4", deutsch: "der Erfolg", indonesia: "kesuksesan / keberhasilan", sentence: "Ich wünsche dir viel *Erfolg* bei der B2-Prüfung.", category: "Nomen" },
+      { id: "def-5", deutsch: "das Vorurteil", indonesia: "prasangka", sentence: "Wir müssen stereotype *Vorurteile* in der Gesellschaft abbauen.", category: "Nomen" },
+      { id: "def-6", deutsch: "beeinflussen", indonesia: "memengaruhi", sentence: "Das Wetter kann unsere tägliche Stimmung *beeinflussen*.", category: "Verben" },
+      { id: "def-7", deutsch: "nachhaltig", indonesia: "berkelanjutan", sentence: "Wir brauchen eine *nachhaltige* Entwicklung für unsere Erde.", category: "Adjektive" },
+      { id: "def-8", deutsch: "die Verantwortung", indonesia: "tanggung jawab", sentence: "Jeder trägt die *Verantwortung* für sein eigenes Leben.", category: "Nomen" },
+      { id: "def-9", deutsch: "unterstützen", indonesia: "mendukung", sentence: "Meine Familie *unterstützt* mich bei all meinen Plänen.", category: "Verben" },
+      { id: "def-10", deutsch: "die Erfahrung", indonesia: "pengalaman", sentence: "Sie hat bereits fünf Jahre *Erfahrung* im Bereich Marketing.", category: "Nomen" },
+      { id: "def-11", deutsch: "sich anpassen", indonesia: "menyesuaikan diri", sentence: "Ausländer müssen sich an die neue Kultur *anpassen*.", category: "Verben" },
+      { id: "def-12", deutsch: "vermeiden", indonesia: "menghindari", sentence: "Wir sollten Plastikmüll so gut wie möglich *vermeiden*.", category: "Verben" },
+      { id: "def-13", deutsch: "der Vorteil", indonesia: "keuntungan / kelebihan", sentence: "Diese Lernmethode bietet many praktische *Vorteile*.", category: "Nomen" },
+      { id: "def-14", deutsch: "der Nachtail", indonesia: "kerugian / kekurangan", sentence: "Der größte *Nachteil* dieses Handys ist der hohe Preis.", category: "Nomen" },
+      { id: "def-15", deutsch: "zuverlässig", indonesia: "dapat diandalkan", sentence: "Ein deutscher Kollege ist meistens sehr *zuverlässig*.", category: "Adjektive" },
+      { id: "def-16", deutsch: "die Gelegenheit", indonesia: "kesempatan / peluang", sentence: "Das Auslandsjahr ist eine hervorragende *Gelegenheit*.", category: "Nomen" },
+      { id: "def-17", deutsch: "empfehlen", indonesia: "merekomendasikan", sentence: "Kannst du mir ein gutes deutsches Restaurant *empfehlen*?", category: "Verben" },
+      { id: "def-18", deutsch: "vergleichen", indonesia: "membandingkan", sentence: "Man darf Äpfel nicht mit Birnen *vergleichen*.", category: "Verben" },
+      { id: "def-19", deutsch: "die Beziehung", indonesia: "hubungan", sentence: "Eine gute *Beziehung* basiert auf Vertrauen und Respekt.", category: "Nomen" },
+      { id: "def-20", deutsch: "geduldig", indonesia: "sabar", sentence: "Seien Sie *geduldig*, der Lernerfolg braucht Zeit.", category: "Adjektive" },
+      { id: "def-21", deutsch: "überzeugen", indonesia: "meyakinkan", sentence: "Seine Argumente konnten mich leider nicht *überzeugen*.", category: "Verben" },
+      { id: "def-22", deutsch: "die Zukunft", indonesia: "masa depan", sentence: "Niemand weiß, was in der *Zukunft* passieren wird.", category: "Nomen" },
+      { id: "def-23", deutsch: "sich verbessern", indonesia: "meningkatkan diri / membaik", sentence: "Ich möchte mein gesprochenes Deutsch weiter *verbessern*.", category: "Verben" },
+      { id: "def-24", deutsch: "das Ziel", indonesia: "tujuan / target", sentence: "Mein *Ziel* ist es, täglich 100 Wörter zu lernen.", category: "Nomen" },
+      { id: "def-25", deutsch: "aufgeben", indonesia: "menyerah", sentence: "Egal wie schwer es ist, du darfst niemals *aufgeben*.", category: "Verben" },
+      { id: "def-26", deutsch: "die Entwicklung", indonesia: "perkembangan / pengembangan", sentence: "Die technologische *Entwicklung* schreitet rasant voran.", category: "Nomen" },
+      { id: "def-27", deutsch: "erreichen", indonesia: "mencapai / meraih", sentence: "Gemeinsam können wir unser gestecktes Ziel *erreichen*.", category: "Verben" },
+      { id: "def-28", deutsch: "verstehen", indonesia: "mengerti / memahami", sentence: "Kannst du den Dialekt der Einheimischen *verstehen*?", category: "Verben" },
+      { id: "def-29", deutsch: "die Ausbildung", indonesia: "pelatihan kerja / vokasi", sentence: "Er macht eine *Ausbildung* zum Fachinformatiker.", category: "Nomen" },
+      { id: "def-30", deutsch: "kompliziert", indonesia: "rumit", sentence: "Die deutsche Grammatik ist manchmal sehr *kompliziert*.", category: "Adjektive" },
+      { id: "def-31", deutsch: "das Wissen", indonesia: "pengetahuan", sentence: "Mit diesem Buch können Sie Ihr *Wissen* vertiefen.", category: "Nomen" },
+      { id: "def-32", deutsch: "veröffentlichen", indonesia: "menerbitkan / mempublikasikan", sentence: "Der Autor wird nächsten Monat ein neues Buch *veröffentlichen*.", category: "Verben" },
+      { id: "def-33", deutsch: "die Gesellschaft", indonesia: "masyarakat", sentence: "Wir leben in einer multikulturellen *Gesellschaft*.", category: "Nomen" },
+      { id: "def-34", deutsch: "notwendig", indonesia: "perlu / mendesak", sentence: "Für das Visum sind einige Dokumente dringend *notwendig*.", category: "Adjektive" },
+      { id: "def-35", deutsch: "der Unterschied", indonesia: "perbedaan", sentence: "Was ist der genaue *Unterschied* zwischen diesen Wörtern?", category: "Nomen" },
+      { id: "def-36", deutsch: "sich konzentrieren", indonesia: "berkonsentrasi", sentence: "Ich must mich jetzt voll auf meine Arbeit *konzentrieren*.", category: "Verben" },
+      { id: "def-37", deutsch: "die Qualität", indonesia: "kualitas", sentence: "Deutsche Autos sind weltweit bekannt für ihre gute *Qualität*.", category: "Nomen" },
+      { id: "def-38", deutsch: "ablehnen", indonesia: "menolak", sentence: "Ich musste das Jobangebot leider aus familiären Gründen *ablehnen*.", category: "Verben" },
+      { id: "def-39", deutsch: "die Meinung", indonesia: "pendapat / opini", sentence: "Meiner *Meinung* nach sollten wir das Projekt starten.", category: "Nomen" },
+      { id: "def-40", deutsch: "wertvoll", indonesia: "berharga", sentence: "Diese Informationen sind sehr *wertvoll* für mich.", category: "Adjektive" },
+      { id: "def-41", deutsch: "die Untersuchung", indonesia: "penyelidikan / pemeriksaan", sentence: "Die medizinische *Untersuchung* dauerte zwei Stunden.", category: "Nomen" },
+      { id: "def-42", deutsch: "versprechen", indonesia: "berjanji", sentence: "Du musst mir *versprechen*, pünktlich zu sein.", category: "Verben" },
+      { id: "def-43", deutsch: "die Kultur", indonesia: "kebudayaan", sentence: "In Berlin kann man viele verschiedene *Kulturen* erleben.", category: "Nomen" },
+      { id: "def-44", deutsch: "erfolgreich", indonesia: "sukses / berhasil", sentence: "Sie hat ihr Studium sehr *erfolgreich* abgeschlossen.", category: "Adjektive" },
+      { id: "def-45", deutsch: "der Bereich", indonesia: "bidang / sektor", sentence: "Sie arbeitet im *Bereich* der künstlichen Intelligenz.", category: "Nomen" },
+      { id: "def-46", deutsch: "reduzieren", indonesia: "mengurangi / memotong", sentence: "Supermärkte versuchen, Plastikverpackungen zu *reduzieren*.", category: "Verben" },
+      { id: "def-47", deutsch: "die Gemeinschaft", indonesia: "komunitas / kebersamaan", sentence: "In unserem Dorf gibt es eine starke *Gemeinschaft*.", category: "Nomen" },
+      { id: "def-48", deutsch: "vorsichtig", indonesia: "hati-hati", sentence: "Seien Sie *vorsichtig* beim Überqueren der Straße.", category: "Adjektive" },
+      { id: "def-49", deutsch: "das Gesetz", indonesia: "hukum / undang-undang", sentence: "Das Parlament hat ein neues *Gesetz* verabschiedet.", category: "Nomen" },
+      { id: "def-50", deutsch: "lösen", indonesia: "memecahkan (masalah) / menyelesaikan", sentence: "Wir müssen dieses schwierige Problem schnell *lösen*.", category: "Verben" }
+    ];
+
+    // ==========================================
+    // STATE MANAGEMENT
+    // ==========================================
+    let cards = [];
+    let studyType = 'due'; // 'due', 'new', 'mixed'
+    let recallMode = 1; // 1: Indo -> Deutsch, 2: Deutsch -> Indo, 3: Context
+    
+    // Session State
+    let sessionQueue = [];
+    let currentSessionIndex = 0;
+    let isFlipped = false;
+    
+    // Session Statistics tracking
+    let sessionTotal = 0;
+    let sessionReviewed = 0;
+    let sessionCorrectFirstTime = 0;
+    let sessionIncorrectList = {}; // maps cardId -> number of errors in session
+
+    // Daily activity history logs
+    let reviewHistory = []; // { date: 'YYYY-MM-DD', cardId: '...', status: 'again'|'hard'|'good'|'easy', isNew: boolean }
+
+    // ==========================================
+    // ONLOAD INITIALIZATION
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      loadData();
+      updateStreak();
+      updateDashboardStats();
+      setupKeyBindings();
+      
+      // Auto fill bulk input with example placeholder text
+      document.getElementById('bulk-paste-area').placeholder = 
+        "der Tisch | meja | Ich sitze am *Tisch*.\n" +
+        "machen | melakukan | Was *machst* du heute?\n" +
+        "die Hilfe | bantuan | Ich brauche deine Hilfe.\n" +
+        "das Auto | mobil | Er kauft ein neues *Auto*.";
+    });
+
+    function loadData() {
+      // Load Cards
+      const storedCards = localStorage.getItem('wortschatz_cards');
+      if (storedCards) {
+        cards = JSON.parse(storedCards);
+      } else {
+        // First time initialization: load default deck with SM-2 initialized
+        cards = DEFAULT_DECK.map(item => initSM2Properties(item));
+        saveCards();
+      }
+
+      // Load History
+      const storedHistory = localStorage.getItem('wortschatz_history');
+      if (storedHistory) {
+        reviewHistory = JSON.parse(storedHistory);
+      } else {
+        reviewHistory = [];
+        saveHistory();
+      }
+    }
+
+    function saveCards() {
+      localStorage.setItem('wortschatz_cards', JSON.stringify(cards));
+    }
+
+    function saveHistory() {
+      localStorage.setItem('wortschatz_history', JSON.stringify(reviewHistory));
+    }
+
+    function initSM2Properties(card) {
+      return {
+        id: card.id || 'c-' + Date.now() + Math.random().toString(36).substr(2, 5),
+        deutsch: card.deutsch.trim(),
+        indonesia: card.indonesia.trim(),
+        sentence: card.sentence.trim(),
+        category: card.category ? card.category.trim() : autoDetectCategory(card.deutsch),
+        repetition: 0,
+        interval: 0,
+        ef: 2.5,
+        step: -1, // -1 means never studied
+        dueDate: new Date().toISOString(), // due immediately
+        createdAt: card.createdAt || new Date().toISOString(),
+        incorrectCount: 0
+      };
+    }
+
+    function autoDetectCategory(word) {
+      const w = word.trim().toLowerCase();
+      if (w.startsWith('der ') || w.startsWith('die ') || w.startsWith('das ')) {
+        return 'Nomen';
+      }
+      if (w.endsWith('en') || w.endsWith('n') || w.startsWith('sich ')) {
+        return 'Verben';
+      }
+      return 'Adjektive';
+    }
+
+    // ==========================================
+    // VIEW SWITCHER
+    // ==========================================
+    function switchView(viewId) {
+      document.querySelectorAll('.view-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      const targetView = document.getElementById(`${viewId}-view`);
+      if (targetView) targetView.classList.add('active');
+
+      const targetNav = document.getElementById(`nav-${viewId}`);
+      if (targetNav) targetNav.classList.add('active');
+
+      if (viewId === 'dashboard') {
+        updateDashboardStats();
+      }
+      
+      // Clear typing input if exiting study
+      if (viewId !== 'study') {
+        document.getElementById('answer-input').value = '';
+      }
+    }
+
+    // ==========================================
+    // STREAK & DATE UTILITIES
+    // ==========================================
+    function getTodayString() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    function getYesterdayString() {
+      const d = new Date();
+      d.setDate(d.getDate() - 1);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    function getDaysDifference(d1, d2) {
+      const date1 = new Date(d1);
+      const date2 = new Date(d2);
+      const diffTime = Math.abs(date2 - date1);
+      return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    }
+
+    function updateStreak() {
+      const todayStr = getTodayString();
+      const lastDateStr = localStorage.getItem('lastReviewDate');
+      let streak = parseInt(localStorage.getItem('streak') || '0', 10);
+      
+      if (!lastDateStr) {
+        streak = 0;
+      } else {
+        const diffDays = getDaysDifference(lastDateStr, todayStr);
+        if (diffDays > 1) {
+          streak = 0;
+        }
+      }
+      localStorage.setItem('streak', streak.toString());
+      return streak;
+    }
+
+    function recordReviewInStreak() {
+      const todayStr = getTodayString();
+      const lastDateStr = localStorage.getItem('lastReviewDate');
+      let streak = parseInt(localStorage.getItem('streak') || '0', 10);
+      
+      if (lastDateStr !== todayStr) {
+        if (lastDateStr === getYesterdayString()) {
+          streak += 1;
+        } else if (!lastDateStr || getDaysDifference(lastDateStr, todayStr) > 1) {
+          streak = 1;
+        }
+        localStorage.setItem('lastReviewDate', todayStr);
+        localStorage.setItem('streak', streak.toString());
+        showToast("Streak Harian Diperbarui!");
+      }
+    }
+
+    // ==========================================
+    // DASHBOARD METRICS & ACTIVITY CHART
+    // ==========================================
+    function updateDashboardStats() {
+      const todayStr = getTodayString();
+      const newStudiedToday = new Set(
+        reviewHistory
+          .filter(h => h.date === todayStr && h.isNew)
+          .map(h => h.cardId)
+      ).size;
+      
+      document.getElementById('stat-target-val').textContent = `${newStudiedToday} / 100`;
+      const progressPercent = Math.min(100, (newStudiedToday / 100) * 100);
+      document.getElementById('stat-target-bar').style.width = `${progressPercent}%`;
+
+      const nowISO = new Date().toISOString();
+      const dueCards = cards.filter(c => c.dueDate <= nowISO && c.step >= 0);
+      document.getElementById('stat-due-val').textContent = dueCards.length;
+      document.getElementById('stat-due-sub').textContent = dueCards.length === 1 ? '1 Kartu jatuh tempo' : `${dueCards.length} Kartu jatuh tempo`;
+
+      const neverStudiedCount = cards.filter(c => c.step === -1).length;
+      document.getElementById('opt-due-desc').textContent = `Fokus mereview ${dueCards.length} kata yang jatuh tempo hari ini.`;
+      document.getElementById('opt-new-desc').textContent = `Mulai belajar kata baru (${neverStudiedCount} tersedia di library).`;
+      document.getElementById('opt-mixed-desc').textContent = `Campur acak ${dueCards.length} kartu jatuh tempo dengan kata baru.`;
+
+      document.getElementById('mode-opt-due').style.opacity = dueCards.length === 0 ? '0.6' : '1';
+      document.getElementById('mode-opt-new').style.opacity = neverStudiedCount === 0 ? '0.6' : '1';
+
+      const streak = updateStreak();
+      document.getElementById('stat-streak-val').textContent = streak;
+
+      const mastered = cards.filter(c => c.step >= 4 || c.interval >= 30).length;
+      document.getElementById('stat-mastered-val').textContent = mastered;
+      document.getElementById('stat-mastered-sub').textContent = `Dari total ${cards.length} kata`;
+
+      renderActivityChart();
+    }
+
+    function renderActivityChart() {
+      const chartSvg = document.getElementById('stats-chart');
+      const defs = chartSvg.querySelector('defs');
+      chartSvg.innerHTML = '';
+      chartSvg.appendChild(defs);
+
+      const days = [];
+      const dayNames = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+      
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+        
+        days.push({
+          dateStr: dateStr,
+          label: dayNames[d.getDay()],
+          fullLabel: `${d.getDate()} ${months[d.getMonth()]}`
+        });
+      }
+
+      const counts = days.map(day => {
+        return new Set(reviewHistory.filter(h => h.date === day.dateStr).map(h => h.cardId)).size;
+      });
+
+      const maxCount = Math.max(...counts, 10);
+      const chartHeight = 110;
+      const chartWidth = 360;
+      const xStart = 30;
+      const yStart = 10;
+      const colWidth = 40;
+      const gap = 10;
+
+      const gridSteps = 4;
+      for (let i = 0; i <= gridSteps; i++) {
+        const y = yStart + chartHeight - (chartHeight / gridSteps) * i;
+        const val = Math.round((maxCount / gridSteps) * i);
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', xStart.toString());
+        line.setAttribute('y1', y.toString());
+        line.setAttribute('x2', (xStart + 7 * (colWidth + gap) - gap).toString());
+        line.setAttribute('y2', y.toString());
+        line.setAttribute('class', 'chart-grid-line');
+        chartSvg.appendChild(line);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', (xStart - 8).toString());
+        text.setAttribute('y', (y + 3).toString());
+        text.setAttribute('fill', 'var(--text-muted)');
+        text.setAttribute('font-size', '8px');
+        text.setAttribute('text-anchor', 'end');
+        text.textContent = val.toString();
+        chartSvg.appendChild(text);
+      }
+
+      days.forEach((day, index) => {
+        const count = counts[index];
+        const barHeight = (count / maxCount) * chartHeight;
+        const x = xStart + index * (colWidth + gap);
+        const y = yStart + chartHeight - barHeight;
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', x.toString());
+        rect.setAttribute('y', y.toString());
+        rect.setAttribute('width', colWidth.toString());
+        rect.setAttribute('height', Math.max(2, barHeight).toString());
+        rect.setAttribute('rx', '4');
+        rect.setAttribute('ry', '4');
+        rect.setAttribute('class', 'chart-bar');
+        rect.setAttribute('fill', 'url(#barGrad)');
+        
+        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        title.textContent = `${day.fullLabel}: ${count} kata`;
+        rect.appendChild(title);
+        chartSvg.appendChild(rect);
+
+        if (count > 0) {
+          const valLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          valLabel.setAttribute('x', (x + colWidth / 2).toString());
+          valLabel.setAttribute('y', (y - 5).toString());
+          valLabel.setAttribute('class', 'chart-val-label');
+          valLabel.textContent = count.toString();
+          chartSvg.appendChild(valLabel);
+        }
+
+        const axisLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        axisLabel.setAttribute('x', (x + colWidth / 2).toString());
+        axisLabel.setAttribute('y', (yStart + chartHeight + 15).toString());
+        axisLabel.setAttribute('class', 'chart-label');
+        axisLabel.textContent = day.label;
+        chartSvg.appendChild(axisLabel);
+      });
+    }
+
+    // ==========================================
+    // SESSION ROUTINES
+    // ==========================================
+    function selectStudyType(type) {
+      studyType = type;
+      document.querySelectorAll('.radio-card').forEach(card => card.classList.remove('selected'));
+      document.getElementById(`mode-opt-${type}`).classList.add('selected');
+    }
+
+    function launchSession() {
+      const nowISO = new Date().toISOString();
+      let selectedCards = [];
+
+      if (studyType === 'due') {
+        selectedCards = cards.filter(c => c.dueDate <= nowISO && c.step >= 0);
+        if (selectedCards.length === 0) {
+          showToast("Tidak ada kartu jatuh tempo hari ini!");
+          return;
+        }
+      } else if (studyType === 'new') {
+        selectedCards = cards.filter(c => c.step === -1);
+        if (selectedCards.length === 0) {
+          showToast("Tidak ada kata baru tersisa di library!");
+          return;
+        }
+        selectedCards = selectedCards.slice(0, 20); 
+      } else if (studyType === 'mixed') {
+        const due = cards.filter(c => c.dueDate <= nowISO && c.step >= 0);
+        const brandNew = cards.filter(c => c.step === -1).slice(0, 20);
+        selectedCards = [...due, ...brandNew];
+        
+        if (selectedCards.length === 0) {
+          showToast("Tidak ada kata yang bisa dipelajari saat ini!");
+          return;
+        }
+      }
+
+      shuffleArray(selectedCards);
+
+      sessionQueue = selectedCards.map(c => ({
+        ...c,
+        sessionAttempts: 0
+      }));
+      
+      sessionTotal = sessionQueue.length;
+      sessionReviewed = 0;
+      sessionCorrectFirstTime = 0;
+      sessionIncorrectList = {};
+      currentSessionIndex = 0;
+      isFlipped = false;
+
+      switchView('study');
+      loadCardInArena();
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function startStudySession() {
+      if (sessionQueue.length > 0 && currentSessionIndex < sessionQueue.length) {
+        switchView('study');
+      } else {
+        studyType = 'due';
+        selectStudyType('due');
+        const nowISO = new Date().toISOString();
+        const dueLength = cards.filter(c => c.dueDate <= nowISO && c.step >= 0).length;
+        
+        if (dueLength > 0) {
+          launchSession();
+        } else {
+          studyType = 'new';
+          selectStudyType('new');
+          const newLength = cards.filter(c => c.step === -1).length;
+          if (newLength > 0) {
+            launchSession();
+          } else {
+            switchView('dashboard');
+            showToast("Tidak ada kartu untuk direview atau dipelajari.");
+          }
+        }
+      }
+    }
+
+    function exitToDashboard() {
+      if (sessionQueue.length > 0 && currentSessionIndex < sessionQueue.length) {
+        if (confirm("Anda sedang dalam sesi belajar. Keluar ke Dashboard? Progress kartu saat ini akan disimpan.")) {
+          sessionQueue = [];
+          switchView('dashboard');
+        }
+      } else {
+        switchView('dashboard');
+      }
+    }
+
+    // ==========================================
+    // ACTIVE RECALL LOGIC (ARENA RENDER)
+    // ==========================================
+    function switchRecallMode(mode) {
+      recallMode = mode;
+      document.querySelectorAll('.active-mode-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`btn-recall-${mode}`).classList.add('active');
+      
+      if (sessionQueue.length > 0) {
+        isFlipped = false;
+        document.getElementById('flashcard-container').classList.remove('flipped');
+        loadCardInArena();
+      }
+    }
+
+    function loadCardInArena() {
+      if (sessionQueue.length === 0 || currentSessionIndex >= sessionQueue.length) {
+        finishStudySession();
+        return;
+      }
+
+      const activeCard = sessionQueue[currentSessionIndex];
+      isFlipped = false;
+      document.getElementById('flashcard-container').classList.remove('flipped');
+
+      const input = document.getElementById('answer-input');
+      input.value = '';
+      input.disabled = false;
+      input.style.display = 'block';
+      document.getElementById('typing-validation').style.display = 'none';
+
+      const catText = activeCard.category || 'Kosakata';
+      document.getElementById('front-category').textContent = catText;
+      document.getElementById('back-category').textContent = catText;
+
+      document.getElementById('back-display').innerHTML = formatGermanWord(activeCard.deutsch);
+      document.getElementById('back-translation').textContent = activeCard.indonesia;
+      document.getElementById('back-sentence').innerHTML = formatSentenceHighlight(activeCard.sentence, activeCard.deutsch);
+      document.getElementById('back-sentence-translation').textContent = `"${getSentenceTranslation(activeCard.sentence)}"`;
+
+      document.getElementById('session-progress').textContent = `${sessionReviewed + 1} / ${sessionTotal} Kartu`;
+
+      calculateAndRenderSM2Estimates(activeCard);
+
+      const frontDisplay = document.getElementById('front-display');
+      const frontClue = document.getElementById('front-clue');
+      const frontPrompt = document.getElementById('front-prompt-label');
+
+      frontClue.style.display = 'none';
+
+      if (recallMode === 1) {
+        frontPrompt.textContent = "Arti Kata (Bahasa Indonesia)";
+        frontDisplay.textContent = activeCard.indonesia;
+        frontDisplay.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+        frontDisplay.style.fontSize = "1.8rem";
+        input.placeholder = "Ketik kata Jerman...";
+      } else if (recallMode === 2) {
+        frontPrompt.textContent = "Kata Jerman";
+        frontDisplay.innerHTML = formatGermanWord(activeCard.deutsch);
+        frontDisplay.style.fontFamily = "'Outfit', sans-serif";
+        frontDisplay.style.fontSize = "2.2rem";
+        input.placeholder = "Ketik arti Indonesia...";
+      } else if (recallMode === 3) {
+        frontPrompt.textContent = "Lengkapi Kalimat (Context Clue)";
+        frontDisplay.innerHTML = createClozeSentence(activeCard.sentence, activeCard.deutsch);
+        frontDisplay.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+        frontDisplay.style.fontSize = "1.25rem";
+        
+        frontClue.textContent = activeCard.indonesia;
+        frontClue.style.display = 'block';
+        
+        input.placeholder = "Isi bagian yang rumpang...";
+      }
+
+      setTimeout(() => {
+        input.focus();
+      }, 300);
+    }
+
+    function calculateAndRenderSM2Estimates(card) {
+      const step = card.step;
+      const ef = card.ef;
+      const steps = [1, 3, 7, 14, 30];
+
+      let goodEst = 1;
+      let nextStepGood = Math.min(4, step + 1);
+      if (step === -1) nextStepGood = 0;
+      goodEst = steps[nextStepGood];
+      if (nextStepGood === 4) goodEst = Math.round(30 * ef);
+
+      let easyEst = 3;
+      let nextStepEasy = Math.min(4, step + 2);
+      if (step === -1) nextStepEasy = 1;
+      easyEst = steps[nextStepEasy];
+      if (nextStepEasy === 4) easyEst = Math.round(30 * ef * 1.2);
+
+      let hardEst = 1;
+      let nextStepHard = Math.max(0, step - 1);
+      if (step === -1 || step === 0) {
+        hardEst = 1;
+      } else {
+        hardEst = steps[nextStepHard];
+      }
+
+      document.getElementById('time-hard').textContent = `${hardEst}h`;
+      document.getElementById('time-good').textContent = `${goodEst}h`;
+      document.getElementById('time-easy').textContent = `${easyEst}h`;
+    }
+
+    // ==========================================
+    // TEXT FORMATTERS (NOUNS & HIGHLIGHTS)
+    // ==========================================
+    function formatGermanWord(word) {
+      const parts = word.trim().split(/\s+/);
+      if (parts.length > 1) {
+        const first = parts[0].toLowerCase();
+        const remainder = parts.slice(1).join(' ');
+        if (first === 'der') {
+          return `<span class="article-der">der</span> ${remainder}`;
+        } else if (first === 'die') {
+          return `<span class="article-die">die</span> ${remainder}`;
+        } else if (first === 'das') {
+          return `<span class="article-das">das</span> ${remainder}`;
+        }
+      }
+      return word;
+    }
+
+    function formatSentenceHighlight(sentence, targetWord) {
+      let cleanSentence = sentence.split('|')[0].trim();
+      
+      if (cleanSentence.includes('*')) {
+        return cleanSentence.replace(/\*([^*]+)\*/g, '<span class="highlight-word">$1</span>');
+      }
+
+      let cleanTarget = getCleanTargetWord(targetWord);
+      if (cleanTarget.length < 2) return cleanSentence;
+
+      try {
+        const escaped = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const regex = new RegExp(`(${escaped}[a-zA-ZäöüßÄÖÜ]*)`, 'gi');
+        return cleanSentence.replace(regex, '<span class="highlight-word">$1</span>');
+      } catch (e) {
+        return cleanSentence;
+      }
+    }
+
+    function getSentenceTranslation(sentence) {
+      const parts = sentence.split('|');
+      if (parts.length > 1) {
+        return parts[1].trim();
+      }
+      return "Kalimat konteks";
+    }
+
+    function getCleanTargetWord(word) {
+      let clean = word.trim();
+      const parts = clean.split(/\s+/);
+      if (parts.length > 1 && ['der', 'die', 'das'].includes(parts[0].toLowerCase())) {
+        clean = parts.slice(1).join(' ');
+      }
+      clean = clean.split(/[,|]/)[0].trim();
+      return clean;
+    }
+
+    function createClozeSentence(sentence, targetWord) {
+      let cleanSentence = sentence.split('|')[0].trim();
+      
+      if (cleanSentence.includes('*')) {
+        return cleanSentence.replace(/\*([^*]+)\*/g, '<span class="blank-word"></span>');
+      }
+
+      let cleanTarget = getCleanTargetWord(targetWord);
+      if (cleanTarget.length < 2) return cleanSentence + " (Blank)";
+
+      try {
+        const escaped = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const regex = new RegExp(`(${escaped}[a-zA-ZäöüßÄÖÜ]*)`, 'gi');
+        return cleanSentence.replace(regex, '<span class="blank-word"></span>');
+      } catch (e) {
+        return cleanSentence.replace(targetWord, '<span class="blank-word"></span>');
+      }
+    }
+
+    // ==========================================
+    // ACTIVE RECALL INPUT VALIDATION
+    // ==========================================
+    function checkAnswer() {
+      const activeCard = sessionQueue[currentSessionIndex];
+      const typedVal = document.getElementById('answer-input').value.trim();
+      
+      const isTyped = typedVal.length > 0;
+      let isCorrect = false;
+      let correctDisplay = "";
+      
+      if (isTyped) {
+        if (recallMode === 1 || recallMode === 3) {
+          const cleanUser = cleanForComparison(typedVal);
+          const cleanCorrect = cleanForComparison(activeCard.deutsch);
+          isCorrect = (cleanUser === cleanCorrect);
+          correctDisplay = activeCard.deutsch;
+        } else {
+          const cleanUser = cleanForComparison(typedVal);
+          const cleanCorrect = cleanForComparison(activeCard.indonesia);
+          isCorrect = cleanCorrect.includes(cleanUser) || cleanUser.includes(cleanCorrect);
+          correctDisplay = activeCard.indonesia;
+        }
+
+        const badge = document.getElementById('typing-validation');
+        badge.style.display = 'flex';
+        
+        if (isCorrect) {
+          badge.className = "validation-badge validation-correct";
+          badge.innerHTML = `
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Jawaban Anda Benar!</span>
+          `;
+        } else {
+          badge.className = "validation-badge validation-incorrect";
+          badge.innerHTML = `
+            <span style="font-weight: 500;">Jawaban Anda: <strong style="text-decoration: line-through;">${typedVal}</strong></span>
+            <span>Target: <strong>${correctDisplay}</strong></span>
+          `;
+        }
+      }
+      
+      activeCard.sessionAttempts++;
+      flipCard();
+    }
+
+    function cleanForComparison(str) {
+      let cleaned = str.trim().toLowerCase();
+      if (cleaned.startsWith('der ')) cleaned = cleaned.replace('der ', '');
+      if (cleaned.startsWith('die ')) cleaned = cleaned.replace('die ', '');
+      if (cleaned.startsWith('das ')) cleaned = cleaned.replace('das ', '');
+      cleaned = cleaned.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "");
+      cleaned = cleaned.replace(/\s+/g, "");
+      return cleaned;
+    }
+
+    // ==========================================
+    // FLIP INTERACTION
+    // ==========================================
+    function flipCard() {
+      if (isFlipped) return;
+      isFlipped = true;
+      document.getElementById('flashcard-container').classList.add('flipped');
+      document.getElementById('answer-input').disabled = true;
+    }
+
+    function handleCardClick(event) {
+      if (!isFlipped) {
+        checkAnswer();
+      }
+    }
+
+    function handleInputKeydown(event) {
+      if (event.key === 'Enter') {
+        event.stopPropagation();
+        if (!isFlipped) {
+          checkAnswer();
+        }
+      }
+    }
+
+    function speakGermanWord() {
+      if ('speechSynthesis' in window) {
+        const activeCard = sessionQueue[currentSessionIndex];
+        const cleanWord = getCleanTargetWord(activeCard.deutsch);
+        
+        const utterance = new SpeechSynthesisUtterance(cleanWord);
+        utterance.lang = 'de-DE';
+        
+        const voices = window.speechSynthesis.getVoices();
+        const deVoice = voices.find(voice => voice.lang.startsWith('de'));
+        if (deVoice) utterance.voice = deVoice;
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        showToast("Browser Anda tidak mendukung Web Speech API");
+      }
+    }
+
+    // ==========================================
+    // SPACED REPETITION ENGINE (SM-2 UPDATE)
+    // ==========================================
+    function rateCard(grade) {
+      const activeCard = sessionQueue[currentSessionIndex];
+      const dbCardIndex = cards.findIndex(c => c.id === activeCard.id);
+      
+      if (dbCardIndex === -1) return;
+      
+      const dbCard = cards[dbCardIndex];
+      const isFirstAttempt = (activeCard.sessionAttempts <= 1);
+      const wasNewCard = (dbCard.step === -1);
+
+      if (grade === 'again') {
+        dbCard.repetition = 0;
+        dbCard.interval = 1;
+        dbCard.ef = Math.max(1.3, dbCard.ef - 0.2);
+        dbCard.step = 0;
+        sessionIncorrectList[activeCard.id] = (sessionIncorrectList[activeCard.id] || 0) + 1;
+      } else if (grade === 'hard') {
+        dbCard.repetition = Math.max(0, dbCard.repetition - 1);
+        dbCard.ef = Math.max(1.3, dbCard.ef - 0.15);
+        dbCard.step = Math.max(0, dbCard.step - 1);
+        const steps = [1, 3, 7, 14, 30];
+        dbCard.interval = steps[dbCard.step];
+      } else if (grade === 'good') {
+        dbCard.repetition = dbCard.repetition + 1;
+        dbCard.step = Math.min(4, dbCard.step + 1);
+        const steps = [1, 3, 7, 14, 30];
+        dbCard.interval = steps[dbCard.step];
+        if (dbCard.step === 4) {
+          dbCard.interval = Math.round(30 * dbCard.ef);
+        }
+      } else if (grade === 'easy') {
+        dbCard.repetition = dbCard.repetition + 2;
+        dbCard.ef = Math.min(3.0, dbCard.ef + 0.15);
+        dbCard.step = Math.min(4, dbCard.step + 2);
+        const steps = [1, 3, 7, 14, 30];
+        dbCard.interval = steps[dbCard.step];
+        if (dbCard.step === 4) {
+          dbCard.interval = Math.round(30 * dbCard.ef * 1.2);
+        }
+      }
+
+      const now = new Date();
+      now.setDate(now.getDate() + dbCard.interval);
+      now.setHours(0, 0, 0, 0);
+      dbCard.dueDate = now.toISOString();
+      dbCard.lastReviewed = new Date().toISOString();
+
+      recordReviewInStreak();
+      
+      const todayStr = getTodayString();
+      reviewHistory.push({
+        date: todayStr,
+        cardId: dbCard.id,
+        status: grade,
+        isNew: wasNewCard
+      });
+      
+      saveCards();
+      saveHistory();
+
+      if (grade === 'again') {
+        const nextPos = Math.min(sessionQueue.length, currentSessionIndex + 3);
+        sessionQueue.splice(nextPos, 0, {
+          ...activeCard,
+          sessionAttempts: activeCard.sessionAttempts
+        });
+        sessionTotal = sessionQueue.length - (currentSessionIndex + 1) + sessionReviewed;
+      } else {
+        sessionReviewed++;
+        if (isFirstAttempt) {
+          sessionCorrectFirstTime++;
+        }
+      }
+
+      currentSessionIndex++;
+      loadCardInArena();
+    }
+
+    function finishStudySession() {
+      document.getElementById('sum-total').textContent = sessionReviewed;
+      const accuracy = sessionReviewed > 0 ? Math.round((sessionCorrectFirstTime / sessionReviewed) * 100) : 0;
+      document.getElementById('sum-accuracy').textContent = `${accuracy}%`;
+      document.getElementById('sum-correct').textContent = sessionCorrectFirstTime;
+      
+      const totalWrong = Object.keys(sessionIncorrectList).length;
+      document.getElementById('sum-incorrect').textContent = totalWrong;
+
+      const mistakesList = document.getElementById('sum-mistakes-list');
+      mistakesList.innerHTML = '';
+
+      if (totalWrong === 0) {
+        mistakesList.innerHTML = `
+          <div class="summary-mistake-item">
+            <span>Keine Fehler! (Hebat, semua lancar)</span>
+            <span class="summary-mistake-count" style="color: var(--success); background-color: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.15)">0</span>
+          </div>
+        `;
+      } else {
+        const sortedMistakes = Object.entries(sessionIncorrectList)
+          .map(([id, count]) => {
+            const cardObj = cards.find(c => c.id === id);
+            return { word: cardObj ? cardObj.deutsch : "Unknown", count: count };
+          })
+          .sort((a, b) => b.count - a.count);
+
+        sortedMistakes.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'summary-mistake-item';
+          div.innerHTML = `
+            <span>${item.word}</span>
+            <span class="summary-mistake-count">${item.count} &times; salah</span>
+          `;
+          mistakesList.appendChild(div);
+        });
+      }
+
+      switchView('summary');
+      sessionQueue = [];
+      currentSessionIndex = 0;
+    }
+
+    // ==========================================
+    // KEYBOARD SHORTCUTS
+    // ==========================================
+    function setupKeyBindings() {
+      document.addEventListener('keydown', (e) => {
+        const tag = document.activeElement.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA') {
+          return;
+        }
+
+        const studySection = document.getElementById('study-view');
+        if (!studySection.classList.contains('active')) {
+          return;
+        }
+
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          if (!isFlipped) {
+            checkAnswer();
+          }
+        } else if (isFlipped) {
+          if (e.key === '1') {
+            rateCard('again');
+          } else if (e.key === '2') {
+            rateCard('hard');
+          } else if (e.key === '3') {
+            rateCard('good');
+          } else if (e.key === '4') {
+            rateCard('easy');
+          }
+        }
+      });
+    }
+
+    // ==========================================
+    // BULK INPUT PARSER
+    // ==========================================
+    function parseBulkInput() {
+      const area = document.getElementById('bulk-paste-area');
+      const text = area.value.trim();
+      const logDiv = document.getElementById('import-log');
+
+      if (!text) {
+        showToast("Area teks kosong!");
+        return;
+      }
+
+      const lines = text.split('\n');
+      let successCount = 0;
+      let errorCount = 0;
+      let parsedCards = [];
+
+      lines.forEach((line, index) => {
+        const row = line.trim();
+        if (!row) return;
+
+        let parts = row.split('|');
+        if (parts.length < 2) {
+          parts = row.split('\t');
+        }
+
+        if (parts.length >= 2) {
+          const de = parts[0].trim();
+          const id = parts[1].trim();
+          const sent = parts[2] ? parts[2].trim() : `${de} in einem Satz.`;
+          
+          if (de && id) {
+            const newCard = initSM2Properties({
+              deutsch: de,
+              indonesia: id,
+              sentence: sent
+            });
+            
+            const isDuplicate = cards.some(c => c.deutsch.toLowerCase() === de.toLowerCase());
+            if (!isDuplicate) {
+              parsedCards.push(newCard);
+              successCount++;
+            }
+          } else {
+            errorCount++;
+          }
+        } else {
+          errorCount++;
+        }
+      });
+
+      if (parsedCards.length > 0) {
+        cards = [...cards, ...parsedCards];
+        saveCards();
+        area.value = '';
+        
+        logDiv.style.display = 'block';
+        logDiv.style.borderColor = 'var(--success)';
+        logDiv.style.color = 'var(--text-primary)';
+        logDiv.textContent = `Berhasil mengimpor ${successCount} kata baru. Duplikat/gagal diabaikan: ${errorCount}`;
+        
+        showToast(`Impor berhasil! +${successCount} Kata`);
+        updateDashboardStats();
+      } else {
+        logDiv.style.display = 'block';
+        logDiv.style.borderColor = 'var(--error)';
+        logDiv.style.color = 'var(--error)';
+        logDiv.textContent = `Gagal mengimpor kata. Periksa format penulisan (Deutsch | Indonesia | Kalimat).`;
+      }
+    }
+
+    // ==========================================
+    // BACKUP & RESTORE JSON
+    // ==========================================
+    function exportDataJSON() {
+      const dataStr = JSON.stringify({
+        cards: cards,
+        history: reviewHistory,
+        streak: localStorage.getItem('streak') || '0',
+        lastReviewDate: localStorage.getItem('lastReviewDate') || ''
+      }, null, 2);
+
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `wortschatz_backup_${getTodayString()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showToast("Database berhasil diekspor!");
+    }
+
+    function importDataJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data.cards && Array.isArray(data.cards)) {
+            cards = data.cards;
+            saveCards();
+            
+            if (data.history && Array.isArray(data.history)) {
+              reviewHistory = data.history;
+              saveHistory();
+            }
+
+            if (data.streak) {
+              localStorage.setItem('streak', data.streak.toString());
+            }
+            if (data.lastReviewDate) {
+              localStorage.setItem('lastReviewDate', data.lastReviewDate);
+            }
+
+            showToast("Restore backup berhasil!");
+            updateStreak();
+            updateDashboardStats();
+            switchView('dashboard');
+          } else {
+            alert("Format file JSON tidak valid.");
+          }
+        } catch (err) {
+          alert("Gagal membaca file backup. Pastikan file berupa JSON valid.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function openResetModal() {
+      document.getElementById('modal-overlay').classList.add('active');
+    }
+
+    function closeResetModal() {
+      document.getElementById('modal-overlay').classList.remove('active');
+    }
+
+    function confirmResetDatabase() {
+      localStorage.clear();
+      cards = [];
+      reviewHistory = [];
+      
+      loadData();
+      updateStreak();
+      updateDashboardStats();
+      
+      closeResetModal();
+      switchView('dashboard');
+      showToast("Database berhasil direset!");
+    }
+
+    // ==========================================
+    // TOAST NOTIFICATION UTILITY
+    // ==========================================
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-text').textContent = text;
+      
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>

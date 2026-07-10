@@ -3884,8 +3884,19 @@
 
     function renderActivityChart() {
       const chartSvg = document.getElementById('stats-chart');
-      const defs = chartSvg.querySelector('defs');
       chartSvg.innerHTML = '';
+      
+      // Add modern neon glow filter
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      defs.innerHTML = `
+        <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      `;
       chartSvg.appendChild(defs);
 
       const days = [];
@@ -3912,75 +3923,187 @@
       });
 
       const maxCount = Math.max(...counts, 10);
-      const chartHeight = 110;
-      const xStart = 30;
-      const yStart = 10;
-      const colWidth = 40;
-      const gap = 10;
+      
+      // 3D Isometric Projection Helper
+      // Coordinate space: x (0 to 6), z (0 to 6), y (0 to maxCount)
+      const scaleX = 18;
+      const scaleZ = 14;
+      const scaleY = 60 / maxCount; // max height is 60px
+      const cx = 190; // Center X
+      const cy = 100; // Center Y
 
-      const gridSteps = 4;
-      for (let i = 0; i <= gridSteps; i++) {
-        const y = yStart + chartHeight - (chartHeight / gridSteps) * i;
-        const val = Math.round((maxCount / gridSteps) * i);
-        
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line.setAttribute('x1', xStart.toString());
-        line.setAttribute('y1', y.toString());
-        line.setAttribute('x2', (xStart + 7 * (colWidth + gap) - gap).toString());
-        line.setAttribute('y2', y.toString());
-        line.setAttribute('class', 'chart-grid-line');
-        chartSvg.appendChild(line);
-
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        text.setAttribute('x', (xStart - 8).toString());
-        text.setAttribute('y', (y + 3).toString());
-        text.setAttribute('fill', 'var(--text-muted)');
-        text.setAttribute('font-size', '9px');
-        text.setAttribute('text-anchor', 'end');
-        text.textContent = val.toString();
-        chartSvg.appendChild(text);
+      function project(x, y, z) {
+        const px = cx + (x * scaleX) - (z * scaleZ);
+        const py = cy + (x * 0.4 * scaleX) + (z * 0.4 * scaleZ) - (y * scaleY);
+        return { x: px, y: py };
       }
 
+      // Draw Grid Cage
+      const gridColor = 'rgba(16, 185, 129, 0.12)';
+      const wallColor = 'rgba(255, 255, 255, 0.03)';
+
+      // 1. Bottom Plane Grid (y = 0)
+      for (let i = 0; i <= 6; i++) {
+        // Line along Z
+        const p1 = project(i, 0, 0);
+        const p2 = project(i, 0, 6);
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', p1.x.toString());
+        line.setAttribute('y1', p1.y.toString());
+        line.setAttribute('x2', p2.x.toString());
+        line.setAttribute('y2', p2.y.toString());
+        line.setAttribute('stroke', gridColor);
+        line.setAttribute('stroke-width', '0.75');
+        chartSvg.appendChild(line);
+
+        // Line along X
+        const p3 = project(0, 0, i);
+        const p4 = project(6, 0, i);
+        const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line2.setAttribute('x1', p3.x.toString());
+        line2.setAttribute('y1', p3.y.toString());
+        line2.setAttribute('x2', p4.x.toString());
+        line2.setAttribute('y2', p4.y.toString());
+        line2.setAttribute('stroke', gridColor);
+        line2.setAttribute('stroke-width', '0.75');
+        chartSvg.appendChild(line2);
+      }
+
+      // 2. Back Walls (Vertical grid lines)
+      for (let i = 0; i <= 6; i++) {
+        // Back-right wall vertical lines (at z = 0)
+        const p1 = project(i, 0, 0);
+        const p2 = project(i, maxCount, 0);
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', p1.x.toString());
+        line.setAttribute('y1', p1.y.toString());
+        line.setAttribute('x2', p2.x.toString());
+        line.setAttribute('y2', p2.y.toString());
+        line.setAttribute('stroke', wallColor);
+        line.setAttribute('stroke-width', '0.5');
+        chartSvg.appendChild(line);
+
+        // Back-left wall vertical lines (at x = 0)
+        const p3 = project(0, 0, i);
+        const p4 = project(0, maxCount, i);
+        const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line2.setAttribute('x1', p3.x.toString());
+        line2.setAttribute('y1', p3.y.toString());
+        line2.setAttribute('x2', p4.x.toString());
+        line2.setAttribute('y2', p4.y.toString());
+        line2.setAttribute('stroke', wallColor);
+        line2.setAttribute('stroke-width', '0.5');
+        chartSvg.appendChild(line2);
+      }
+
+      // Back Wall Horizontal lines (different heights)
+      const heights = [maxCount * 0.25, maxCount * 0.5, maxCount * 0.75, maxCount];
+      heights.forEach((h, idx) => {
+        // Back-right horizontal
+        const p1 = project(0, h, 0);
+        const p2 = project(6, h, 0);
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', p1.x.toString());
+        line.setAttribute('y1', p1.y.toString());
+        line.setAttribute('x2', p2.x.toString());
+        line.setAttribute('y2', p2.y.toString());
+        line.setAttribute('stroke', wallColor);
+        line.setAttribute('stroke-width', '0.5');
+        chartSvg.appendChild(line);
+
+        // Back-left horizontal
+        const p3 = project(0, h, 0);
+        const p4 = project(0, h, 6);
+        const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line2.setAttribute('x1', p3.x.toString());
+        line2.setAttribute('y1', p3.y.toString());
+        line2.setAttribute('x2', p4.x.toString());
+        line2.setAttribute('y2', p4.y.toString());
+        line2.setAttribute('stroke', wallColor);
+        line2.setAttribute('stroke-width', '0.5');
+        chartSvg.appendChild(line2);
+
+        // Add height labels on back corner
+        const pCorner = project(0, h, 0);
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', (pCorner.x - 6).toString());
+        text.setAttribute('y', (pCorner.y + 3).toString());
+        text.setAttribute('fill', 'var(--text-muted)');
+        text.setAttribute('font-size', '8px');
+        text.setAttribute('font-family', 'Outfit, sans-serif');
+        text.setAttribute('text-anchor', 'end');
+        text.textContent = Math.round(h).toString();
+        chartSvg.appendChild(text);
+      });
+
+      // 3. Render Data Points
       days.forEach((day, index) => {
         const count = counts[index];
-        const barHeight = (count / maxCount) * chartHeight;
-        const x = xStart + index * (colWidth + gap);
-        const y = yStart + chartHeight - barHeight;
+        // Distribute points diagonally from back-left (z=6, x=0) to front-right (z=0, x=6)
+        const xCoord = index;
+        const zCoord = 6 - index;
 
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', x.toString());
-        rect.setAttribute('y', y.toString());
-        rect.setAttribute('width', colWidth.toString());
-        rect.setAttribute('height', Math.max(2, barHeight).toString());
-        rect.setAttribute('rx', '6');
-        rect.setAttribute('ry', '6');
-        rect.setAttribute('class', 'chart-bar');
-        rect.setAttribute('fill', 'url(#barGrad)');
-        
+        const basePt = project(xCoord, 0, zCoord);
+        const topPt = project(xCoord, count, zCoord);
+
+        // Glowing stem line
+        const stem = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        stem.setAttribute('x1', basePt.x.toString());
+        stem.setAttribute('y1', basePt.y.toString());
+        stem.setAttribute('x2', topPt.x.toString());
+        stem.setAttribute('y2', topPt.y.toString());
+        stem.setAttribute('stroke', '#10b981');
+        stem.setAttribute('stroke-width', '1.5');
+        stem.setAttribute('opacity', count > 0 ? '0.85' : '0.25');
+        if (count > 0) {
+          stem.setAttribute('filter', 'url(#neonGlow)');
+        }
+        chartSvg.appendChild(stem);
+
+        // Interactive node dot
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', topPt.x.toString());
+        dot.setAttribute('cy', topPt.y.toString());
+        dot.setAttribute('r', count > 0 ? '4.5' : '2.5');
+        dot.setAttribute('fill', count > 0 ? '#10b981' : 'var(--text-muted)');
+        if (count > 0) {
+          dot.setAttribute('filter', 'url(#neonGlow)');
+        }
+        dot.style.cursor = 'pointer';
+        dot.onclick = () => {
+          showToast(`${day.fullLabel}: Mempelajari ${count} kata`);
+        };
+
         const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
         title.textContent = `${day.fullLabel}: ${count} kata`;
-        rect.appendChild(title);
-        
-        // Mobile-friendly interactive click on bar
-        rect.onclick = () => {
-          showToast(`Mempelajari ${count} kata pada ${day.fullLabel}`);
-        };
-        
-        chartSvg.appendChild(rect);
+        dot.appendChild(title);
+        chartSvg.appendChild(dot);
 
+        // Value Label text
         if (count > 0) {
           const valLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-          valLabel.setAttribute('x', (x + colWidth / 2).toString());
-          valLabel.setAttribute('y', (y - 5).toString());
-          valLabel.setAttribute('class', 'chart-val-label');
+          valLabel.setAttribute('x', topPt.x.toString());
+          valLabel.setAttribute('y', (topPt.y - 8).toString());
+          valLabel.setAttribute('fill', '#10b981');
+          valLabel.setAttribute('font-size', '9px');
+          valLabel.setAttribute('font-family', 'Outfit, sans-serif');
+          valLabel.setAttribute('font-weight', '700');
+          valLabel.setAttribute('text-anchor', 'middle');
+          valLabel.setAttribute('filter', 'url(#neonGlow)');
           valLabel.textContent = count.toString();
           chartSvg.appendChild(valLabel);
         }
 
+        // Axis Label text placed along the front edge of the grid
+        const labelPt = project(xCoord, 0, 7.2);
         const axisLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        axisLabel.setAttribute('x', (x + colWidth / 2).toString());
-        axisLabel.setAttribute('y', (yStart + chartHeight + 15).toString());
-        axisLabel.setAttribute('class', 'chart-label');
+        axisLabel.setAttribute('x', labelPt.x.toString());
+        axisLabel.setAttribute('y', labelPt.y.toString());
+        axisLabel.setAttribute('fill', 'var(--text-secondary)');
+        axisLabel.setAttribute('font-size', '9px');
+        axisLabel.setAttribute('font-family', 'Outfit, sans-serif');
+        axisLabel.setAttribute('font-weight', '500');
+        axisLabel.setAttribute('text-anchor', 'middle');
         axisLabel.textContent = day.label;
         chartSvg.appendChild(axisLabel);
       });

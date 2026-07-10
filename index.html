@@ -3012,8 +3012,9 @@
     // ==========================================
     function selectStudyType(type) {
       studyType = type;
-      document.querySelectorAll('.radio-card').forEach(card => card.classList.remove('selected'));
-      document.getElementById(`mode-opt-${type}`).classList.add('selected');
+      document.querySelectorAll('#dashboard-view .radio-card').forEach(card => card.classList.remove('selected'));
+      const activeCard = document.getElementById(`mode-opt-${type}`);
+      if (activeCard) activeCard.classList.add('selected');
     }
 
     function launchSession() {
@@ -3346,6 +3347,8 @@
 
     function cleanForComparison(str) {
       let cleaned = str.trim().toLowerCase();
+      // Hapus level tag seperti [b1], [b2], [c1]
+      cleaned = cleaned.replace(/\[(b1|b2|c1)\]/gi, "");
       if (cleaned.startsWith('der ')) cleaned = cleaned.replace('der ', '');
       if (cleaned.startsWith('die ')) cleaned = cleaned.replace('die ', '');
       if (cleaned.startsWith('das ')) cleaned = cleaned.replace('das ', '');

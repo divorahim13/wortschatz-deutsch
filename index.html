@@ -2504,6 +2504,12 @@
         localStorage.setItem('openai_api_key', KEY_SECRET);
       }
 
+      // Secure local initialization of provided GitHub Gist Token
+      const GIST_TOKEN_SECRET = 'GITHUB_TOKEN_PLACEHOLDER';
+      if (GIST_TOKEN_SECRET && GIST_TOKEN_SECRET.startsWith('ghp_') && !localStorage.getItem('github_gist_token')) {
+        localStorage.setItem('github_gist_token', GIST_TOKEN_SECRET);
+      }
+
       loadData();
       updateFilterKapitelDropdown(); // Init Kapitel options
       updateStreak();

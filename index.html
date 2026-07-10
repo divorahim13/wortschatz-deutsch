@@ -3362,7 +3362,7 @@
     // FLIP INTERACTION
     // ==========================================
     function flipCard() {
-      if (isFlipped) return;
+      // Flip ke belakang (tampilkan jawaban)
       isFlipped = true;
       document.getElementById('flashcard-container').classList.add('flipped');
       document.getElementById('answer-input').disabled = true;
@@ -3373,9 +3373,22 @@
       }, 250);
     }
 
+    function unflipCard() {
+      // Balik kembali ke depan (tampilkan soal)
+      isFlipped = false;
+      document.getElementById('flashcard-container').classList.remove('flipped');
+      const input = document.getElementById('answer-input');
+      input.disabled = false;
+      input.focus();
+    }
+
     function handleCardClick(event) {
       if (!isFlipped) {
+        // Belum dibalik: tampilkan jawaban
         checkAnswer();
+      } else {
+        // Sudah dibalik: balik kembali ke soal
+        unflipCard();
       }
     }
 
@@ -3737,7 +3750,9 @@
         if (e.key === ' ' || e.key === 'Enter') {
           e.preventDefault();
           if (!isFlipped) {
-            checkAnswer();
+            checkAnswer(); // Belum dibalik → lihat jawaban
+          } else {
+            unflipCard(); // Sudah dibalik → kembali ke soal
           }
         } else if (isFlipped) {
           if (e.key === '1') {

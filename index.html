@@ -3345,11 +3345,16 @@
       let cleaned = str.trim().toLowerCase();
       // Hapus level tag seperti [b1], [b2], [c1]
       cleaned = cleaned.replace(/\[(b1|b2|c1)\]/gi, "");
-      if (cleaned.startsWith('der ')) cleaned = cleaned.replace('der ', '');
-      if (cleaned.startsWith('die ')) cleaned = cleaned.replace('die ', '');
-      if (cleaned.startsWith('das ')) cleaned = cleaned.replace('das ', '');
-      cleaned = cleaned.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "");
-      cleaned = cleaned.replace(/\s+/g, "");
+      
+      // Hapus artikel gender di mana saja (der, die, das)
+      cleaned = cleaned.replace(/\b(der|die|das)\b/g, "");
+      
+      // Hapus suffix plural umum seperti ", -en", ", -e", ", -s", ", -er", ", -"
+      cleaned = cleaned.replace(/,\s*-\w*/g, "");
+      
+      // Hapus karakter non-alphanumeric (selain huruf & angka Jerman seperti ä, ö, ü, ß)
+      cleaned = cleaned.replace(/[^a-z0-9äöüß]/gi, "");
+      
       return cleaned;
     }
 

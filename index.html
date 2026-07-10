@@ -92,7 +92,7 @@
       top: 16px;
       z-index: 50;
       margin: 16px auto 0 auto;
-      max-width: 800px;
+      max-width: 1000px;
       width: calc(100% - 32px);
       border: 1px solid var(--border-muted);
       border-radius: 99px;
@@ -190,7 +190,7 @@
 
     main {
       flex: 1;
-      max-width: 800px;
+      max-width: 1000px;
       width: 100%;
       margin: 0 auto;
       padding: 24px 16px;
@@ -1746,6 +1746,10 @@
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
           Flashcard
         </button>
+        <button id="nav-schedule" class="nav-btn" onclick="switchView('schedule')">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Jadwal
+        </button>
         <button id="nav-input" class="nav-btn" onclick="switchView('input')">
           <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
           Tambah Kata
@@ -2257,6 +2261,66 @@
         </h3>
         <div class="flashcard-word-grid" id="flashcard-word-grid">
           <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- View: Jadwal Repetisi -->
+    <section id="schedule-view" class="view-section" style="width: 100%;">
+      <div class="dashboard-panel" style="max-width: 1000px; margin: 0 auto;">
+        <h2 class="panel-title" style="margin-bottom: 16px; font-size: 1.1rem;">
+          <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: var(--accent); stroke-width: 2.5;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Jadwal Repetisi (Spaced Repetition Schedule)
+        </h2>
+        
+        <!-- Summary Cards -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+          <div class="stat-card" style="padding: 14px; text-align: center;">
+            <div class="stat-header" style="justify-content: center; font-size: 0.75rem;">Jatuh Tempo</div>
+            <div id="schedule-stat-due" class="stat-value" style="font-size: 1.6rem; color: var(--error); margin: 6px 0 0 0;">0</div>
+          </div>
+          <div class="stat-card" style="padding: 14px; text-align: center;">
+            <div class="stat-header" style="justify-content: center; font-size: 0.75rem;">Besok</div>
+            <div id="schedule-stat-tomorrow" class="stat-value" style="font-size: 1.6rem; color: var(--warning); margin: 6px 0 0 0;">0</div>
+          </div>
+          <div class="stat-card" style="padding: 14px; text-align: center;">
+            <div class="stat-header" style="justify-content: center; font-size: 0.75rem;">Akan Datang</div>
+            <div id="schedule-stat-future" class="stat-value" style="font-size: 1.6rem; color: var(--success); margin: 6px 0 0 0;">0</div>
+          </div>
+          <div class="stat-card" style="padding: 14px; text-align: center;">
+            <div class="stat-header" style="justify-content: center; font-size: 0.75rem;">Kartu Baru</div>
+            <div id="schedule-stat-new" class="stat-value" style="font-size: 1.6rem; color: var(--text-muted); margin: 6px 0 0 0;">0</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px; display: flex; gap: 10px; align-items: center; width: 100%; flex-wrap: wrap;">
+          <input type="text" id="schedule-search" class="input-field" placeholder="Cari kata (Jerman / Indonesia)..." oninput="renderScheduleTable()" style="max-width: 320px; font-size: 0.85rem; padding: 10px 14px;">
+          <select id="schedule-filter-status" class="input-field" onchange="renderScheduleTable()" style="max-width: 200px; font-size: 0.85rem; padding: 10px 14px;">
+            <option value="ALL">Semua Status</option>
+            <option value="DUE">Jatuh Tempo (Review)</option>
+            <option value="ACTIVE">Dalam Antrean SR</option>
+            <option value="NEW">Kartu Baru</option>
+          </select>
+        </div>
+
+        <!-- Schedule Table -->
+        <div style="overflow-x: auto; border: 1px solid var(--border-muted); border-radius: 12px; background-color: var(--bg-secondary); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; color: var(--text-primary);">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border-muted); background-color: var(--bg-card); color: var(--text-secondary);">
+                <th style="padding: 12px 16px; font-weight: 600;">Bahasa Jerman</th>
+                <th style="padding: 12px 16px; font-weight: 600;">Arti Indonesia</th>
+                <th style="padding: 12px 16px; font-weight: 600; text-align: center; width: 80px;">Niveau</th>
+                <th style="padding: 12px 16px; font-weight: 600; text-align: center; width: 80px;">Kapitel</th>
+                <th style="padding: 12px 16px; font-weight: 600; width: 180px;">Jadwal Review</th>
+                <th style="padding: 12px 16px; font-weight: 600; text-align: center; width: 100px;">Interval</th>
+                <th style="padding: 12px 16px; font-weight: 600; text-align: center; width: 100px;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -3021,6 +3085,10 @@
         updateDashboardStats();
       }
 
+      if (viewId === 'schedule') {
+        renderScheduleTable();
+      }
+
       if (viewId === 'flashcard') {
         flashcardFlipped = false;
         const container = document.getElementById('free-flashcard-container');
@@ -3374,6 +3442,169 @@
       } else {
         showToast("Semua kata di bab ini sudah berada di Spaced Repetition.");
       }
+    }
+
+    // ==========================================
+    // SPACED REPETITION SCHEDULE LOGIC
+    // ==========================================
+    function renderScheduleTable() {
+      const searchInput = document.getElementById('schedule-search');
+      const searchVal = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      const filterStatus = document.getElementById('schedule-filter-status') ? document.getElementById('schedule-filter-status').value : 'ALL';
+      const tableBody = document.getElementById('schedule-table-body');
+      if (!tableBody) return;
+      
+      const now = new Date();
+      const endOfToday = new Date();
+      endOfToday.setHours(23, 59, 59, 999);
+      const endOfTomorrow = new Date();
+      endOfTomorrow.setDate(endOfTomorrow.getDate() + 1);
+      endOfTomorrow.setHours(23, 59, 59, 999);
+
+      let dueCount = 0;
+      let tomorrowCount = 0;
+      let futureCount = 0;
+      let newCount = 0;
+
+      // Classify and filter cards
+      const filteredCards = cards.filter(card => {
+        const isNew = card.step === -1;
+        const dueD = new Date(card.dueDate);
+        
+        // Count statuses
+        if (isNew) {
+          newCount++;
+        } else if (dueD <= now) {
+          dueCount++;
+        } else if (dueD <= endOfTomorrow) {
+          tomorrowCount++;
+        } else {
+          futureCount++;
+        }
+
+        // Apply Search Filter
+        const matchesSearch = card.deutsch.toLowerCase().includes(searchVal) || card.indonesia.toLowerCase().includes(searchVal);
+        if (!matchesSearch) return false;
+
+        // Apply Status Filter
+        if (filterStatus === 'NEW') return isNew;
+        if (filterStatus === 'DUE') return !isNew && dueD <= now;
+        if (filterStatus === 'ACTIVE') return !isNew;
+        
+        return true;
+      });
+
+      // Update counters in UI
+      const statDue = document.getElementById('schedule-stat-due');
+      const statTomorrow = document.getElementById('schedule-stat-tomorrow');
+      const statFuture = document.getElementById('schedule-stat-future');
+      const statNew = document.getElementById('schedule-stat-new');
+      if (statDue) statDue.textContent = dueCount;
+      if (statTomorrow) statTomorrow.textContent = tomorrowCount;
+      if (statFuture) statFuture.textContent = futureCount;
+      if (statNew) statNew.textContent = newCount;
+
+      // Sort filtered cards: Active cards (earliest due date first), then new cards
+      filteredCards.sort((a, b) => {
+        if (a.step === -1 && b.step !== -1) return 1;
+        if (a.step !== -1 && b.step === -1) return -1;
+        if (a.step === -1 && b.step === -1) {
+          return a.id.localeCompare(b.id);
+        }
+        return new Date(a.dueDate) - new Date(b.dueDate);
+      });
+
+      tableBody.innerHTML = '';
+      if (filteredCards.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="7" style="padding: 24px; text-align: center; color: var(--text-muted);">
+              Tidak ada kata yang sesuai dengan kriteria filter
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filteredCards.forEach(card => {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid var(--border-muted)';
+        
+        const isNew = card.step === -1;
+        const dueD = new Date(card.dueDate);
+        
+        let scheduleText = '';
+        if (isNew) {
+          scheduleText = '<span style="color: var(--text-muted);">Baru (Belum Masuk SR)</span>';
+        } else if (dueD <= now) {
+          scheduleText = '<span style="color: var(--error); font-weight: 600;">Jatuh Tempo (Review Hari Ini)</span>';
+        } else if (dueD <= endOfTomorrow) {
+          scheduleText = '<span style="color: var(--warning);">Besok</span>';
+        } else {
+          const diffMs = dueD - now;
+          const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+          scheduleText = `<span style="color: var(--success);">${diffDays} hari lagi (${dueD.toLocaleDateString('id-ID', {day: 'numeric', month: 'short'})})</span>`;
+        }
+
+        const intervalText = isNew ? '-' : `${card.interval || 1} hari`;
+        
+        tr.innerHTML = `
+          <td style="padding: 12px 16px; font-weight: 500;">${formatGermanWord(card.deutsch)}</td>
+          <td style="padding: 12px 16px; color: var(--text-secondary);">${card.indonesia}</td>
+          <td style="padding: 12px 16px; text-align: center;"><span class="card-badge" style="font-size: 0.7rem; border-color: rgba(139, 92, 246, 0.2);">${card.level || 'B1'}</span></td>
+          <td style="padding: 12px 16px; text-align: center; font-weight: 600;">${card.chapter || 1}</td>
+          <td style="padding: 12px 16px;">${scheduleText}</td>
+          <td style="padding: 12px 16px; text-align: center; color: var(--text-secondary);">${intervalText}</td>
+          <td style="padding: 12px 16px; text-align: center; display: flex; gap: 6px; justify-content: center; align-items: center; border-bottom: none;">
+            ${isNew ? `
+              <button onclick="reviewCardNow('${card.id}')" title="Masukkan ke Spaced Repetition Hari Ini" style="background: none; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 4px; padding: 4px 8px; cursor: pointer; color: #10b981; font-size: 0.72rem; display: flex; align-items: center; gap: 4px;">
+                <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                SR
+              </button>
+            ` : `
+              <button onclick="reviewCardNow('${card.id}')" title="Set Jatuh Tempo Hari Ini (Belajar Sekarang)" style="background: none; border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 4px; padding: 4px 6px; cursor: pointer; color: var(--accent-text); display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></svg>
+              </button>
+              <button onclick="resetCardSchedule('${card.id}')" title="Reset ke Status Baru" style="background: none; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 4px; padding: 4px 6px; cursor: pointer; color: var(--error); display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5;"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              </button>
+            `}
+          </td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    }
+
+    function resetCardSchedule(cardId) {
+      const dbCardIndex = cards.findIndex(c => c.id === cardId);
+      if (dbCardIndex === -1) return;
+      
+      const dbCard = cards[dbCardIndex];
+      dbCard.step = -1;
+      dbCard.repetition = 0;
+      dbCard.interval = 0;
+      dbCard.dueDate = new Date().toISOString();
+      
+      saveCards();
+      renderScheduleTable();
+      updateDashboardStats();
+      showToast(`"${getCleanTargetWord(dbCard.deutsch)}" direset ke status Baru`);
+    }
+
+    function reviewCardNow(cardId) {
+      const dbCardIndex = cards.findIndex(c => c.id === cardId);
+      if (dbCardIndex === -1) return;
+      
+      const dbCard = cards[dbCardIndex];
+      dbCard.step = 0;
+      dbCard.repetition = 1;
+      dbCard.interval = 1;
+      dbCard.dueDate = new Date().toISOString(); // Due immediately (now)
+      
+      saveCards();
+      renderScheduleTable();
+      updateDashboardStats();
+      showToast(`"${getCleanTargetWord(dbCard.deutsch)}" dijadwalkan untuk direview hari ini!`);
     }
 
     async function speakFlashcardWord() {

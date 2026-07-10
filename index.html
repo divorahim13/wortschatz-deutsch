@@ -3489,11 +3489,21 @@
     function formatSentenceCensored(sentence, targetWord) {
       let cleanSentence = sentence.split('|')[0].trim();
       let cleanTarget = getCleanTargetWord(targetWord);
+      
+      const deWordLower = targetWord.trim().toLowerCase();
+      let genderClass = "";
+      if (deWordLower.startsWith('der ')) {
+        genderClass = "article-der";
+      } else if (deWordLower.startsWith('die ')) {
+        genderClass = "article-die";
+      } else if (deWordLower.startsWith('das ')) {
+        genderClass = "article-das";
+      }
 
       // Replace asterisk-marked word with censored span
       if (cleanSentence.includes('*')) {
         return cleanSentence.replace(/\*([^*]+)\*/g,
-          '<span class="censor-word censored" onclick="this.classList.remove(\'censored\')">$1</span>');
+          `<span class="censor-word censored ${genderClass}" onclick="this.classList.remove('censored')">$1</span>`);
       }
 
       if (cleanTarget.length < 2) return cleanSentence;
@@ -3501,7 +3511,7 @@
         const escaped = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
         const regex = new RegExp(`(${escaped}[a-zA-ZäöüßÄÖÜ]*)`, 'gi');
         return cleanSentence.replace(regex,
-          '<span class="censor-word censored" onclick="this.classList.remove(\'censored\')">$1</span>');
+          `<span class="censor-word censored ${genderClass}" onclick="this.classList.remove('censored')">$1</span>`);
       } catch(e) {
         return cleanSentence;
       }

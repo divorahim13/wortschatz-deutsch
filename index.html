@@ -2273,57 +2273,63 @@
       <div class="dashboard-panel" style="max-width: 1000px; margin: 0 auto;">
         <h2 class="panel-title" style="margin-bottom: 16px; font-size: 1.1rem;">
           <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: var(--accent); stroke-width: 2.5;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          Jadwal Repetisi (Spaced Repetition Schedule)
+          Kalender Repetisi (Spaced Repetition Calendar)
         </h2>
-        
-        <!-- Summary Cards -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
-          <div class="stat-card" style="padding: 14px; text-align: center;">
-            <div class="stat-header" style="justify-content: center; font-size: 0.75rem;">Jatuh Tempo</div>
-            <div id="schedule-stat-due" class="stat-value" style="font-size: 1.6rem; color: var(--error); margin: 6px 0 0 0;">0</div>
+
+        <!-- Calendar Month Navigation Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background-color: var(--bg-secondary); padding: 12px 18px; border-radius: 12px; border: 1px solid var(--border-muted);">
+          <button class="btn btn-secondary" onclick="prevCalendarMonth()" style="padding: 6px 10px; font-size: 0.8rem; display: flex; align-items: center; gap: 4px;">
+            <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5;"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Bulan Lalu
+          </button>
+          <h3 id="calendar-month-year" style="font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 700; margin: 0; color: var(--text-primary);">Juli 2026</h3>
+          <button class="btn btn-secondary" onclick="nextCalendarMonth()" style="padding: 6px 10px; font-size: 0.8rem; display: flex; align-items: center; gap: 4px;">
+            Bulan Depan
+            <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Calendar Table Grid -->
+        <div style="border: 1px solid var(--border-muted); border-radius: 12px; overflow: hidden; background-color: var(--bg-secondary); margin-bottom: 20px;">
+          <!-- Weekdays Row -->
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; background-color: var(--bg-card); border-bottom: 1px solid var(--border-muted); font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">
+            <div style="padding: 10px 0;">Sen</div>
+            <div style="padding: 10px 0;">Sel</div>
+            <div style="padding: 10px 0;">Rab</div>
+            <div style="padding: 10px 0;">Kam</div>
+            <div style="padding: 10px 0;">Jum</div>
+            <div style="padding: 10px 0;">Sab</div>
+            <div style="padding: 10px 0;">Min</div>
           </div>
-          <div class="stat-card" style="padding: 14px; text-align: center;">
-            <div class="stat-header" style="justify-content: center; font-size: 0.75rem;">Besok</div>
-            <div id="schedule-stat-tomorrow" class="stat-value" style="font-size: 1.6rem; color: var(--warning); margin: 6px 0 0 0;">0</div>
-          </div>
-          <div class="stat-card" style="padding: 14px; text-align: center;">
-            <div class="stat-header" style="justify-content: center; font-size: 0.75rem;">Akan Datang</div>
-            <div id="schedule-stat-future" class="stat-value" style="font-size: 1.6rem; color: var(--success); margin: 6px 0 0 0;">0</div>
-          </div>
-          <div class="stat-card" style="padding: 14px; text-align: center;">
-            <div class="stat-header" style="justify-content: center; font-size: 0.75rem;">Kartu Baru</div>
-            <div id="schedule-stat-new" class="stat-value" style="font-size: 1.6rem; color: var(--text-muted); margin: 6px 0 0 0;">0</div>
+          <!-- Days Grid -->
+          <div id="calendar-days-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); background-color: var(--bg-secondary);">
+            <!-- Populated dynamically -->
           </div>
         </div>
 
-        <div style="margin-bottom: 16px; display: flex; gap: 10px; align-items: center; width: 100%; flex-wrap: wrap;">
-          <input type="text" id="schedule-search" class="input-field" placeholder="Cari kata (Jerman / Indonesia)..." oninput="renderScheduleTable()" style="max-width: 320px; font-size: 0.85rem; padding: 10px 14px;">
-          <select id="schedule-filter-status" class="input-field" onchange="renderScheduleTable()" style="max-width: 200px; font-size: 0.85rem; padding: 10px 14px;">
-            <option value="ALL">Semua Status</option>
-            <option value="DUE">Jatuh Tempo (Review)</option>
-            <option value="ACTIVE">Dalam Antrean SR</option>
-            <option value="NEW">Kartu Baru</option>
-          </select>
-        </div>
-
-        <!-- Schedule Table -->
-        <div style="overflow-x: auto; border: 1px solid var(--border-muted); border-radius: 12px; background-color: var(--bg-secondary); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
-          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; color: var(--text-primary);">
-            <thead>
-              <tr style="border-bottom: 1px solid var(--border-muted); background-color: var(--bg-card); color: var(--text-secondary);">
-                <th style="padding: 12px 16px; font-weight: 600;">Bahasa Jerman</th>
-                <th style="padding: 12px 16px; font-weight: 600;">Arti Indonesia</th>
-                <th style="padding: 12px 16px; font-weight: 600; text-align: center; width: 80px;">Niveau</th>
-                <th style="padding: 12px 16px; font-weight: 600; text-align: center; width: 80px;">Kapitel</th>
-                <th style="padding: 12px 16px; font-weight: 600; width: 180px;">Jadwal Review</th>
-                <th style="padding: 12px 16px; font-weight: 600; text-align: center; width: 100px;">Interval</th>
-                <th style="padding: 12px 16px; font-weight: 600; text-align: center; width: 100px;">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="schedule-table-body">
-              <!-- Dynamically populated -->
-            </tbody>
-          </table>
+        <!-- Selected Date Vocab List Panel -->
+        <div id="selected-date-panel" class="flashcard-word-list-panel" style="display: block; border-top: 1px solid var(--border-muted); padding-top: 16px; margin-top: 20px;">
+          <h3 id="selected-date-title" class="flashcard-list-title" style="font-size: 0.95rem; margin-bottom: 12px; color: var(--text-primary);">
+            Kosakata yang Direview pada: <span id="calendar-selected-date-str" style="color: var(--accent-text);">Hari Ini</span>
+          </h3>
+          
+          <div style="overflow-x: auto; border: 1px solid var(--border-muted); border-radius: 8px; background-color: var(--bg-secondary);">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.82rem; color: var(--text-primary);">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--border-muted); background-color: var(--bg-card); color: var(--text-secondary);">
+                  <th style="padding: 10px 14px; font-weight: 600;">Bahasa Jerman</th>
+                  <th style="padding: 10px 14px; font-weight: 600;">Arti Indonesia</th>
+                  <th style="padding: 10px 14px; font-weight: 600; text-align: center; width: 60px;">Niveau</th>
+                  <th style="padding: 10px 14px; font-weight: 600; text-align: center; width: 60px;">Kapitel</th>
+                  <th style="padding: 10px 14px; font-weight: 600; text-align: center; width: 90px;">Interval</th>
+                  <th style="padding: 10px 14px; font-weight: 600; text-align: center; width: 90px;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="calendar-vocab-table-body">
+                <!-- Populated dynamically when date cell clicked -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
@@ -3448,137 +3454,230 @@
     }
 
     // ==========================================
-    // SPACED REPETITION SCHEDULE LOGIC
+    // SPACED REPETITION CALENDAR LOGIC
     // ==========================================
+    let calendarCurrentDate = new Date();
+    let calendarSelectedDate = new Date();
+
     function renderScheduleTable() {
-      const searchInput = document.getElementById('schedule-search');
-      const searchVal = searchInput ? searchInput.value.toLowerCase().trim() : '';
-      const filterStatus = document.getElementById('schedule-filter-status') ? document.getElementById('schedule-filter-status').value : 'ALL';
-      const tableBody = document.getElementById('schedule-table-body');
-      if (!tableBody) return;
-      
-      const now = new Date();
-      const endOfToday = new Date();
-      endOfToday.setHours(23, 59, 59, 999);
-      const endOfTomorrow = new Date();
-      endOfTomorrow.setDate(endOfTomorrow.getDate() + 1);
-      endOfTomorrow.setHours(23, 59, 59, 999);
+      renderRepetitionCalendar();
+    }
 
-      let dueCount = 0;
-      let tomorrowCount = 0;
-      let futureCount = 0;
-      let newCount = 0;
+    function renderRepetitionCalendar() {
+      const grid = document.getElementById('calendar-days-grid');
+      const monthYearTitle = document.getElementById('calendar-month-year');
+      if (!grid || !monthYearTitle) return;
 
-      // Classify and filter cards
-      const filteredCards = cards.filter(card => {
-        const isNew = card.step === -1;
+      const year = calendarCurrentDate.getFullYear();
+      const month = calendarCurrentDate.getMonth();
+
+      const monthNames = [
+        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+      ];
+      monthYearTitle.textContent = `${monthNames[month]} ${year}`;
+
+      const firstDay = new Date(year, month, 1);
+      let startDayOffset = firstDay.getDay() - 1;
+      if (startDayOffset < 0) startDayOffset = 6; // Sunday becomes index 6
+
+      const totalDays = new Date(year, month + 1, 0).getDate();
+
+      grid.innerHTML = '';
+
+      for (let i = 0; i < startDayOffset; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.style.border = '1px solid rgba(255,255,255,0.03)';
+        emptyCell.style.minHeight = '72px';
+        grid.appendChild(emptyCell);
+      }
+
+      const today = new Date();
+
+      for (let d = 1; d <= totalDays; d++) {
+        const cellDate = new Date(year, month, d);
+        
+        const cardsDueOnThisDay = cards.filter(card => {
+          if (card.step === -1) return false;
+          const dueD = new Date(card.dueDate);
+          return dueD.getFullYear() === cellDate.getFullYear() &&
+                 dueD.getMonth() === cellDate.getMonth() &&
+                 dueD.getDate() === cellDate.getDate();
+        });
+
+        const isToday = cellDate.getFullYear() === today.getFullYear() &&
+                        cellDate.getMonth() === today.getMonth() &&
+                        cellDate.getDate() === today.getDate();
+        
+        if (isToday) {
+          const overdueCards = cards.filter(card => {
+            if (card.step === -1) return false;
+            const dueD = new Date(card.dueDate);
+            const dueDayStart = new Date(dueD.getFullYear(), dueD.getMonth(), dueD.getDate());
+            const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            return dueDayStart < todayStart;
+          });
+          cardsDueOnThisDay.push(...overdueCards);
+        }
+
+        const count = cardsDueOnThisDay.length;
+
+        const cell = document.createElement('div');
+        cell.style.border = '1px solid rgba(255,255,255,0.05)';
+        cell.style.padding = '8px';
+        cell.style.minHeight = '72px';
+        cell.style.display = 'flex';
+        cell.style.flexDirection = 'column';
+        cell.style.justifyContent = 'space-between';
+        cell.style.cursor = 'pointer';
+        cell.style.transition = 'all var(--transition-speed) ease';
+
+        const isSelected = calendarSelectedDate.getFullYear() === cellDate.getFullYear() &&
+                           calendarSelectedDate.getMonth() === cellDate.getMonth() &&
+                           calendarSelectedDate.getDate() === cellDate.getDate();
+
+        if (isSelected) {
+          cell.style.backgroundColor = 'rgba(139, 92, 246, 0.15)';
+          cell.style.borderColor = 'var(--accent)';
+        } else if (isToday) {
+          cell.style.backgroundColor = 'rgba(16, 185, 129, 0.05)';
+          cell.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+        }
+
+        cell.onmouseenter = () => {
+          if (!isSelected) cell.style.backgroundColor = 'rgba(255, 255, 255, 0.02)';
+        };
+        cell.onmouseleave = () => {
+          if (!isSelected) {
+            cell.style.backgroundColor = isToday ? 'rgba(16, 185, 129, 0.05)' : 'transparent';
+          }
+        };
+
+        cell.onclick = () => {
+          calendarSelectedDate = cellDate;
+          renderRepetitionCalendar();
+        };
+
+        const dayLabel = document.createElement('span');
+        dayLabel.textContent = d;
+        dayLabel.style.fontSize = '0.85rem';
+        dayLabel.style.fontWeight = isToday ? '700' : '500';
+        dayLabel.style.color = isToday ? 'var(--success)' : 'var(--text-primary)';
+        
+        if (isToday) {
+          dayLabel.innerHTML += ` <span style="font-size: 0.65rem; font-weight: normal; background-color: var(--success); color: var(--bg-primary); padding: 1px 4px; border-radius: 4px; margin-left: 4px;">Hari Ini</span>`;
+        }
+
+        cell.appendChild(dayLabel);
+
+        if (count > 0) {
+          const badge = document.createElement('span');
+          badge.textContent = `${count} Kata`;
+          badge.style.fontSize = '0.7rem';
+          badge.style.padding = '2px 6px';
+          badge.style.borderRadius = '4px';
+          badge.style.alignSelf = 'flex-start';
+          badge.style.marginTop = '6px';
+          badge.style.fontWeight = '600';
+
+          if (isToday || cellDate < today) {
+            badge.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+            badge.style.color = 'var(--error)';
+            badge.style.border = '1px solid rgba(239, 68, 68, 0.2)';
+          } else {
+            badge.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
+            badge.style.color = 'var(--accent-text)';
+            badge.style.border = '1px solid rgba(139, 92, 246, 0.15)';
+          }
+          cell.appendChild(badge);
+        }
+
+        grid.appendChild(cell);
+      }
+
+      renderSelectedDateVocabList();
+    }
+
+    function prevCalendarMonth() {
+      calendarCurrentDate.setMonth(calendarCurrentDate.getMonth() - 1);
+      renderRepetitionCalendar();
+    }
+
+    function nextCalendarMonth() {
+      calendarCurrentDate.setMonth(calendarCurrentDate.getMonth() + 1);
+      renderRepetitionCalendar();
+    }
+
+    function renderSelectedDateVocabList() {
+      const vocabTableBody = document.getElementById('calendar-vocab-table-body');
+      const selectedDateStrSpan = document.getElementById('calendar-selected-date-str');
+      if (!vocabTableBody || !selectedDateStrSpan) return;
+
+      const year = calendarSelectedDate.getFullYear();
+      const month = calendarSelectedDate.getMonth();
+      const date = calendarSelectedDate.getDate();
+
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      selectedDateStrSpan.textContent = calendarSelectedDate.toLocaleDateString('id-ID', options);
+
+      const today = new Date();
+      const isToday = calendarSelectedDate.getFullYear() === today.getFullYear() &&
+                      calendarSelectedDate.getMonth() === today.getMonth() &&
+                      calendarSelectedDate.getDate() === today.getDate();
+
+      const dueCards = cards.filter(card => {
+        if (card.step === -1) return false;
         const dueD = new Date(card.dueDate);
         
-        // Count statuses
-        if (isNew) {
-          newCount++;
-        } else if (dueD <= now) {
-          dueCount++;
-        } else if (dueD <= endOfTomorrow) {
-          tomorrowCount++;
-        } else {
-          futureCount++;
+        const isSameDay = dueD.getFullYear() === year &&
+                          dueD.getMonth() === month &&
+                          dueD.getDate() === date;
+                          
+        if (isToday) {
+          const dueDayStart = new Date(dueD.getFullYear(), dueD.getMonth(), dueD.getDate());
+          const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+          return isSameDay || (dueDayStart < todayStart);
         }
-
-        // Apply Search Filter
-        const matchesSearch = card.deutsch.toLowerCase().includes(searchVal) || card.indonesia.toLowerCase().includes(searchVal);
-        if (!matchesSearch) return false;
-
-        // Apply Status Filter
-        if (filterStatus === 'NEW') return isNew;
-        if (filterStatus === 'DUE') return !isNew && dueD <= now;
-        if (filterStatus === 'ACTIVE') return !isNew;
         
-        return true;
+        return isSameDay;
       });
 
-      // Update counters in UI
-      const statDue = document.getElementById('schedule-stat-due');
-      const statTomorrow = document.getElementById('schedule-stat-tomorrow');
-      const statFuture = document.getElementById('schedule-stat-future');
-      const statNew = document.getElementById('schedule-stat-new');
-      if (statDue) statDue.textContent = dueCount;
-      if (statTomorrow) statTomorrow.textContent = tomorrowCount;
-      if (statFuture) statFuture.textContent = futureCount;
-      if (statNew) statNew.textContent = newCount;
-
-      // Sort filtered cards: Active cards (earliest due date first), then new cards
-      filteredCards.sort((a, b) => {
-        if (a.step === -1 && b.step !== -1) return 1;
-        if (a.step !== -1 && b.step === -1) return -1;
-        if (a.step === -1 && b.step === -1) {
-          return a.id.localeCompare(b.id);
-        }
-        return new Date(a.dueDate) - new Date(b.dueDate);
-      });
-
-      tableBody.innerHTML = '';
-      if (filteredCards.length === 0) {
-        tableBody.innerHTML = `
+      vocabTableBody.innerHTML = '';
+      if (dueCards.length === 0) {
+        vocabTableBody.innerHTML = `
           <tr>
-            <td colspan="7" style="padding: 24px; text-align: center; color: var(--text-muted);">
-              Tidak ada kata yang sesuai dengan kriteria filter
+            <td colspan="6" style="padding: 24px; text-align: center; color: var(--text-muted);">
+              Tidak ada pengulangan kosakata dijadwalkan untuk tanggal ini.
             </td>
           </tr>
         `;
         return;
       }
 
-      filteredCards.forEach(card => {
+      dueCards.forEach(card => {
         const tr = document.createElement('tr');
         tr.style.borderBottom = '1px solid var(--border-muted)';
         
-        const isNew = card.step === -1;
-        const dueD = new Date(card.dueDate);
-        
-        let scheduleText = '';
-        if (isNew) {
-          scheduleText = '<span style="color: var(--text-muted);">Baru (Belum Masuk SR)</span>';
-        } else if (dueD <= now) {
-          scheduleText = '<span style="color: var(--error); font-weight: 600;">Jatuh Tempo (Review Hari Ini)</span>';
-        } else if (dueD <= endOfTomorrow) {
-          scheduleText = '<span style="color: var(--warning);">Besok</span>';
-        } else {
-          const diffMs = dueD - now;
-          const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-          scheduleText = `<span style="color: var(--success);">${diffDays} hari lagi (${dueD.toLocaleDateString('id-ID', {day: 'numeric', month: 'short'})})</span>`;
-        }
-
-        const intervalText = isNew ? '-' : `${card.interval || 1} hari`;
-        
         tr.innerHTML = `
-          <td style="padding: 12px 16px; font-weight: 500;">${formatGermanWord(card.deutsch)}</td>
-          <td style="padding: 12px 16px; color: var(--text-secondary);">${card.indonesia}</td>
-          <td style="padding: 12px 16px; text-align: center;"><span class="card-badge" style="font-size: 0.7rem; border-color: rgba(139, 92, 246, 0.2);">${card.level || 'B1'}</span></td>
-          <td style="padding: 12px 16px; text-align: center; font-weight: 600;">${card.chapter || 1}</td>
-          <td style="padding: 12px 16px;">${scheduleText}</td>
-          <td style="padding: 12px 16px; text-align: center; color: var(--text-secondary);">${intervalText}</td>
-          <td style="padding: 12px 16px; text-align: center; display: flex; gap: 6px; justify-content: center; align-items: center; border-bottom: none;">
-            ${isNew ? `
-              <button onclick="reviewCardNow('${card.id}')" title="Masukkan ke Spaced Repetition Hari Ini" style="background: none; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 4px; padding: 4px 8px; cursor: pointer; color: #10b981; font-size: 0.72rem; display: flex; align-items: center; gap: 4px;">
-                <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                SR
-              </button>
-            ` : `
-              <button onclick="reviewCardNow('${card.id}')" title="Set Jatuh Tempo Hari Ini (Belajar Sekarang)" style="background: none; border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 4px; padding: 4px 6px; cursor: pointer; color: var(--accent-text); display: flex; align-items: center; justify-content: center;">
-                <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></svg>
-              </button>
-              <button onclick="resetCardSchedule('${card.id}')" title="Reset ke Status Baru" style="background: none; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 4px; padding: 4px 6px; cursor: pointer; color: var(--error); display: flex; align-items: center; justify-content: center;">
-                <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5;"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-              </button>
-            `}
+          <td style="padding: 12px 14px; font-weight: 500;">${formatGermanWord(card.deutsch)}</td>
+          <td style="padding: 12px 14px; color: var(--text-secondary);">${card.indonesia}</td>
+          <td style="padding: 12px 14px; text-align: center;"><span class="card-badge" style="font-size: 0.7rem; border-color: rgba(139, 92, 246, 0.2);">${card.level || 'B1'}</span></td>
+          <td style="padding: 12px 14px; text-align: center; font-weight: 600;">${card.chapter || 1}</td>
+          <td style="padding: 12px 14px; text-align: center; color: var(--text-secondary);">${card.interval || 1} hari</td>
+          <td style="padding: 12px 14px; text-align: center; display: flex; gap: 6px; justify-content: center; align-items: center; border-bottom: none;">
+            <button onclick="reviewCardNowCalendar('${card.id}')" title="Set Jatuh Tempo Hari Ini (Belajar Sekarang)" style="background: none; border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 4px; padding: 4px 6px; cursor: pointer; color: var(--accent-text); display: flex; align-items: center; justify-content: center;">
+              <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></svg>
+            </button>
+            <button onclick="resetCardScheduleCalendar('${card.id}')" title="Reset ke Status Baru" style="background: none; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 4px; padding: 4px 6px; cursor: pointer; color: var(--error); display: flex; align-items: center; justify-content: center;">
+              <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5;"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            </button>
           </td>
         `;
-        tableBody.appendChild(tr);
+        vocabTableBody.appendChild(tr);
       });
     }
 
-    function resetCardSchedule(cardId) {
+    function resetCardScheduleCalendar(cardId) {
       const dbCardIndex = cards.findIndex(c => c.id === cardId);
       if (dbCardIndex === -1) return;
       
@@ -3589,12 +3688,12 @@
       dbCard.dueDate = new Date().toISOString();
       
       saveCards();
-      renderScheduleTable();
+      renderRepetitionCalendar();
       updateDashboardStats();
       showToast(`"${getCleanTargetWord(dbCard.deutsch)}" direset ke status Baru`);
     }
 
-    function reviewCardNow(cardId) {
+    function reviewCardNowCalendar(cardId) {
       const dbCardIndex = cards.findIndex(c => c.id === cardId);
       if (dbCardIndex === -1) return;
       
@@ -3602,10 +3701,10 @@
       dbCard.step = 0;
       dbCard.repetition = 1;
       dbCard.interval = 1;
-      dbCard.dueDate = new Date().toISOString(); // Due immediately (now)
+      dbCard.dueDate = new Date().toISOString();
       
       saveCards();
-      renderScheduleTable();
+      renderRepetitionCalendar();
       updateDashboardStats();
       showToast(`"${getCleanTargetWord(dbCard.deutsch)}" dijadwalkan untuk direview hari ini!`);
     }

@@ -3233,11 +3233,11 @@
         const first = parts[0].toLowerCase();
         const remainder = parts.slice(1).join(' ');
         if (first === 'der') {
-          return `<span class="article-der">der</span> ${remainder}`;
+          return `<span class="article-der">der ${remainder}</span>`;
         } else if (first === 'die') {
-          return `<span class="article-die">die</span> ${remainder}`;
+          return `<span class="article-die">die ${remainder}</span>`;
         } else if (first === 'das') {
-          return `<span class="article-das">das</span> ${remainder}`;
+          return `<span class="article-das">das ${remainder}</span>`;
         }
       }
       return word;

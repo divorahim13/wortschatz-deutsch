@@ -608,6 +608,9 @@
 
     .card-back {
       transform: rotateY(180deg);
+      justify-content: flex-start;
+      gap: 10px;
+      overflow-y: auto;
     }
 
     .card-badge {
@@ -636,6 +639,12 @@
       align-items: center;
       gap: 12px;
       width: 100%;
+    }
+
+    /* Back content needs to be compact due to scrolling possibility */
+    .card-back .card-main-content {
+      justify-content: flex-start;
+      flex: unset;
     }
 
     .german-word {
@@ -818,6 +827,7 @@
       gap: 6px;
       width: 100%;
       margin-top: 15px;
+      flex-shrink: 0;
     }
 
     .rating-btn {
@@ -1136,6 +1146,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Loading Spin animation */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     /* Toast Notification */
     .toast {
       position: fixed;
@@ -1285,6 +1301,10 @@
         <button id="nav-input" class="nav-btn" onclick="switchView('input')">
           <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
           Tambah Kata
+        </button>
+        <button id="nav-settings" class="nav-btn" onclick="switchView('settings')">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Pengaturan
         </button>
         <button id="nav-backup" class="nav-btn" onclick="switchView('backup')">
           <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -1508,10 +1528,26 @@
                   <div id="back-sentence-translation" class="sentence-translation">Saya duduk di meja.</div>
                 </div>
 
-                <!-- Native TTS Audio Speaker -->
+                <!-- Native/OpenAI TTS Audio Speaker -->
                 <button class="speak-btn" title="Dengarkan Pengucapan" onclick="event.stopPropagation(); speakGermanWord();">
                   <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                 </button>
+
+                <!-- AI Grammar Explainer Collapsible Button -->
+                <button id="btn-ask-ai" class="btn btn-secondary" style="margin-top: 10px; width: 100%; border-color: rgba(139, 92, 246, 0.3); color: var(--accent-text); background-color: rgba(139, 92, 246, 0.02); display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="event.stopPropagation(); explainWithAI();">
+                  <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg>
+                  Tanya AI (Penjelasan Detail)
+                </button>
+                
+                <!-- Explainer Text Panel -->
+                <div id="ai-explainer-panel" class="sentence-container" style="display: none; text-align: left; background-color: rgba(139, 92, 246, 0.04); border-color: rgba(139, 92, 246, 0.15); max-height: 200px; overflow-y: auto; padding: 12px; font-size: 0.82rem; line-height: 1.4; margin-top: 10px;">
+                  <div id="ai-explainer-loading" style="display: none; align-items: center; gap: 8px; color: var(--accent-text);">
+                    <svg class="speak-btn" style="border:none; background:none; animation: spin 1s linear infinite; width:16px; height:16px; margin:0; padding:0; color: currentColor;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="30 10" fill="none"></circle></svg>
+                    <span>Menghubungi AI...</span>
+                  </div>
+                  <div id="ai-explainer-content"></div>
+                </div>
+
               </div>
 
               <!-- Rating Rows (Spaced Repetition SM-2) -->
@@ -1596,7 +1632,66 @@
           Simpan & Impor Kata
         </button>
 
+        <!-- AI Word & Sentence Generator Sub-panel -->
+        <div style="margin-top: 24px; border-top: 1px dashed var(--border-muted); padding-top: 20px;">
+          <h3 class="panel-title" style="font-size: 0.95rem; margin-bottom: 12px; color: var(--accent-text);">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            AI Generator Kalimat
+          </h3>
+          <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+            <input type="text" id="ai-gen-word" class="input-field" style="text-align: left;" placeholder="Ketik kata Jerman (misal: nachdenken)...">
+            <button id="btn-ai-gen" class="btn" style="width: auto; white-space: nowrap; background-color: var(--accent-hover);" onclick="generateSentenceWithAI()">
+              AI Hasilkan
+            </button>
+          </div>
+          <div id="ai-gen-loading" style="display: none; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--accent-text); margin-bottom: 10px;">
+            <svg class="speak-btn" style="border:none; background:none; animation: spin 1s linear infinite; width:14px; height:14px; margin:0; padding:0; color: currentColor;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="30 10" fill="none"></circle></svg>
+            <span>Menghasilkan kalimat contoh...</span>
+          </div>
+        </div>
+
         <div id="import-log" class="import-log"></div>
+      </div>
+    </section>
+
+    <!-- View: Settings (Pengaturan AI & TTS) -->
+    <section id="settings-view" class="view-section">
+      <div class="backup-panel" style="max-width: 550px;">
+        <h2 class="panel-title">
+          <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Pengaturan AI & TTS
+        </h2>
+        
+        <div class="input-instructions">
+          Konfigurasikan API Key OpenAI Anda di bawah ini. API Key Anda disimpan secara aman di peramban lokal (localStorage) Anda dan tidak akan dikirimkan ke server luar mana pun atau dideploy ke repositori GitHub.
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div>
+            <label for="settings-api-key" style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">OpenAI API Key</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="password" id="settings-api-key" class="input-field" style="text-align: left; font-family: monospace;" placeholder="sk-proj-...">
+              <button class="btn btn-secondary" style="width: auto; padding: 0 14px; font-size: 0.8rem;" onclick="toggleApiKeyVisibility()">Lihat</button>
+            </div>
+          </div>
+
+          <div>
+            <label for="settings-tts-voice" style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">OpenAI TTS Voice (Pilihan Suara)</label>
+            <select id="settings-tts-voice" class="input-field" style="text-align-last: center;">
+              <option value="alloy">Alloy (Netral - Standar)</option>
+              <option value="echo">Echo (Pria - Bass)</option>
+              <option value="fable">Fable (Pria - Naratif)</option>
+              <option value="onyx">Onyx (Pria - Berat/Jelas)</option>
+              <option value="nova">Nova (Wanita - Enerjik)</option>
+              <option value="shimmer">Shimmer (Wanita - Lembut)</option>
+            </select>
+          </div>
+
+          <button class="btn" style="margin-top: 10px;" onclick="saveSettings()">
+            <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            Simpan Pengaturan
+          </button>
+        </div>
       </div>
     </section>
 
@@ -1782,16 +1877,31 @@
     // Daily activity history logs
     let reviewHistory = []; // { date: 'YYYY-MM-DD', cardId: '...', status: 'again'|'hard'|'good'|'easy', isNew: boolean }
 
+    // Audio TTS playback track
+    let currentAudio = null;
+
     // ==========================================
-    // ONLOAD INITIALIZATION
+    // ONLOAD INITIALIZATION & ONE-TIME API KEY
     // ==========================================
     window.addEventListener('DOMContentLoaded', () => {
+      // Secure local initialization of provided API key for user out-of-the-box convenience
+      const KEY_SECRET = 'OPENAI_API_KEY_PLACEHOLDER';
+      if (KEY_SECRET && KEY_SECRET.startsWith('sk-') && !localStorage.getItem('openai_api_key')) {
+        localStorage.setItem('openai_api_key', KEY_SECRET);
+      }
+
       loadData();
       updateFilterKapitelDropdown(); // Init Kapitel options
       updateStreak();
       updateDashboardStats();
       setupKeyBindings();
       
+      // Load settings inputs
+      const storedKey = localStorage.getItem('openai_api_key') || '';
+      document.getElementById('settings-api-key').value = storedKey;
+      const storedVoice = localStorage.getItem('openai_tts_voice') || 'alloy';
+      document.getElementById('settings-tts-voice').value = storedVoice;
+
       // Auto fill bulk input with example placeholder text
       document.getElementById('bulk-paste-area').placeholder = 
         "der Tisch | meja | Ich sitze am *Tisch*.\n" +
@@ -1844,7 +1954,8 @@
         step: -1, // -1 means never studied
         dueDate: new Date().toISOString(), // due immediately
         createdAt: card.createdAt || new Date().toISOString(),
-        incorrectCount: 0
+        incorrectCount: 0,
+        aiExplanation: card.aiExplanation || null // Cache AI explanations to save API costs
       };
     }
 
@@ -1882,6 +1993,8 @@
       
       if (viewId !== 'study') {
         document.getElementById('answer-input').value = '';
+        // Hide explainer panel when leaving study view
+        document.getElementById('ai-explainer-panel').style.display = 'none';
       }
     }
 
@@ -1944,8 +2057,7 @@
     // FILTER DYNAMIC HELPERS
     // ==========================================
     function updateFilterKapitelDropdown() {
-      // Optional: dynamic chapters count depending on Niveau if needed.
-      // For now, B1, B2, C1 all have 12 chapters, so keep options 1-12 static.
+      // static chapters 1-12. No changes required.
     }
 
     function getFilteredCards() {
@@ -2246,8 +2358,11 @@
       input.disabled = false;
       input.style.display = 'block';
       document.getElementById('typing-validation').style.display = 'none';
+      
+      // Reset AI explanations panel
+      document.getElementById('ai-explainer-panel').style.display = 'none';
+      document.getElementById('ai-explainer-content').innerHTML = '';
 
-      // Badge layout update: display niveau and chapter
       const catText = activeCard.category || 'Kosakata';
       const badgeLabel = `${activeCard.level} - KAPITEL ${activeCard.chapter} • ${catText}`;
       document.getElementById('front-category').textContent = badgeLabel;
@@ -2483,21 +2598,234 @@
       }
     }
 
-    function speakGermanWord() {
+    // ==========================================
+    // TTS SPEECH (OPENAI & LOCAL FALLBACK)
+    // ==========================================
+    async function speakGermanWord() {
+      const activeCard = sessionQueue[currentSessionIndex];
+      const cleanWord = getCleanTargetWord(activeCard.deutsch);
+      
+      const apiKey = localStorage.getItem('openai_api_key');
+      
+      // Try OpenAI TTS if configured
+      if (apiKey && apiKey.startsWith('sk-')) {
+        try {
+          const voice = localStorage.getItem('openai_tts_voice') || 'alloy';
+          
+          if (currentAudio) {
+            currentAudio.pause();
+          }
+          
+          const response = await fetch('https://api.openai.com/v1/audio/speech', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${apiKey}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              model: 'tts-1',
+              input: cleanWord,
+              voice: voice
+            })
+          });
+          
+          if (!response.ok) throw new Error("TTS API HTTP " + response.status);
+          
+          const blob = await response.blob();
+          const audioUrl = URL.createObjectURL(blob);
+          currentAudio = new Audio(audioUrl);
+          currentAudio.play();
+          return;
+        } catch (e) {
+          console.warn("OpenAI TTS failed, falling back to Web Speech API", e);
+        }
+      }
+      
+      // Fallback: Web Speech API (suara lokal browser)
       if ('speechSynthesis' in window) {
-        const activeCard = sessionQueue[currentSessionIndex];
-        const cleanWord = getCleanTargetWord(activeCard.deutsch);
-        
         const utterance = new SpeechSynthesisUtterance(cleanWord);
         utterance.lang = 'de-DE';
-        
         const voices = window.speechSynthesis.getVoices();
         const deVoice = voices.find(voice => voice.lang.startsWith('de'));
         if (deVoice) utterance.voice = deVoice;
-
         window.speechSynthesis.speak(utterance);
       } else {
         showToast("Browser Anda tidak mendukung Web Speech API");
+      }
+    }
+
+    // ==========================================
+    // GRAMMAR EXPLAINER AI (gpt-4o-mini)
+    // ==========================================
+    async function explainWithAI() {
+      const activeCard = sessionQueue[currentSessionIndex];
+      const panel = document.getElementById('ai-explainer-panel');
+      const loading = document.getElementById('ai-explainer-loading');
+      const content = document.getElementById('ai-explainer-content');
+      
+      panel.style.display = 'block';
+      loading.style.display = 'flex';
+      content.innerHTML = '';
+      
+      // 1. Check local cache to avoid API costs
+      const dbCard = cards.find(c => c.id === activeCard.id);
+      if (dbCard && dbCard.aiExplanation) {
+        loading.style.display = 'none';
+        content.innerHTML = dbCard.aiExplanation;
+        return;
+      }
+      
+      // 2. Fetch API Key
+      const apiKey = localStorage.getItem('openai_api_key');
+      if (!apiKey || !apiKey.startsWith('sk-')) {
+        loading.style.display = 'none';
+        content.innerHTML = `<span style="color: var(--error);">API Key OpenAI tidak dikonfigurasi. Silakan masukkan API Key di tab <strong>Pengaturan</strong>.</span>`;
+        return;
+      }
+      
+      try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: 'gpt-4o-mini',
+            messages: [
+              {
+                role: 'system',
+                content: 'Anda adalah asisten AI guru bahasa Jerman profesional B1-C1. Berikan penjelasan singkat, terstruktur, padat, dan jelas dalam Bahasa Indonesia tentang kosakata Jerman berikut (seperti preposisi pasangannya seandainya ada, perubahan bentuk irregular, sinonim/antonim tingkat menengah-atas B2-C1, dan tips penggunaan).'
+              },
+              {
+                role: 'user',
+                content: `Jelaskan kata ini: "${activeCard.deutsch}" yang berarti "${activeCard.indonesia}" dalam kalimat: "${activeCard.sentence.split('|')[0]}".`
+               }
+            ],
+            max_tokens: 350,
+            temperature: 0.3
+          })
+        });
+        
+        if (!response.ok) throw new Error("OpenAI Chat API HTTP " + response.status);
+        
+        const data = await response.json();
+        let explanation = data.choices[0].message.content.trim();
+        
+        // Simple Markdown parser
+        explanation = explanation
+          .replace(/\n/g, '<br>')
+          .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+        
+        // Cache explanation
+        if (dbCard) {
+          dbCard.aiExplanation = explanation;
+          saveCards();
+        }
+        activeCard.aiExplanation = explanation;
+        
+        loading.style.display = 'none';
+        content.innerHTML = explanation;
+      } catch (e) {
+        console.error(e);
+        loading.style.display = 'none';
+        content.innerHTML = `<span style="color: var(--error);">Gagal menghubungi OpenAI API. Periksa API Key dan koneksi internet Anda.</span>`;
+      }
+    }
+
+    // ==========================================
+    // AI WORD & SENTENCE GENERATOR (gpt-4o-mini)
+    // ==========================================
+    async function generateSentenceWithAI() {
+      const wordInput = document.getElementById('ai-gen-word');
+      const word = wordInput.value.trim();
+      const loading = document.getElementById('ai-gen-loading');
+      const btn = document.getElementById('btn-ai-gen');
+      const importLvl = document.getElementById('import-level').value;
+      const importCh = document.getElementById('import-chapter').value;
+      
+      if (!word) {
+        showToast("Masukkan kata terlebih dahulu!");
+        return;
+      }
+      
+      const apiKey = localStorage.getItem('openai_api_key');
+      if (!apiKey || !apiKey.startsWith('sk-')) {
+        showToast("API Key belum diset di tab Pengaturan!");
+        return;
+      }
+      
+      loading.style.display = 'flex';
+      btn.disabled = true;
+      
+      try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: 'gpt-4o-mini',
+            messages: [
+              {
+                role: 'system',
+                content: 'Anda adalah generator kosakata Jerman B1-C1. Buat satu kalimat contoh menggunakan kata Jerman yang diminta. Format output harus persis satu baris teks berupa: "Deutsch | Indonesia | Kalimat". Letakkan tanda bintang (*) di sekeliling kata target Jerman di dalam kalimat contoh. Berikan arti bahasa Indonesia yang akurat untuk kalimat tersebut setelah tanda pipe (|). Jangan berikan teks pembuka atau penutup lain.'
+              },
+              {
+                role: 'user',
+                content: `Buat kalimat contoh untuk kata Jerman: "${word}".`
+              }
+            ],
+            max_tokens: 150,
+            temperature: 0.5
+          })
+        });
+        
+        if (!response.ok) throw new Error("OpenAI Chat API HTTP " + response.status);
+        
+        const data = await response.json();
+        const resultLine = data.choices[0].message.content.trim();
+        
+        const bulkArea = document.getElementById('bulk-paste-area');
+        const currentContent = bulkArea.value.trim();
+        
+        const finalLine = `${resultLine} | ${importLvl} | ${importCh}`;
+        bulkArea.value = currentContent ? `${currentContent}\n${finalLine}` : finalLine;
+        
+        wordInput.value = '';
+        showToast("Kalimat contoh berhasil dibuat!");
+      } catch (e) {
+        console.error(e);
+        showToast("Gagal menghasilkan kalimat lewat AI");
+      } finally {
+        loading.style.display = 'none';
+        btn.disabled = false;
+      }
+    }
+
+    // ==========================================
+    // SETTINGS OPTIONS MANAGEMENT
+    // ==========================================
+    function saveSettings() {
+      const key = document.getElementById('settings-api-key').value.trim();
+      const voice = document.getElementById('settings-tts-voice').value;
+      
+      localStorage.setItem('openai_api_key', key);
+      localStorage.setItem('openai_tts_voice', voice);
+      
+      showToast("Pengaturan berhasil disimpan!");
+      updateDashboardStats();
+      switchView('dashboard');
+    }
+
+    function toggleApiKeyVisibility() {
+      const input = document.getElementById('settings-api-key');
+      if (input.type === 'password') {
+        input.type = 'text';
+      } else {
+        input.type = 'password';
       }
     }
 
@@ -2697,14 +3025,12 @@
           let lvl = importLvl;
           let ch = importCh;
 
-          // Detect level from column 4 if explicitly provided
           if (parts.length >= 4) {
             const parsedLvl = parts[3].trim().toUpperCase();
             if (['B1', 'B2', 'C1'].includes(parsedLvl)) {
               lvl = parsedLvl;
             }
           }
-          // Detect chapter from column 5 if explicitly provided
           if (parts.length >= 5) {
             const parsedCh = parseInt(parts[4].trim(), 10);
             if (!isNaN(parsedCh) && parsedCh >= 1 && parsedCh <= 12) {

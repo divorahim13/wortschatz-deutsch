@@ -1356,6 +1356,11 @@
        FLASHCARD UPGRADE — NEW STYLES
        ========================================= */
 
+    /* Article color overrides for Flashcard View */
+    #flashcard-view .article-der { color: #185FA5 !important; text-shadow: 0 0 10px rgba(24, 95, 165, 0.2) !important; }
+    #flashcard-view .article-die { color: #993556 !important; text-shadow: 0 0 10px rgba(153, 53, 86, 0.2) !important; }
+    #flashcard-view .article-das { color: #3B6D11 !important; text-shadow: 0 0 10px rgba(59, 109, 17, 0.2) !important; }
+
     /* Progress Bar */
     #fc-progress-container {
       width: 100%; max-width: 540px; margin: 0 auto 14px auto;
@@ -3658,7 +3663,7 @@
 
       if (currDir === 'de-id') {
         frontPrompt.textContent = 'Bahasa Jerman';
-        frontDisplay.innerHTML = formatGermanWord(card.deutsch);
+        frontDisplay.innerHTML = formatFlashcardGermanWord(card.deutsch);
         frontClue.style.display = 'none';
       } else {
         frontPrompt.textContent = 'Arti (Bahasa Indonesia)';
@@ -3669,24 +3674,25 @@
 
       // --- Back ---
       document.getElementById('free-back-category').textContent = card.category || 'Kosakata';
-      document.getElementById('free-back-display').innerHTML = formatGermanWord(card.deutsch);
+      document.getElementById('free-back-display').innerHTML = formatFlashcardGermanWord(card.deutsch);
       document.getElementById('free-back-translation').textContent = card.indonesia;
 
       // Plural for Nomen
       const pluralEl = document.getElementById('free-back-plural');
       const deWord = card.deutsch.trim();
       const startsWithArticle = /^(der|die|das)\s/i.test(deWord);
-      if (startsWithArticle && card.plural) {
-        pluralEl.textContent = `Pl: die ${card.plural}`;
-        pluralEl.style.display = 'block';
-      } else if (startsWithArticle) {
-        // Try to parse plural from deutsch field e.g. "der Tisch, -e"
-        const commaMatch = card.deutsch.match(/,\s*(.+)$/);
-        if (commaMatch) {
-          pluralEl.textContent = `Pl: die ${commaMatch[1].trim()}`;
+      if (startsWithArticle) {
+        if (card.plural) {
+          pluralEl.textContent = `Pl: die ${card.plural}`;
           pluralEl.style.display = 'block';
         } else {
-          pluralEl.style.display = 'none';
+          const autoPlural = getGermanPlural(card.deutsch);
+          if (autoPlural) {
+            pluralEl.textContent = `Pl: ${autoPlural}`;
+            pluralEl.style.display = 'block';
+          } else {
+            pluralEl.style.display = 'none';
+          }
         }
       } else {
         pluralEl.style.display = 'none';
@@ -4726,6 +4732,15 @@
       return word;
     }
 
+    function formatFlashcardGermanWord(word) {
+      let clean = word.replace(/\[\w+\]/g, '').trim();
+      const commaIndex = clean.indexOf(',');
+      if (commaIndex !== -1) {
+        clean = clean.substring(0, commaIndex).trim();
+      }
+      return formatGermanWord(clean);
+    }
+
     function formatSentenceHighlight(sentence, targetWord) {
       let cleanSentence = sentence.split('|')[0].trim();
       
@@ -4751,6 +4766,46 @@
         return parts[1].trim();
       }
       return "Kalimat konteks";
+    }
+
+    function getGermanPlural(deutschField) {
+      // example: "der Akku, -s [B1]" or "der Bildschirm, -e"
+      let cleanField = deutschField.replace(/\[\w+\]/g, '').trim();
+      
+      const commaIndex = cleanField.indexOf(',');
+      if (commaIndex === -1) return null;
+      
+      const mainPart = cleanField.substring(0, commaIndex).trim();
+      let pluralSuffix = cleanField.substring(commaIndex + 1).trim();
+      
+      const parts = mainPart.split(/\s+/);
+      if (parts.length < 2) return null;
+      const singular = parts.slice(1).join(' ');
+      
+      if (pluralSuffix === '-') {
+        return `die ${singular}`;
+      }
+      
+      if (pluralSuffix.startsWith('-')) {
+        let suffix = pluralSuffix.substring(1);
+        if (suffix.includes('ä') || suffix.includes('ö') || suffix.includes('ü')) {
+          let word = singular;
+          if (suffix.startsWith('ü')) {
+            word = word.replace(/u([^u]*)$/, 'ü$1');
+            suffix = suffix.substring(2);
+          } else if (suffix.startsWith('ä')) {
+            word = word.replace(/a([^a]*)$/, 'ä$1');
+            suffix = suffix.substring(2);
+          } else if (suffix.startsWith('ö')) {
+            word = word.replace(/o([^o]*)$/, 'ö$1');
+            suffix = suffix.substring(2);
+          }
+          return `die ${word}${suffix}`;
+        }
+        return `die ${singular}${suffix}`;
+      }
+      
+      return `die ${pluralSuffix}`;
     }
 
     function getCleanTargetWord(word) {

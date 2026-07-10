@@ -1352,6 +1352,130 @@
       }
     }
 
+    /* =========================================
+       FLASHCARD UPGRADE — NEW STYLES
+       ========================================= */
+
+    /* Progress Bar */
+    #fc-progress-container {
+      width: 100%; max-width: 540px; margin: 0 auto 14px auto;
+    }
+    #fc-progress-bar-outer {
+      width: 100%; height: 5px; background: var(--border-muted);
+      border-radius: 99px; overflow: hidden; margin-bottom: 7px;
+    }
+    #fc-progress-bar-fill {
+      height: 100%; border-radius: 99px;
+      background: linear-gradient(to right, var(--accent), #10b981);
+      transition: width 0.4s ease; width: 0%;
+    }
+    #fc-progress-stats {
+      display: flex; justify-content: space-between;
+      font-size: 0.72rem; color: var(--text-secondary);
+      font-family: 'Outfit', sans-serif;
+    }
+    #fc-progress-rated {
+      font-size: 0.72rem; color: #10b981;
+      font-family: 'Outfit', sans-serif; font-weight: 600;
+    }
+
+    /* Countdown Overlay */
+    #fc-countdown-overlay {
+      position: absolute; inset: 0; border-radius: 16px;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; z-index: 10;
+      background: rgba(10,10,20,0.6); backdrop-filter: blur(3px);
+      gap: 10px;
+    }
+    #fc-countdown-overlay.hidden { display: none; }
+    #fc-countdown-number {
+      font-size: 4rem; font-weight: 800; color: var(--accent-text);
+      font-family: 'Outfit', sans-serif; line-height: 1;
+      text-shadow: 0 0 30px rgba(192,132,252,0.6);
+      animation: fc-pulse 1s ease-in-out infinite;
+    }
+    #fc-countdown-label {
+      font-size: 0.7rem; color: var(--text-secondary);
+      font-family: 'Outfit', sans-serif; letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    @keyframes fc-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.85; }
+    }
+
+    /* Rating Buttons */
+    #fc-rating-group {
+      display: none; width: 100%; max-width: 540px;
+      margin: 10px auto 0 auto; gap: 8px;
+    }
+    #fc-rating-group.visible { display: flex; }
+    .fc-rate-btn {
+      flex: 1; padding: 10px 6px; border-radius: 10px;
+      border: 1px solid transparent; font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      transition: all 0.15s ease; display: flex;
+      flex-direction: column; align-items: center; gap: 2px;
+      background: none;
+    }
+    .fc-rate-btn small {
+      font-size: 0.62rem; font-weight: 400; opacity: 0.7;
+    }
+    .fc-rate-btn.again { background: rgba(239,68,68,0.08); color: #ef4444; border-color: rgba(239,68,68,0.3); }
+    .fc-rate-btn.hard  { background: rgba(245,158,11,0.08); color: #f59e0b; border-color: rgba(245,158,11,0.3); }
+    .fc-rate-btn.good  { background: rgba(16,185,129,0.08); color: #10b981; border-color: rgba(16,185,129,0.3); }
+    .fc-rate-btn.easy  { background: rgba(59,130,246,0.08); color: #3b82f6; border-color: rgba(59,130,246,0.3); }
+    .fc-rate-btn:hover { filter: brightness(1.2); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .fc-rate-btn:active { transform: translateY(0); }
+
+    /* Censor word in context sentence */
+    .censor-word {
+      border-radius: 3px; cursor: pointer;
+      transition: all 0.25s ease;
+      font-weight: 600; color: #f59e0b;
+    }
+    .censor-word.censored {
+      background: var(--text-primary); color: transparent;
+      user-select: none; border-radius: 3px; padding: 0 3px;
+    }
+    .censor-word.censored:hover { background: var(--text-secondary); }
+
+    /* Plural label */
+    .fc-plural-label {
+      font-size: 0.8rem; color: var(--text-secondary);
+      font-style: italic; text-align: center; margin-top: -2px;
+    }
+
+    /* Settings toggle switch */
+    .fc-setting-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 0; font-size: 0.8rem; color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .fc-setting-row:last-child { border-bottom: none; }
+    .fc-toggle-switch {
+      position: relative; width: 38px; height: 21px; flex-shrink: 0;
+    }
+    .fc-toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .fc-toggle-slider {
+      position: absolute; inset: 0; border-radius: 21px;
+      background: var(--border-muted); cursor: pointer; transition: 0.2s;
+    }
+    .fc-toggle-slider:before {
+      content: ''; position: absolute; height: 15px; width: 15px;
+      left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s;
+    }
+    .fc-toggle-switch input:checked + .fc-toggle-slider { background: var(--accent); }
+    .fc-toggle-switch input:checked + .fc-toggle-slider:before { transform: translateX(17px); }
+
+    /* Skip link */
+    .fc-skip-btn {
+      background: none; border: none; color: var(--text-muted);
+      font-size: 0.75rem; cursor: pointer; padding: 4px 8px;
+      font-family: 'Outfit', sans-serif; text-decoration: underline;
+      text-underline-offset: 2px; transition: color 0.15s;
+    }
+    .fc-skip-btn:hover { color: var(--text-secondary); }
 
     /* Pointer Events Fix for Custom Buttons */
     .file-input-wrapper button {
@@ -2113,13 +2237,15 @@
 
     <!-- View: Flashcard Arena -->
     <section id="flashcard-view" class="view-section" style="width: 100%;">
-      <!-- Flashcard Setup & Panel -->
+      <!-- Flashcard Settings Panel -->
       <div class="dashboard-panel" style="max-width: 600px; margin: 0 auto 20px auto;">
-        <h2 class="panel-title" style="margin-bottom: 12px;">
+        <h2 class="panel-title" style="margin-bottom: 14px;">
           <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: var(--accent); stroke-width: 2.5;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
           Pengaturan Flashcard
         </h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+
+        <!-- Filters Row -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
           <div>
             <label for="flashcard-filter-level" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Niveau (Tingkat)</label>
             <select id="flashcard-filter-level" class="input-field" onchange="updateFlashcardDeck()">
@@ -2149,46 +2275,91 @@
           </div>
         </div>
 
-        <div style="margin-bottom: 8px;">
-          <label for="flashcard-direction" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Arah Hafalan</label>
-          <select id="flashcard-direction" class="input-field" onchange="updateFlashcardDeck()">
-            <option value="de-id">Jerman &rarr; Indonesia</option>
-            <option value="id-de">Indonesia &rarr; Jerman</option>
-            <option value="mixed">Acak (Kedua Arah)</option>
-          </select>
+        <!-- Direction + Countdown Row -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+          <div>
+            <label for="flashcard-direction" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Arah Hafalan</label>
+            <select id="flashcard-direction" class="input-field" onchange="updateFlashcardDeck()">
+              <option value="de-id">Jerman &rarr; Indonesia</option>
+              <option value="id-de">Indonesia &rarr; Jerman</option>
+              <option value="mixed">Acak (Kedua Arah)</option>
+            </select>
+          </div>
+          <div>
+            <label for="fc-countdown-select" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Retrieval Delay</label>
+            <select id="fc-countdown-select" class="input-field" onchange="saveFcSettings()">
+              <option value="3">3 detik (Default)</option>
+              <option value="5">5 detik</option>
+              <option value="0">Tidak ada</option>
+            </select>
+          </div>
         </div>
-        
-        <div style="margin-top: 14px;">
-          <button class="btn btn-secondary" onclick="markAllAsMemorized()" style="width: 100%; padding: 10px; font-size: 0.8rem; border-color: rgba(16, 185, 129, 0.3); color: #10b981; background-color: rgba(16, 185, 129, 0.02); display: flex; align-items: center; justify-content: center; gap: 6px;">
-            <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; stroke: currentColor; stroke-width: 2.5; fill: none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Centang Semua Kata di Bab Ini (Masuk Spaced Repetition)
-          </button>
+
+        <!-- Toggle Settings -->
+        <div style="margin-bottom: 14px;">
+          <div class="fc-setting-row">
+            <label for="fc-autospeak-toggle">Auto-play audio saat kartu dibalik</label>
+            <label class="fc-toggle-switch">
+              <input type="checkbox" id="fc-autospeak-toggle" checked onchange="saveFcSettings()">
+              <span class="fc-toggle-slider"></span>
+            </label>
+          </div>
+          <div class="fc-setting-row">
+            <label for="fc-shuffle-toggle">Acak urutan kartu (Shuffle)</label>
+            <label class="fc-toggle-switch">
+              <input type="checkbox" id="fc-shuffle-toggle" onchange="toggleFlashcardShuffle()">
+              <span class="fc-toggle-slider"></span>
+            </label>
+          </div>
         </div>
+
+        <!-- Mark All Button -->
+        <button class="btn btn-secondary" onclick="markAllAsMemorized()" style="width: 100%; padding: 10px; font-size: 0.8rem; border-color: rgba(16,185,129,0.3); color: #10b981; background-color: rgba(16,185,129,0.02); display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; stroke: currentColor; stroke-width: 2.5; fill: none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Centang Semua Kata di Bab Ini (Masuk Spaced Repetition)
+        </button>
       </div>
 
-      <!-- Flashcard Arena Container -->
+      <!-- Flashcard Arena -->
       <div id="flashcard-arena-container" style="display: block; width: 100%;">
-        <div class="flashcard-deck-info" id="flashcard-deck-progress">0 / 0 Kartu</div>
+
+        <!-- Progress Bar -->
+        <div id="fc-progress-container">
+          <div id="fc-progress-bar-outer">
+            <div id="fc-progress-bar-fill"></div>
+          </div>
+          <div id="fc-progress-stats">
+            <span id="fc-progress-text">0 / 0 Kartu</span>
+            <span id="fc-progress-rated">0 dinilai hari ini</span>
+          </div>
+        </div>
 
         <div class="study-arena">
           <!-- 3D Flipping Card -->
-          <div class="card-container" id="free-flashcard-container" onclick="flipFlashcard()" style="cursor: pointer;">
+          <div class="card-container" id="free-flashcard-container" onclick="flipFlashcard()" style="cursor: pointer; position: relative;">
             <div class="card-inner" id="free-flashcard-inner">
-              
+
               <!-- Front Card -->
-              <div class="card-front" id="free-flashcard-front">
+              <div class="card-front" id="free-flashcard-front" style="position: relative;">
+
+                <!-- Countdown Overlay (shown while waiting) -->
+                <div id="fc-countdown-overlay" class="hidden">
+                  <div id="fc-countdown-number">3</div>
+                  <div id="fc-countdown-label">Coba ingat dulu...</div>
+                </div>
+
                 <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; box-sizing: border-box;">
                   <span class="card-badge" id="free-front-category">Kategori</span>
-                  <span class="card-badge" id="free-front-status" style="color: var(--accent-text); border-color: rgba(139, 92, 246, 0.2);">Status</span>
+                  <span class="card-badge" id="free-front-status" style="color: var(--accent-text); border-color: rgba(139,92,246,0.2);">Status</span>
                 </div>
-                
+
                 <div class="card-main-content">
                   <div id="free-front-prompt-label" class="card-prompt-label">Prompt</div>
                   <div id="free-front-display" class="german-word" style="margin-top: 10px;">Word</div>
                   <div id="free-front-clue" class="indonesian-word" style="font-size: 1.1rem; color: var(--text-secondary); display: none;"></div>
                 </div>
-                
-                <div class="card-footer-tip">
+
+                <div class="card-footer-tip" id="fc-flip-tip">
                   Klik kartu atau tekan <span class="keycap">Spasi</span> untuk membalik
                 </div>
               </div>
@@ -2197,60 +2368,69 @@
               <div class="card-back" id="free-flashcard-back" style="display: flex; flex-direction: column; justify-content: flex-start; padding: 18px 18px 14px 18px;">
                 <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; box-sizing: border-box;">
                   <span class="card-badge" id="free-back-category">Kategori</span>
-                  <span class="card-badge" id="free-back-status" style="color: var(--accent-text); border-color: rgba(139, 92, 246, 0.2);">Status</span>
+                  <span class="card-badge" id="free-back-status" style="color: var(--accent-text); border-color: rgba(139,92,246,0.2);">Status</span>
                 </div>
-                
+
                 <!-- Scrollable Content -->
-                <div class="card-back-scrollable" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 4px;">
+                <div class="card-back-scrollable" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px;">
                   <div class="card-prompt-label" style="font-size: 0.8rem; margin-top: 2px;">Jawaban</div>
                   <div id="free-back-display" class="german-word" style="margin-top: 2px;">Word</div>
+                  <div id="free-back-plural" class="fc-plural-label" style="display:none;"></div>
                   <div id="free-back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2px;">Translation</div>
 
-                  <!-- Sentence Example -->
+                  <!-- Context Sentence with censor -->
                   <div class="sentence-container" style="width: 100%; margin-top: 4px; padding: 8px 12px;">
                     <div id="free-back-sentence">Example Sentence</div>
                     <div id="free-back-sentence-translation" class="sentence-translation">Example Translation</div>
                   </div>
 
-                  <!-- Audio & AI Buttons -->
+                  <!-- Audio Button only (AI button removed) -->
                   <div style="display: flex; gap: 8px; width: 100%; align-items: center; margin-top: 4px;">
-                    <button class="speak-btn" title="Dengarkan Pengucapan" onclick="event.stopPropagation(); speakFlashcardWord();" style="margin-top: 0; width: 38px; height: 38px; flex-shrink: 0;">
+                    <button class="speak-btn" title="Dengarkan Pengucapan (S)" onclick="event.stopPropagation(); speakFlashcardWord();" style="margin-top: 0; width: 38px; height: 38px; flex-shrink: 0;">
                       <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                     </button>
-
-                    <button id="free-btn-ask-ai" class="btn btn-secondary" style="flex: 1; border-color: rgba(139, 92, 246, 0.3); color: var(--accent-text); background-color: rgba(139, 92, 246, 0.02); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 12px; font-size: 0.85rem;" onclick="event.stopPropagation(); explainFlashcardWithAI();">
-                      <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg>
-                      Tanya AI Detail
-                    </button>
-                  </div>
-
-                  <!-- AI Explanation panel container -->
-                  <div id="free-ai-explainer-panel" class="sentence-container" style="display: none; text-align: left; background-color: rgba(139, 92, 246, 0.04); border-color: rgba(139, 92, 246, 0.15); max-height: 140px; overflow-y: auto; padding: 10px; font-size: 0.8rem; line-height: 1.4; margin-top: 6px; width: 100%;">
-                    <div id="free-ai-explainer-loading" style="display: none; align-items: center; gap: 8px; color: var(--text-secondary);">
-                      <svg class="loading-spin" style="animation: spin 1s linear infinite; width: 14px; height: 14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="32" fill="none"></circle></svg>
-                      Menghubungi AI Guru...
+                    <div style="font-size: 0.75rem; color: var(--text-muted); padding: 0 6px;">
+                      Nilai dirimu sendiri menggunakan tombol di bawah
                     </div>
-                    <div id="free-ai-explainer-content">Penjelasan di sini...</div>
                   </div>
-
                 </div>
               </div>
 
             </div>
           </div>
 
-          <!-- Controls -->
-          <div class="flashcard-btn-group">
-            <button class="btn btn-secondary" onclick="prevFlashcard()" title="Sebelumnya">
+          <!-- SM-2 Self Rating Buttons (shown after flip) -->
+          <div id="fc-rating-group" role="group" aria-label="Rating kartu">
+            <button class="fc-rate-btn again" onclick="rateFlashcard('again')" title="Tekan 1">
+              Lagi
+              <small>[1] Tidak ingat</small>
+            </button>
+            <button class="fc-rate-btn hard" onclick="rateFlashcard('hard')" title="Tekan 2">
+              Sulit
+              <small>[2] Hampir ingat</small>
+            </button>
+            <button class="fc-rate-btn good" onclick="rateFlashcard('good')" title="Tekan 3">
+              Bagus
+              <small>[3] Ingat</small>
+            </button>
+            <button class="fc-rate-btn easy" onclick="rateFlashcard('easy')" title="Tekan 4">
+              Mudah
+              <small>[4] Sangat mudah</small>
+            </button>
+          </div>
+
+          <!-- Navigation Controls -->
+          <div class="flashcard-btn-group" style="margin-top: 12px;">
+            <button class="btn btn-secondary" onclick="prevFlashcard()" title="Sebelumnya (←)">
               <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><polyline points="15 18 9 12 15 6"></polyline></svg>
               Kembali
             </button>
-            <button class="btn" onclick="flipFlashcard()">
+            <button class="btn" id="fc-flip-btn" onclick="flipFlashcard()">
               <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
               Balik
             </button>
-            <button class="btn btn-secondary" onclick="nextFlashcard()" title="Selanjutnya">
-              Maju
+            <button class="btn btn-secondary" onclick="skipFlashcard()" title="Lewati tanpa rating (→)">
+              Lewati
               <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
           </div>
@@ -2268,6 +2448,8 @@
         </div>
       </div>
     </section>
+
+
 
     <!-- View: Jadwal Repetisi -->
     <section id="schedule-view" class="view-section" style="width: 100%;">
@@ -2945,6 +3127,15 @@
     let flashcardIndex = 0;
     let flashcardFlipped = false;
 
+    // Flashcard Upgrade State
+    let fcCountdownDuration = 3;   // seconds: 3 | 5 | 0 (off)
+    let fcCountdownTimer = null;   // setInterval handle
+    let fcCountdownRemaining = 0;  // seconds left
+    let fcCountdownActive = false; // is countdown blocking flip?
+    let fcAutoSpeakEnabled = true; // auto-play TTS on flip
+    let fcShuffleEnabled = false;  // shuffle deck order
+    let fcTodayRatedCount = 0;     // rated cards today (session)
+
     // ==========================================
     // ONLOAD INITIALIZATION & ONE-TIME API KEY
     // ==========================================
@@ -2965,6 +3156,7 @@
       updateFilterKapitelDropdown(); // Init Kapitel options
       updateStreak();
       updateDashboardStats();
+      loadFcSettings(); // Load countdown, speak and shuffle settings
       updateFlashcardDeck(); // Init Flashcard Mode
       setupKeyBindings();
       
@@ -3189,113 +3381,350 @@
     // ==========================================
     // FREE FLASHCARD MODE LOGIC
     // ==========================================
+    // ==========================================
+    // FLASHCARD SETTINGS PERSISTENCE
+    // ==========================================
+    function saveFcSettings() {
+      fcCountdownDuration = parseInt(document.getElementById('fc-countdown-select').value, 10);
+      fcAutoSpeakEnabled = document.getElementById('fc-autospeak-toggle').checked;
+      localStorage.setItem('fc_countdown', fcCountdownDuration);
+      localStorage.setItem('fc_autospeak', fcAutoSpeakEnabled ? '1' : '0');
+    }
+
+    function loadFcSettings() {
+      const savedCountdown = localStorage.getItem('fc_countdown');
+      if (savedCountdown !== null) {
+        fcCountdownDuration = parseInt(savedCountdown, 10);
+        const sel = document.getElementById('fc-countdown-select');
+        if (sel) sel.value = fcCountdownDuration.toString();
+      }
+      const savedSpeak = localStorage.getItem('fc_autospeak');
+      if (savedSpeak !== null) {
+        fcAutoSpeakEnabled = (savedSpeak === '1');
+        const toggle = document.getElementById('fc-autospeak-toggle');
+        if (toggle) toggle.checked = fcAutoSpeakEnabled;
+      }
+      const savedShuffle = localStorage.getItem('fc_shuffle');
+      if (savedShuffle !== null) {
+        fcShuffleEnabled = (savedShuffle === '1');
+        const toggle = document.getElementById('fc-shuffle-toggle');
+        if (toggle) toggle.checked = fcShuffleEnabled;
+      }
+      // Count today's rated cards from reviewHistory
+      const todayStr = getTodayString();
+      fcTodayRatedCount = reviewHistory.filter(h => h.date === todayStr && h.source === 'flashcard').length;
+    }
+
+    // ==========================================
+    // FLASHCARD COUNTDOWN ENGINE
+    // ==========================================
+    function startCountdown() {
+      stopCountdown(); // Clear any existing
+      if (fcCountdownDuration <= 0) return;
+
+      fcCountdownActive = true;
+      fcCountdownRemaining = fcCountdownDuration;
+
+      const overlay = document.getElementById('fc-countdown-overlay');
+      const numEl = document.getElementById('fc-countdown-number');
+      const container = document.getElementById('free-flashcard-container');
+
+      overlay.classList.remove('hidden');
+      numEl.textContent = fcCountdownRemaining;
+      container.style.pointerEvents = 'none'; // Block clicks during countdown
+
+      fcCountdownTimer = setInterval(() => {
+        fcCountdownRemaining--;
+        if (fcCountdownRemaining <= 0) {
+          stopCountdown();
+        } else {
+          numEl.textContent = fcCountdownRemaining;
+        }
+      }, 1000);
+    }
+
+    function stopCountdown() {
+      if (fcCountdownTimer) {
+        clearInterval(fcCountdownTimer);
+        fcCountdownTimer = null;
+      }
+      fcCountdownActive = false;
+      const overlay = document.getElementById('fc-countdown-overlay');
+      const container = document.getElementById('free-flashcard-container');
+      if (overlay) overlay.classList.add('hidden');
+      if (container) container.style.pointerEvents = '';
+    }
+
+    // ==========================================
+    // FLASHCARD PROGRESS BAR
+    // ==========================================
+    function updateProgressBar() {
+      const fill = document.getElementById('fc-progress-bar-fill');
+      const text = document.getElementById('fc-progress-text');
+      const rated = document.getElementById('fc-progress-rated');
+      if (!fill || !text) return;
+      const pct = flashcardList.length > 0
+        ? ((flashcardIndex + 1) / flashcardList.length * 100)
+        : 0;
+      fill.style.width = pct.toFixed(1) + '%';
+      text.textContent = `${flashcardIndex + 1} / ${flashcardList.length} Kartu`;
+      if (rated) rated.textContent = `${fcTodayRatedCount} dinilai hari ini`;
+    }
+
+    // ==========================================
+    // CENSOR SENTENCE HELPER
+    // ==========================================
+    function formatSentenceCensored(sentence, targetWord) {
+      let cleanSentence = sentence.split('|')[0].trim();
+      let cleanTarget = getCleanTargetWord(targetWord);
+
+      // Replace asterisk-marked word with censored span
+      if (cleanSentence.includes('*')) {
+        return cleanSentence.replace(/\*([^*]+)\*/g,
+          '<span class="censor-word censored" onclick="this.classList.remove(\'censored\')">$1</span>');
+      }
+
+      if (cleanTarget.length < 2) return cleanSentence;
+      try {
+        const escaped = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const regex = new RegExp(`(${escaped}[a-zA-ZäöüßÄÖÜ]*)`, 'gi');
+        return cleanSentence.replace(regex,
+          '<span class="censor-word censored" onclick="this.classList.remove(\'censored\')">$1</span>');
+      } catch(e) {
+        return cleanSentence;
+      }
+    }
+
+    // ==========================================
+    // FLASHCARD SHUFFLE TOGGLE
+    // ==========================================
+    function toggleFlashcardShuffle() {
+      fcShuffleEnabled = document.getElementById('fc-shuffle-toggle').checked;
+      localStorage.setItem('fc_shuffle', fcShuffleEnabled ? '1' : '0');
+      updateFlashcardDeck();
+    }
+
+    // ==========================================
+    // SM-2 RATING FROM FLASHCARD VIEW
+    // ==========================================
+    function rateFlashcard(grade) {
+      if (!flashcardList || flashcardList.length === 0) return;
+      if (!flashcardFlipped) return; // Must be showing back
+
+      const activeCard = flashcardList[flashcardIndex];
+      const dbCardIndex = cards.findIndex(c => c.id === activeCard.id);
+      if (dbCardIndex === -1) return;
+
+      const dbCard = cards[dbCardIndex];
+      const wasNewCard = (dbCard.step === -1);
+
+      // SM-2 update (same logic as rateCard in Study mode)
+      if (grade === 'again') {
+        dbCard.repetition = 0;
+        dbCard.interval = 1;
+        dbCard.ef = Math.max(1.3, dbCard.ef - 0.2);
+        dbCard.step = 0;
+      } else if (grade === 'hard') {
+        dbCard.repetition = Math.max(0, dbCard.repetition - 1);
+        dbCard.ef = Math.max(1.3, dbCard.ef - 0.15);
+        dbCard.step = Math.max(0, dbCard.step - 1);
+        const steps = [1, 3, 7, 14, 30];
+        dbCard.interval = steps[dbCard.step];
+      } else if (grade === 'good') {
+        dbCard.repetition = dbCard.repetition + 1;
+        dbCard.step = Math.min(4, dbCard.step + 1);
+        const steps = [1, 3, 7, 14, 30];
+        dbCard.interval = steps[dbCard.step];
+        if (dbCard.step === 4) {
+          dbCard.interval = Math.round(30 * dbCard.ef);
+        }
+      } else if (grade === 'easy') {
+        dbCard.repetition = dbCard.repetition + 2;
+        dbCard.ef = Math.min(3.0, dbCard.ef + 0.15);
+        dbCard.step = Math.min(4, dbCard.step + 2);
+        const steps = [1, 3, 7, 14, 30];
+        dbCard.interval = steps[dbCard.step];
+        if (dbCard.step === 4) {
+          dbCard.interval = Math.round(30 * dbCard.ef * 1.2);
+        }
+      }
+
+      const now = new Date();
+      now.setDate(now.getDate() + dbCard.interval);
+      now.setHours(0, 0, 0, 0);
+      dbCard.dueDate = now.toISOString();
+      dbCard.lastReviewed = new Date().toISOString();
+
+      recordReviewInStreak();
+
+      const todayStr = getTodayString();
+      reviewHistory.push({
+        date: todayStr,
+        cardId: dbCard.id,
+        status: grade,
+        isNew: wasNewCard,
+        source: 'flashcard'
+      });
+
+      saveCards();
+      saveHistory();
+
+      fcTodayRatedCount++;
+      flashcardList[flashcardIndex] = { ...dbCard };
+
+      const gradeLabels = { again: 'Lagi', hard: 'Sulit', good: 'Bagus', easy: 'Mudah' };
+      showToast(`${gradeLabels[grade]} — Review berikutnya: ${dbCard.interval} hari`);
+
+      // Advance to next card
+      skipFlashcard();
+    }
+
+    // ==========================================
+    // SKIP (advance without rating)
+    // ==========================================
+    function skipFlashcard() {
+      if (!flashcardList || flashcardList.length === 0) return;
+      stopCountdown();
+      document.getElementById('fc-rating-group').classList.remove('visible');
+      flashcardIndex = (flashcardIndex + 1) % flashcardList.length;
+      flashcardFlipped = false;
+      document.getElementById('free-flashcard-container').classList.remove('flipped');
+      renderFlashcard();
+    }
+
+    // ==========================================
+    // CORE FLASHCARD FUNCTIONS (UPGRADED)
+    // ==========================================
     function updateFlashcardDeck() {
       const lvl = document.getElementById('flashcard-filter-level').value;
       const ch = document.getElementById('flashcard-filter-chapter').value;
-      
+
       flashcardList = cards.filter(c => {
         const lvlMatch = (lvl === 'ALL' || c.level === lvl);
         const chMatch = (ch === 'ALL' || c.chapter.toString() === ch);
         return lvlMatch && chMatch;
       });
-      
+
+      // Apply shuffle if enabled
+      if (fcShuffleEnabled) {
+        flashcardList = shuffleArray([...flashcardList]);
+      }
+
       flashcardIndex = 0;
       flashcardFlipped = false;
+      stopCountdown();
       document.getElementById('free-flashcard-container').classList.remove('flipped');
-      
+      document.getElementById('fc-rating-group').classList.remove('visible');
+
       renderFlashcard();
       renderFlashcardWordGrid();
     }
 
     function renderFlashcard() {
-      const container = document.getElementById('free-flashcard-container');
-      const progressText = document.getElementById('flashcard-deck-progress');
-      
       if (!flashcardList || flashcardList.length === 0) {
-        progressText.textContent = "0 / 0 Kartu";
-        document.getElementById('free-front-category').textContent = "Kosong";
-        document.getElementById('free-front-status').textContent = "-";
-        document.getElementById('free-front-prompt-label').textContent = "-";
+        // Empty state
+        document.getElementById('fc-progress-text').textContent = '0 / 0 Kartu';
+        document.getElementById('fc-progress-bar-fill').style.width = '0%';
+        document.getElementById('free-front-category').textContent = 'Kosong';
+        document.getElementById('free-front-status').textContent = '-';
+        document.getElementById('free-front-prompt-label').textContent = '-';
         document.getElementById('free-front-display').innerHTML = "<span style='font-size: 1.2rem; color: var(--text-muted);'>Tidak ada kata yang sesuai filter</span>";
         document.getElementById('free-front-clue').style.display = 'none';
-        
-        document.getElementById('free-back-category').textContent = "Kosong";
-        document.getElementById('free-back-status').textContent = "-";
-        document.getElementById('free-back-display').textContent = "-";
-        document.getElementById('free-back-translation').textContent = "Tidak ada kartu";
-        document.getElementById('free-back-sentence').textContent = "-";
-        document.getElementById('free-back-sentence-translation').textContent = "-";
+        document.getElementById('free-back-category').textContent = 'Kosong';
+        document.getElementById('free-back-status').textContent = '-';
+        document.getElementById('free-back-display').textContent = '-';
+        document.getElementById('free-back-plural').style.display = 'none';
+        document.getElementById('free-back-translation').textContent = 'Tidak ada kartu';
+        document.getElementById('free-back-sentence').textContent = '-';
+        document.getElementById('free-back-sentence-translation').textContent = '-';
         return;
       }
-      
-      progressText.textContent = `${flashcardIndex + 1} / ${flashcardList.length} Kartu`;
+
+      updateProgressBar();
+
       const card = flashcardList[flashcardIndex];
       const direction = document.getElementById('flashcard-direction').value;
-      
-      // Determine direction for this specific card
+
       let currDir = direction;
       if (direction === 'mixed') {
         currDir = (flashcardIndex % 2 === 0) ? 'de-id' : 'id-de';
       }
-      
-      // Render Front
-      document.getElementById('free-front-category').textContent = card.category || "Kosakata";
+
+      // --- Front ---
+      document.getElementById('free-front-category').textContent = card.category || 'Kosakata';
       const frontDisplay = document.getElementById('free-front-display');
       const frontPrompt = document.getElementById('free-front-prompt-label');
       const frontClue = document.getElementById('free-front-clue');
-      
+
       if (currDir === 'de-id') {
-        frontPrompt.textContent = "Bahasa Jerman";
+        frontPrompt.textContent = 'Bahasa Jerman';
         frontDisplay.innerHTML = formatGermanWord(card.deutsch);
         frontClue.style.display = 'none';
       } else {
-        frontPrompt.textContent = "Arti (Bahasa Indonesia)";
+        frontPrompt.textContent = 'Arti (Bahasa Indonesia)';
         frontDisplay.textContent = card.indonesia;
         frontClue.style.display = 'block';
         frontClue.textContent = `[${card.category || 'Kata'}]`;
       }
-      
-      // Render Back
-      document.getElementById('free-back-category').textContent = card.category || "Kosakata";
+
+      // --- Back ---
+      document.getElementById('free-back-category').textContent = card.category || 'Kosakata';
       document.getElementById('free-back-display').innerHTML = formatGermanWord(card.deutsch);
       document.getElementById('free-back-translation').textContent = card.indonesia;
-      document.getElementById('free-back-sentence').innerHTML = formatSentenceHighlight(card.sentence, card.deutsch);
+
+      // Plural for Nomen
+      const pluralEl = document.getElementById('free-back-plural');
+      const deWord = card.deutsch.trim();
+      const startsWithArticle = /^(der|die|das)\s/i.test(deWord);
+      if (startsWithArticle && card.plural) {
+        pluralEl.textContent = `Pl: die ${card.plural}`;
+        pluralEl.style.display = 'block';
+      } else if (startsWithArticle) {
+        // Try to parse plural from deutsch field e.g. "der Tisch, -e"
+        const commaMatch = card.deutsch.match(/,\s*(.+)$/);
+        if (commaMatch) {
+          pluralEl.textContent = `Pl: die ${commaMatch[1].trim()}`;
+          pluralEl.style.display = 'block';
+        } else {
+          pluralEl.style.display = 'none';
+        }
+      } else {
+        pluralEl.style.display = 'none';
+      }
+
+      // Censored context sentence
+      document.getElementById('free-back-sentence').innerHTML = formatSentenceCensored(card.sentence, card.deutsch);
       document.getElementById('free-back-sentence-translation').textContent = getSentenceTranslation(card.sentence);
-      
-      // Render status badges
+
+      // --- Status Badges ---
       const frontStatus = document.getElementById('free-front-status');
       const backStatus = document.getElementById('free-back-status');
       if (card.step === -1) {
-        frontStatus.textContent = "Baru (Belum Masuk SR)";
-        frontStatus.style.color = "var(--text-muted)";
-        frontStatus.style.borderColor = "var(--border-muted)";
-        backStatus.textContent = "Baru (Belum Masuk SR)";
-        backStatus.style.color = "var(--text-muted)";
-        backStatus.style.borderColor = "var(--border-muted)";
+        frontStatus.textContent = 'Baru';
+        frontStatus.style.color = 'var(--text-muted)';
+        frontStatus.style.borderColor = 'var(--border-muted)';
+        backStatus.textContent = 'Baru';
+        backStatus.style.color = 'var(--text-muted)';
+        backStatus.style.borderColor = 'var(--border-muted)';
       } else {
         const days = card.interval || 1;
-        frontStatus.textContent = `Spaced Repetition (Hari ke-${days})`;
-        frontStatus.style.color = "var(--success)";
-        frontStatus.style.borderColor = "rgba(16, 185, 129, 0.3)";
-        backStatus.textContent = `Spaced Repetition (Hari ke-${days})`;
-        backStatus.style.color = "var(--success)";
-        backStatus.style.borderColor = "rgba(16, 185, 129, 0.3)";
+        frontStatus.textContent = `SR: ${days}h`;
+        frontStatus.style.color = 'var(--success)';
+        frontStatus.style.borderColor = 'rgba(16,185,129,0.3)';
+        backStatus.textContent = `SR: ${days}h`;
+        backStatus.style.color = 'var(--success)';
+        backStatus.style.borderColor = 'rgba(16,185,129,0.3)';
       }
 
-      // Hide Explainer
-      document.getElementById('free-ai-explainer-panel').style.display = 'none';
-      
-      // Sync active state in side/bottom grid list
+      // --- Hide rating group ---
+      document.getElementById('fc-rating-group').classList.remove('visible');
+
+      // --- Sync word grid active state ---
       const items = document.querySelectorAll('.flashcard-word-item');
       items.forEach((item, idx) => {
-        if (idx === flashcardIndex) {
-          item.classList.add('active-item');
-        } else {
-          item.classList.remove('active-item');
-        }
+        item.classList.toggle('active-item', idx === flashcardIndex);
       });
 
-      // Scroll parent container only, avoiding window scroll
       const grid = document.getElementById('flashcard-word-grid');
       const activeItem = grid ? grid.children[flashcardIndex] : null;
       if (grid && activeItem) {
@@ -3304,34 +3733,56 @@
         const relativeTop = itemTop - gridTop;
         grid.scrollTop = grid.scrollTop + relativeTop - (grid.clientHeight / 2) + (activeItem.clientHeight / 2);
       }
+
+      // --- Start countdown on new card ---
+      stopCountdown();
+      startCountdown();
     }
 
     function flipFlashcard() {
       if (!flashcardList || flashcardList.length === 0) return;
+      if (fcCountdownActive) {
+        // Show a brief shake/hint
+        const overlay = document.getElementById('fc-countdown-overlay');
+        overlay.style.animation = 'none';
+        overlay.offsetHeight; // reflow
+        overlay.style.animation = '';
+        return;
+      }
+
       flashcardFlipped = !flashcardFlipped;
       const container = document.getElementById('free-flashcard-container');
+      const ratingGroup = document.getElementById('fc-rating-group');
+
       if (flashcardFlipped) {
         container.classList.add('flipped');
+        ratingGroup.classList.add('visible');
+        // Auto-speak when flipping to back
+        if (fcAutoSpeakEnabled) {
+          setTimeout(() => speakFlashcardWord(), 500); // Wait for flip animation
+        }
       } else {
         container.classList.remove('flipped');
+        ratingGroup.classList.remove('visible');
+        // Restart countdown when flipping back to front
+        startCountdown();
       }
     }
 
     function nextFlashcard() {
-      if (!flashcardList || flashcardList.length === 0) return;
-      flashcardIndex = (flashcardIndex + 1) % flashcardList.length;
-      flashcardFlipped = false;
-      document.getElementById('free-flashcard-container').classList.remove('flipped');
-      renderFlashcard();
+      skipFlashcard();
     }
 
     function prevFlashcard() {
       if (!flashcardList || flashcardList.length === 0) return;
+      stopCountdown();
+      document.getElementById('fc-rating-group').classList.remove('visible');
       flashcardIndex = (flashcardIndex - 1 + flashcardList.length) % flashcardList.length;
       flashcardFlipped = false;
       document.getElementById('free-flashcard-container').classList.remove('flipped');
       renderFlashcard();
     }
+
 
     function renderFlashcardWordGrid() {
       const grid = document.getElementById('flashcard-word-grid');
@@ -3734,80 +4185,6 @@
         window.speechSynthesis.speak(utterance);
       } else {
         showToast("Browser Anda tidak mendukung Web Speech API");
-      }
-    }
-
-    async function explainFlashcardWithAI() {
-      if (!flashcardList || flashcardList.length === 0) return;
-      const activeCard = flashcardList[flashcardIndex];
-      const panel = document.getElementById('free-ai-explainer-panel');
-      const loading = document.getElementById('free-ai-explainer-loading');
-      const content = document.getElementById('free-ai-explainer-content');
-      
-      panel.style.display = 'block';
-      loading.style.display = 'flex';
-      content.innerHTML = '';
-      
-      const dbCard = cards.find(c => c.id === activeCard.id);
-      if (dbCard && dbCard.aiExplanation) {
-        loading.style.display = 'none';
-        content.innerHTML = dbCard.aiExplanation;
-        return;
-      }
-      
-      const apiKey = localStorage.getItem('openai_api_key');
-      if (!apiKey || !apiKey.startsWith('sk-')) {
-        loading.style.display = 'none';
-        content.innerHTML = `<span style="color: var(--error);">API Key OpenAI tidak dikonfigurasi. Silakan masukkan API Key di tab <strong>Pengaturan</strong>.</span>`;
-        return;
-      }
-      
-      try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            model: 'gpt-4o-mini',
-            messages: [
-              {
-                role: 'system',
-                content: 'Anda adalah asisten AI guru bahasa Jerman profesional B1-C1. Berikan penjelasan singkat, terstruktur, padat, dan jelas dalam Bahasa Indonesia tentang kosakata Jerman berikut (seperti preposisi pasangannya seandainya ada, perubahan bentuk irregular, sinonim/antonim tingkat menengah-atas B2-C1, dan tips penggunaan).'
-              },
-              {
-                role: 'user',
-                content: `Jelaskan kata ini: "${activeCard.deutsch}" yang berarti "${activeCard.indonesia}" dalam kalimat: "${activeCard.sentence.split('|')[0]}".`
-              }
-            ],
-            max_tokens: 350,
-            temperature: 0.3
-          })
-        });
-        
-        if (!response.ok) throw new Error("OpenAI Chat API HTTP " + response.status);
-        
-        const data = await response.json();
-        let explanation = data.choices[0].message.content.trim();
-        
-        explanation = explanation
-          .replace(/\n/g, '<br>')
-          .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-          .replace(/\*([^*]+)\*/g, '<em>$1</em>');
-        
-        if (dbCard) {
-          dbCard.aiExplanation = explanation;
-          saveCards();
-        }
-        activeCard.aiExplanation = explanation;
-        
-        loading.style.display = 'none';
-        content.innerHTML = explanation;
-      } catch (err) {
-        console.error(err);
-        loading.style.display = 'none';
-        content.innerHTML = `<span style="color: var(--error);">Gagal memuat penjelasan AI: ${err.message}</span>`;
       }
     }
 
@@ -4886,16 +5263,19 @@
             flipFlashcard();
           } else if (e.key === 'ArrowRight') {
             e.preventDefault();
-            nextFlashcard();
+            skipFlashcard();
           } else if (e.key === 'ArrowLeft') {
             e.preventDefault();
             prevFlashcard();
           } else if (e.key.toLowerCase() === 's') {
             e.preventDefault();
             speakFlashcardWord();
-          } else if (e.key.toLowerCase() === 'a') {
-            e.preventDefault();
-            explainFlashcardWithAI();
+          } else if (flashcardFlipped) {
+            // SM-2 rating shortcuts (only when card is flipped)
+            if (e.key === '1') { e.preventDefault(); rateFlashcard('again'); }
+            else if (e.key === '2') { e.preventDefault(); rateFlashcard('hard'); }
+            else if (e.key === '3') { e.preventDefault(); rateFlashcard('good'); }
+            else if (e.key === '4') { e.preventDefault(); rateFlashcard('easy'); }
           }
         }
       });

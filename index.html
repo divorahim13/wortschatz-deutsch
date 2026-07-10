@@ -46,6 +46,12 @@
       padding: 0;
     }
 
+    html {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      width: 100%;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-primary);
@@ -1218,7 +1224,7 @@
     }
 
     /* Mobile Navigation & Layout Optimization (Floating Bottom Tab Bar & Bento Responsive) */
-    @media (max-width: 680px) {
+    @media (max-width: 850px) {
       body {
         padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); /* Safe padding for bottom nav */
       }
@@ -1252,21 +1258,22 @@
       
       nav {
         position: fixed;
-        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-        left: 16px;
-        right: 16px;
-        background-color: rgba(18, 18, 20, 0.85);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: rgba(12, 12, 14, 0.96);
         backdrop-filter: blur(20px);
-        border: 1px solid var(--border-muted);
-        border-radius: 20px;
-        padding: 8px 10px;
+        border: none;
+        border-top: 1px solid var(--border-muted);
+        border-radius: 16px 16px 0 0;
+        padding: 8px 16px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
         display: flex;
         justify-content: space-between;
         gap: 4px;
-        z-index: 100;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+        box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.5);
         margin: 0;
-        width: auto;
       }
       
       .nav-btn {

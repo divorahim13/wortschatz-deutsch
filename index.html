@@ -102,7 +102,6 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      flex-wrap: wrap;
     }
 
     .brand {
@@ -178,48 +177,9 @@
       fill: none;
     }
 
-    /* Hamburger Toggle Button */
+    /* Hamburger Toggle Button (Hidden on Desktop) */
     .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-secondary);
-      transition: color var(--transition-speed);
-    }
-    
-    .menu-toggle:hover, .menu-toggle.active {
-      color: var(--text-primary);
-    }
-    
-    .menu-icon {
-      width: 20px;
-      height: 20px;
-      stroke: currentColor;
-      stroke-width: 2;
-      fill: none;
-      transition: transform var(--transition-speed) ease;
-    }
-    
-    /* Smooth CSS animations for morphing hamburger into an 'X' */
-    .line-top, .line-mid, .line-bot {
-      transition: all 0.25s ease;
-      transform-origin: center;
-    }
-    
-    .menu-toggle.active .line-mid {
-      opacity: 0;
-    }
-    
-    .menu-toggle.active .line-top {
-      transform: translateY(6px) rotate(45deg);
-    }
-    
-    .menu-toggle.active .line-bot {
-      transform: translateY(-6px) rotate(-45deg);
+      display: none !important;
     }
 
     main {
@@ -1257,74 +1217,80 @@
       pointer-events: none;
     }
 
-    /* Mobile Navigation & Layout Optimization (Floating Top Pill Header Menu Toggle) */
+    /* Mobile Navigation & Layout Optimization (Floating Bottom Tab Bar & Bento Responsive) */
     @media (max-width: 680px) {
       body {
-        padding-bottom: 0;
+        padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); /* Safe padding for bottom nav */
       }
       
       header {
         position: sticky;
         top: 12px;
         margin: 12px auto;
-        border-radius: 20px;
-        background-color: rgba(12, 12, 14, 0.85);
-        backdrop-filter: blur(20px);
+        max-width: 800px;
+        width: calc(100% - 24px);
         border: 1px solid var(--border-muted);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      }
-      
-      header.menu-open {
-        border-radius: 20px;
+        border-radius: 99px;
+        background-color: rgba(12, 12, 14, 0.95); /* High opacity backdrop fallback */
+        backdrop-filter: none !important; /* Prevents fixed position child clipping */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
       }
       
       .nav-container {
-        padding: 10px 16px;
+        padding: 8px 12px;
+        justify-content: center;
         flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
       }
       
       .brand-badge {
-        display: none;
+        display: inline-block;
       }
       
       .menu-toggle {
-        display: flex;
+        display: none !important;
       }
       
       nav {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        gap: 6px;
-        margin-top: 12px;
-        border-top: 1px solid var(--border-muted);
-        padding-top: 12px;
-      }
-      
-      header.menu-open nav {
+        position: fixed;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        left: 16px;
+        right: 16px;
+        background-color: rgba(18, 18, 20, 0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border-muted);
+        border-radius: 20px;
+        padding: 8px 10px;
         display: flex;
+        justify-content: space-between;
+        gap: 4px;
+        z-index: 100;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        margin: 0;
+        width: auto;
       }
       
       .nav-btn {
-        width: 100%;
-        justify-content: flex-start;
-        padding: 10px 16px;
-        border-radius: 10px;
-        font-size: 0.88rem;
+        flex-direction: column;
+        gap: 3px;
+        padding: 6px 0;
+        font-size: 0.62rem;
+        font-weight: 500;
+        flex: 1;
+        border-radius: 12px;
         border: none;
         background: none;
+        align-items: center;
+        justify-content: center;
       }
       
       .nav-btn svg {
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
       }
       
       .nav-btn.active {
-        background-color: var(--border-muted);
-        color: var(--text-primary);
+        background-color: rgba(139, 92, 246, 0.1);
+        color: var(--accent-text);
       }
       
       main {
@@ -1427,7 +1393,7 @@
 
   <header>
     <div class="nav-container">
-      <a href="#" class="brand" onclick="switchView('dashboard'); return false;">
+      <a href="#" class="brand" onclick="switchView('dashboard')">
         <svg class="brand-logo" viewBox="0 0 24 24">
           <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
           <polyline points="2 17 12 22 22 17"></polyline>
@@ -1436,15 +1402,6 @@
         <span class="brand-title">Wortschatz</span>
         <span class="brand-badge">B1-C1</span>
       </a>
-      <!-- Hamburger Menu Toggle for Mobile -->
-      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileMenu(event)">
-        <svg viewBox="0 0 24 24" class="menu-icon">
-          <line x1="3" y1="6" x2="21" y2="6" class="line-top"></line>
-          <line x1="3" y1="12" x2="21" y2="12" class="line-mid"></line>
-          <line x1="3" y1="18" x2="21" y2="18" class="line-bot"></line>
-        </svg>
-      </button>
-
       <nav id="main-nav">
         <button id="nav-dashboard" class="nav-btn active" onclick="switchView('dashboard')">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
@@ -2317,14 +2274,6 @@
     // ==========================================
     // ONLOAD INITIALIZATION & ONE-TIME API KEY
     // ==========================================
-    function toggleMobileMenu(event) {
-      if (event) event.stopPropagation();
-      const headerElement = document.querySelector('header');
-      const toggleBtn = document.getElementById('menu-toggle');
-      if (headerElement) headerElement.classList.toggle('menu-open');
-      if (toggleBtn) toggleBtn.classList.toggle('active');
-    }
-
     window.addEventListener('DOMContentLoaded', () => {
       // Secure local initialization of provided API key for user out-of-the-box convenience
       const KEY_SECRET = 'OPENAI_API_KEY_PLACEHOLDER';
@@ -2441,12 +2390,6 @@
     // VIEW SWITCHER
     // ==========================================
     function switchView(viewId) {
-      // Auto-close mobile hamburger menu on view switch
-      const headerElement = document.querySelector('header');
-      const toggleBtn = document.getElementById('menu-toggle');
-      if (headerElement) headerElement.classList.remove('menu-open');
-      if (toggleBtn) toggleBtn.classList.remove('active');
-
       document.querySelectorAll('.view-section').forEach(section => {
         section.classList.remove('active');
       });

@@ -4987,20 +4987,34 @@
       // 1. Hapus tag level dalam tanda kurung kotak: [B1], [C1], [B2] dst.
       clean = clean.replace(/\[[^\]]*\]/g, '').trim();
 
-      // 2. Hapus teks di dalam tanda kurung biasa: (Pl.), (sich), (hebt ab, hob ab...)
+      // 2. Hapus teks di dalam tanda kurung biasa: (Pl.), (sich), (an + A.), (ließ, hat gelassen/lassen)
       clean = clean.replace(/\([^)]*\)/g, '').trim();
 
       // 3. Untuk kata kerja separable yang menggunakan "|" sebagai pemisah prefix
       //    Contoh: "an|passen" → "anpassen", "auf|fallen" → "auffallen"
       clean = clean.replace(/\|/g, '');
 
-      // 4. Hapus penanda gramatikal: "+ A.", "+ D.", "+ Akk", "+ Dat"
-      clean = clean.replace(/\+\s*(A\.|D\.|Akk\.?|Dat\.?|Akkusativ|Dativ)\b/gi, '').trim();
+      // 4. Hapus SEMUA penanda gramatikal setelah tanda "+":
+      //    "+ A.", "+ D.", "+ Akk", "+ Dat", "+ Genitiv", "+ Gen.", "+ Nom."
+      clean = clean.replace(/\+\s*\w+\.?/gi, '').trim();
 
       // 5. Ambil bagian sebelum koma (potong plural suffix seperti ", -n", ", -s", ", -")
       clean = clean.split(',')[0].trim();
 
-      // 6. Bersihkan spasi ganda
+      // 6. Hapus ellipsis (titik tiga "...") — biasa dipakai untuk template kalimat
+      clean = clean.replace(/\.{2,}/g, '').trim();
+
+      // 7. Hapus ", weil ..." / ", dass ..." / ", obwohl ..." di akhir kalimat ungkapan
+      //    (Sudah ter-handle oleh step 5 via koma, tapi berjaga-jaga)
+
+      // 8. Bersihkan titik di akhir kata tunggal (bukan kalimat/ungkapan panjang)
+      //    Jaga titik untuk ungkapan/kalimat penuh (>3 kata) agar intonasi TTS natural
+      const wordCount = clean.split(/\s+/).filter(w => w.length > 0).length;
+      if (wordCount <= 3) {
+        clean = clean.replace(/\.\s*$/, '').trim();
+      }
+
+      // 9. Bersihkan spasi ganda
       clean = clean.replace(/\s+/g, ' ').trim();
 
       return clean;

@@ -3721,6 +3721,9 @@
     }
 
     function renderFlashcard() {
+      // Hentikan audio kartu sebelumnya sebelum render kartu baru
+      stopCurrentAudio();
+
       if (!flashcardList || flashcardList.length === 0) {
         // Empty state
         document.getElementById('fc-progress-text').textContent = '0 / 0 Kartu';
@@ -4730,6 +4733,9 @@
         return;
       }
 
+      // Hentikan audio kartu sebelumnya sebelum memuat kartu baru
+      stopCurrentAudio();
+
       const activeCard = sessionQueue[currentSessionIndex];
       const nextCard = sessionQueue[currentSessionIndex + 1];
       triggerTTSPrefetchForActiveCard(activeCard, nextCard);
@@ -5104,6 +5110,18 @@
     // ==========================================
     // TTS SPEECH (OPENAI & LOCAL FALLBACK)
     // ==========================================
+    function stopCurrentAudio() {
+      // Hentikan semua audio yang sedang berjalan (OpenAI TTS maupun Web Speech)
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
     async function speakGermanWord() {
       const activeCard = sessionQueue[currentSessionIndex];
       if (!activeCard) return;

@@ -4950,14 +4950,26 @@
     function getTTSGermanWord(word) {
       if (!word) return '';
       let clean = word.trim();
-      // 1. Hapus teks di dalam tanda kurung terlebih dahulu
+
+      // 1. Hapus tag level dalam tanda kurung kotak: [B1], [C1], [B2] dst.
+      clean = clean.replace(/\[[^\]]*\]/g, '').trim();
+
+      // 2. Hapus teks di dalam tanda kurung biasa: (Pl.), (sich), (hebt ab, hob ab...)
       clean = clean.replace(/\([^)]*\)/g, '').trim();
-      // 2. Ambil bagian sebelum koma (untuk memotong plural suffix seperti ", -n" atau ", -s")
+
+      // 3. Untuk kata kerja separable yang menggunakan "|" sebagai pemisah prefix
+      //    Contoh: "an|passen" → "anpassen", "auf|fallen" → "auffallen"
+      clean = clean.replace(/\|/g, '');
+
+      // 4. Hapus penanda gramatikal: "+ A.", "+ D.", "+ Akk", "+ Dat"
+      clean = clean.replace(/\+\s*(A\.|D\.|Akk\.?|Dat\.?|Akkusativ|Dativ)\b/gi, '').trim();
+
+      // 5. Ambil bagian sebelum koma (potong plural suffix seperti ", -n", ", -s", ", -")
       clean = clean.split(',')[0].trim();
-      // 3. Hapus penanda gramatikal seperti "+ A", "+ D", "+ Akk", "+ Dat"
-      clean = clean.replace(/\+\s*(A|D|Akk|Dat|Akkusativ|Dativ)\b/gi, '').trim();
-      // 4. Bersihkan spasi ganda
+
+      // 6. Bersihkan spasi ganda
       clean = clean.replace(/\s+/g, ' ').trim();
+
       return clean;
     }
 

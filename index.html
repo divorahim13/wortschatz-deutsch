@@ -3890,7 +3890,15 @@
         ratingGroup.classList.add('visible');
         // Auto-speak when flipping to back
         if (fcAutoSpeakEnabled) {
-          setTimeout(() => speakFlashcardWord(), 500); // Wait for flip animation
+          setTimeout(() => {
+            speakFlashcardWord();
+            setTimeout(() => {
+              // Hanya putar jika flashcard masih terbuka (tidak ditutup/next)
+              if (flashcardFlipped) {
+                speakFlashcardSentence();
+              }
+            }, 2000); // Jeda natural 2 detik
+          }, 500); // Wait for flip animation
         }
       } else {
         container.classList.remove('flipped');
@@ -5076,6 +5084,12 @@
       // Auto play pronunciation on flip
       setTimeout(() => {
         speakGermanWord();
+        setTimeout(() => {
+          // Hanya putar jika kartu masih dalam posisi terbuka
+          if (isFlipped) {
+            speakGermanSentence();
+          }
+        }, 2000); // Jeda natural 2 detik
       }, 250);
     }
 

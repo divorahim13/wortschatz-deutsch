@@ -5088,13 +5088,29 @@
       }
     }
 
+    function speakLocalSentence(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        
+        const voices = window.speechSynthesis.getVoices();
+        const deVoice = voices.find(voice => voice.lang.startsWith('de') || voice.lang === 'de-DE');
+        if (deVoice) utterance.voice = deVoice;
+        
+        window.speechSynthesis.speak(utterance);
+      } else {
+        showToast("Browser Anda tidak mendukung Web Speech API lokal.");
+      }
+    }
+
     async function speakWithElevenLabs(text) {
       if (!text) return;
       const apiKey = localStorage.getItem('elevenlabs_api_key') || 'sk_ff24b6416671502c64acdc9f31a35d0ee83ecb7b3266ec0c';
       const voiceId = localStorage.getItem('elevenlabs_voice_id') || 'TUKJhQmz3RPYBNAgC5A1';
       
       if (!apiKey) {
-        showToast("ElevenLabs API Key belum diatur.");
+        speakLocalSentence(text);
         return;
       }
       
@@ -5132,7 +5148,12 @@
         if (!response.ok) {
           const errText = await response.text();
           console.error("ElevenLabs API error:", errText);
-          throw new Error("HTTP error " + response.status);
+          
+          let errMsg = "Gagal menghubungi ElevenLabs.";
+          if (errText.includes("paid_plan_required") || errText.includes("payment_required")) {
+            errMsg = "ElevenLabs Free Tier tidak diizinkan menggunakan library voice lewat API.";
+          }
+          throw new Error(errMsg);
         }
 
         const blob = await response.blob();
@@ -5141,7 +5162,9 @@
         currentAudio.play();
       } catch (e) {
         console.error("speakWithElevenLabs error:", e);
-        showToast("Gagal memutar audio dari ElevenLabs");
+        showToast(e.message || "Gagal memutar audio dari ElevenLabs");
+        showToast("Memutar suara dengan Web Speech API lokal...");
+        speakLocalSentence(text);
       }
     }
 

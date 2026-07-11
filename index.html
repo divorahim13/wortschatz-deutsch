@@ -2339,6 +2339,16 @@
               <span class="fc-toggle-slider"></span>
             </label>
           </div>
+          <div class="fc-setting-row">
+            <label for="fc-autoslide-toggle" style="display: flex; align-items: center; gap: 6px;">
+              <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Auto-Slide (Loop otomatis)
+            </label>
+            <label class="fc-toggle-switch">
+              <input type="checkbox" id="fc-autoslide-toggle" onchange="toggleAutoSlide()">
+              <span class="fc-toggle-slider"></span>
+            </label>
+          </div>
         </div>
 
         <!-- Mark All Button -->
@@ -3208,6 +3218,8 @@
     let fcAutoSpeakEnabled = true; // auto-play TTS on flip
     let fcShuffleEnabled = false;  // shuffle deck order
     let fcTodayRatedCount = 0;     // rated cards today (session)
+    let fcAutoSlideEnabled = false; // auto-slide mode (loop)
+    let fcAutoSlideTimer = null;    // timeout handle for auto-slide next
 
     // ==========================================
     // ONLOAD INITIALIZATION & ONE-TIME API KEY
@@ -3485,6 +3497,7 @@
       fcAutoSpeakEnabled = document.getElementById('fc-autospeak-toggle').checked;
       localStorage.setItem('fc_countdown', fcCountdownDuration);
       localStorage.setItem('fc_autospeak', fcAutoSpeakEnabled ? '1' : '0');
+      localStorage.setItem('fc_autoslide', fcAutoSlideEnabled ? '1' : '0');
     }
 
     function loadFcSettings() {
@@ -3505,6 +3518,12 @@
         fcShuffleEnabled = (savedShuffle === '1');
         const toggle = document.getElementById('fc-shuffle-toggle');
         if (toggle) toggle.checked = fcShuffleEnabled;
+      }
+      const savedAutoSlide = localStorage.getItem('fc_autoslide');
+      if (savedAutoSlide !== null) {
+        fcAutoSlideEnabled = (savedAutoSlide === '1');
+        const toggle = document.getElementById('fc-autoslide-toggle');
+        if (toggle) toggle.checked = fcAutoSlideEnabled;
       }
       // Count today's unique rated cards from reviewHistory
       const todayStr = getTodayString();
@@ -3538,6 +3557,10 @@
         fcCountdownRemaining--;
         if (fcCountdownRemaining <= 0) {
           stopCountdown();
+          // Auto-slide: otomatis flip kartu saat countdown selesai
+          if (fcAutoSlideEnabled && !flashcardFlipped) {
+            flipFlashcard(true);
+          }
         } else {
           numEl.textContent = fcCountdownRemaining;
         }
@@ -3556,6 +3579,10 @@
       if (container) container.style.pointerEvents = '';
     }
 
+    // Saat countdown selesai dan auto-slide aktif, otomatis flip
+    // Patch: override behavior stopCountdown yang dipanggil dari dalam setInterval
+    // Kita perlu hook di startCountdown saat countdown habis
+    
     // ==========================================
     // FLASHCARD PROGRESS BAR
     // ==========================================
@@ -3620,6 +3647,10 @@
     // ==========================================
     function rateFlashcard(grade) {
       if (!flashcardList || flashcardList.length === 0) return;
+      
+      // Matikan auto-slide saat interaksi manual rating
+      disableAutoSlide();
+
       if (!flashcardFlipped) return; // Must be showing back
 
       const activeCard = flashcardList[flashcardIndex];
@@ -3699,6 +3730,10 @@
     // ==========================================
     function skipFlashcard() {
       if (!flashcardList || flashcardList.length === 0) return;
+      
+      // Matikan auto-slide saat interaksi manual skip/next
+      disableAutoSlide();
+
       stopCountdown();
       document.getElementById('fc-rating-group').classList.remove('visible');
       flashcardIndex = (flashcardIndex + 1) % flashcardList.length;
@@ -3885,8 +3920,14 @@
       startCountdown();
     }
 
-    function flipFlashcard() {
+    function flipFlashcard(isAuto = false) {
       if (!flashcardList || flashcardList.length === 0) return;
+      
+      // Jika dipicu secara manual, matikan auto-slide
+      if (!isAuto) {
+        disableAutoSlide();
+      }
+
       if (fcCountdownActive) {
         // Show a brief shake/hint
         const overlay = document.getElementById('fc-countdown-overlay');
@@ -3915,23 +3956,121 @@
               if (flashcardFlipped) {
                 speakFlashcardSentence();
               }
+              // Auto-slide: jadwalkan pindah ke kartu berikutnya setelah kalimat selesai
+              if (fcAutoSlideEnabled && flashcardFlipped) {
+                scheduleAutoSlideNext();
+              }
             }, 2000); // Jeda natural 2 detik
           }, 500); // Wait for flip animation
+        } else if (fcAutoSlideEnabled) {
+          // Auto-slide tanpa auto-speak: langsung jadwalkan skip setelah jeda baca
+          scheduleAutoSlideNext();
         }
       } else {
         container.classList.remove('flipped');
         ratingGroup.classList.remove('visible');
-        // Restart countdown when flipping back to front
+        // Restart countdown ketika diputar kembali ke depan secara manual
+        if (!isAuto) {
+          disableAutoSlide();
+        }
         startCountdown();
       }
     }
 
-    function nextFlashcard() {
-      skipFlashcard();
+    // ==========================================
+    // AUTO-SLIDE ENGINE
+    // ==========================================
+    function disableAutoSlide() {
+      if (fcAutoSlideEnabled) {
+        fcAutoSlideEnabled = false;
+        const toggle = document.getElementById('fc-autoslide-toggle');
+        if (toggle) toggle.checked = false;
+        localStorage.setItem('fc_autoslide', '0');
+        stopAutoSlide();
+        showToast('⏸️ Auto-Slide dinonaktifkan karena interaksi manual.');
+      }
+    }
+
+    function toggleAutoSlide() {
+      fcAutoSlideEnabled = document.getElementById('fc-autoslide-toggle').checked;
+      localStorage.setItem('fc_autoslide', fcAutoSlideEnabled ? '1' : '0');
+      if (fcAutoSlideEnabled) {
+        showToast('🔄 Auto-Slide aktif! Kartu akan berganti otomatis.');
+        startAutoSlide();
+      } else {
+        showToast('⏸️ Auto-Slide dimatikan.');
+        stopAutoSlide();
+      }
+    }
+
+    function startAutoSlide() {
+      if (!fcAutoSlideEnabled) return;
+      if (!flashcardList || flashcardList.length === 0) return;
+      // Jika kartu sudah terbuka (flipped), langsung jadwalkan next
+      if (flashcardFlipped) {
+        scheduleAutoSlideNext();
+      } else {
+        // Jika kartu masih di depan, tunggu countdown selesai lalu flip
+        // Countdown handler sudah otomatis membuka flip via startCountdown
+        // Jika countdown = 0, langsung flip
+        if (fcCountdownDuration <= 0) {
+          flipFlashcard(true);
+        }
+        // Jika ada countdown, biarkan countdown handler yang flip
+      }
+    }
+
+    function stopAutoSlide() {
+      if (fcAutoSlideTimer) {
+        clearTimeout(fcAutoSlideTimer);
+        fcAutoSlideTimer = null;
+      }
+    }
+
+    function scheduleAutoSlideNext() {
+      stopAutoSlide(); // Clear existing
+      if (!fcAutoSlideEnabled) return;
+      // Tunggu 3 detik setelah kalimat/tampilan selesai, lalu pindah ke kartu berikutnya
+      fcAutoSlideTimer = setTimeout(() => {
+        if (!fcAutoSlideEnabled) return;
+        autoSlideNext();
+      }, 3000);
+    }
+
+    function autoSlideNext() {
+      if (!fcAutoSlideEnabled) return;
+      if (!flashcardList || flashcardList.length === 0) return;
+
+      // Pindah ke kartu berikutnya (loop)
+      stopCountdown();
+      clearAutoPlayTimeouts();
+      stopCurrentAudio();
+      document.getElementById('fc-rating-group').classList.remove('visible');
+      flashcardIndex = (flashcardIndex + 1) % flashcardList.length;
+      flashcardFlipped = false;
+      document.getElementById('free-flashcard-container').classList.remove('flipped');
+      renderFlashcard();
+
+      // Setelah render kartu baru di sisi depan:
+      // Jika countdown aktif, tunggu countdown selesai (countdown handler akan flip)
+      // Jika tidak ada countdown, langsung flip setelah jeda singkat untuk baca soal
+      if (fcCountdownDuration <= 0) {
+        fcAutoSlideTimer = setTimeout(() => {
+          if (fcAutoSlideEnabled) flipFlashcard(true);
+        }, 2000); // Jeda 2 detik untuk lihat sisi depan
+      }
+      // Jika countdown > 0, stopCountdown di atas sudah clear, kita perlu restart
+      else {
+        startCountdown();
+      }
     }
 
     function prevFlashcard() {
       if (!flashcardList || flashcardList.length === 0) return;
+      
+      // Matikan auto-slide saat interaksi manual prev
+      disableAutoSlide();
+
       stopCountdown();
       document.getElementById('fc-rating-group').classList.remove('visible');
       flashcardIndex = (flashcardIndex - 1 + flashcardList.length) % flashcardList.length;

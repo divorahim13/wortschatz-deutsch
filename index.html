@@ -4300,7 +4300,7 @@
       if (!flashcardList || flashcardList.length === 0) return;
       const activeCard = flashcardList[flashcardIndex];
       if (!activeCard) return;
-      const cleanWord = getCleanTargetWord(activeCard.deutsch);
+      const cleanWord = getTTSGermanWord(activeCard.deutsch);
       await speakWithOpenAITTS(cleanWord);
     }
 
@@ -4947,6 +4947,20 @@
       return clean;
     }
 
+    function getTTSGermanWord(word) {
+      if (!word) return '';
+      let clean = word.trim();
+      // 1. Hapus teks di dalam tanda kurung terlebih dahulu
+      clean = clean.replace(/\([^)]*\)/g, '').trim();
+      // 2. Ambil bagian sebelum koma (untuk memotong plural suffix seperti ", -n" atau ", -s")
+      clean = clean.split(',')[0].trim();
+      // 3. Hapus penanda gramatikal seperti "+ A", "+ D", "+ Akk", "+ Dat"
+      clean = clean.replace(/\+\s*(A|D|Akk|Dat|Akkusativ|Dativ)\b/gi, '').trim();
+      // 4. Bersihkan spasi ganda
+      clean = clean.replace(/\s+/g, ' ').trim();
+      return clean;
+    }
+
     function createClozeSentence(sentence, targetWord) {
       let cleanSentence = sentence.split('|')[0].trim();
       
@@ -5081,7 +5095,7 @@
     async function speakGermanWord() {
       const activeCard = sessionQueue[currentSessionIndex];
       if (!activeCard) return;
-      const cleanWord = getCleanTargetWord(activeCard.deutsch);
+      const cleanWord = getTTSGermanWord(activeCard.deutsch);
       await speakWithOpenAITTS(cleanWord);
     }
 
@@ -5213,7 +5227,7 @@
     function triggerTTSPrefetchForActiveCard(activeCard, nextCard) {
       if (!activeCard) return;
 
-      const currentWord = getCleanTargetWord(activeCard.deutsch);
+      const currentWord = getTTSGermanWord(activeCard.deutsch);
       const currentSentence = activeCard.sentence ? activeCard.sentence.split('|')[0].replace(/\*/g, '').trim() : '';
       
       prefetchOpenAITTS(currentWord);
@@ -5222,7 +5236,7 @@
       }
 
       if (nextCard) {
-        const nextWord = getCleanTargetWord(nextCard.deutsch);
+        const nextWord = getTTSGermanWord(nextCard.deutsch);
         const nextSentence = nextCard.sentence ? nextCard.sentence.split('|')[0].replace(/\*/g, '').trim() : '';
         prefetchOpenAITTS(nextWord);
         if (nextSentence) {

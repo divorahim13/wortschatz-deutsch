@@ -3180,6 +3180,21 @@
     // Audio TTS playback track
     let currentAudio = null;
 
+    // Timeout antrean auto-play TTS
+    let fcAutoPlayWordTimeout = null;
+    let fcAutoPlaySentenceTimeout = null;
+
+    function clearAutoPlayTimeouts() {
+      if (fcAutoPlayWordTimeout) {
+        clearTimeout(fcAutoPlayWordTimeout);
+        fcAutoPlayWordTimeout = null;
+      }
+      if (fcAutoPlaySentenceTimeout) {
+        clearTimeout(fcAutoPlaySentenceTimeout);
+        fcAutoPlaySentenceTimeout = null;
+      }
+    }
+
     // Flashcard State
     let flashcardList = [];
     let flashcardIndex = 0;
@@ -3885,14 +3900,17 @@
       const container = document.getElementById('free-flashcard-container');
       const ratingGroup = document.getElementById('fc-rating-group');
 
+      // Batalkan antrean auto-play dari kartu sebelumnya/sebelumnya ter-flip
+      clearAutoPlayTimeouts();
+
       if (flashcardFlipped) {
         container.classList.add('flipped');
         ratingGroup.classList.add('visible');
-        // Auto-speak when flipping to back
+        // Auto-speak ketika kartu dibalik ke belakang
         if (fcAutoSpeakEnabled) {
-          setTimeout(() => {
+          fcAutoPlayWordTimeout = setTimeout(() => {
             speakFlashcardWord();
-            setTimeout(() => {
+            fcAutoPlaySentenceTimeout = setTimeout(() => {
               // Hanya putar jika flashcard masih terbuka (tidak ditutup/next)
               if (flashcardFlipped) {
                 speakFlashcardSentence();
@@ -4308,6 +4326,7 @@
     }
 
     async function speakFlashcardWord() {
+      clearAutoPlayTimeouts();
       if (!flashcardList || flashcardList.length === 0) return;
       const activeCard = flashcardList[flashcardIndex];
       if (!activeCard) return;
@@ -5081,10 +5100,13 @@
       document.getElementById('flashcard-container').classList.add('flipped');
       document.getElementById('answer-input').disabled = true;
       
+      // Batalkan antrean auto-play yang sedang berjalan
+      clearAutoPlayTimeouts();
+
       // Auto play pronunciation on flip
-      setTimeout(() => {
+      fcAutoPlayWordTimeout = setTimeout(() => {
         speakGermanWord();
-        setTimeout(() => {
+        fcAutoPlaySentenceTimeout = setTimeout(() => {
           // Hanya putar jika kartu masih dalam posisi terbuka
           if (isFlipped) {
             speakGermanSentence();
@@ -5100,6 +5122,9 @@
       const input = document.getElementById('answer-input');
       input.disabled = false;
       input.focus();
+      
+      // Batalkan antrean auto-play agar tidak berbunyi ketika kartu sudah ditutup
+      clearAutoPlayTimeouts();
     }
 
     function handleCardClick(event) {
@@ -5125,6 +5150,9 @@
     // TTS SPEECH (OPENAI & LOCAL FALLBACK)
     // ==========================================
     function stopCurrentAudio() {
+      // Batalkan semua antrean timeout auto-play
+      clearAutoPlayTimeouts();
+
       // Hentikan semua audio yang sedang berjalan (OpenAI TTS maupun Web Speech)
       if (currentAudio) {
         currentAudio.pause();
@@ -5137,6 +5165,7 @@
     }
 
     async function speakGermanWord() {
+      clearAutoPlayTimeouts();
       const activeCard = sessionQueue[currentSessionIndex];
       if (!activeCard) return;
       const cleanWord = getTTSGermanWord(activeCard.deutsch);
@@ -5369,6 +5398,7 @@
     }
 
     async function speakGermanSentence() {
+      clearAutoPlayTimeouts();
       const activeCard = sessionQueue[currentSessionIndex];
       if (!activeCard || !activeCard.sentence) return;
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
@@ -5376,6 +5406,7 @@
     }
 
     async function speakFlashcardSentence() {
+      clearAutoPlayTimeouts();
       if (!flashcardList || flashcardList.length === 0) return;
       const activeCard = flashcardList[flashcardIndex];
       if (!activeCard || !activeCard.sentence) return;

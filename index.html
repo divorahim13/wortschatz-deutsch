@@ -3954,11 +3954,12 @@
             fcAutoPlaySentenceTimeout = setTimeout(() => {
               // Hanya putar jika flashcard masih terbuka (tidak ditutup/next)
               if (flashcardFlipped) {
-                speakFlashcardSentence();
-              }
-              // Auto-slide: jadwalkan pindah ke kartu berikutnya setelah kalimat selesai
-              if (fcAutoSlideEnabled && flashcardFlipped) {
-                scheduleAutoSlideNext();
+                // Mainkan kalimat, lalu pemicu slide berikutnya saat audio selesai
+                speakFlashcardSentence(() => {
+                  if (fcAutoSlideEnabled && flashcardFlipped) {
+                    scheduleAutoSlideNext();
+                  }
+                });
               }
             }, 2000); // Jeda natural 2 detik
           }, 500); // Wait for flip animation
@@ -5325,7 +5326,7 @@
       await speakWithOpenAITTS(cleanWord);
     }
 
-    function speakLocalSentence(text) {
+    function speakLocalSentence(text, onEnded = null) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
@@ -5335,9 +5336,19 @@
         const deVoice = voices.find(voice => voice.lang.startsWith('de') || voice.lang === 'de-DE');
         if (deVoice) utterance.voice = deVoice;
         
+        if (onEnded) {
+          utterance.onend = () => {
+            onEnded();
+          };
+          utterance.onerror = () => {
+            onEnded();
+          };
+        }
+        
         window.speechSynthesis.speak(utterance);
       } else {
         showToast("Browser Anda tidak mendukung Web Speech API lokal.");
+        if (onEnded) onEnded();
       }
     }
 
@@ -5504,8 +5515,11 @@
       }
     }
 
-    async function speakWithOpenAITTS(text) {
-      if (!text) return;
+    async function speakWithOpenAITTS(text, onEnded = null) {
+      if (!text) {
+        if (onEnded) onEnded();
+        return;
+      }
       const apiKey = localStorage.getItem('openai_api_key');
       
       // Hentikan web speech synthesis dan audio yang berjalan secara instan
@@ -5517,7 +5531,7 @@
       // Jika belum di-prefetch, buat Promise prefetch baru
       if (!cacheEntry) {
         if (!apiKey) {
-          speakLocalSentence(text);
+          speakLocalSentence(text, onEnded);
           return;
         }
         cacheEntry = prefetchOpenAITTS(text);
@@ -5535,18 +5549,32 @@
         // Validasi: Pastikan teks masih cocok dengan kartu aktif setelah asinkronus selesai
         if (!isTextMatchingActiveCard(text)) {
           console.log("TTS playback cancelled: Active card changed during fetch/load for:", text);
+          if (onEnded) onEnded();
           return;
         }
 
         stopCurrentAudio(); // Pastikan audio lain dihentikan sebelum mulai play
         audio.currentTime = 0;
         currentAudio = audio;
+
+        if (onEnded) {
+          audio.onended = () => {
+            // Hanya trigger callback jika audio ini masih merupakan audio aktif saat ini
+            if (currentAudio === audio) {
+              onEnded();
+            }
+          };
+        } else {
+          audio.onended = null;
+        }
+
         audio.play().catch(e => {
           console.error("Error playing OpenAI audio:", e);
+          if (onEnded) onEnded();
         });
       } else {
         // Fallback jika OpenAI gagal/tidak tersedia
-        speakLocalSentence(text);
+        speakLocalSentence(text, onEnded);
       }
     }
 
@@ -5558,13 +5586,19 @@
       await speakWithOpenAITTS(cleanText);
     }
 
-    async function speakFlashcardSentence() {
+    async function speakFlashcardSentence(onEnded = null) {
       clearAutoPlayTimeouts();
-      if (!flashcardList || flashcardList.length === 0) return;
+      if (!flashcardList || flashcardList.length === 0) {
+        if (onEnded) onEnded();
+        return;
+      }
       const activeCard = flashcardList[flashcardIndex];
-      if (!activeCard || !activeCard.sentence) return;
+      if (!activeCard || !activeCard.sentence) {
+        if (onEnded) onEnded();
+        return;
+      }
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
-      await speakWithOpenAITTS(cleanText);
+      await speakWithOpenAITTS(cleanText, onEnded);
     }
 
     // ==========================================

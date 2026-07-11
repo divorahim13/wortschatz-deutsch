@@ -3219,7 +3219,7 @@
       }
 
       // Initialize OpenAI TTS voice
-      if (!localStorage.getItem('openai_tts_voice')) {
+      if (!localStorage.getItem('openai_tts_voice') || localStorage.getItem('openai_tts_voice') === 'alloy') {
         localStorage.setItem('openai_tts_voice', 'nova');
       }
 

@@ -3205,6 +3205,19 @@
     // Audio TTS playback track
     let currentAudio = null;
 
+    let systemVoices = [];
+    function loadSystemVoices() {
+      if ('speechSynthesis' in window) {
+        systemVoices = window.speechSynthesis.getVoices();
+      }
+    }
+    if ('speechSynthesis' in window) {
+      loadSystemVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = loadSystemVoices;
+      }
+    }
+
     // Timeout antrean auto-play TTS
     let fcAutoPlayWordTimeout = null;
     let fcAutoPlaySentenceTimeout = null;
@@ -4018,6 +4031,9 @@
       } else {
         container.classList.remove('flipped');
         ratingGroup.classList.remove('visible');
+        // Hentikan audio secara instan ketika kartu ditutup ke depan secara manual
+        stopCurrentAudio();
+        
         // Restart countdown ketika diputar kembali ke depan secara manual
         if (!isAuto) {
           disableAutoSlide();
@@ -4145,6 +4161,11 @@
         
         item.onclick = (e) => {
           if (e.target.closest('.check-toggle')) return;
+          
+          // Matikan auto-slide dan countdown saat berpindah kartu secara manual via grid
+          disableAutoSlide();
+          stopCountdown();
+          
           flashcardIndex = index;
           flashcardFlipped = false;
           document.getElementById('free-flashcard-container').classList.remove('flipped');
@@ -5378,8 +5399,8 @@
       input.disabled = false;
       input.focus();
       
-      // Batalkan antrean auto-play agar tidak berbunyi ketika kartu sudah ditutup
-      clearAutoPlayTimeouts();
+      // Hentikan audio yang sedang berjalan secara instan agar tidak bocor ke depan
+      stopCurrentAudio();
     }
 
     function handleCardClick(event) {
@@ -5440,8 +5461,11 @@
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'de-DE';
         
-        const voices = window.speechSynthesis.getVoices();
-        const deVoice = voices.find(voice => voice.lang.startsWith('de') || voice.lang === 'de-DE');
+        if (systemVoices.length === 0) {
+          systemVoices = window.speechSynthesis.getVoices();
+        }
+        
+        const deVoice = systemVoices.find(voice => voice.lang.startsWith('de') || voice.lang === 'de-DE');
         if (deVoice) {
           utterance.voice = deVoice;
         } else {

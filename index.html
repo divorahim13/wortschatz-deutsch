@@ -2364,6 +2364,16 @@
               <span class="fc-toggle-slider"></span>
             </label>
           </div>
+          <div class="fc-setting-row">
+            <label for="fc-autoslide-indo-toggle" style="display: flex; align-items: center; gap: 6px;">
+              <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Auto-Slide Loop + ID (Indonesia)
+            </label>
+            <label class="fc-toggle-switch">
+              <input type="checkbox" id="fc-autoslide-indo-toggle">
+              <span class="fc-toggle-slider"></span>
+            </label>
+          </div>
         </div>
 
         <!-- Mark All Button -->
@@ -2698,27 +2708,7 @@
             <input type="text" id="settings-elevenlabs-voice" class="input-field" style="text-align: left; font-family: monospace;" placeholder="TUKJhQmz3RPYBNAgC5A1">
           </div>
 
-          <div>
-            <label for="settings-word-tts-engine" style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Mesin Pengucapan Kosakata (Wortschatz)</label>
-            <select id="settings-word-tts-engine" class="input-field" style="text-align: left; background-color: var(--bg-secondary); border-color: var(--border-muted); color: var(--text-primary); cursor: pointer;">
-              <option value="local" selected>Suara Sistem Perangkat (Web Speech API) - Direkomendasikan</option>
-              <option value="openai">OpenAI TTS API</option>
-            </select>
-            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
-              💡 Sangat direkomendasikan menggunakan <strong>Suara Sistem Perangkat</strong> untuk kosakata agar aksen Jerman <code>de-DE</code> dilafalkan secara murni dan tidak salah aksen Inggris oleh OpenAI.
-            </div>
-          </div>
 
-          <div>
-            <label for="settings-sentence-tts-engine" style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Mesin Pengucapan Contoh Kalimat (Konteks)</label>
-            <select id="settings-sentence-tts-engine" class="input-field" style="text-align: left; background-color: var(--bg-secondary); border-color: var(--border-muted); color: var(--text-primary); cursor: pointer;">
-              <option value="openai" selected>OpenAI TTS API - Direkomendasikan</option>
-              <option value="local">Suara Sistem Perangkat (Web Speech API)</option>
-            </select>
-            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
-              💡 Sangat direkomendasikan menggunakan <strong>OpenAI TTS API</strong> untuk kalimat panjang agar intonasi terdengar natural, ekspresif, dan manusiawi.
-            </div>
-          </div>
 
           <button class="btn" style="margin-top: 10px;" onclick="saveSettings()">
             <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
@@ -3353,11 +3343,7 @@
       const storedElevenVoice = localStorage.getItem('elevenlabs_voice_id') || '';
       document.getElementById('settings-elevenlabs-voice').value = storedElevenVoice;
 
-      // Load TTS Engine settings
-      const storedWordEngine = localStorage.getItem('tts_word_engine') || 'local';
-      document.getElementById('settings-word-tts-engine').value = storedWordEngine;
-      const storedSentenceEngine = localStorage.getItem('tts_sentence_engine') || 'openai';
-      document.getElementById('settings-sentence-tts-engine').value = storedSentenceEngine;
+
 
       // Load GitHub Gist inputs
       const storedGistToken = localStorage.getItem('github_gist_token') || '';
@@ -4225,7 +4211,7 @@
       }
       else if (fcIndoLoopStage === 3) {
         // Step 4: Indo Sentence (Already flipped)
-        const indoSent = activeCard.sentence.includes('|') ? activeCard.sentence.split('|')[1].trim() : '';
+        const indoSent = activeCard.sentence.includes('|') ? activeCard.sentence.split('|')[1].replace(/\*/g, '').trim() : '';
         if (!indoSent) {
           fcIndoLoopStage = 4;
           runAutoSlideIndoLoop();
@@ -6140,11 +6126,7 @@
       const elevenlabsVoice = document.getElementById('settings-elevenlabs-voice').value.trim();
       localStorage.setItem('elevenlabs_voice_id', elevenlabsVoice);
       
-      const wordEngine = document.getElementById('settings-word-tts-engine').value;
-      localStorage.setItem('tts_word_engine', wordEngine);
-      
-      const sentenceEngine = document.getElementById('settings-sentence-tts-engine').value;
-      localStorage.setItem('tts_sentence_engine', sentenceEngine);
+
       
       showToast("Pengaturan berhasil disimpan!");
       updateDashboardStats();

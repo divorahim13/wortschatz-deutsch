@@ -2699,9 +2699,24 @@
           </div>
 
           <div>
-            <label style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Mesin Pengucapan (TTS)</label>
-            <div class="input-instructions" style="margin-bottom: 0; padding: 10px; font-size: 0.8rem; background-color: rgba(255, 255, 255, 0.02); border-color: var(--border-muted);">
-              🔊 Menggunakan suara lokal bawaan browser perangkat (Web Speech API) untuk kosakata, dan **OpenAI TTS API** untuk contoh kalimat (konteks).
+            <label for="settings-word-tts-engine" style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Mesin Pengucapan Kosakata (Wortschatz)</label>
+            <select id="settings-word-tts-engine" class="input-field" style="text-align: left; background-color: var(--bg-secondary); border-color: var(--border-muted); color: var(--text-primary); cursor: pointer;">
+              <option value="local" selected>Suara Sistem Perangkat (Web Speech API) - Direkomendasikan</option>
+              <option value="openai">OpenAI TTS API</option>
+            </select>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
+              💡 Sangat direkomendasikan menggunakan <strong>Suara Sistem Perangkat</strong> untuk kosakata agar aksen Jerman <code>de-DE</code> dilafalkan secara murni dan tidak salah aksen Inggris oleh OpenAI.
+            </div>
+          </div>
+
+          <div>
+            <label for="settings-sentence-tts-engine" style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Mesin Pengucapan Contoh Kalimat (Konteks)</label>
+            <select id="settings-sentence-tts-engine" class="input-field" style="text-align: left; background-color: var(--bg-secondary); border-color: var(--border-muted); color: var(--text-primary); cursor: pointer;">
+              <option value="openai" selected>OpenAI TTS API - Direkomendasikan</option>
+              <option value="local">Suara Sistem Perangkat (Web Speech API)</option>
+            </select>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
+              💡 Sangat direkomendasikan menggunakan <strong>OpenAI TTS API</strong> untuk kalimat panjang agar intonasi terdengar natural, ekspresif, dan manusiawi.
             </div>
           </div>
 
@@ -3353,6 +3368,12 @@
       document.getElementById('settings-elevenlabs-key').value = storedElevenKey;
       const storedElevenVoice = localStorage.getItem('elevenlabs_voice_id') || '';
       document.getElementById('settings-elevenlabs-voice').value = storedElevenVoice;
+
+      // Load TTS Engine settings
+      const storedWordEngine = localStorage.getItem('tts_word_engine') || 'local';
+      document.getElementById('settings-word-tts-engine').value = storedWordEngine;
+      const storedSentenceEngine = localStorage.getItem('tts_sentence_engine') || 'openai';
+      document.getElementById('settings-sentence-tts-engine').value = storedSentenceEngine;
 
       // Load GitHub Gist inputs
       const storedGistToken = localStorage.getItem('github_gist_token') || '';
@@ -4594,7 +4615,13 @@
       const activeCard = flashcardList[flashcardIndex];
       if (!activeCard) return;
       const cleanWord = getTTSGermanWord(activeCard.deutsch);
-      await speakWithOpenAITTS(cleanWord);
+      
+      const engine = localStorage.getItem('tts_word_engine') || 'local';
+      if (engine === 'openai') {
+        await speakWithOpenAITTS(cleanWord);
+      } else {
+        speakLocalSentence(cleanWord);
+      }
     }
 
     // ==========================================
@@ -5499,7 +5526,13 @@
       const activeCard = sessionQueue[currentSessionIndex];
       if (!activeCard) return;
       const cleanWord = getTTSGermanWord(activeCard.deutsch);
-      await speakWithOpenAITTS(cleanWord);
+      
+      const engine = localStorage.getItem('tts_word_engine') || 'local';
+      if (engine === 'openai') {
+        await speakWithOpenAITTS(cleanWord);
+      } else {
+        speakLocalSentence(cleanWord);
+      }
     }
 
     function speakLocalSentence(text, onEnded = null) {
@@ -5777,7 +5810,13 @@
       const activeCard = sessionQueue[currentSessionIndex];
       if (!activeCard || !activeCard.sentence) return;
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
-      await speakWithOpenAITTS(cleanText);
+      
+      const engine = localStorage.getItem('tts_sentence_engine') || 'openai';
+      if (engine === 'openai') {
+        await speakWithOpenAITTS(cleanText);
+      } else {
+        speakLocalSentence(cleanText);
+      }
     }
 
     async function speakFlashcardSentence(onEnded = null) {
@@ -5792,7 +5831,13 @@
         return;
       }
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
-      await speakWithOpenAITTS(cleanText, onEnded);
+      
+      const engine = localStorage.getItem('tts_sentence_engine') || 'openai';
+      if (engine === 'openai') {
+        await speakWithOpenAITTS(cleanText, onEnded);
+      } else {
+        speakLocalSentence(cleanText, onEnded);
+      }
     }
 
     // ==========================================
@@ -5961,6 +6006,12 @@
       
       const elevenlabsVoice = document.getElementById('settings-elevenlabs-voice').value.trim();
       localStorage.setItem('elevenlabs_voice_id', elevenlabsVoice);
+      
+      const wordEngine = document.getElementById('settings-word-tts-engine').value;
+      localStorage.setItem('tts_word_engine', wordEngine);
+      
+      const sentenceEngine = document.getElementById('settings-sentence-tts-engine').value;
+      localStorage.setItem('tts_sentence_engine', sentenceEngine);
       
       showToast("Pengaturan berhasil disimpan!");
       updateDashboardStats();

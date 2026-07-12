@@ -3419,6 +3419,9 @@
         const container = document.getElementById('free-flashcard-container');
         if (container) container.classList.remove('flipped');
         renderFlashcard();
+      } else {
+        // Matikan auto-slide jika pengguna keluar dari tab Flashcard
+        disableAutoSlide();
       }
       
       if (viewId !== 'study') {
@@ -5353,6 +5356,13 @@
     }
 
     function speakLocalSentence(text, onEnded = null) {
+      // Validasi: Pastikan teks masih cocok dengan kartu aktif sebelum memutar suara lokal
+      if (!isTextMatchingActiveCard(text)) {
+        console.log("Local TTS playback cancelled: Active card changed for:", text);
+        if (onEnded) onEnded();
+        return;
+      }
+
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
@@ -5448,8 +5458,11 @@
       if (!text) return false;
       const cleanInput = text.toLowerCase().trim();
       
+      const isStudyActive = document.getElementById('study-view')?.classList.contains('active');
+      const isFlashcardActive = document.getElementById('flashcard-view')?.classList.contains('active');
+      
       // Cek Study Mode
-      if (typeof sessionQueue !== 'undefined' && sessionQueue && sessionQueue.length > 0 && typeof currentSessionIndex !== 'undefined') {
+      if (isStudyActive && typeof sessionQueue !== 'undefined' && sessionQueue && sessionQueue.length > 0 && typeof currentSessionIndex !== 'undefined') {
         const studyActive = sessionQueue[currentSessionIndex];
         if (studyActive) {
           const studyWord = getTTSGermanWord(studyActive.deutsch).toLowerCase().trim();
@@ -5461,7 +5474,7 @@
       }
       
       // Cek Free Flashcard Mode
-      if (typeof flashcardList !== 'undefined' && flashcardList && flashcardList.length > 0 && typeof flashcardIndex !== 'undefined') {
+      if (isFlashcardActive && typeof flashcardList !== 'undefined' && flashcardList && flashcardList.length > 0 && typeof flashcardIndex !== 'undefined') {
         const fcActive = flashcardList[flashcardIndex];
         if (fcActive) {
           const fcWord = getTTSGermanWord(fcActive.deutsch).toLowerCase().trim();

@@ -5943,7 +5943,6 @@
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
       await speakWithOpenAITTS(cleanText);
     }
-    }
 
     async function speakFlashcardSentence(onEnded = null) {
       clearAutoPlayTimeouts();
@@ -5958,7 +5957,6 @@
       }
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
       await speakWithOpenAITTS(cleanText, onEnded);
-    }
     }
 
     // ==========================================

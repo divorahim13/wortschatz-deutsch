@@ -752,9 +752,24 @@
     }
 
     .highlight-word {
-      color: var(--accent-text);
+      color: var(--text-primary);
       font-weight: 600;
-      border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+      border-bottom: 2px dashed rgba(139, 92, 246, 0.4);
+    }
+    .highlight-word.highlight-der {
+      color: var(--der);
+      border-bottom: 2px solid rgba(56, 189, 248, 0.4);
+      text-shadow: 0 0 8px rgba(56, 189, 248, 0.15);
+    }
+    .highlight-word.highlight-die {
+      color: var(--die);
+      border-bottom: 2px solid rgba(248, 113, 113, 0.4);
+      text-shadow: 0 0 8px rgba(248, 113, 113, 0.15);
+    }
+    .highlight-word.highlight-das {
+      color: var(--das);
+      border-bottom: 2px solid rgba(74, 222, 128, 0.4);
+      text-shadow: 0 0 8px rgba(74, 222, 128, 0.15);
     }
 
     .blank-word {
@@ -5029,8 +5044,19 @@
     function formatSentenceHighlight(sentence, targetWord) {
       let cleanSentence = sentence.split('|')[0].trim();
       
+      // Determine article-based gender class
+      const deWordLower = targetWord.trim().toLowerCase();
+      let highlightClass = "highlight-word";
+      if (deWordLower.startsWith('der ')) {
+        highlightClass += " highlight-der";
+      } else if (deWordLower.startsWith('die ')) {
+        highlightClass += " highlight-die";
+      } else if (deWordLower.startsWith('das ')) {
+        highlightClass += " highlight-das";
+      }
+
       if (cleanSentence.includes('*')) {
-        return cleanSentence.replace(/\*([^*]+)\*/g, '<span class="highlight-word">$1</span>');
+        return cleanSentence.replace(/\*([^*]+)\*/g, `<span class="${highlightClass}">$1</span>`);
       }
 
       let cleanTarget = getCleanTargetWord(targetWord);
@@ -5039,7 +5065,7 @@
       try {
         const escaped = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
         const regex = new RegExp(`(${escaped}[a-zA-ZäöüßÄÖÜ]*)`, 'gi');
-        return cleanSentence.replace(regex, '<span class="highlight-word">$1</span>');
+        return cleanSentence.replace(regex, `<span class="${highlightClass}">$1</span>`);
       } catch (e) {
         return cleanSentence;
       }

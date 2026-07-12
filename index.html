@@ -3848,8 +3848,8 @@
         pluralEl.style.display = 'none';
       }
 
-      // Censored context sentence
-      document.getElementById('free-back-sentence').innerHTML = formatSentenceCensored(card.sentence, card.deutsch);
+      // Highlight target word in context sentence
+      document.getElementById('free-back-sentence').innerHTML = formatSentenceHighlight(card.sentence, card.deutsch);
       
       const staticTranslation = getSentenceTranslation(card.sentence);
       const translationEl = document.getElementById('free-back-sentence-translation');

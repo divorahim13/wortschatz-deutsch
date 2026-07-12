@@ -3651,6 +3651,11 @@
         fcAutoSlideIndoEnabled = this.checked;
         localStorage.setItem('fc_autoslide_indo', fcAutoSlideIndoEnabled ? '1' : '0');
         if (fcAutoSlideIndoEnabled) {
+          // Force de-id direction
+          const dirSelect = document.getElementById('flashcard-direction');
+          if (dirSelect) {
+            dirSelect.value = 'de-id';
+          }
           const normalToggle = document.getElementById('fc-autoslide-toggle');
           if (normalToggle && normalToggle.checked) {
              normalToggle.checked = false;
@@ -4165,12 +4170,13 @@
       clearIndoLoopTimeouts();
       
       if (fcIndoLoopStage === 0) {
-        // Step 1: German Word
-        // Flip to back first if not flipped
-        if (!flashcardFlipped) {
-          flashcardFlipped = true;
-          document.getElementById('free-flashcard-container').classList.add('flipped');
-          document.getElementById('fc-rating-group').classList.add('visible');
+        // Step 1: German Word (Show FRONT of card)
+        if (flashcardFlipped) {
+          flashcardFlipped = false;
+          const container = document.getElementById('free-flashcard-container');
+          if (container) container.classList.remove('flipped');
+          const ratingGroup = document.getElementById('fc-rating-group');
+          if (ratingGroup) ratingGroup.classList.remove('visible');
         }
         
         fcIndoLoopTimer = setTimeout(() => {
@@ -4183,7 +4189,15 @@
         }, 500);
       } 
       else if (fcIndoLoopStage === 1) {
-        // Step 2: Indo Word
+        // Step 2: Indo Word (Flip to BACK of card)
+        if (!flashcardFlipped) {
+          flashcardFlipped = true;
+          const container = document.getElementById('free-flashcard-container');
+          if (container) container.classList.add('flipped');
+          const ratingGroup = document.getElementById('fc-rating-group');
+          if (ratingGroup) ratingGroup.classList.add('visible');
+        }
+        
         fcIndoLoopTimer = setTimeout(() => {
           if (!fcAutoSlideIndoEnabled) return;
           speakIndonesianText(activeCard.indonesia, () => {
@@ -4194,7 +4208,7 @@
         }, 800);
       }
       else if (fcIndoLoopStage === 2) {
-        // Step 3: German Sentence
+        // Step 3: German Sentence (Already flipped)
         if (!activeCard.sentence) {
           fcIndoLoopStage = 4; // skip to next card
           runAutoSlideIndoLoop();
@@ -4210,7 +4224,7 @@
         }, 1000);
       }
       else if (fcIndoLoopStage === 3) {
-        // Step 4: Indo Sentence
+        // Step 4: Indo Sentence (Already flipped)
         const indoSent = activeCard.sentence.includes('|') ? activeCard.sentence.split('|')[1].trim() : '';
         if (!indoSent) {
           fcIndoLoopStage = 4;
@@ -4227,7 +4241,7 @@
         }, 800);
       }
       else if (fcIndoLoopStage === 4) {
-        // Step 5: Next Card
+        // Step 5: Next Card (Render FRONT of next card)
         fcIndoLoopTimer = setTimeout(() => {
           if (!fcAutoSlideIndoEnabled) return;
           fcIndoLoopStage = 0;

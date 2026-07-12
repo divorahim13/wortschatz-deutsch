@@ -4287,12 +4287,14 @@
         scheduleAutoSlideNext();
       } else {
         // Jika kartu masih di depan, tunggu countdown selesai lalu flip
-        // Countdown handler sudah otomatis membuka flip via startCountdown
-        // Jika countdown = 0, langsung flip
         if (fcCountdownDuration <= 0) {
           flipFlashcard(true);
+        } else {
+          // Jika ada countdown tapi tidak aktif, langsung flip!
+          if (!fcCountdownActive) {
+            flipFlashcard(true);
+          }
         }
-        // Jika ada countdown, biarkan countdown handler yang flip
       }
     }
 
@@ -5808,7 +5810,7 @@
       return false;
     }
 
-    async function prefetchOpenAITTS(text) {
+    async function prefetchOpenAITTS(text, lang = 'de', isWord = false) {
       if (!text) return null;
       const key = text.toLowerCase().trim();
       if (ttsAudioCache[key]) {
@@ -5818,6 +5820,15 @@
       const apiKey = localStorage.getItem('openai_api_key');
       const voice = localStorage.getItem('openai_tts_voice') || 'nova';
       if (!apiKey) return null;
+
+      let input = text;
+      if (isWord) {
+        if (lang === 'de') {
+          input = "Wort: " + text + ".";
+        } else if (lang === 'id') {
+          input = "Arti: " + text + ".";
+        }
+      }
 
       const fetchPromise = (async () => {
         try {
@@ -5829,7 +5840,7 @@
             },
             body: JSON.stringify({
               model: 'tts-1',
-              input: text,
+              input: input,
               voice: voice
             })
           });
@@ -5874,7 +5885,7 @@
       }
     }
 
-    async function speakWithOpenAITTS(text, onEnded = null) {
+    async function speakWithOpenAITTS(text, lang = 'de', isWord = false, onEnded = null) {
       if (!text) {
         if (onEnded) onEnded();
         return;
@@ -5894,7 +5905,7 @@
           if (onEnded) onEnded();
           return;
         }
-        cacheEntry = prefetchOpenAITTS(text);
+        cacheEntry = prefetchOpenAITTS(text, lang, isWord);
       }
 
       // Tunggu jika cacheEntry adalah Promise download

@@ -4779,12 +4779,7 @@
       }
       const cleanWord = getTTSGermanWord(activeCard.deutsch);
       
-      const engine = localStorage.getItem('tts_word_engine') || 'local';
-      if (engine === 'openai') {
-        await speakWithOpenAITTS(cleanWord, onEnded);
-      } else {
-        speakLocalSentence(cleanWord, onEnded);
-      }
+      speakLocalSentence(cleanWord, onEnded);
     }
 
     // ==========================================
@@ -5690,12 +5685,7 @@
       if (!activeCard) return;
       const cleanWord = getTTSGermanWord(activeCard.deutsch);
       
-      const engine = localStorage.getItem('tts_word_engine') || 'local';
-      if (engine === 'openai') {
-        await speakWithOpenAITTS(cleanWord);
-      } else {
-        speakLocalSentence(cleanWord);
-      }
+      speakLocalSentence(cleanWord);
     }
 
     function speakLocalSentence(text, onEnded = null) {

@@ -4149,12 +4149,12 @@
       }
     }
 
-    function speakIndonesianText(text, onEnded) {
+    function speakIndonesianText(text, onEnded, isWord = false) {
       if (!text) {
         if (onEnded) onEnded();
         return;
       }
-      speakWithOpenAITTS(text, onEnded);
+      speakWithOpenAITTS(text, 'id', isWord, onEnded);
     }
 
     function runAutoSlideIndoLoop() {
@@ -4190,7 +4190,7 @@
             if (!fcAutoSlideIndoEnabled) return;
             fcIndoLoopStage = 2;
             runAutoSlideIndoLoop();
-          });
+          }, true);
         }, 800);
       }
       else if (fcIndoLoopStage === 2) {
@@ -4223,7 +4223,7 @@
             if (!fcAutoSlideIndoEnabled) return;
             fcIndoLoopStage = 4;
             runAutoSlideIndoLoop();
-          });
+          }, false);
         }, 800);
       }
       else if (fcIndoLoopStage === 4) {
@@ -4758,7 +4758,7 @@
         return;
       }
       const cleanWord = getTTSGermanWord(activeCard.deutsch);
-      await speakWithOpenAITTS(cleanWord, onEnded);
+      await speakWithOpenAITTS(cleanWord, 'de', true, onEnded);
     }
 
     // ==========================================
@@ -5663,7 +5663,7 @@
       const activeCard = sessionQueue[currentSessionIndex];
       if (!activeCard) return;
       const cleanWord = getTTSGermanWord(activeCard.deutsch);
-      await speakWithOpenAITTS(cleanWord);
+      await speakWithOpenAITTS(cleanWord, 'de', true);
     }
 
     function speakLocalSentence(text, onEnded = null) {
@@ -5941,7 +5941,7 @@
       const activeCard = sessionQueue[currentSessionIndex];
       if (!activeCard || !activeCard.sentence) return;
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
-      await speakWithOpenAITTS(cleanText);
+      await speakWithOpenAITTS(cleanText, 'de', false);
     }
 
     async function speakFlashcardSentence(onEnded = null) {
@@ -5956,7 +5956,7 @@
         return;
       }
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
-      await speakWithOpenAITTS(cleanText, onEnded);
+      await speakWithOpenAITTS(cleanText, 'de', false, onEnded);
     }
 
     // ==========================================

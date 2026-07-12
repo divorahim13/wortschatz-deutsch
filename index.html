@@ -4091,18 +4091,17 @@
           // Bypass standard auto-speak because Indo loop handles it
         } else if (fcAutoSpeakEnabled) {
           fcAutoPlayWordTimeout = setTimeout(() => {
-            speakFlashcardWord();
-            fcAutoPlaySentenceTimeout = setTimeout(() => {
-              // Hanya putar jika flashcard masih terbuka (tidak ditutup/next)
-              if (flashcardFlipped) {
-                // Mainkan kalimat, lalu pemicu slide berikutnya saat audio selesai
+            speakFlashcardWord(() => {
+              if (!flashcardFlipped) return;
+              fcAutoPlaySentenceTimeout = setTimeout(() => {
+                if (!flashcardFlipped) return;
                 speakFlashcardSentence(() => {
                   if (fcAutoSlideEnabled && flashcardFlipped) {
                     scheduleAutoSlideNext();
                   }
                 });
-              }
-            }, 2000); // Jeda natural 2 detik
+              }, 1000); // Natural 1s pause between word and sentence
+            });
           }, 500); // Wait for flip animation
         } else if (fcAutoSlideEnabled) {
           // Auto-slide tanpa auto-speak: langsung jadwalkan skip setelah jeda baca
@@ -5798,7 +5797,9 @@
         if (fcActive) {
           const fcWord = getTTSGermanWord(fcActive.deutsch).toLowerCase().trim();
           const fcSent = fcActive.sentence ? fcActive.sentence.split('|')[0].replace(/\*/g, '').trim().toLowerCase().trim() : '';
-          if (cleanInput === fcWord || cleanInput === fcSent) {
+          const fcIndo = fcActive.indonesia ? fcActive.indonesia.toLowerCase().trim() : '';
+          const fcSentIndo = fcActive.sentence && fcActive.sentence.includes('|') ? fcActive.sentence.split('|')[1].replace(/\*/g, '').trim().toLowerCase().trim() : '';
+          if (cleanInput === fcWord || cleanInput === fcSent || cleanInput === fcIndo || cleanInput === fcSentIndo) {
             return true;
           }
         }

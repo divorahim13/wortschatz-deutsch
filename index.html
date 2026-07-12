@@ -4433,7 +4433,7 @@
         tr.style.borderBottom = '1px solid var(--border-muted)';
         
         tr.innerHTML = `
-          <td style="padding: 12px 14px; font-weight: 500;">${formatGermanWord(card.deutsch)}</td>
+          <td style="padding: 12px 14px; font-weight: 500;">${formatGermanWordHTML(card.deutsch)}</td>
           <td style="padding: 12px 14px; color: var(--text-secondary);">${card.indonesia}</td>
           <td style="padding: 12px 14px; text-align: center;"><span class="card-badge" style="font-size: 0.7rem; border-color: rgba(139, 92, 246, 0.2);">${card.level || 'B1'}</span></td>
           <td style="padding: 12px 14px; text-align: center; font-weight: 600;">${card.chapter || 1}</td>
@@ -4942,7 +4942,7 @@
       document.getElementById('front-category').textContent = badgeLabel;
       document.getElementById('back-category').textContent = badgeLabel;
 
-      document.getElementById('back-display').innerHTML = formatGermanWord(activeCard.deutsch);
+      document.getElementById('back-display').innerHTML = formatGermanWordHTML(activeCard.deutsch);
       document.getElementById('back-translation').textContent = activeCard.indonesia;
       document.getElementById('back-sentence').innerHTML = formatSentenceHighlight(activeCard.sentence, activeCard.deutsch);
       document.getElementById('back-sentence-translation').textContent = `"${getSentenceTranslation(activeCard.sentence)}"`;
@@ -4965,7 +4965,7 @@
         input.placeholder = "Ketik kata Jerman...";
       } else if (recallMode === 2) {
         frontPrompt.textContent = "Kata Jerman";
-        frontDisplay.innerHTML = formatGermanWord(activeCard.deutsch);
+        frontDisplay.innerHTML = formatGermanWordHTML(activeCard.deutsch);
         frontDisplay.style.fontFamily = "'Outfit', sans-serif";
         frontDisplay.style.fontSize = "2.2rem";
         input.placeholder = "Ketik arti Indonesia...";
@@ -5019,7 +5019,49 @@
     // ==========================================
     // TEXT FORMATTERS (NOUNS & HIGHLIGHTS)
     // ==========================================
+    function parseGermanWordDisplay(word) {
+      if (!word) return { main: '', extra: '' };
+      let raw = word.trim();
+      
+      // Hapus level bracket seperti [B1], [C1] dll
+      raw = raw.replace(/\[[^\]]*\]/g, '').trim();
+      
+      let extra = '';
+      // Cari isi tanda kurung biasa (seperti Pl., sich, dsb.)
+      const parenMatches = raw.match(/\([^)]*\)/g);
+      if (parenMatches) {
+        extra = parenMatches.join(' ');
+        raw = raw.replace(/\([^)]*\)/g, '').trim();
+      }
+      
+      // Cari penanda gramatikal setelah tanda plus (seperti + A., + D.)
+      const plusMatches = raw.match(/\+\s*\w+\.?/g);
+      if (plusMatches) {
+        extra = (extra ? extra + ' ' : '') + plusMatches.join(' ');
+        raw = raw.replace(/\+\s*\w+\.?/g, '').trim();
+      }
+      
+      // Hilangkan tanda pipa | pembatas separable verb
+      raw = raw.replace(/\|/g, '');
+      
+      // Bersihkan spasi ganda
+      raw = raw.replace(/\s+/g, ' ').trim();
+      extra = extra.replace(/\s+/g, ' ').trim();
+      
+      return { main: raw, extra: extra };
+    }
+
+    function formatGermanWordHTML(word) {
+      const parsed = parseGermanWordDisplay(word);
+      const formattedMain = formatGermanWord(parsed.main);
+      if (parsed.extra) {
+        return `${formattedMain} <span class="grammar-info" style="font-size: 0.8em; opacity: 0.7; font-weight: normal; margin-left: 8px;">${parsed.extra}</span>`;
+      }
+      return formattedMain;
+    }
+
     function formatGermanWord(word) {
+      if (!word) return '';
       const parts = word.trim().split(/\s+/);
       if (parts.length > 1) {
         const first = parts[0].toLowerCase();
@@ -5036,12 +5078,12 @@
     }
 
     function formatFlashcardGermanWord(word) {
-      let clean = word.replace(/\[\w+\]/g, '').trim();
+      let clean = word.trim();
       const commaIndex = clean.indexOf(',');
       if (commaIndex !== -1) {
         clean = clean.substring(0, commaIndex).trim();
       }
-      return formatGermanWord(clean);
+      return formatGermanWordHTML(clean);
     }
 
     function formatSentenceHighlight(sentence, targetWord) {

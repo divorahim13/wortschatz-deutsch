@@ -3641,6 +3641,7 @@
           const dirSelect = document.getElementById('flashcard-direction');
           if (dirSelect) {
             dirSelect.value = 'de-id';
+            updateFlashcardDeck();
           }
           const normalToggle = document.getElementById('fc-autoslide-toggle');
           if (normalToggle && normalToggle.checked) {
@@ -4210,20 +4211,46 @@
       }
       else if (fcIndoLoopStage === 3) {
         // Step 4: Indo Sentence (Already flipped)
-        const indoSent = activeCard.sentence.includes('|') ? activeCard.sentence.split('|')[1].replace(/\*/g, '').trim() : '';
-        if (!indoSent) {
+        let indoSent = activeCard.sentenceTranslation || '';
+        if (!indoSent && activeCard.sentence && activeCard.sentence.includes('|')) {
+          indoSent = activeCard.sentence.split('|')[1].replace(/\*/g, '').trim();
+        }
+        
+        if (indoSent) {
+          fcIndoLoopTimer = setTimeout(() => {
+            if (!fcAutoSlideIndoEnabled) return;
+            speakIndonesianText(indoSent, () => {
+              if (!fcAutoSlideIndoEnabled) return;
+              fcIndoLoopStage = 4;
+              runAutoSlideIndoLoop();
+            }, false);
+          }, 800);
+        } else if (activeCard.sentence) {
+          // If translation is not ready, fetch it on-the-fly
+          translateSentenceToId(activeCard.sentence).then(translation => {
+            activeCard.sentenceTranslation = translation;
+            if (!fcAutoSlideIndoEnabled) return;
+            
+            // Verify user hasn't already switched cards
+            const currentCard = flashcardList[flashcardIndex];
+            if (currentCard && currentCard.id === activeCard.id) {
+              speakIndonesianText(translation, () => {
+                if (!fcAutoSlideIndoEnabled) return;
+                fcIndoLoopStage = 4;
+                runAutoSlideIndoLoop();
+              }, false);
+            }
+          }).catch(err => {
+            console.error("Translation failed in loop:", err);
+            if (fcAutoSlideIndoEnabled) {
+              fcIndoLoopStage = 4;
+              runAutoSlideIndoLoop();
+            }
+          });
+        } else {
           fcIndoLoopStage = 4;
           runAutoSlideIndoLoop();
-          return;
         }
-        fcIndoLoopTimer = setTimeout(() => {
-          if (!fcAutoSlideIndoEnabled) return;
-          speakIndonesianText(indoSent, () => {
-            if (!fcAutoSlideIndoEnabled) return;
-            fcIndoLoopStage = 4;
-            runAutoSlideIndoLoop();
-          }, false);
-        }, 800);
       }
       else if (fcIndoLoopStage === 4) {
         // Step 5: Next Card (Render FRONT of next card)
@@ -5800,7 +5827,9 @@
           const fcWord = getTTSGermanWord(fcActive.deutsch).toLowerCase().trim();
           const fcSent = fcActive.sentence ? fcActive.sentence.split('|')[0].replace(/\*/g, '').trim().toLowerCase().trim() : '';
           const fcIndo = fcActive.indonesia ? fcActive.indonesia.toLowerCase().trim() : '';
-          const fcSentIndo = fcActive.sentence && fcActive.sentence.includes('|') ? fcActive.sentence.split('|')[1].replace(/\*/g, '').trim().toLowerCase().trim() : '';
+          const fcSentIndo = fcActive.sentence && fcActive.sentence.includes('|') 
+            ? fcActive.sentence.split('|')[1].replace(/\*/g, '').trim().toLowerCase().trim() 
+            : (fcActive.sentenceTranslation ? fcActive.sentenceTranslation.toLowerCase().trim() : '');
           if (cleanInput === fcWord || cleanInput === fcSent || cleanInput === fcIndo || cleanInput === fcSentIndo) {
             return true;
           }
@@ -5822,11 +5851,14 @@
       if (!apiKey) return null;
 
       let input = text;
+      if (lang === 'id') {
+        input = input.replace(/\//g, ', ').trim();
+      }
       if (isWord) {
         if (lang === 'de') {
           input = "Wort: " + text + ".";
         } else if (lang === 'id') {
-          input = "Arti: " + text + ".";
+          input = "Arti: " + input + ".";
         }
       }
 

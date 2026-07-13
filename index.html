@@ -2208,12 +2208,8 @@
                 <div id="back-display" class="german-word" style="margin-top: 2px;">Word</div>
                 
                 <!-- Secondary translation -->
-                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 2px;">
-                  <div id="back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary);">Translation</div>
-                  <button class="speak-btn" title="Dengarkan Terjemahan Indonesia (OpenAI)" onclick="event.stopPropagation(); speakIndonesianWordStudy();" style="margin-top: 0; width: 28px; height: 28px; flex-shrink: 0; padding: 4px;">
-                    <svg viewBox="0 0 24 24" style="width: 12px !important; height: 12px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                  </button>
-                </div>
+                <!-- Secondary translation -->
+                <div id="back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2px;">Translation</div>
 
                 <!-- Checked typed answer validation -->
                 <div id="typing-validation" class="validation-badge" style="display: none; width: 100%; padding: 4px 8px; margin-top: 2px;"></div>
@@ -2222,14 +2218,9 @@
                 <div class="sentence-container" style="width: 100%; margin-top: 4px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
                   <div style="flex: 1; text-align: left;">
                     <div id="back-sentence">Ich sitze am Tisch.</div>
-                    <div style="display: flex; align-items: center; gap: 6px; margin-top: 2px;">
-                      <div id="back-sentence-translation" class="sentence-translation" style="text-align: left; margin-top: 0;">Saya duduk di meja.</div>
-                      <button class="speak-btn sentence-speak-btn" title="Dengarkan Terjemahan Kalimat (OpenAI)" onclick="event.stopPropagation(); speakIndonesianSentenceStudy();" style="margin-top: 0; width: 24px; height: 24px; flex-shrink: 0; padding: 2px;">
-                        <svg viewBox="0 0 24 24" style="width: 10px !important; height: 10px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                      </button>
-                    </div>
+                    <div id="back-sentence-translation" class="sentence-translation" style="text-align: left;">Saya duduk di meja.</div>
                   </div>
-                  <button class="speak-btn sentence-speak-btn" title="Dengarkan Contoh Kalimat Jerman (OpenAI)" onclick="event.stopPropagation(); speakGermanSentence();" style="margin-top: 0; width: 32px; height: 32px; flex-shrink: 0;">
+                  <button class="speak-btn sentence-speak-btn" title="Dengarkan Contoh Kalimat (OpenAI)" onclick="event.stopPropagation(); speakGermanSentence();" style="margin-top: 0; width: 32px; height: 32px; flex-shrink: 0;">
                     <svg viewBox="0 0 24 24" style="width: 14px !important; height: 14px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                   </button>
                 </div>
@@ -2374,16 +2365,7 @@
               <span class="fc-toggle-slider"></span>
             </label>
           </div>
-          <div class="fc-setting-row">
-            <label for="fc-autoslide-indo-toggle" style="display: flex; align-items: center; gap: 6px;">
-              <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-              Auto-Slide Loop + ID (Indonesia)
-            </label>
-            <label class="fc-toggle-switch">
-              <input type="checkbox" id="fc-autoslide-indo-toggle">
-              <span class="fc-toggle-slider"></span>
-            </label>
-          </div>
+
         </div>
 
         <!-- Mark All Button -->
@@ -2449,25 +2431,15 @@
                   <div class="card-prompt-label" style="font-size: 0.8rem; margin-top: 2px;">Jawaban</div>
                   <div id="free-back-display" class="german-word" style="margin-top: 2px;">Word</div>
                   <div id="free-back-plural" class="fc-plural-label" style="display:none;"></div>
-                  <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 2px;">
-                    <div id="free-back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary);">Translation</div>
-                    <button class="speak-btn" title="Dengarkan Terjemahan Indonesia (OpenAI)" onclick="event.stopPropagation(); speakIndonesianWord();" style="margin-top: 0; width: 28px; height: 28px; flex-shrink: 0; padding: 4px;">
-                      <svg viewBox="0 0 24 24" style="width: 12px !important; height: 12px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                    </button>
-                  </div>
+                  <div id="free-back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2px;">Translation</div>
 
                   <!-- Context Sentence with censor -->
                   <div class="sentence-container" style="width: 100%; margin-top: 4px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
                     <div style="flex: 1; text-align: left;">
                       <div id="free-back-sentence">Example Sentence</div>
-                      <div style="display: flex; align-items: center; gap: 6px; margin-top: 2px;">
-                        <div id="free-back-sentence-translation" class="sentence-translation" style="text-align: left; margin-top: 0;">Example Translation</div>
-                        <button class="speak-btn sentence-speak-btn" title="Dengarkan Terjemahan Kalimat (OpenAI)" onclick="event.stopPropagation(); speakIndonesianSentence();" style="margin-top: 0; width: 24px; height: 24px; flex-shrink: 0; padding: 2px;">
-                          <svg viewBox="0 0 24 24" style="width: 10px !important; height: 10px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                        </button>
-                      </div>
+                      <div id="free-back-sentence-translation" class="sentence-translation" style="text-align: left;">Example Translation</div>
                     </div>
-                    <button class="speak-btn sentence-speak-btn" title="Dengarkan Contoh Kalimat Jerman (OpenAI)" onclick="event.stopPropagation(); speakFlashcardSentence();" style="margin-top: 0; width: 32px; height: 32px; flex-shrink: 0;">
+                    <button class="speak-btn sentence-speak-btn" title="Dengarkan Contoh Kalimat (OpenAI)" onclick="event.stopPropagation(); speakFlashcardSentence();" style="margin-top: 0; width: 32px; height: 32px; flex-shrink: 0;">
                       <svg viewBox="0 0 24 24" style="width: 14px !important; height: 14px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                     </button>
                   </div>
@@ -3646,38 +3618,7 @@
         if (toggle) toggle.checked = fcShuffleEnabled;
       }
       
-      const savedAutoSlideIndo = localStorage.getItem('fc_autoslide_indo');
-      if (savedAutoSlideIndo !== null) {
-        fcAutoSlideIndoEnabled = (savedAutoSlideIndo === '1');
-        const toggle = document.getElementById('fc-autoslide-indo-toggle');
-        if (toggle) toggle.checked = fcAutoSlideIndoEnabled;
-      }
-      
-      document.getElementById('fc-autoslide-indo-toggle')?.addEventListener('change', function() {
-        fcAutoSlideIndoEnabled = this.checked;
-        localStorage.setItem('fc_autoslide_indo', fcAutoSlideIndoEnabled ? '1' : '0');
-        if (fcAutoSlideIndoEnabled) {
-          // Force de-id direction
-          const dirSelect = document.getElementById('flashcard-direction');
-          if (dirSelect) {
-            dirSelect.value = 'de-id';
-            updateFlashcardDeck();
-          }
-          const normalToggle = document.getElementById('fc-autoslide-toggle');
-          if (normalToggle && normalToggle.checked) {
-             normalToggle.checked = false;
-             fcAutoSlideEnabled = false;
-             localStorage.setItem('fc_autoslide', '0');
-             stopAutoSlide();
-          }
-          showToast('🔄 Auto-Slide ID aktif!');
-          fcIndoLoopStage = 0;
-          runAutoSlideIndoLoop();
-        } else {
-          showToast('⏸️ Auto-Slide ID dimatikan.');
-          clearIndoLoopTimeouts();
-        }
-      });
+
       
       const savedAutoSlide = localStorage.getItem('fc_autoslide');
       if (savedAutoSlide !== null) {
@@ -4108,9 +4049,7 @@
         container.classList.add('flipped');
         ratingGroup.classList.add('visible');
         // Auto-speak ketika kartu dibalik ke belakang
-        if (fcAutoSlideIndoEnabled) {
-          // Bypass standard auto-speak because Indo loop handles it
-        } else if (fcAutoSpeakEnabled) {
+        if (fcAutoSpeakEnabled) {
           fcAutoPlayWordTimeout = setTimeout(() => {
             speakFlashcardWord(() => {
               if (!flashcardFlipped) return;
@@ -4146,164 +4085,9 @@
     // AUTO-SLIDE ENGINE
     // ==========================================
     
-    // ==========================================
-    // AUTO-SLIDE INDO LOOP ENGINE
-    // ==========================================
-    let fcAutoSlideIndoEnabled = false;
-    let fcIndoLoopStage = 0; // 0: German Word, 1: Indo Word, 2: German Sent, 3: Indo Sent
-    let fcIndoLoopTimer = null;
 
-    function clearIndoLoopTimeouts() {
-      if (fcIndoLoopTimer) {
-        clearTimeout(fcIndoLoopTimer);
-        fcIndoLoopTimer = null;
-      }
-    }
-
-    function speakIndonesianText(text, onEnded, isWord = false) {
-      if (!text) {
-        if (onEnded) onEnded();
-        return;
-      }
-      speakWithOpenAITTS(text, 'id', isWord, onEnded);
-    }
-
-    function runAutoSlideIndoLoop() {
-      if (!fcAutoSlideIndoEnabled) return;
-      if (!flashcardList || flashcardList.length === 0) return;
-      
-      const activeCard = flashcardList[flashcardIndex];
-      clearIndoLoopTimeouts();
-      
-      if (fcIndoLoopStage === 0) {
-        // Step 1: German Word (Show FRONT of card)
-        if (flashcardFlipped) {
-          flashcardFlipped = false;
-          const container = document.getElementById('free-flashcard-container');
-          if (container) container.classList.remove('flipped');
-          const ratingGroup = document.getElementById('fc-rating-group');
-          if (ratingGroup) ratingGroup.classList.remove('visible');
-        }
-        
-        fcIndoLoopTimer = setTimeout(() => {
-          if (!fcAutoSlideIndoEnabled) return;
-          speakFlashcardWord(() => {
-            if (!fcAutoSlideIndoEnabled) return;
-            fcIndoLoopStage = 1;
-            runAutoSlideIndoLoop();
-          });
-        }, 500);
-      } 
-      else if (fcIndoLoopStage === 1) {
-        // Step 2: Indo Word (Flip to BACK of card)
-        if (!flashcardFlipped) {
-          flashcardFlipped = true;
-          const container = document.getElementById('free-flashcard-container');
-          if (container) container.classList.add('flipped');
-          const ratingGroup = document.getElementById('fc-rating-group');
-          if (ratingGroup) ratingGroup.classList.add('visible');
-        }
-        
-        fcIndoLoopTimer = setTimeout(() => {
-          if (!fcAutoSlideIndoEnabled) return;
-          speakIndonesianText(activeCard.indonesia, () => {
-            if (!fcAutoSlideIndoEnabled) return;
-            fcIndoLoopStage = 2;
-            runAutoSlideIndoLoop();
-          }, true);
-        }, 800);
-      }
-      else if (fcIndoLoopStage === 2) {
-        // Step 3: German Sentence (Already flipped)
-        if (!activeCard.sentence) {
-          fcIndoLoopStage = 4; // skip to next card
-          runAutoSlideIndoLoop();
-          return;
-        }
-        fcIndoLoopTimer = setTimeout(() => {
-          if (!fcAutoSlideIndoEnabled) return;
-          speakFlashcardSentence(() => {
-            if (!fcAutoSlideIndoEnabled) return;
-            fcIndoLoopStage = 3;
-            runAutoSlideIndoLoop();
-          });
-        }, 1000);
-      }
-      else if (fcIndoLoopStage === 3) {
-        // Step 4: Indo Sentence (Already flipped)
-        let indoSent = activeCard.sentenceTranslation || '';
-        if (!indoSent && activeCard.sentence && activeCard.sentence.includes('|')) {
-          indoSent = activeCard.sentence.split('|')[1].replace(/\*/g, '').trim();
-        }
-        
-        if (indoSent) {
-          fcIndoLoopTimer = setTimeout(() => {
-            if (!fcAutoSlideIndoEnabled) return;
-            speakIndonesianText(indoSent, () => {
-              if (!fcAutoSlideIndoEnabled) return;
-              fcIndoLoopStage = 4;
-              runAutoSlideIndoLoop();
-            }, false);
-          }, 800);
-        } else if (activeCard.sentence) {
-          // If translation is not ready, fetch it on-the-fly
-          translateSentenceToId(activeCard.sentence).then(translation => {
-            activeCard.sentenceTranslation = translation;
-            if (!fcAutoSlideIndoEnabled) return;
-            
-            // Verify user hasn't already switched cards
-            const currentCard = flashcardList[flashcardIndex];
-            if (currentCard && currentCard.id === activeCard.id) {
-              speakIndonesianText(translation, () => {
-                if (!fcAutoSlideIndoEnabled) return;
-                fcIndoLoopStage = 4;
-                runAutoSlideIndoLoop();
-              }, false);
-            }
-          }).catch(err => {
-            console.error("Translation failed in loop:", err);
-            if (fcAutoSlideIndoEnabled) {
-              fcIndoLoopStage = 4;
-              runAutoSlideIndoLoop();
-            }
-          });
-        } else {
-          fcIndoLoopStage = 4;
-          runAutoSlideIndoLoop();
-        }
-      }
-      else if (fcIndoLoopStage === 4) {
-        // Step 5: Next Card (Render FRONT of next card)
-        fcIndoLoopTimer = setTimeout(() => {
-          if (!fcAutoSlideIndoEnabled) return;
-          fcIndoLoopStage = 0;
-          
-          stopCountdown();
-          clearAutoPlayTimeouts();
-          stopCurrentAudio();
-          document.getElementById('fc-rating-group').classList.remove('visible');
-          flashcardIndex = (flashcardIndex + 1) % flashcardList.length;
-          flashcardFlipped = false;
-          document.getElementById('free-flashcard-container').classList.remove('flipped');
-          renderFlashcard();
-          
-          // wait a bit then start next loop
-          setTimeout(() => {
-             if (fcAutoSlideIndoEnabled) runAutoSlideIndoLoop();
-          }, 1000);
-        }, 1500); // pause before next card
-      }
-    }
 
     function disableAutoSlide() {
-      if (fcAutoSlideIndoEnabled) {
-        fcAutoSlideIndoEnabled = false;
-        const toggle = document.getElementById('fc-autoslide-indo-toggle');
-        if (toggle) toggle.checked = false;
-        localStorage.setItem('fc_autoslide_indo', '0');
-        clearIndoLoopTimeouts();
-        fcIndoLoopStage = 0;
-      }
       if (fcAutoSlideEnabled) {
         fcAutoSlideEnabled = false;
         const toggle = document.getElementById('fc-autoslide-toggle');
@@ -4805,7 +4589,7 @@
         if (onEnded) onEnded();
         return;
       }
-      const cleanWord = getTTSGermanWord(activeCard.deutsch);
+      const cleanWord = getTTSGermanWord(activeCard.deutsch, activeCard.category);
       await speakWithOpenAITTS(cleanWord, 'de', true, onEnded);
     }
 
@@ -5508,7 +5292,7 @@
       return clean;
     }
 
-    function getTTSGermanWord(word) {
+    function getTTSGermanWord(word, category = '') {
       if (!word) return '';
       let clean = word.trim();
 
@@ -5526,14 +5310,18 @@
       //    "+ A.", "+ D.", "+ Akk", "+ Dat", "+ Genitiv", "+ Gen.", "+ Nom."
       clean = clean.replace(/\+\s*\w+\.?/gi, '').trim();
 
-      // 5. Ambil bagian sebelum koma (potong plural suffix seperti ", -n", ", -s", ", -")
-      clean = clean.split(',')[0].trim();
+      // 5. Ambil bagian sebelum koma (potong plural suffix) ONLY for Nomen and Verb
+      if (category === 'Nomen' || category === 'Verb' || category === 'Verben') {
+        clean = clean.split(',')[0].trim();
+      }
 
-      // 6. Hapus ellipsis (titik tiga "...") — biasa dipakai untuk template kalimat
-      clean = clean.replace(/\.{2,}/g, '').trim();
+      // 6. Replace slashes with " oder "
+      clean = clean.replace(/\//g, ' oder ');
 
-      // 7. Hapus ", weil ..." / ", dass ..." / ", obwohl ..." di akhir kalimat ungkapan
-      //    (Sudah ter-handle oleh step 5 via koma, tapi berjaga-jaga)
+      // 7. Handle ellipsis "..." placeholders nicely
+      clean = clean.replace(/,\s*\.{3}\s*zu\s*\.{3}/g, ', etwas zu tun');
+      clean = clean.replace(/\.{3}\s*zu\s*\.{3}/g, 'etwas zu tun');
+      clean = clean.replace(/\.{3}/g, 'etwas');
 
       // 8. Bersihkan titik di akhir kata tunggal (bukan kalimat/ungkapan panjang)
       //    Jaga titik untuk ungkapan/kalimat penuh (>3 kata) agar intonasi TTS natural
@@ -5710,7 +5498,7 @@
       clearAutoPlayTimeouts();
       const activeCard = sessionQueue[currentSessionIndex];
       if (!activeCard) return;
-      const cleanWord = getTTSGermanWord(activeCard.deutsch);
+      const cleanWord = getTTSGermanWord(activeCard.deutsch, activeCard.category);
       await speakWithOpenAITTS(cleanWord, 'de', true);
     }
 
@@ -5832,7 +5620,7 @@
       if (isStudyActive && typeof sessionQueue !== 'undefined' && sessionQueue && sessionQueue.length > 0 && typeof currentSessionIndex !== 'undefined') {
         const studyActive = sessionQueue[currentSessionIndex];
         if (studyActive) {
-          const studyWord = getTTSGermanWord(studyActive.deutsch).toLowerCase().trim();
+          const studyWord = getTTSGermanWord(studyActive.deutsch, studyActive.category).toLowerCase().trim();
           const studySent = studyActive.sentence ? studyActive.sentence.split('|')[0].replace(/\*/g, '').trim().toLowerCase().trim() : '';
           if (cleanInput === studyWord || cleanInput === studySent) {
             return true;
@@ -5844,7 +5632,7 @@
       if (isFlashcardActive && typeof flashcardList !== 'undefined' && flashcardList && flashcardList.length > 0 && typeof flashcardIndex !== 'undefined') {
         const fcActive = flashcardList[flashcardIndex];
         if (fcActive) {
-          const fcWord = getTTSGermanWord(fcActive.deutsch).toLowerCase().trim();
+          const fcWord = getTTSGermanWord(fcActive.deutsch, fcActive.category).toLowerCase().trim();
           const fcSent = fcActive.sentence ? fcActive.sentence.split('|')[0].replace(/\*/g, '').trim().toLowerCase().trim() : '';
           const fcIndo = fcActive.indonesia ? fcActive.indonesia.toLowerCase().trim() : '';
           const fcSentIndo = fcActive.sentence && fcActive.sentence.includes('|') 
@@ -5871,14 +5659,7 @@
       if (!apiKey) return null;
 
       let input = text;
-      if (lang === 'id') {
-        input = input.replace(/\//g, ', ').trim();
-        if (isWord) {
-          input = "Terjemahan bahasa Indonesia: " + input + ".";
-        } else {
-          input = "Kalimat bahasa Indonesia: " + input + ".";
-        }
-      } else if (isWord && lang === 'de') {
+      if (isWord && lang === 'de') {
         input = "Wort: " + text + ".";
       }
 
@@ -5919,20 +5700,20 @@
     function triggerTTSPrefetchForActiveCard(activeCard, nextCard) {
       if (!activeCard) return;
 
-      const currentWord = getTTSGermanWord(activeCard.deutsch);
+      const currentWord = getTTSGermanWord(activeCard.deutsch, activeCard.category);
       const currentSentence = activeCard.sentence ? activeCard.sentence.split('|')[0].replace(/\*/g, '').trim() : '';
       
-      prefetchOpenAITTS(currentWord);
+      prefetchOpenAITTS(currentWord, 'de', true);
       if (currentSentence) {
-        prefetchOpenAITTS(currentSentence);
+        prefetchOpenAITTS(currentSentence, 'de', false);
       }
 
       if (nextCard) {
-        const nextWord = getTTSGermanWord(nextCard.deutsch);
+        const nextWord = getTTSGermanWord(nextCard.deutsch, nextCard.category);
         const nextSentence = nextCard.sentence ? nextCard.sentence.split('|')[0].replace(/\*/g, '').trim() : '';
-        prefetchOpenAITTS(nextWord);
+        prefetchOpenAITTS(nextWord, 'de', true);
         if (nextSentence) {
-          prefetchOpenAITTS(nextSentence);
+          prefetchOpenAITTS(nextSentence, 'de', false);
         }
       }
     }
@@ -6022,54 +5803,7 @@
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
       await speakWithOpenAITTS(cleanText, 'de', false, onEnded);
     }
-    // Speaker functions for Indonesian Translations
-    async function speakIndonesianWord() {
-      clearAutoPlayTimeouts();
-      if (!flashcardList || flashcardList.length === 0) return;
-      const activeCard = flashcardList[flashcardIndex];
-      if (!activeCard || !activeCard.indonesia) return;
-      speakIndonesianText(activeCard.indonesia, null, true);
-    }
 
-    async function speakIndonesianSentence() {
-      clearAutoPlayTimeouts();
-      if (!flashcardList || flashcardList.length === 0) return;
-      const activeCard = flashcardList[flashcardIndex];
-      if (!activeCard || !activeCard.sentence) return;
-      const translation = activeCard.sentenceTranslation || (activeCard.sentence.includes('|') ? activeCard.sentence.split('|')[1].replace(/\*/g, '').trim() : '');
-      if (translation) {
-        speakIndonesianText(translation, null, false);
-      } else {
-        translateSentenceToId(activeCard.sentence).then(res => {
-          activeCard.sentenceTranslation = res;
-          speakIndonesianText(res, null, false);
-        });
-      }
-    }
-
-    async function speakIndonesianWordStudy() {
-      clearAutoPlayTimeouts();
-      if (!sessionQueue || sessionQueue.length === 0) return;
-      const activeCard = sessionQueue[currentSessionIndex];
-      if (!activeCard || !activeCard.indonesia) return;
-      speakIndonesianText(activeCard.indonesia, null, true);
-    }
-
-    async function speakIndonesianSentenceStudy() {
-      clearAutoPlayTimeouts();
-      if (!sessionQueue || sessionQueue.length === 0) return;
-      const activeCard = sessionQueue[currentSessionIndex];
-      if (!activeCard || !activeCard.sentence) return;
-      const translation = activeCard.sentenceTranslation || (activeCard.sentence.includes('|') ? activeCard.sentence.split('|')[1].replace(/\*/g, '').trim() : '');
-      if (translation) {
-        speakIndonesianText(translation, null, false);
-      } else {
-        translateSentenceToId(activeCard.sentence).then(res => {
-          activeCard.sentenceTranslation = res;
-          speakIndonesianText(res, null, false);
-        });
-      }
-    }
 
 
     // ==========================================

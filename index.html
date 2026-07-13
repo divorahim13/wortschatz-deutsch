@@ -5663,9 +5663,10 @@
 
       let input = text;
       if (isWord && lang === 'de') {
-        // Capitalize the first letter (e.g., "die Spende" -> "Die Spende") to force correct German pronunciation
+        // Capitalize the first letter (e.g., "die Spende" -> "Die Spende")
         const capitalized = text.charAt(0).toUpperCase() + text.slice(1);
-        input = "„" + capitalized + ".“";
+        // Prepend "Auf Deutsch: " to guarantee German accent from OpenAI TTS for short words
+        input = "Auf Deutsch: " + capitalized + ".";
       }
 
       const fetchPromise = (async () => {

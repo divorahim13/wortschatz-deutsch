@@ -5669,8 +5669,8 @@
         
         let needPrefix = false;
         if (hasGermanUmlaut) {
-          // Short words with umlauts (< 12 chars, e.g., stören, Lärm) still need prefix to avoid English lookalike accents
-          if (text.length < 12) needPrefix = true;
+          // Very short words with umlauts (< 9 chars, e.g., stören, Lärm) need prefix to avoid English lookalike accents
+          if (text.length < 9) needPrefix = true;
         } else {
           // Words without umlauts need prefix if they are under 15 chars (e.g., fotografieren, installieren)
           if (text.length < 15) needPrefix = true;

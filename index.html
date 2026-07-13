@@ -2208,7 +2208,12 @@
                 <div id="back-display" class="german-word" style="margin-top: 2px;">Word</div>
                 
                 <!-- Secondary translation -->
-                <div id="back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2px;">Translation</div>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 2px;">
+                  <div id="back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary);">Translation</div>
+                  <button class="speak-btn" title="Dengarkan Terjemahan Indonesia (OpenAI)" onclick="event.stopPropagation(); speakIndonesianWordStudy();" style="margin-top: 0; width: 28px; height: 28px; flex-shrink: 0; padding: 4px;">
+                    <svg viewBox="0 0 24 24" style="width: 12px !important; height: 12px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                  </button>
+                </div>
 
                 <!-- Checked typed answer validation -->
                 <div id="typing-validation" class="validation-badge" style="display: none; width: 100%; padding: 4px 8px; margin-top: 2px;"></div>
@@ -2217,9 +2222,14 @@
                 <div class="sentence-container" style="width: 100%; margin-top: 4px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
                   <div style="flex: 1; text-align: left;">
                     <div id="back-sentence">Ich sitze am Tisch.</div>
-                    <div id="back-sentence-translation" class="sentence-translation" style="text-align: left;">Saya duduk di meja.</div>
+                    <div style="display: flex; align-items: center; gap: 6px; margin-top: 2px;">
+                      <div id="back-sentence-translation" class="sentence-translation" style="text-align: left; margin-top: 0;">Saya duduk di meja.</div>
+                      <button class="speak-btn sentence-speak-btn" title="Dengarkan Terjemahan Kalimat (OpenAI)" onclick="event.stopPropagation(); speakIndonesianSentenceStudy();" style="margin-top: 0; width: 24px; height: 24px; flex-shrink: 0; padding: 2px;">
+                        <svg viewBox="0 0 24 24" style="width: 10px !important; height: 10px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                      </button>
+                    </div>
                   </div>
-                  <button class="speak-btn sentence-speak-btn" title="Dengarkan Contoh Kalimat (OpenAI)" onclick="event.stopPropagation(); speakGermanSentence();" style="margin-top: 0; width: 32px; height: 32px; flex-shrink: 0;">
+                  <button class="speak-btn sentence-speak-btn" title="Dengarkan Contoh Kalimat Jerman (OpenAI)" onclick="event.stopPropagation(); speakGermanSentence();" style="margin-top: 0; width: 32px; height: 32px; flex-shrink: 0;">
                     <svg viewBox="0 0 24 24" style="width: 14px !important; height: 14px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                   </button>
                 </div>
@@ -2439,15 +2449,25 @@
                   <div class="card-prompt-label" style="font-size: 0.8rem; margin-top: 2px;">Jawaban</div>
                   <div id="free-back-display" class="german-word" style="margin-top: 2px;">Word</div>
                   <div id="free-back-plural" class="fc-plural-label" style="display:none;"></div>
-                  <div id="free-back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2px;">Translation</div>
+                  <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 2px;">
+                    <div id="free-back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary);">Translation</div>
+                    <button class="speak-btn" title="Dengarkan Terjemahan Indonesia (OpenAI)" onclick="event.stopPropagation(); speakIndonesianWord();" style="margin-top: 0; width: 28px; height: 28px; flex-shrink: 0; padding: 4px;">
+                      <svg viewBox="0 0 24 24" style="width: 12px !important; height: 12px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                    </button>
+                  </div>
 
                   <!-- Context Sentence with censor -->
                   <div class="sentence-container" style="width: 100%; margin-top: 4px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
                     <div style="flex: 1; text-align: left;">
                       <div id="free-back-sentence">Example Sentence</div>
-                      <div id="free-back-sentence-translation" class="sentence-translation" style="text-align: left;">Example Translation</div>
+                      <div style="display: flex; align-items: center; gap: 6px; margin-top: 2px;">
+                        <div id="free-back-sentence-translation" class="sentence-translation" style="text-align: left; margin-top: 0;">Example Translation</div>
+                        <button class="speak-btn sentence-speak-btn" title="Dengarkan Terjemahan Kalimat (OpenAI)" onclick="event.stopPropagation(); speakIndonesianSentence();" style="margin-top: 0; width: 24px; height: 24px; flex-shrink: 0; padding: 2px;">
+                          <svg viewBox="0 0 24 24" style="width: 10px !important; height: 10px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        </button>
+                      </div>
                     </div>
-                    <button class="speak-btn sentence-speak-btn" title="Dengarkan Contoh Kalimat (OpenAI)" onclick="event.stopPropagation(); speakFlashcardSentence();" style="margin-top: 0; width: 32px; height: 32px; flex-shrink: 0;">
+                    <button class="speak-btn sentence-speak-btn" title="Dengarkan Contoh Kalimat Jerman (OpenAI)" onclick="event.stopPropagation(); speakFlashcardSentence();" style="margin-top: 0; width: 32px; height: 32px; flex-shrink: 0;">
                       <svg viewBox="0 0 24 24" style="width: 14px !important; height: 14px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                     </button>
                   </div>
@@ -5853,13 +5873,13 @@
       let input = text;
       if (lang === 'id') {
         input = input.replace(/\//g, ', ').trim();
-      }
-      if (isWord) {
-        if (lang === 'de') {
-          input = "Wort: " + text + ".";
-        } else if (lang === 'id') {
-          input = "Arti: " + input + ".";
+        if (isWord) {
+          input = "Terjemahan bahasa Indonesia: " + input + ".";
+        } else {
+          input = "Kalimat bahasa Indonesia: " + input + ".";
         }
+      } else if (isWord && lang === 'de') {
+        input = "Wort: " + text + ".";
       }
 
       const fetchPromise = (async () => {
@@ -6002,6 +6022,55 @@
       const cleanText = activeCard.sentence.split('|')[0].replace(/\*/g, '').trim();
       await speakWithOpenAITTS(cleanText, 'de', false, onEnded);
     }
+    // Speaker functions for Indonesian Translations
+    async function speakIndonesianWord() {
+      clearAutoPlayTimeouts();
+      if (!flashcardList || flashcardList.length === 0) return;
+      const activeCard = flashcardList[flashcardIndex];
+      if (!activeCard || !activeCard.indonesia) return;
+      speakIndonesianText(activeCard.indonesia, null, true);
+    }
+
+    async function speakIndonesianSentence() {
+      clearAutoPlayTimeouts();
+      if (!flashcardList || flashcardList.length === 0) return;
+      const activeCard = flashcardList[flashcardIndex];
+      if (!activeCard || !activeCard.sentence) return;
+      const translation = activeCard.sentenceTranslation || (activeCard.sentence.includes('|') ? activeCard.sentence.split('|')[1].replace(/\*/g, '').trim() : '');
+      if (translation) {
+        speakIndonesianText(translation, null, false);
+      } else {
+        translateSentenceToId(activeCard.sentence).then(res => {
+          activeCard.sentenceTranslation = res;
+          speakIndonesianText(res, null, false);
+        });
+      }
+    }
+
+    async function speakIndonesianWordStudy() {
+      clearAutoPlayTimeouts();
+      if (!sessionQueue || sessionQueue.length === 0) return;
+      const activeCard = sessionQueue[currentSessionIndex];
+      if (!activeCard || !activeCard.indonesia) return;
+      speakIndonesianText(activeCard.indonesia, null, true);
+    }
+
+    async function speakIndonesianSentenceStudy() {
+      clearAutoPlayTimeouts();
+      if (!sessionQueue || sessionQueue.length === 0) return;
+      const activeCard = sessionQueue[currentSessionIndex];
+      if (!activeCard || !activeCard.sentence) return;
+      const translation = activeCard.sentenceTranslation || (activeCard.sentence.includes('|') ? activeCard.sentence.split('|')[1].replace(/\*/g, '').trim() : '');
+      if (translation) {
+        speakIndonesianText(translation, null, false);
+      } else {
+        translateSentenceToId(activeCard.sentence).then(res => {
+          activeCard.sentenceTranslation = res;
+          speakIndonesianText(res, null, false);
+        });
+      }
+    }
+
 
     // ==========================================
     // GRAMMAR EXPLAINER AI (gpt-4o-mini)

@@ -5666,8 +5666,8 @@
         // Capitalize the first letter (e.g., "die Spende" -> "Die Spende")
         const capitalized = text.charAt(0).toUpperCase() + text.slice(1);
         const hasGermanUmlaut = /[äöüßÄÖÜ]/.test(text);
-        if (text.length < 15 && !hasGermanUmlaut) {
-          // Prepend "Auf Deutsch: " for short words (< 15 chars) without umlauts to guarantee German accent from OpenAI TTS
+        if (text.length < 18 && !hasGermanUmlaut) {
+          // Prepend "Auf Deutsch: " for short words (< 18 chars) without umlauts to guarantee German accent from OpenAI TTS
           input = "Auf Deutsch: " + capitalized + ".";
         } else {
           // For longer words or words with umlauts, silent quotes and capitalization are enough (no excess spoken words)

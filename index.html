@@ -5665,8 +5665,13 @@
       if (isWord && lang === 'de') {
         // Capitalize the first letter (e.g., "die Spende" -> "Die Spende")
         const capitalized = text.charAt(0).toUpperCase() + text.slice(1);
-        // Prepend "Auf Deutsch: " to guarantee German accent from OpenAI TTS for short words
-        input = "Auf Deutsch: " + capitalized + ".";
+        if (text.length < 12) {
+          // Prepend "Auf Deutsch: " only for short words (< 12 chars) to guarantee German accent from OpenAI TTS
+          input = "Auf Deutsch: " + capitalized + ".";
+        } else {
+          // For longer words, silent quotes and capitalization are enough (no excess spoken words)
+          input = "„" + capitalized + ".“";
+        }
       }
 
       const fetchPromise = (async () => {

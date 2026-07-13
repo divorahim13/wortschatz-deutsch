@@ -2432,9 +2432,14 @@
                 <!-- Scrollable Content -->
                 <div class="card-back-scrollable" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px;">
                   <div class="card-prompt-label" style="font-size: 0.8rem; margin-top: 2px;">Jawaban</div>
-                  <div id="free-back-display" class="german-word" style="margin-top: 2px;">Word</div>
-                  <div id="free-back-plural" class="fc-plural-label" style="display:none;"></div>
-                  <div id="free-back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2px;">Translation</div>
+                  <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 2px; width: 100%;">
+                    <div id="free-back-display" class="german-word" style="margin-top: 0;">Word</div>
+                    <button class="speak-btn" title="Dengarkan Pengucapan (S)" onclick="event.stopPropagation(); speakFlashcardWord();" style="margin-top: 0; width: 32px; height: 32px; flex-shrink: 0; padding: 6px;">
+                      <svg viewBox="0 0 24 24" style="width: 14px !important; height: 14px !important;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                    </button>
+                  </div>
+                  <div id="free-back-plural" class="fc-plural-label" style="display:none; margin-top: 2px;"></div>
+                  <div id="free-back-translation" class="indonesian-word" style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2px; margin-top: 2px;">Translation</div>
 
                   <!-- Context Sentence with censor -->
                   <div class="sentence-container" style="width: 100%; margin-top: 4px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
@@ -2447,14 +2452,9 @@
                     </button>
                   </div>
 
-                  <!-- Audio Button only (AI button removed) -->
-                  <div style="display: flex; gap: 8px; width: 100%; align-items: center; margin-top: 4px;">
-                    <button class="speak-btn" title="Dengarkan Pengucapan (S)" onclick="event.stopPropagation(); speakFlashcardWord();" style="margin-top: 0; width: 38px; height: 38px; flex-shrink: 0;">
-                      <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                    </button>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); padding: 0 6px;">
-                      Nilai dirimu sendiri menggunakan tombol di bawah
-                    </div>
+                  <!-- Hint Text only -->
+                  <div style="font-size: 0.75rem; color: var(--text-muted); padding: 4px 6px; margin-top: 4px; text-align: center; width: 100%;">
+                    Nilai dirimu sendiri menggunakan tombol di bawah
                   </div>
                 </div>
               </div>

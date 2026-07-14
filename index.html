@@ -5326,7 +5326,10 @@
       clean = clean.replace(/\.{3}\s*zu\s*\.{3}/g, 'etwas zu tun');
       clean = clean.replace(/\.{3}/g, 'etwas');
 
-      // 8. Bersihkan titik di akhir kata tunggal (bukan kalimat/ungkapan panjang)
+      // 8. Bersihkan spasi sebelum tanda baca akhir (.!?)
+      clean = clean.replace(/\s+([.!?])/g, '$1');
+
+      // 8.5 Bersihkan titik di akhir kata tunggal (bukan kalimat/ungkapan panjang)
       //    Jaga titik untuk ungkapan/kalimat penuh (>3 kata) agar intonasi TTS natural
       const wordCount = clean.split(/\s+/).filter(w => w.length > 0).length;
       if (wordCount <= 3) {

@@ -5681,278 +5681,269 @@
     }
 
     const PRAETERITUM_MAP = {
-      // Auxiliary & Modals
-      "war": { inf: "sein", ich: "war", wir: "waren" },
-      "warst": { inf: "sein", ich: "war", wir: "waren" },
-      "waren": { inf: "sein", ich: "war", wir: "waren" },
-      "wart": { inf: "sein", ich: "war", wir: "waren" },
-      "hatte": { inf: "haben", ich: "hatte", wir: "hatten" },
-      "hattest": { inf: "haben", ich: "hatte", wir: "hatten" },
-      "hatten": { inf: "haben", ich: "hatte", wir: "hatten" },
-      "hattet": { inf: "haben", ich: "hatte", wir: "hatten" },
-      "wurde": { inf: "werden", ich: "wurde", wir: "wurden" },
-      "wurdest": { inf: "werden", ich: "wurde", wir: "wurden" },
-      "wurden": { inf: "werden", ich: "wurde", wir: "wurden" },
-      "wurdet": { inf: "werden", ich: "wurde", wir: "wurden" },
-      "konnte": { inf: "können", ich: "konnte", wir: "konnten" },
-      "konntest": { inf: "können", ich: "konnte", wir: "konnten" },
-      "konnten": { inf: "können", ich: "konnte", wir: "konnten" },
-      "musste": { inf: "müssen", ich: "musste", wir: "mussten" },
-      "musstest": { inf: "müssen", ich: "musste", wir: "mussten" },
-      "mussten": { inf: "müssen", ich: "musste", wir: "mussten" },
-      "wollte": { inf: "wollen", ich: "wollte", wir: "wollten" },
-      "wolltest": { inf: "wollen", ich: "wollte", wir: "wollten" },
-      "wollten": { inf: "wollen", ich: "wollte", wir: "wollten" },
-      "sollte": { inf: "sollen", ich: "sollte", wir: "sollten" },
-      "solltest": { inf: "sollen", ich: "sollte", wir: "sollten" },
-      "sollten": { inf: "sollen", ich: "sollte", wir: "sollten" },
-      "durfte": { inf: "dürfen", ich: "durfte", wir: "durften" },
-      "durftest": { inf: "dürfen", ich: "durfte", wir: "durften" },
-      "durften": { inf: "dürfen", ich: "durfte", wir: "durften" },
-      "mochte": { inf: "mögen", ich: "mochte", wir: "mochten" },
-      "mochtest": { inf: "mögen", ich: "mochte", wir: "mochten" },
-      "mochten": { inf: "mögen", ich: "mochte", wir: "mochten" },
-      "wusste": { inf: "wissen", ich: "wusste", wir: "wussten" },
-      "wusstest": { inf: "wissen", ich: "wusste", wir: "wussten" },
-      "wussten": { inf: "wissen", ich: "wusste", wir: "wussten" },
-
-      // Strong & Irregular Verbs
-      "dachte": { inf: "denken", ich: "dachte", wir: "dachten" },
-      "dachten": { inf: "denken", ich: "dachte", wir: "dachten" },
-      "brachte": { inf: "bringen", ich: "brachte", wir: "brachten" },
-      "brachten": { inf: "bringen", ich: "brachte", wir: "brachten" },
-      "kannte": { inf: "kennen", ich: "kannte", wir: "kannten" },
-      "kannten": { inf: "kennen", ich: "kannte", wir: "kannten" },
-      "nannte": { inf: "nennen", ich: "nannte", wir: "nannten" },
-      "nannten": { inf: "nennen", ich: "nannte", wir: "nannten" },
-      "sah": { inf: "sehen", ich: "sah", wir: "sahen" },
-      "sahst": { inf: "sehen", ich: "sah", wir: "sahen" },
-      "sahen": { inf: "sehen", ich: "sah", wir: "sahen" },
-      "ging": { inf: "gehen", ich: "ging", wir: "gingen" },
-      "gingst": { inf: "gehen", ich: "ging", wir: "gingen" },
-      "gingen": { inf: "gehen", ich: "ging", wir: "gingen" },
-      "kam": { inf: "kommen", ich: "kam", wir: "kamen" },
-      "kamst": { inf: "kommen", ich: "kam", wir: "kamen" },
-      "kamen": { inf: "kommen", ich: "kam", wir: "kamen" },
-      "fuhr": { inf: "fahren", ich: "fuhr", wir: "fuhren" },
-      "fuhrst": { inf: "fahren", ich: "fuhr", wir: "fuhren" },
-      "fuhren": { inf: "fahren", ich: "fuhr", wir: "fuhren" },
-      "gab": { inf: "geben", ich: "gab", wir: "gaben" },
-      "gabst": { inf: "geben", ich: "gab", wir: "gaben" },
-      "gaben": { inf: "geben", ich: "gab", wir: "gaben" },
-      "nahm": { inf: "nehmen", ich: "nahm", wir: "nahmen" },
-      "nahmst": { inf: "nehmen", ich: "nahm", wir: "nahmen" },
-      "nahmen": { inf: "nehmen", ich: "nahm", wir: "nahmen" },
-      "sprach": { inf: "sprechen", ich: "sprach", wir: "sprachen" },
-      "sprachen": { inf: "sprechen", ich: "sprach", wir: "sprachen" },
-      "fand": { inf: "finden", ich: "fand", wir: "fanden" },
-      "fanden": { inf: "finden", ich: "fand", wir: "fanden" },
+      "arbeitete": { inf: "arbeiten", ich: "arbeitete", wir: "arbeiteten" },
+      "arbeiteten": { inf: "arbeiten", ich: "arbeitete", wir: "arbeiteten" },
+      "ausdruckte": { inf: "ausdrucken", ich: "druckte aus", wir: "druckten aus" },
+      "ausdruckten": { inf: "ausdrucken", ich: "druckte aus", wir: "druckten aus" },
+      "ausfüllte": { inf: "ausfüllen", ich: "füllte aus", wir: "füllten aus" },
+      "ausfüllten": { inf: "ausfüllen", ich: "füllte aus", wir: "füllten aus" },
+      "aß": { inf: "essen", ich: "aß", wir: "aßen" },
+      "aßen": { inf: "essen", ich: "aß", wir: "aßen" },
+      "bat": { inf: "bitten", ich: "bat", wir: "baten" },
+      "baten": { inf: "bitten", ich: "bat", wir: "baten" },
+      "bediente": { inf: "bedienen", ich: "bediente", wir: "bedienten" },
+      "bedienten": { inf: "bedienen", ich: "bediente", wir: "bedienten" },
+      "beeindruckte": { inf: "beeindrucken", ich: "beeindruckte", wir: "beeindruckten" },
+      "beeindruckten": { inf: "beeindrucken", ich: "beeindruckte", wir: "beeindruckten" },
+      "befragte": { inf: "befragen", ich: "befragte", wir: "befragten" },
+      "befragten": { inf: "befragen", ich: "befragte", wir: "befragten" },
+      "begann": { inf: "beginnen", ich: "begann", wir: "begannen" },
+      "begannen": { inf: "beginnen", ich: "begann", wir: "begannen" },
+      "bekam": { inf: "bekommen", ich: "bekam", wir: "bekamen" },
+      "bekamen": { inf: "bekommen", ich: "bekam", wir: "bekamen" },
+      "beschwerte": { inf: "beschweren", ich: "beschwerte", wir: "beschwerten" },
+      "beschwerten": { inf: "beschweren", ich: "beschwerte", wir: "beschwerten" },
+      "bezahlte": { inf: "bezahlen", ich: "bezahlte", wir: "bezahlten" },
+      "bezahlten": { inf: "bezahlen", ich: "bezahlte", wir: "bezahlten" },
       "blieb": { inf: "bleiben", ich: "blieb", wir: "blieben" },
       "blieben": { inf: "bleiben", ich: "blieb", wir: "blieben" },
-      "schrieb": { inf: "schreiben", ich: "schrieb", wir: "schrieben" },
-      "schrieben": { inf: "schreiben", ich: "schrieb", wir: "schrieben" },
-      "stieg": { inf: "steigen", ich: "stieg", wir: "stiegen" },
-      "stiegen": { inf: "steigen", ich: "stieg", wir: "stiegen" },
-      "schloss": { inf: "schließen", ich: "schloss", wir: "schlossen" },
-      "schlossen": { inf: "schließen", ich: "schloss", wir: "schlossen" },
-      "verlor": { inf: "verlieren", ich: "verlor", wir: "verloren" },
-      "verloren": { inf: "verlieren", ich: "verlor", wir: "verloren" },
-      "flog": { inf: "fliegen", ich: "flog", wir: "flogen" },
-      "flogen": { inf: "fliegen", ich: "flog", wir: "flogen" },
-      "zog": { inf: "ziehen", ich: "zog", wir: "zogen" },
-      "zogen": { inf: "ziehen", ich: "zog", wir: "zogen" },
-      "trug": { inf: "tragen", ich: "trug", wir: "trugen" },
-      "trugen": { inf: "tragen", ich: "trug", wir: "trugen" },
-      "schlief": { inf: "schlafen", ich: "schlief", wir: "schliefen" },
-      "schliefen": { inf: "schlafen", ich: "schlief", wir: "schliefen" },
-      "ließ": { inf: "lassen", ich: "ließ", wir: "ließen" },
-      "ließen": { inf: "lassen", ich: "ließ", wir: "ließen" },
-      "hielt": { inf: "halten", ich: "hielt", wir: "hielten" },
-      "hielten": { inf: "halten", ich: "hielt", wir: "hielten" },
+      "brachte": { inf: "bringen", ich: "brachte", wir: "brachten" },
+      "brachten": { inf: "bringen", ich: "brachte", wir: "brachten" },
+      "brauchte": { inf: "brauchen", ich: "brauchte", wir: "brauchten" },
+      "brauchten": { inf: "brauchen", ich: "brauchte", wir: "brauchten" },
+      "breitete": { inf: "ausbreiten", ich: "breitete aus", wir: "breiteten aus" },
+      "breiteten": { inf: "ausbreiten", ich: "breitete aus", wir: "breiteten aus" },
+      "dachte": { inf: "denken", ich: "dachte", wir: "dachten" },
+      "dachten": { inf: "denken", ich: "dachte", wir: "dachten" },
+      "dauerte": { inf: "dauern", ich: "dauerte", wir: "dauerten" },
+      "dauerten": { inf: "dauern", ich: "dauerte", wir: "dauerten" },
+      "durfte": { inf: "dürfen", ich: "durfte", wir: "durften" },
+      "durften": { inf: "dürfen", ich: "durfte", wir: "durften" },
+      "ehrte": { inf: "ehren", ich: "ehrte", wir: "ehrten" },
+      "ehrten": { inf: "ehren", ich: "ehrte", wir: "ehrten" },
+      "empfahl": { inf: "empfehlen", ich: "empfahl", wir: "empfahlen" },
+      "empfahlen": { inf: "empfehlen", ich: "empfahl", wir: "empfahlen" },
+      "entschied": { inf: "entscheiden", ich: "entschied", wir: "entschieden" },
+      "entschieden": { inf: "entscheiden", ich: "entschied", wir: "entschieden" },
+      "entstand": { inf: "entstehen", ich: "entstand", wir: "entstanden" },
+      "entstanden": { inf: "entstehen", ich: "entstand", wir: "entstanden" },
+      "ereignete": { inf: "ereignen", ich: "ereignete", wir: "ereigneten" },
+      "ereigneten": { inf: "ereignen", ich: "ereignete", wir: "ereigneten" },
+      "erhielt": { inf: "erhalten", ich: "erhielt", wir: "erhielten" },
+      "erhielten": { inf: "erhalten", ich: "erhielt", wir: "erhielten" },
+      "fand": { inf: "finden", ich: "fand", wir: "fanden" },
+      "fanden": { inf: "finden", ich: "fand", wir: "fanden" },
+      "feierte": { inf: "feiern", ich: "feierte", wir: "feierten" },
+      "feierten": { inf: "feiern", ich: "feierte", wir: "feierten" },
       "fiel": { inf: "fallen", ich: "fiel", wir: "fielen" },
       "fielen": { inf: "fallen", ich: "fiel", wir: "fielen" },
-      "lief": { inf: "laufen", ich: "lief", wir: "liefen" },
-      "liefen": { inf: "laufen", ich: "lief", wir: "liefen" },
-      "rief": { inf: "rufen", ich: "rief", wir: "riefen" },
-      "riefen": { inf: "rufen", ich: "rief", wir: "riefen" },
+      "fing": { inf: "auf fangen", ich: "fing auf", wir: "fingen auf" },
+      "fingen": { inf: "auf fangen", ich: "fing auf", wir: "fingen auf" },
+      "flog": { inf: "fliegen", ich: "flog", wir: "flogen" },
+      "flogen": { inf: "fliegen", ich: "flog", wir: "flogen" },
+      "fuhr": { inf: "fahren", ich: "fuhr", wir: "fuhren" },
+      "fuhren": { inf: "fahren", ich: "fuhr", wir: "fuhren" },
+      "führte": { inf: "führen", ich: "führte", wir: "führten" },
+      "führten": { inf: "führen", ich: "führte", wir: "führten" },
+      "gab": { inf: "geben", ich: "gab", wir: "gaben" },
+      "gaben": { inf: "geben", ich: "gab", wir: "gaben" },
+      "galt": { inf: "gelten", ich: "galt", wir: "galten" },
+      "galten": { inf: "gelten", ich: "galt", wir: "galten" },
+      "gefiel": { inf: "gefallen", ich: "gefiel", wir: "gefielen" },
+      "gefielen": { inf: "gefallen", ich: "gefiel", wir: "gefielen" },
+      "gelang": { inf: "gelingen", ich: "gelang", wir: "gelangen" },
+      "gelangen": { inf: "gelingen", ich: "gelang", wir: "gelangen" },
+      "geschah": { inf: "geschehen", ich: "geschah", wir: "geschahen" },
+      "geschahen": { inf: "geschehen", ich: "geschah", wir: "geschahen" },
+      "gewann": { inf: "gewinnen", ich: "gewann", wir: "gewannen" },
+      "gewannen": { inf: "gewinnen", ich: "gewann", wir: "gewannen" },
+      "ging": { inf: "gehen", ich: "ging", wir: "gingen" },
+      "gingen": { inf: "gehen", ich: "ging", wir: "gingen" },
+      "half": { inf: "helfen", ich: "half", wir: "halfen" },
+      "halfen": { inf: "helfen", ich: "half", wir: "halfen" },
+      "hatte": { inf: "haben", ich: "hatte", wir: "hatten" },
+      "hatten": { inf: "haben", ich: "hatte", wir: "hatten" },
+      "heiratete": { inf: "heiraten", ich: "heiratete", wir: "heirateten" },
+      "heirateten": { inf: "heiraten", ich: "heiratete", wir: "heirateten" },
+      "hielt": { inf: "halten", ich: "hielt", wir: "hielten" },
+      "hielten": { inf: "halten", ich: "hielt", wir: "hielten" },
       "hieß": { inf: "heißen", ich: "hieß", wir: "hießen" },
       "hießen": { inf: "heißen", ich: "hieß", wir: "hießen" },
-      "fing": { inf: "fangen", ich: "fing", wir: "fingen" },
-      "fingen": { inf: "fangen", ich: "fing", wir: "fingen" },
       "hing": { inf: "hängen", ich: "hing", wir: "hingen" },
       "hingen": { inf: "hängen", ich: "hing", wir: "hingen" },
-      "trank": { inf: "trinken", ich: "trank", wir: "tranken" },
-      "tranken": { inf: "trinken", ich: "trank", wir: "tranken" },
-      "sang": { inf: "singen", ich: "sang", wir: "sangen" },
-      "sangen": { inf: "singen", ich: "sang", wir: "sangen" },
+      "hob": { inf: "abheben", ich: "hob ab", wir: "hoben ab" },
+      "hoben": { inf: "abheben", ich: "hob ab", wir: "hoben ab" },
+      "hustete": { inf: "husten", ich: "hustete", wir: "husteten" },
+      "husteten": { inf: "husten", ich: "hustete", wir: "husteten" },
+      "kam": { inf: "kommen", ich: "kam", wir: "kamen" },
+      "kamen": { inf: "seltsam vorkommen", ich: "kam vor", wir: "kamen vor" },
+      "kannte": { inf: "kennen", ich: "kannte", wir: "kannten" },
+      "kannten": { inf: "kennen", ich: "kannte", wir: "kannten" },
       "klang": { inf: "klingen", ich: "klang", wir: "klangen" },
       "klangen": { inf: "klingen", ich: "klang", wir: "klangen" },
-      "sprang": { inf: "springen", ich: "sprang", wir: "sprangen" },
-      "sprangen": { inf: "springen", ich: "sprang", wir: "sprangen" },
+      "klingelte": { inf: "klingeln", ich: "klingelte", wir: "klingelten" },
+      "klingelten": { inf: "klingeln", ich: "klingelte", wir: "klingelten" },
+      "konnte": { inf: "können", ich: "konnte", wir: "konnten" },
+      "konnten": { inf: "können", ich: "konnte", wir: "konnten" },
+      "kostete": { inf: "kosten", ich: "kostete", wir: "kosteten" },
+      "kosteten": { inf: "kosten", ich: "kostete", wir: "kosteten" },
+      "kündigte": { inf: "kündigen", ich: "kündigte", wir: "kündigten" },
+      "kündigten": { inf: "kündigen", ich: "kündigte", wir: "kündigten" },
+      "lag": { inf: "liegen", ich: "lag", wir: "lagen" },
+      "lagen": { inf: "liegen", ich: "lag", wir: "lagen" },
+      "las": { inf: "lesen", ich: "las", wir: "lasen" },
+      "lasen": { inf: "lesen", ich: "las", wir: "lasen" },
+      "lebte": { inf: "leben", ich: "lebte", wir: "lebten" },
+      "lebten": { inf: "leben", ich: "lebte", wir: "lebten" },
+      "lernte": { inf: "lernen", ich: "lernte", wir: "lernten" },
+      "lernten": { inf: "lernen", ich: "lernte", wir: "lernten" },
+      "lief": { inf: "laufen", ich: "lief", wir: "liefen" },
+      "liefen": { inf: "laufen", ich: "lief", wir: "liefen" },
+      "ließ": { inf: "lassen", ich: "ließ", wir: "ließen" },
+      "ließen": { inf: "lassen", ich: "ließ", wir: "ließen" },
+      "machte": { inf: "machen", ich: "machte", wir: "machten" },
+      "machten": { inf: "machen", ich: "machte", wir: "machten" },
+      "mochte": { inf: "mögen", ich: "mochte", wir: "mochten" },
+      "mochten": { inf: "mögen", ich: "mochte", wir: "mochten" },
+      "musste": { inf: "müssen", ich: "musste", wir: "mussten" },
+      "mussten": { inf: "müssen", ich: "musste", wir: "mussten" },
+      "nahm": { inf: "nehmen", ich: "nahm", wir: "nahmen" },
+      "nahmen": { inf: "nehmen", ich: "nahm", wir: "nahmen" },
+      "nannte": { inf: "nennen", ich: "nannte", wir: "nannten" },
+      "nannten": { inf: "nennen", ich: "nannte", wir: "nannten" },
+      "operierte": { inf: "operieren", ich: "operierte", wir: "operierten" },
+      "operierten": { inf: "operieren", ich: "operierte", wir: "operierten" },
+      "organisierte": { inf: "organisieren", ich: "organisierte", wir: "organisierten" },
+      "organisierten": { inf: "organisieren", ich: "organisierte", wir: "organisierten" },
+      "reiste": { inf: "reisen", ich: "reiste", wir: "reisten" },
+      "reisten": { inf: "reisen", ich: "reiste", wir: "reisten" },
+      "renovierte": { inf: "renovieren", ich: "renovierte", wir: "renovierten" },
+      "renovierten": { inf: "renovieren", ich: "renovierte", wir: "renovierten" },
+      "reparierte": { inf: "reparieren", ich: "reparierte", wir: "reparierten" },
+      "reparierten": { inf: "reparieren", ich: "reparierte", wir: "reparierten" },
+      "rief": { inf: "rufen", ich: "rief", wir: "riefen" },
+      "riefen": { inf: "rufen", ich: "rief", wir: "riefen" },
+      "rutschte": { inf: "rutschen", ich: "rutschte", wir: "rutschten" },
+      "rutschten": { inf: "rutschen", ich: "rutschte", wir: "rutschten" },
+      "sagte": { inf: "sagen", ich: "sagte", wir: "sagten" },
+      "sagten": { inf: "sagen", ich: "sagte", wir: "sagten" },
+      "sah": { inf: "sehen", ich: "sah", wir: "sahen" },
+      "sahen": { inf: "sehen", ich: "sah", wir: "sahen" },
+      "sang": { inf: "singen", ich: "sang", wir: "sangen" },
+      "sangen": { inf: "singen", ich: "sang", wir: "sangen" },
       "sank": { inf: "sinken", ich: "sank", wir: "sanken" },
       "sanken": { inf: "sinken", ich: "sank", wir: "sanken" },
       "saß": { inf: "sitzen", ich: "saß", wir: "saßen" },
       "saßen": { inf: "sitzen", ich: "saß", wir: "saßen" },
-      "stand": { inf: "stehen", ich: "stand", wir: "standen" },
-      "standen": { inf: "stehen", ich: "stand", wir: "standen" },
-      "verstand": { inf: "verstehen", ich: "verstand", wir: "verstanden" },
-      "verstanden": { inf: "verstehen", ich: "verstand", wir: "verstanden" },
-      "entstand": { inf: "entstehen", ich: "entstand", wir: "entstanden" },
-      "entstanden": { inf: "entstehen", ich: "entstand", wir: "entstanden" },
-      "tat": { inf: "tun", ich: "tat", wir: "taten" },
-      "taten": { inf: "tun", ich: "tat", wir: "taten" },
-      "bat": { inf: "bitten", ich: "bat", wir: "baten" },
-      "baten": { inf: "bitten", ich: "bat", wir: "baten" },
-      "lag": { inf: "liegen", ich: "lag", wir: "lagen" },
-      "lagen": { inf: "liegen", ich: "lag", wir: "lagen" },
-      "aß": { inf: "essen", ich: "aß", wir: "aßen" },
-      "aßen": { inf: "essen", ich: "aß", wir: "aßen" },
-      "las": { inf: "lesen", ich: "las", wir: "lasen" },
-      "lasen": { inf: "lesen", ich: "las", wir: "lasen" },
-      "geschah": { inf: "geschehen", ich: "geschah", wir: "geschahen" },
-      "geschahen": { inf: "geschehen", ich: "geschah", wir: "geschahen" },
-      "traf": { inf: "treffen", ich: "traf", wir: "trafen" },
-      "trafen": { inf: "treffen", ich: "traf", wir: "trafen" },
-      "half": { inf: "helfen", ich: "half", wir: "halfen" },
-      "halfen": { inf: "helfen", ich: "half", wir: "halfen" },
-      "starb": { inf: "sterben", ich: "starb", wir: "starben" },
-      "starben": { inf: "sterben", ich: "starb", wir: "starben" },
-      "warf": { inf: "werfen", ich: "warf", wir: "warfen" },
-      "warfen": { inf: "werfen", ich: "warf", wir: "warfen" },
-      "gewann": { inf: "gewinnen", ich: "gewann", wir: "gewannen" },
-      "gewannen": { inf: "gewinnen", ich: "gewann", wir: "gewannen" },
-      "begann": { inf: "beginnen", ich: "begann", wir: "begannen" },
-      "begannen": { inf: "beginnen", ich: "begann", wir: "begannen" },
-      "schnitt": { inf: "schneiden", ich: "schnitt", wir: "schnitten" },
-      "schnitten": { inf: "schneiden", ich: "schnitt", wir: "schnitten" },
-      "vergleich": { inf: "vergleichen", ich: "verglich", wir: "verglichen" },
-      "verglich": { inf: "vergleichen", ich: "verglich", wir: "verglichen" },
-      "verglichen": { inf: "vergleichen", ich: "verglich", wir: "verglichen" },
-      "schien": { inf: "scheinen", ich: "schien", wir: "schienen" },
-      "schienen": { inf: "scheinen", ich: "schien", wir: "schienen" },
-      "entschied": { inf: "entscheiden", ich: "entschied", wir: "entschieden" },
-      "entschieden": { inf: "entscheiden", ich: "entschied", wir: "entschieden" },
-      "verschwand": { inf: "verschwinden", ich: "verschwand", wir: "verschwanden" },
-      "verschwanden": { inf: "verschwinden", ich: "verschwand", wir: "verschwanden" },
-      "gelang": { inf: "gelingen", ich: "gelang", wir: "gelangen" },
-      "gelangen": { inf: "gelingen", ich: "gelang", wir: "gelangen" },
-      "galt": { inf: "gelten", ich: "galt", wir: "galten" },
-      "galten": { inf: "gelten", ich: "galt", wir: "galten" },
-      "übernahm": { inf: "übernehmen", ich: "übernahm", wir: "übernahmen" },
-      "übernahmen": { inf: "übernehmen", ich: "übernahm", wir: "übernahmen" },
-      "bekam": { inf: "bekommen", ich: "bekam", wir: "bekamen" },
-      "bekamen": { inf: "bekommen", ich: "bekam", wir: "bekamen" },
-      "erhielt": { inf: "erhalten", ich: "erhielt", wir: "erhielten" },
-      "erhielten": { inf: "erhalten", ich: "erhielt", wir: "erhielten" },
-      "gefiel": { inf: "gefallen", ich: "gefiel", wir: "gefielen" },
-      "gefielen": { inf: "gefallen", ich: "gefiel", wir: "gefielen" },
-      "versprach": { inf: "versprechen", ich: "versprach", wir: "versprachen" },
-      "versprachen": { inf: "versprechen", ich: "versprach", wir: "versprachen" },
-      "empfahl": { inf: "empfehlen", ich: "empfahl", wir: "empfahlen" },
-      "empfahlen": { inf: "empfehlen", ich: "empfahl", wir: "empfahlen" },
-      "hob": { inf: "abheben", ich: "hob ab", wir: "hoben ab" },
-      "hoben": { inf: "abheben", ich: "hob ab", wir: "hoben ab" },
-      "strich": { inf: "streichen", ich: "strich", wir: "strichen" },
-      "strichen": { inf: "streichen", ich: "strich", wir: "strichen" },
-      "übertrug": { inf: "übertragen", ich: "übertrug", wir: "übertrugen" },
-      "übertrugen": { inf: "übertragen", ich: "übertrug", wir: "übertrugen" },
-      "verriet": { inf: "verraten", ich: "verriet", wir: "verrieten" },
-      "verrieten": { inf: "verraten", ich: "verriet", wir: "verrieten" },
-      "wusch": { inf: "waschen", ich: "wusch", wir: "wuschen" },
-      "wuschen": { inf: "waschen", ich: "wusch", wir: "wuschen" },
-      "band": { inf: "binden", ich: "band", wir: "banden" },
-      "banden": { inf: "binden", ich: "band", wir: "banden" },
-
-      // Regular Weak Präteritum verbs
-      "operierte": { inf: "operieren", ich: "operierte", wir: "operierten" },
-      "operierten": { inf: "operieren", ich: "operierte", wir: "operierten" },
-      "dauerte": { inf: "dauern", ich: "dauerte", wir: "dauerten" },
-      "dauerten": { inf: "dauern", ich: "dauerte", wir: "dauerten" },
-      "bediente": { inf: "bedienen", ich: "bediente", wir: "bedienten" },
-      "bedienten": { inf: "bedienen", ich: "bediente", wir: "bedienten" },
-      "machte": { inf: "machen", ich: "machte", wir: "machten" },
-      "machten": { inf: "machen", ich: "machte", wir: "machten" },
-      "änderte": { inf: "ändern", ich: "änderte", wir: "änderten" },
-      "änderten": { inf: "ändern", ich: "änderte", wir: "änderten" },
-      "veränderte": { inf: "verändern", ich: "veränderte", wir: "veränderten" },
-      "veränderten": { inf: "verändern", ich: "veränderte", wir: "veränderten" },
-      "verursachte": { inf: "verursachen", ich: "verursachte", wir: "verursachten" },
-      "verursachten": { inf: "verursachen", ich: "verursachte", wir: "verursachten" },
-      "führte": { inf: "führen", ich: "führte", wir: "führten" },
-      "führten": { inf: "führen", ich: "führte", wir: "führten" },
-      "ereignete": { inf: "ereignen", ich: "ereignete", wir: "ereigneten" },
-      "ereigneten": { inf: "ereignen", ich: "ereignete", wir: "ereigneten" },
-      "stürzte": { inf: "stürzen", ich: "stürzte", wir: "stürzten" },
-      "stürzten": { inf: "stürzen", ich: "stürzte", wir: "stürzten" },
-      "ehrte": { inf: "ehren", ich: "ehrte", wir: "ehrten" },
-      "ehrten": { inf: "ehren", ich: "ehrte", wir: "ehrten" },
-      "überquerte": { inf: "überqueren", ich: "überquerte", wir: "überquerten" },
-      "überquerten": { inf: "überqueren", ich: "überquerte", wir: "überquerten" },
-      "sagte": { inf: "sagen", ich: "sagte", wir: "sagten" },
-      "sagten": { inf: "sagen", ich: "sagte", wir: "sagten" },
-      "klingelte": { inf: "klingeln", ich: "klingelte", wir: "klingelten" },
-      "klingelten": { inf: "klingeln", ich: "klingelte", wir: "klingelten" },
-      "befragte": { inf: "befragen", ich: "befragte", wir: "befragten" },
-      "befragten": { inf: "befragen", ich: "befragte", wir: "befragten" },
-      "wieherte": { inf: "wiehern", ich: "wieherte", wir: "wieherten" },
-      "wieherten": { inf: "wiehern", ich: "wieherte", wir: "wieherten" },
-      "zappelte": { inf: "zappeln", ich: "zappelte", wir: "zappelten" },
-      "zappelten": { inf: "zappeln", ich: "zappelte", wir: "zappelten" },
-      "taute": { inf: "tauen", ich: "taute", wir: "tauten" },
-      "tauten": { inf: "tauen", ich: "taute", wir: "tauten" },
-      "rutschte": { inf: "rutschen", ich: "rutschte", wir: "rutschten" },
-      "rutschten": { inf: "rutschen", ich: "rutschte", wir: "rutschten" },
-      "breitete": { inf: "ausbreiten", ich: "breitete aus", wir: "breiteten aus" },
-      "breiteten": { inf: "ausbreiten", ich: "breitete aus", wir: "breiteten aus" },
-      "hustete": { inf: "husten", ich: "hustete", wir: "husteten" },
-      "husteten": { inf: "husten", ich: "hustete", wir: "husteten" },
       "schaute": { inf: "hervorschauen", ich: "schaute hervor", wir: "schauten hervor" },
       "schauten": { inf: "hervorschauen", ich: "schaute hervor", wir: "schauten hervor" },
-      "unterstützte": { inf: "unterstützen", ich: "unterstützte", wir: "unterstützten" },
-      "unterstützten": { inf: "unterstützen", ich: "unterstützte", wir: "unterstützten" },
-      "weinte": { inf: "weinen", ich: "weinte", wir: "weinten" },
-      "weinten": { inf: "weinen", ich: "weinte", wir: "weinten" },
-      "arbeitete": { inf: "arbeiten", ich: "arbeitete", wir: "arbeiteten" },
-      "arbeiteten": { inf: "arbeiten", ich: "arbeitete", wir: "arbeiteten" },
-      "suchte": { inf: "suchen", ich: "suchte", wir: "suchten" },
-      "suchten": { inf: "suchen", ich: "suchte", wir: "suchten" },
-      "brauchte": { inf: "brauchen", ich: "brauchte", wir: "brauchten" },
-      "brauchten": { inf: "brauchen", ich: "brauchte", wir: "brauchten" },
-      "reiste": { inf: "reisen", ich: "reiste", wir: "reisten" },
-      "reisten": { inf: "reisen", ich: "reiste", wir: "reisten" },
-      "feierte": { inf: "feiern", ich: "feierte", wir: "feierten" },
-      "feierten": { inf: "feiern", ich: "feierte", wir: "feierten" },
-      "störte": { inf: "stören", ich: "störte", wir: "störten" },
-      "störten": { inf: "stören", ich: "störte", wir: "störten" },
-      "kostete": { inf: "kosten", ich: "kostete", wir: "kosteten" },
-      "kosteten": { inf: "kosten", ich: "kostete", wir: "kosteten" },
-      "heiratete": { inf: "heiraten", ich: "heiratete", wir: "heirateten" },
-      "heirateten": { inf: "heiraten", ich: "heiratete", wir: "heirateten" },
+      "schien": { inf: "scheinen", ich: "schien", wir: "schienen" },
+      "schienen": { inf: "scheinen", ich: "schien", wir: "schienen" },
+      "schlief": { inf: "schlafen", ich: "schlief", wir: "schliefen" },
+      "schliefen": { inf: "schlafen", ich: "schlief", wir: "schliefen" },
+      "schloss": { inf: "schließen", ich: "schloss", wir: "schlossen" },
+      "schlossen": { inf: "schließen", ich: "schloss", wir: "schlossen" },
+      "schnitt": { inf: "schneiden", ich: "schnitt", wir: "schnitten" },
+      "schnitten": { inf: "schneiden", ich: "schnitt", wir: "schnitten" },
+      "schrieb": { inf: "schreiben", ich: "schrieb", wir: "schrieben" },
+      "schrieben": { inf: "schreiben", ich: "schrieb", wir: "schrieben" },
+      "sollte": { inf: "sollen", ich: "sollte", wir: "sollten" },
+      "sollten": { inf: "sollen", ich: "sollte", wir: "sollten" },
+      "sprach": { inf: "sprechen", ich: "sprach", wir: "sprachen" },
+      "sprachen": { inf: "sprechen", ich: "sprach", wir: "sprachen" },
+      "sprang": { inf: "springen", ich: "sprang", wir: "sprangen" },
+      "sprangen": { inf: "springen", ich: "sprang", wir: "sprangen" },
+      "stand": { inf: "stehen", ich: "stand", wir: "standen" },
+      "standen": { inf: "stehen", ich: "stand", wir: "standen" },
+      "starb": { inf: "sterben", ich: "starb", wir: "starben" },
+      "starben": { inf: "sterben", ich: "starb", wir: "starben" },
+      "stieg": { inf: "steigen", ich: "stieg", wir: "stiegen" },
+      "stiegen": { inf: "steigen", ich: "stieg", wir: "stiegen" },
+      "strich": { inf: "streichen", ich: "strich", wir: "strichen" },
+      "strichen": { inf: "streichen", ich: "strich", wir: "strichen" },
       "studierte": { inf: "studieren", ich: "studierte", wir: "studierten" },
       "studierten": { inf: "studieren", ich: "studierte", wir: "studierten" },
-      "wohnte": { inf: "wohnen", ich: "wohnte", wir: "wohnten" },
-      "wohnten": { inf: "wohnen", ich: "wohnte", wir: "wohnten" },
-      "lernte": { inf: "lernen", ich: "lernte", wir: "lernten" },
-      "lernten": { inf: "lernen", ich: "lernte", wir: "lernten" },
-      "lebte": { inf: "leben", ich: "lebte", wir: "lebten" },
-      "lebten": { inf: "leben", ich: "lebte", wir: "lebten" },
+      "störte": { inf: "stören", ich: "störte", wir: "störten" },
+      "störten": { inf: "stören", ich: "störte", wir: "störten" },
+      "stürzte": { inf: "stürzen", ich: "stürzte", wir: "stürzten" },
+      "stürzten": { inf: "stürzen", ich: "stürzte", wir: "stürzten" },
+      "suchte": { inf: "suchen", ich: "suchte", wir: "suchten" },
+      "suchten": { inf: "suchen", ich: "suchte", wir: "suchten" },
+      "tat": { inf: "tun", ich: "tat", wir: "taten" },
+      "taten": { inf: "tun", ich: "tat", wir: "taten" },
+      "taute": { inf: "tauen", ich: "taute", wir: "tauten" },
+      "tauten": { inf: "tauen", ich: "taute", wir: "tauten" },
+      "traf": { inf: "treffen", ich: "traf", wir: "trafen" },
+      "trafen": { inf: "treffen", ich: "traf", wir: "trafen" },
+      "trank": { inf: "trinken", ich: "trank", wir: "tranken" },
+      "tranken": { inf: "trinken", ich: "trank", wir: "tranken" },
+      "trug": { inf: "tragen", ich: "trug", wir: "trugen" },
+      "trugen": { inf: "tragen", ich: "trug", wir: "trugen" },
       "unterhielt": { inf: "unterhalten", ich: "unterhielt", wir: "unterhielten" },
       "unterhielten": { inf: "unterhalten", ich: "unterhielt", wir: "unterhielten" },
+      "unterrichtete": { inf: "unterrichten", ich: "unterrichtete", wir: "unterrichteten" },
+      "unterrichteten": { inf: "unterrichten", ich: "unterrichtete", wir: "unterrichteten" },
+      "unterstützte": { inf: "unterstützen", ich: "unterstützte", wir: "unterstützten" },
+      "unterstützten": { inf: "unterstützen", ich: "unterstützte", wir: "unterstützten" },
+      "vergleich": { inf: "vergleichen", ich: "vergleich", wir: "verglichen" },
+      "verglich": { inf: "vergleichen", ich: "vergleich", wir: "verglichen" },
+      "verglichen": { inf: "vergleichen", ich: "vergleich", wir: "verglichen" },
+      "verlor": { inf: "verlieren", ich: "verlor", wir: "verloren" },
+      "verriet": { inf: "verraten", ich: "verriet", wir: "verrieten" },
+      "verrieten": { inf: "verraten", ich: "verriet", wir: "verrieten" },
+      "verschwand": { inf: "verschwinden", ich: "verschwand", wir: "verschwanden" },
+      "verschwanden": { inf: "verschwinden", ich: "verschwand", wir: "verschwanden" },
+      "versprach": { inf: "versprechen", ich: "versprach", wir: "versprachen" },
+      "versprachen": { inf: "versprechen", ich: "versprach", wir: "versprachen" },
+      "verstand": { inf: "verstehen", ich: "verstand", wir: "verstanden" },
+      "verstanden": { inf: "verstehen", ich: "verstand", wir: "verstanden" },
+      "verursachte": { inf: "verursachen", ich: "verursachte", wir: "verursachten" },
+      "verursachten": { inf: "verursachen", ich: "verursachte", wir: "verursachten" },
+      "veränderte": { inf: "verändern", ich: "veränderte", wir: "veränderten" },
+      "veränderten": { inf: "verändern", ich: "veränderte", wir: "veränderten" },
+      "vorkam": { inf: "seltsam vorkommen", ich: "kam vor", wir: "kamen vor" },
+      "war": { inf: "sein", ich: "war", wir: "waren" },
+      "waren": { inf: "sein", ich: "war", wir: "waren" },
+      "warf": { inf: "werfen", ich: "warf", wir: "warfen" },
+      "warfen": { inf: "werfen", ich: "warf", wir: "warfen" },
+      "weinte": { inf: "weinen", ich: "weinte", wir: "weinten" },
+      "weinten": { inf: "weinen", ich: "weinte", wir: "weinten" },
+      "wieherte": { inf: "wiehern", ich: "wieherte", wir: "wieherten" },
+      "wieherten": { inf: "wiehern", ich: "wieherte", wir: "wieherten" },
+      "wohnte": { inf: "wohnen", ich: "wohnte", wir: "wohnten" },
+      "wohnten": { inf: "wohnen", ich: "wohnte", wir: "wohnten" },
+      "wollte": { inf: "wollen", ich: "wollte", wir: "wollten" },
+      "wollten": { inf: "wollen", ich: "wollte", wir: "wollten" },
+      "wurde": { inf: "werden", ich: "wurde", wir: "wurden" },
+      "wurden": { inf: "werden", ich: "wurde", wir: "wurden" },
+      "wusch": { inf: "waschen", ich: "wusch", wir: "wuschen" },
+      "wuschen": { inf: "waschen", ich: "wusch", wir: "wuschen" },
+      "wusste": { inf: "wissen", ich: "wusste", wir: "wussten" },
+      "wussten": { inf: "wissen", ich: "wusste", wir: "wussten" },
+      "zappelte": { inf: "zappeln", ich: "zappelte", wir: "zappelten" },
+      "zappelten": { inf: "zappeln", ich: "zappelte", wir: "zappelten" },
+      "zog": { inf: "ziehen", ich: "zog", wir: "zogen" },
+      "zogen": { inf: "ziehen", ich: "zog", wir: "zogen" },
+      "änderte": { inf: "ändern", ich: "änderte", wir: "änderten" },
+      "änderten": { inf: "ändern", ich: "änderte", wir: "änderten" },
+      "übernahm": { inf: "übernehmen", ich: "übernahm", wir: "übernahmen" },
+      "übernahmen": { inf: "übernehmen", ich: "übernahm", wir: "übernahmen" },
+      "überquerte": { inf: "überqueren", ich: "überquerte", wir: "überquerten" },
+      "überquerten": { inf: "überqueren", ich: "überquerte", wir: "überquerten" },
+      "übertrug": { inf: "übertragen", ich: "übertrug", wir: "übertrugen" },
+      "übertrugen": { inf: "übertragen", ich: "übertrug", wir: "übertrugen" }
     };
 
     function getPraeteritumInfo(card, sentenceStr) {
-      const de = card ? (card.deutsch || "") : "";
-      const sentence = sentenceStr || (card ? (card.sentence || "") : "");
-      const sentClean = sentence.split('|')[0];
-      
-      // 1. Check parentheses in card.deutsch
-      const parenMatch = de.match(/\(([^)]+)\)/);
-      if (parenMatch) {
-        const parts = parenMatch[1].split(',').map(p => p.trim());
+      const de = card ? (card.deutsch || '') : '';
+      const sentClean = sentenceStr ? sentenceStr.split('|')[0] : (card ? (card.sentence || '').split('|')[0] : '');
+
+      // 1. Check parenthetical Präteritum form in card.deutsch (e.g. "sehen (sah, hat gesehen)")
+      if (de.includes('(') && de.includes(')')) {
+        const inner = de.match(/\(([^)]+)\)/)[1];
+        const parts = inner.split(',').map(s => s.trim());
         let praetForm = "";
-        if (parts.length >= 2 && !parts[0].startsWith("hat ") && !parts[0].startsWith("ist ")) {
-          praetForm = parts[0];
-        } else if (parts.length >= 3 && !parts[1].startsWith("hat ") && !parts[1].startsWith("ist ")) {
+        if (parts.length >= 2 && !parts[1].startsWith("hat ") && !parts[1].startsWith("ist ")) {
           praetForm = parts[1];
         }
         if (praetForm) {
@@ -5974,17 +5965,28 @@
         }
       }
 
-      // 2. Check PRAETERITUM_MAP for words in clean deutsch or sentence
-      const cleanDe = getCleanTargetWord(de).toLowerCase();
-      if (PRAETERITUM_MAP[cleanDe]) {
-        return PRAETERITUM_MAP[cleanDe];
-      }
-
-      const words = (cleanDe + " " + sentClean).match(/\b[a-zA-ZäöüßÄÖÜ]+\b/g) || [];
-      for (let w of words) {
+      // 2. Check PRAETERITUM_MAP for any word in sentence or deutsch
+      const textToScan = (de + " " + sentClean);
+      const sentWords = textToScan.match(/\b[a-zA-ZäöüßÄÖÜ]+\b/g) || [];
+      for (let w of sentWords) {
         const wLower = w.toLowerCase();
         if (PRAETERITUM_MAP[wLower]) {
           return PRAETERITUM_MAP[wLower];
+        }
+      }
+
+      // 3. Dynamic fallback for regular weak verbs ending in -te, -ten, -test, -tet
+      const nonVerbList = ["sehr", "heute", "leute", "bitte", "küste", "torte", "karte", "kette", "liste", "weste", "mitte", "gäste", "nachrichten", "zentralkette", "smarte", "kalten", "kaputten", "konsumenten", "weiteren", "ersten", "zweiten", "dritten", "vierten", "letzten", "nächsten", "neuen", "alten", "großen", "kleinen", "guten", "schlechten", "vielen", "wenigen", "möglichen", "gewohnten", "historischen", "radikalen", "monotone", "echte", "digitale", "kurze", "lange", "öffentliche", "private", "ganze", "ganzen", "eigenen", "eigene", "verschiedene", "verschiedenen", "folgende", "folgenden", "bekannte", "bekannten", "verwandte", "verwandten", "angestellte", "angestellten", "beamte", "beamten"];
+      for (let w of sentWords) {
+        const wLower = w.toLowerCase();
+        if (nonVerbList.includes(wLower)) continue;
+        const m = wLower.match(/^([a-zäöüß]{3,})(te|ten|test|tet)$/i);
+        if (m) {
+          const stem = m[1];
+          let inf = stem.endsWith('e') ? stem + 'n' : stem + 'en';
+          let ichForm = stem + (stem.endsWith('t') || stem.endsWith('d') ? 'ete' : 'te');
+          let wirForm = stem + (stem.endsWith('t') || stem.endsWith('d') ? 'eten' : 'ten');
+          return { inf: inf, ich: ichForm, wir: wirForm };
         }
       }
 
@@ -6015,7 +6017,21 @@
         highlightClass += " highlight-das";
       }
 
-      // Step 1: Scan sentence for Präteritum verb words and wrap them with yellow highlight & tooltip
+      let cleanTarget = getCleanTargetWord(targetWord);
+
+      // Step 1: Highlight target word if provided and not asterisk formatted
+      if (cleanSentence.includes('*')) {
+        cleanSentence = cleanSentence.replace(/\*([^\*]+)\*/g, `<span class="${highlightClass}">$1</span>`);
+      } else if (cleanTarget.length >= 2) {
+        try {
+          const escapedTarget = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          const targetRegex = new RegExp("\\b(" + escapedTarget + "[a-zA-ZäöüßÄÖÜ]*)\\b", "gi");
+          cleanSentence = cleanSentence.replace(targetRegex, `<span class="${highlightClass}">$1</span>`);
+        } catch (e) {}
+      }
+
+      // Step 2: Scan sentence for Präteritum verb words and wrap them with yellow highlight & tooltip
+      const ptInfo = card ? getPraeteritumInfo(card, cleanSentence) : getPraeteritumInfo(null, cleanSentence);
       const sentWords = cleanSentence.match(/\b[a-zA-ZäöüßÄÖÜ]+\b/g) || [];
       const ptMatches = [];
 
@@ -6023,6 +6039,18 @@
         const wLower = w.toLowerCase();
         if (PRAETERITUM_MAP[wLower]) {
           ptMatches.push({ word: w, info: PRAETERITUM_MAP[wLower] });
+        }
+      }
+
+      // If not found in map, use ptInfo
+      if (ptMatches.length === 0 && ptInfo) {
+        // Find which word in sentWords matches the Präteritum verb
+        for (let w of sentWords) {
+          const wLower = w.toLowerCase();
+          if (wLower === ptInfo.ich.toLowerCase() || wLower === ptInfo.wir.toLowerCase() || wLower.endsWith('te') || wLower.endsWith('ten')) {
+            ptMatches.push({ word: w, info: ptInfo });
+            break;
+          }
         }
       }
 
@@ -6034,23 +6062,8 @@
         
         try {
           const escapedPt = match.word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-          const regexPt = new RegExp("\\b(" + escapedPt + ")\\b", "g");
+          const regexPt = new RegExp("\\b(" + escapedPt + ")\\b(?![^<]*>)", "g");
           cleanSentence = cleanSentence.replace(regexPt, yellowSpan);
-        } catch (e) {}
-      }
-
-      // Step 2: Highlight target word if provided and not asterisk formatted
-      if (cleanSentence.includes('*')) {
-        return cleanSentence.replace(/\*([^\*]+)\*/g, `<span class="${highlightClass}">$1</span>`);
-      }
-
-      let cleanTarget = getCleanTargetWord(targetWord);
-      if (cleanTarget.length >= 2) {
-        try {
-          const escapedTarget = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-          // Match target word outside HTML tags
-          const targetRegex = new RegExp("\\b(" + escapedTarget + "[a-zA-ZäöüßÄÖÜ]*)\\b(?![^<]*>)", "gi");
-          cleanSentence = cleanSentence.replace(targetRegex, `<span class="${highlightClass}">$1</span>`);
         } catch (e) {}
       }
 

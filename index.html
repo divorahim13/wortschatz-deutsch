@@ -6669,20 +6669,38 @@
       }
     }
 
+    function promptForOpenAIKey() {
+      const userKey = prompt("Masukkan OpenAI API Key Anda (sk-...) untuk mengaktifkan FULL OpenAI Voice TTS Audio:");
+      if (userKey && userKey.trim().length > 10) {
+        const cleanKey = userKey.trim();
+        localStorage.setItem('openai_api_key', cleanKey);
+        const input = document.getElementById('settings-api-key');
+        if (input) input.value = cleanKey;
+        showToast("✅ OpenAI API Key berhasil disimpan! Suara OpenAI TTS aktif.");
+        return cleanKey;
+      }
+      return null;
+    }
+
     async function speakWithOpenAITTS(text, lang = 'de', isWord = false, onEnded = null) {
       if (!text) {
         if (onEnded) onEnded();
         return;
       }
-      const apiKey = localStorage.getItem('openai_api_key');
+      let apiKey = localStorage.getItem('openai_api_key');
       
       // Hentikan web speech synthesis dan audio yang berjalan secara instan
       stopCurrentAudio();
 
-      // Jika API key belum diisi, langsung gunakan suara lokal (WebSpeech API) agar audio selalu terdengar
+      // Jika API key belum diisi, minta pengguna memasukkan OpenAI API Key agar suara OpenAI TTS aktif
       if (!apiKey) {
-        speakLocalSentence(text, onEnded);
-        return;
+        showToast("⚠️ Suara OpenAI API memerlukan OpenAI API Key. Silakan masukkan Key Anda.");
+        apiKey = promptForOpenAIKey();
+        if (!apiKey) {
+          showToast("Memutar suara lokal sementara (masukkan OpenAI API Key untuk suara OpenAI TTS)...");
+          speakLocalSentence(text, onEnded);
+          return;
+        }
       }
 
       const key = text.toLowerCase().trim();

@@ -6423,110 +6423,11 @@
       await speakWithOpenAITTS(cleanWord, 'de', true);
     }
 
-    function speakLocalSentence(text, onEnded = null) {
-      // Validasi: Pastikan teks masih cocok dengan kartu aktif sebelum memutar suara lokal
-      if (!isTextMatchingActiveCard(text)) {
-        console.log("Local TTS playback cancelled: Active card changed for:", text);
-        if (onEnded) onEnded();
-        return;
-      }
+    // speakLocalSentence has been DISABLED — All audio uses OpenAI TTS only.
+    // function speakLocalSentence() { /* DISABLED */ }
 
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'de-DE';
-        
-        if (systemVoices.length === 0) {
-          systemVoices = window.speechSynthesis.getVoices();
-        }
-        
-        const deVoice = systemVoices.find(voice => voice.lang.startsWith('de') || voice.lang === 'de-DE');
-        if (deVoice) {
-          utterance.voice = deVoice;
-        } else {
-          console.warn("German voice (de-DE) not found in system voices list for local fallback.");
-          showToast("Peringatan: Paket suara Jerman (de-DE) tidak ditemukan di browser Anda. Pengucapan lokal mungkin tidak sesuai aksen asli.");
-        }
-        
-        if (onEnded) {
-          utterance.onend = () => {
-            onEnded();
-          };
-          utterance.onerror = () => {
-            onEnded();
-          };
-        }
-        
-        window.speechSynthesis.speak(utterance);
-      } else {
-        showToast("Browser Anda tidak mendukung Web Speech API lokal.");
-        if (onEnded) onEnded();
-      }
-    }
-
-    async function speakWithElevenLabs(text) {
-      if (!text) return;
-      const apiKey = localStorage.getItem('elevenlabs_api_key') || 'sk_ff24b6416671502c64acdc9f31a35d0ee83ecb7b3266ec0c';
-      const voiceId = localStorage.getItem('elevenlabs_voice_id') || 'TUKJhQmz3RPYBNAgC5A1';
-      
-      if (!apiKey) {
-        speakLocalSentence(text);
-        return;
-      }
-      
-      try {
-        // Hentikan web speech synthesis yang sedang berjalan
-        if ('speechSynthesis' in window) {
-          window.speechSynthesis.cancel();
-        }
-        
-        // Hentikan audio yang sedang berjalan
-        if (currentAudio) {
-          currentAudio.pause();
-          currentAudio = null;
-        }
-
-        const targetUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
-        const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}&reqHeaders=${encodeURIComponent(`xi-api-key:${apiKey}`)}`;
-
-        const response = await fetch(proxyUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'accept': 'audio/mpeg'
-          },
-          body: JSON.stringify({
-            text: text,
-            model_id: 'eleven_multilingual_v2',
-            voice_settings: {
-              stability: 0.5,
-              similarity_boost: 0.75
-            }
-          })
-        });
-
-        if (!response.ok) {
-          const errText = await response.text();
-          console.error("ElevenLabs API error:", errText);
-          
-          let errMsg = "Gagal menghubungi ElevenLabs.";
-          if (errText.includes("paid_plan_required") || errText.includes("payment_required")) {
-            errMsg = "ElevenLabs Free Tier tidak diizinkan menggunakan library voice lewat API.";
-          }
-          throw new Error(errMsg);
-        }
-
-        const blob = await response.blob();
-        const audioUrl = URL.createObjectURL(blob);
-        currentAudio = new Audio(audioUrl);
-        currentAudio.play();
-      } catch (e) {
-        console.error("speakWithElevenLabs error:", e);
-        showToast(e.message || "Gagal memutar audio dari ElevenLabs");
-        showToast("Memutar suara dengan Web Speech API lokal...");
-        speakLocalSentence(text);
-      }
-    }
+    // speakWithElevenLabs has been DISABLED — All audio uses OpenAI TTS only.
+    // async function speakWithElevenLabs() { /* DISABLED */ }
 
     const ttsAudioCache = {};
 
@@ -6669,38 +6570,27 @@
       }
     }
 
-    function promptForOpenAIKey() {
-      const userKey = prompt("Masukkan OpenAI API Key Anda (sk-...) untuk mengaktifkan FULL OpenAI Voice TTS Audio:");
-      if (userKey && userKey.trim().length > 10) {
-        const cleanKey = userKey.trim();
-        localStorage.setItem('openai_api_key', cleanKey);
-        const input = document.getElementById('settings-api-key');
-        if (input) input.value = cleanKey;
-        showToast("✅ OpenAI API Key berhasil disimpan! Suara OpenAI TTS aktif.");
-        return cleanKey;
-      }
-      return null;
-    }
+    // ==========================================
+    // OPENAI TTS — FULL MODE (NO LOCAL FALLBACK)
+    // ==========================================
 
     async function speakWithOpenAITTS(text, lang = 'de', isWord = false, onEnded = null) {
       if (!text) {
         if (onEnded) onEnded();
         return;
       }
-      let apiKey = localStorage.getItem('openai_api_key');
-      
-      // Hentikan web speech synthesis dan audio yang berjalan secara instan
-      stopCurrentAudio();
 
-      // Jika API key belum diisi, minta pengguna memasukkan OpenAI API Key agar suara OpenAI TTS aktif
+      // Hentikan semua audio yang sedang berjalan
+      stopCurrentAudio();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
+      const apiKey = localStorage.getItem('openai_api_key');
+
+      // Jika OpenAI API Key belum diisi → tampilkan error, JANGAN putar suara lokal
       if (!apiKey) {
-        showToast("⚠️ Suara OpenAI API memerlukan OpenAI API Key. Silakan masukkan Key Anda.");
-        apiKey = promptForOpenAIKey();
-        if (!apiKey) {
-          showToast("Memutar suara lokal sementara (masukkan OpenAI API Key untuk suara OpenAI TTS)...");
-          speakLocalSentence(text, onEnded);
-          return;
-        }
+        showToast('❌ OpenAI API Key belum diisi. Masukkan API Key di menu Pengaturan (⚙️) untuk mengaktifkan suara.');
+        if (onEnded) onEnded();
+        return;
       }
 
       const key = text.toLowerCase().trim();
@@ -6711,7 +6601,7 @@
         cacheEntry = prefetchOpenAITTS(text, lang, isWord);
       }
 
-      // Tunggu jika cacheEntry adalah Promise download
+      // Tunggu jika cacheEntry adalah Promise
       let audio = null;
       if (cacheEntry instanceof Promise) {
         audio = await cacheEntry;
@@ -6720,37 +6610,37 @@
       }
 
       if (audio && audio instanceof Audio) {
-        // Validasi: Pastikan teks masih cocok dengan kartu aktif setelah asinkronus selesai
+        // Validasi: pastikan kartu aktif belum berubah selama fetch berlangsung
         if (!isTextMatchingActiveCard(text)) {
-          console.log("TTS playback cancelled: Active card changed during fetch/load for:", text);
+          console.log('TTS playback cancelled: Active card changed during fetch for:', text);
           if (onEnded) onEnded();
           return;
         }
 
-        stopCurrentAudio(); // Pastikan audio lain dihentikan sebelum mulai play
+        stopCurrentAudio();
         audio.currentTime = 0;
         currentAudio = audio;
 
         if (onEnded) {
-          audio.onended = () => {
-            if (currentAudio === audio) {
-              onEnded();
-            }
-          };
+          audio.onended = () => { if (currentAudio === audio) onEnded(); };
           audio.onerror = () => {
-            speakLocalSentence(text, onEnded);
+            showToast('❌ Gagal memutar audio OpenAI TTS.');
+            if (onEnded) onEnded();
           };
         } else {
           audio.onended = null;
         }
 
         audio.play().catch(e => {
-          console.error("Error playing OpenAI audio, falling back to local TTS:", e);
-          speakLocalSentence(text, onEnded);
+          console.error('Error playing OpenAI TTS audio:', e);
+          showToast('❌ Gagal memutar audio OpenAI TTS. Cek koneksi internet Anda.');
+          if (onEnded) onEnded();
         });
+
       } else {
-        // High quality fallback jika OpenAI TTS gagal/error
-        speakLocalSentence(text, onEnded);
+        // OpenAI fetch gagal (network error, quota, dll) → error, jangan pakai lokal
+        showToast('❌ Gagal mengambil audio dari OpenAI TTS. Periksa API Key dan koneksi internet Anda.');
+        if (onEnded) onEnded();
       }
     }
 

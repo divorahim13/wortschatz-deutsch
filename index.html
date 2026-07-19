@@ -4412,12 +4412,12 @@
       const startsWithArticle = /^(der|die|das)\s/i.test(deWord);
       if (startsWithArticle) {
         if (card.plural) {
-          pluralEl.textContent = `Pl: die ${card.plural}`;
+          pluralEl.textContent = formatPluralDisplay(card.plural);
           pluralEl.style.display = 'block';
         } else {
           const autoPlural = getGermanPlural(card.deutsch);
           if (autoPlural) {
-            pluralEl.textContent = `Pl: ${autoPlural}`;
+            pluralEl.textContent = formatPluralDisplay(autoPlural);
             pluralEl.style.display = 'block';
           } else {
             pluralEl.style.display = 'none';
@@ -5967,7 +5967,7 @@
 
       // 2. Check PRAETERITUM_MAP for any word in sentence or deutsch
       const textToScan = (de + " " + sentClean);
-      const sentWords = textToScan.match(/\b[a-zA-ZäöüßÄÖÜ]+\b/g) || [];
+      const sentWords = textToScan.match(/[a-zA-ZäöüßÄÖÜ]+/g) || [];
       for (let w of sentWords) {
         const wLower = w.toLowerCase();
         if (PRAETERITUM_MAP[wLower]) {
@@ -6025,14 +6025,14 @@
       } else if (cleanTarget.length >= 2) {
         try {
           const escapedTarget = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-          const targetRegex = new RegExp("\\b(" + escapedTarget + "[a-zA-ZäöüßÄÖÜ]*)\\b", "gi");
+          const targetRegex = new RegExp("(?<![a-zA-ZäöüßÄÖÜ])(" + escapedTarget + "[a-zA-ZäöüßÄÖÜ]*)(?![a-zA-ZäöüßÄÖÜ])", "gi");
           cleanSentence = cleanSentence.replace(targetRegex, `<span class="${highlightClass}">$1</span>`);
         } catch (e) {}
       }
 
       // Step 2: Scan sentence for Präteritum verb words and wrap them with yellow highlight & tooltip
       const ptInfo = card ? getPraeteritumInfo(card, cleanSentence) : getPraeteritumInfo(null, cleanSentence);
-      const sentWords = cleanSentence.match(/\b[a-zA-ZäöüßÄÖÜ]+\b/g) || [];
+      const sentWords = cleanSentence.match(/[a-zA-ZäöüßÄÖÜ]+/g) || [];
       const ptMatches = [];
 
       for (let w of sentWords) {
@@ -6044,7 +6044,6 @@
 
       // If not found in map, use ptInfo
       if (ptMatches.length === 0 && ptInfo) {
-        // Find which word in sentWords matches the Präteritum verb
         for (let w of sentWords) {
           const wLower = w.toLowerCase();
           if (wLower === ptInfo.ich.toLowerCase() || wLower === ptInfo.wir.toLowerCase() || wLower.endsWith('te') || wLower.endsWith('ten')) {
@@ -6054,7 +6053,7 @@
         }
       }
 
-      // Apply Präteritum yellow highlight to matched Präteritum verb words
+      // Apply Präteritum yellow highlight to matched Präteritum verb words using German Unicode word boundaries
       for (let match of ptMatches) {
         const info = match.info;
         const tooltipHTML = createPraeteritumTooltipHTML(info);
@@ -6062,7 +6061,7 @@
         
         try {
           const escapedPt = match.word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-          const regexPt = new RegExp("\\b(" + escapedPt + ")\\b(?![^<]*>)", "g");
+          const regexPt = new RegExp("(?<![a-zA-ZäöüßÄÖÜ])(" + escapedPt + ")(?![a-zA-ZäöüßÄÖÜ])(?![^<]*>)", "g");
           cleanSentence = cleanSentence.replace(regexPt, yellowSpan);
         } catch (e) {}
       }
@@ -6093,6 +6092,16 @@
         console.error("Translation failed: ", e);
       }
       return "Terjemahan tidak tersedia";
+    }
+
+        function formatPluralDisplay(pluralStr) {
+      if (!pluralStr) return "";
+      let clean = pluralStr.trim();
+      clean = clean.replace(/^(die\s+)+/gi, 'die ');
+      if (!clean.toLowerCase().startsWith('die ')) {
+        clean = 'die ' + clean;
+      }
+      return `Pl: ${clean}`;
     }
 
     function getGermanPlural(deutschField) {

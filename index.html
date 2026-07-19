@@ -4407,9 +4407,8 @@
       }
 
       // --- Front ---
-      const ptInfoCard = getPraeteritumInfo(card);
-      const ptBadgeHTML = ptInfoCard ? ` <span class="praeteritum-badge" tabindex="0">⚡ Präteritum${createPraeteritumTooltipHTML(ptInfoCard)}</span>` : "";
-      document.getElementById('free-front-category').innerHTML = escapeHTML(card.category || 'Kosakata') + ptBadgeHTML;
+      
+      document.getElementById('free-front-category').textContent = card.category || 'Kosakata';
       const frontDisplay = document.getElementById('free-front-display');
       const frontPrompt = document.getElementById('free-front-prompt-label');
       const frontClue = document.getElementById('free-front-clue');
@@ -4426,7 +4425,7 @@
       }
 
       // --- Back ---
-      document.getElementById('free-back-category').innerHTML = escapeHTML(card.category || 'Kosakata') + ptBadgeHTML;
+      document.getElementById('free-back-category').textContent = card.category || 'Kosakata';
       document.getElementById('free-back-display').innerHTML = formatFlashcardGermanWord(card.deutsch);
       document.getElementById('free-back-translation').textContent = card.indonesia;
 
@@ -5542,10 +5541,9 @@
 
       const catText = activeCard.category || 'Kosakata';
       const badgeLabel = `${activeCard.level} - KAPITEL ${activeCard.chapter} • ${catText}`;
-      const ptInfoStudy = getPraeteritumInfo(activeCard);
-      const ptBadgeStudyHTML = ptInfoStudy ? ` <span class="praeteritum-badge" tabindex="0">⚡ Präteritum${createPraeteritumTooltipHTML(ptInfoStudy)}</span>` : "";
-      document.getElementById('front-category').innerHTML = escapeHTML(badgeLabel) + ptBadgeStudyHTML;
-      document.getElementById('back-category').innerHTML = escapeHTML(badgeLabel) + ptBadgeStudyHTML;
+      
+      document.getElementById('front-category').textContent = badgeLabel;
+      document.getElementById('back-category').textContent = badgeLabel;
 
       document.getElementById('back-display').innerHTML = formatGermanWordHTML(activeCard.deutsch);
       document.getElementById('back-translation').textContent = activeCard.indonesia;
@@ -6028,9 +6026,8 @@
 
     function formatSentenceHighlight(sentence, targetWord, card) {
       let cleanSentence = sentence.split('|')[0].trim();
-      const ptInfo = card ? getPraeteritumInfo(card, cleanSentence) : getPraeteritumInfo(null, cleanSentence);
       
-      // Determine article-based gender class
+      // Determine article-based gender class for target word
       const deWordLower = targetWord.trim().toLowerCase();
       let highlightClass = "highlight-word";
       if (deWordLower.startsWith('der ')) {
@@ -6041,53 +6038,46 @@
         highlightClass += " highlight-das";
       }
 
-      if (cleanSentence.includes('*')) {
-        return cleanSentence.replace(/\*([^\*]+)\*/g, (match, p1) => {
-          const p1Lower = p1.trim().toLowerCase();
-          if (PRAETERITUM_MAP[p1Lower] || ptInfo) {
-            const info = PRAETERITUM_MAP[p1Lower] || ptInfo;
-            const tooltipHTML = createPraeteritumTooltipHTML(info);
-            return `<span class="praeteritum-highlight" tabindex="0">${p1}${tooltipHTML}</span>`;
-          }
-          return `<span class="${highlightClass}">${p1}</span>`;
-        });
-      }
-
-      let cleanTarget = getCleanTargetWord(targetWord);
-      
-      // Check for Präteritum verb word in sentence
+      // Step 1: Scan sentence for Präteritum verb words and wrap them with yellow highlight & tooltip
       const sentWords = cleanSentence.match(/\b[a-zA-ZäöüßÄÖÜ]+\b/g) || [];
-      let foundPtWord = "";
+      const ptMatches = [];
+
       for (let w of sentWords) {
-        if (PRAETERITUM_MAP[w.toLowerCase()]) {
-          foundPtWord = w;
-          break;
+        const wLower = w.toLowerCase();
+        if (PRAETERITUM_MAP[wLower]) {
+          ptMatches.push({ word: w, info: PRAETERITUM_MAP[wLower] });
         }
       }
 
-      if (foundPtWord && ptInfo) {
+      // Apply Präteritum yellow highlight to matched Präteritum verb words
+      for (let match of ptMatches) {
+        const info = match.info;
+        const tooltipHTML = createPraeteritumTooltipHTML(info);
+        const yellowSpan = `<span class="praeteritum-highlight" tabindex="0">${match.word}${tooltipHTML}</span>`;
+        
         try {
-          const escapedPt = foundPtWord.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-          const regexPt = new RegExp(`\b(${escapedPt})\b`, 'gi');
-          const tooltipHTML = createPraeteritumTooltipHTML(ptInfo);
-          cleanSentence = cleanSentence.replace(regexPt, `<span class="praeteritum-highlight" tabindex="0">$1${tooltipHTML}</span>`);
+          const escapedPt = match.word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          const regexPt = new RegExp("\\b(" + escapedPt + ")\\b", "g");
+          cleanSentence = cleanSentence.replace(regexPt, yellowSpan);
         } catch (e) {}
       }
 
-      if (cleanTarget.length < 2) return cleanSentence;
-
-      try {
-        const escaped = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-        const regex = new RegExp(`(${escaped}[a-zA-ZäöüßÄÖÜ]*)`, 'gi');
-        
-        if (cleanSentence.includes('praeteritum-highlight')) {
-          return cleanSentence;
-        }
-        
-        return cleanSentence.replace(regex, `<span class="${highlightClass}">$1</span>`);
-      } catch (e) {
-        return cleanSentence;
+      // Step 2: Highlight target word if provided and not asterisk formatted
+      if (cleanSentence.includes('*')) {
+        return cleanSentence.replace(/\*([^\*]+)\*/g, `<span class="${highlightClass}">$1</span>`);
       }
+
+      let cleanTarget = getCleanTargetWord(targetWord);
+      if (cleanTarget.length >= 2) {
+        try {
+          const escapedTarget = cleanTarget.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          // Match target word outside HTML tags
+          const targetRegex = new RegExp("\\b(" + escapedTarget + "[a-zA-ZäöüßÄÖÜ]*)\\b(?![^<]*>)", "gi");
+          cleanSentence = cleanSentence.replace(targetRegex, `<span class="${highlightClass}">$1</span>`);
+        } catch (e) {}
+      }
+
+      return cleanSentence;
     }
 
     function getSentenceTranslation(sentence) {

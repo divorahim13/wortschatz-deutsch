@@ -5695,6 +5695,16 @@
     // ==========================================
     // PRÄTERITUM DICTIONARY & HOVER TOOLTIP HELPERS
     // ==========================================
+        function escapeHTML(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
     const PRAETERITUM_MAP = {
       // Auxiliary & Modals
       "war": { inf: "sein", ich: "war", wir: "waren" },

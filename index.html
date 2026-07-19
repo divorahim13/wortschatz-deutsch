@@ -6531,41 +6531,53 @@
     const ttsAudioCache = {};
 
     function isTextMatchingActiveCard(text) {
-      if (!text) return false;
-      const cleanInput = text.toLowerCase().trim();
+      if (!text) return true;
       
+      const cleanInput = text.toLowerCase().replace(/<[^>]*>/g, '').replace(/[^\w\säöüßÄÖÜ]/g, '').trim();
+      if (!cleanInput) return true;
+
       const isStudyActive = document.getElementById('study-view')?.classList.contains('active');
       const isFlashcardActive = document.getElementById('flashcard-view')?.classList.contains('active');
       
+      // Jika kedua view tidak aktif (misal saat modal/transition), jangan batalkan audio
+      if (!isStudyActive && !isFlashcardActive) return true;
+
       // Cek Study Mode
       if (isStudyActive && typeof sessionQueue !== 'undefined' && sessionQueue && sessionQueue.length > 0 && typeof currentSessionIndex !== 'undefined') {
         const studyActive = sessionQueue[currentSessionIndex];
         if (studyActive) {
-          const studyWord = getTTSGermanWord(studyActive.deutsch, studyActive.category).toLowerCase().trim();
-          const studySent = studyActive.sentence ? studyActive.sentence.split('|')[0].replace(/\*/g, '').trim().toLowerCase().trim() : '';
-          if (cleanInput === studyWord || cleanInput === studySent) {
+          const studyWord = getTTSGermanWord(studyActive.deutsch, studyActive.category).toLowerCase().replace(/[^\w\säöüßÄÖÜ]/g, '').trim();
+          const studySent = studyActive.sentence ? studyActive.sentence.split('|')[0].replace(/<[^>]*>/g, '').replace(/[^\w\säöüßÄÖÜ]/g, '').toLowerCase().trim() : '';
+          
+          if (cleanInput === studyWord || cleanInput === studySent || 
+              (studyWord && cleanInput.includes(studyWord)) || 
+              (studySent && (cleanInput.includes(studySent) || studySent.includes(cleanInput)))) {
             return true;
           }
         }
       }
-      
+
       // Cek Free Flashcard Mode
       if (isFlashcardActive && typeof flashcardList !== 'undefined' && flashcardList && flashcardList.length > 0 && typeof flashcardIndex !== 'undefined') {
         const fcActive = flashcardList[flashcardIndex];
         if (fcActive) {
-          const fcWord = getTTSGermanWord(fcActive.deutsch, fcActive.category).toLowerCase().trim();
-          const fcSent = fcActive.sentence ? fcActive.sentence.split('|')[0].replace(/\*/g, '').trim().toLowerCase().trim() : '';
-          const fcIndo = fcActive.indonesia ? fcActive.indonesia.toLowerCase().trim() : '';
+          const fcWord = getTTSGermanWord(fcActive.deutsch, fcActive.category).toLowerCase().replace(/[^\w\säöüßÄÖÜ]/g, '').trim();
+          const fcSent = fcActive.sentence ? fcActive.sentence.split('|')[0].replace(/<[^>]*>/g, '').replace(/[^\w\säöüßÄÖÜ]/g, '').toLowerCase().trim() : '';
+          const fcIndo = fcActive.indonesia ? fcActive.indonesia.toLowerCase().replace(/[^\w\s]/g, '').trim() : '';
           const fcSentIndo = fcActive.sentence && fcActive.sentence.includes('|') 
-            ? fcActive.sentence.split('|')[1].replace(/\*/g, '').trim().toLowerCase().trim() 
-            : (fcActive.sentenceTranslation ? fcActive.sentenceTranslation.toLowerCase().trim() : '');
-          if (cleanInput === fcWord || cleanInput === fcSent || cleanInput === fcIndo || cleanInput === fcSentIndo) {
+            ? fcActive.sentence.split('|')[1].replace(/<[^>]*>/g, '').replace(/[^\w\s]/g, '').toLowerCase().trim() 
+            : (fcActive.sentenceTranslation ? fcActive.sentenceTranslation.toLowerCase().replace(/[^\w\s]/g, '').trim() : '');
+
+          if (cleanInput === fcWord || cleanInput === fcSent || cleanInput === fcIndo || cleanInput === fcSentIndo ||
+              (fcWord && cleanInput.includes(fcWord)) || 
+              (fcSent && (cleanInput.includes(fcSent) || fcSent.includes(cleanInput)))) {
             return true;
           }
         }
       }
-      
-      return false;
+
+      // Default aman: izinkan pemutaran daripada membisu secara diam-diam
+      return true;
     }
 
     async function prefetchOpenAITTS(text, lang = 'de', isWord = false) {

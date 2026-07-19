@@ -1865,86 +1865,56 @@
     }
 
     /* ==========================================
-       PRÄTERITUM YELLOW HIGHLIGHT & HOVER TOOLTIP
+       PRÄTERITUM GLOW HIGHLIGHT & HOVER TOOLTIP
        ========================================== */
     .praeteritum-highlight {
-      background: linear-gradient(135deg, #fff3bf 0%, #fef08a 100%) !important;
-      color: #713f12 !important;
-      border: 1px solid #fde047 !important;
+      background: rgba(253, 224, 71, 0.18) !important;
+      color: #fde047 !important;
+      border: 1px dashed rgba(253, 224, 71, 0.5) !important;
       border-radius: 6px;
-      padding: 2px 7px;
-      font-weight: 700;
+      padding: 1px 6px;
+      font-weight: 600;
       display: inline-block;
       position: relative;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(250, 204, 21, 0.3);
+      cursor: help;
       transition: all 0.2s ease;
       z-index: 5;
     }
 
     .praeteritum-highlight:hover {
-      background: #fde047 !important;
-      color: #451a03 !important;
-      box-shadow: 0 4px 12px rgba(250, 204, 21, 0.5);
-      transform: translateY(-1px);
-    }
-
-    .praeteritum-badge {
-      background: linear-gradient(135deg, #fef08a 0%, #fde047 100%) !important;
-      color: #713f12 !important;
-      border: 1px solid #eab308 !important;
-      border-radius: 20px;
-      padding: 3px 10px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      cursor: pointer;
-      position: relative;
-      box-shadow: 0 2px 8px rgba(234, 179, 8, 0.25);
-      transition: all 0.2s ease;
-      margin-left: 6px;
-      vertical-align: middle;
-      z-index: 5;
-    }
-
-    .praeteritum-badge:hover {
-      background: #fde047 !important;
-      color: #451a03 !important;
-      transform: scale(1.04);
-      box-shadow: 0 4px 14px rgba(234, 179, 8, 0.4);
+      background: rgba(253, 224, 71, 0.32) !important;
+      color: #ffffff !important;
+      border-color: #facc15 !important;
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
     }
 
     /* Tooltip Popup */
     .praeteritum-tooltip {
       visibility: hidden;
       opacity: 0;
-      width: 175px;
-      background-color: #0f172a;
+      min-width: 145px;
+      max-width: 170px;
+      background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
       color: #f8fafc;
       text-align: left;
-      border-radius: 10px;
-      padding: 10px 12px;
+      border-radius: 8px;
+      padding: 8px 10px;
       position: absolute;
       z-index: 99999;
-      bottom: 125%;
+      bottom: calc(100% + 8px);
       left: 50%;
       transform: translateX(-50%) translateY(4px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(250, 204, 21, 0.4);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(250, 204, 21, 0.35);
       transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s ease;
       pointer-events: none;
-      font-size: 0.82rem;
-      line-height: 1.5;
+      font-size: 0.78rem;
+      line-height: 1.45;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: normal;
     }
 
     .praeteritum-highlight:hover .praeteritum-tooltip,
-    .praeteritum-badge:hover .praeteritum-tooltip,
-    .praeteritum-highlight:focus .praeteritum-tooltip,
-    .praeteritum-badge:focus .praeteritum-tooltip {
+    .praeteritum-highlight:focus .praeteritum-tooltip {
       visibility: visible;
       opacity: 1;
       transform: translateX(-50%) translateY(0);
@@ -1955,29 +1925,31 @@
       position: absolute;
       top: 100%;
       left: 50%;
-      margin-left: -6px;
-      border-width: 6px;
+      margin-left: -5px;
+      border-width: 5px;
       border-style: solid;
       border-color: #0f172a transparent transparent transparent;
     }
 
     .pt-title {
-      display: block;
-      font-size: 0.73rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       color: #facc15;
-      border-bottom: 1px solid rgba(250, 204, 21, 0.25);
-      padding-bottom: 4px;
-      margin-bottom: 6px;
+      border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+      padding-bottom: 3px;
+      margin-bottom: 5px;
     }
 
     .pt-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .pt-row:last-child {
@@ -1987,13 +1959,15 @@
     .pt-label {
       color: #94a3b8;
       font-weight: 500;
+      font-size: 0.75rem;
     }
 
     .pt-val {
       color: #ffffff;
       font-weight: 700;
+      font-size: 0.78rem;
+      font-family: 'Outfit', sans-serif;
     }
-
 </style>
 </head>
 <body>
@@ -6017,7 +5991,7 @@
     function createPraeteritumTooltipHTML(info) {
       if (!info) return "";
       return `<span class="praeteritum-tooltip">` +
-        `<span class="pt-title">Präteritum</span>` +
+        `<span class="pt-title">⚡ Präteritum</span>` +
         `<span class="pt-row"><span class="pt-label">Infinitiv:</span> <span class="pt-val">${escapeHTML(info.inf)}</span></span>` +
         `<span class="pt-row"><span class="pt-label">ich:</span> <span class="pt-val">${escapeHTML(info.ich)}</span></span>` +
         `<span class="pt-row"><span class="pt-label">wir:</span> <span class="pt-val">${escapeHTML(info.wir)}</span></span>` +

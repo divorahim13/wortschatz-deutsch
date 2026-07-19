@@ -6679,16 +6679,17 @@
       // Hentikan web speech synthesis dan audio yang berjalan secara instan
       stopCurrentAudio();
 
+      // Jika API key belum diisi, langsung gunakan suara lokal (WebSpeech API) agar audio selalu terdengar
+      if (!apiKey) {
+        speakLocalSentence(text, onEnded);
+        return;
+      }
+
       const key = text.toLowerCase().trim();
       let cacheEntry = ttsAudioCache[key];
 
       // Jika belum di-prefetch, buat Promise prefetch baru
       if (!cacheEntry) {
-        if (!apiKey) {
-          showToast("API Key OpenAI belum diatur.");
-          if (onEnded) onEnded();
-          return;
-        }
         cacheEntry = prefetchOpenAITTS(text, lang, isWord);
       }
 
@@ -6714,21 +6715,24 @@
 
         if (onEnded) {
           audio.onended = () => {
-            // Hanya trigger callback jika audio ini masih merupakan audio aktif saat ini
             if (currentAudio === audio) {
               onEnded();
             }
+          };
+          audio.onerror = () => {
+            speakLocalSentence(text, onEnded);
           };
         } else {
           audio.onended = null;
         }
 
         audio.play().catch(e => {
-          console.error("Error playing OpenAI audio:", e);
-          if (onEnded) onEnded();
+          console.error("Error playing OpenAI audio, falling back to local TTS:", e);
+          speakLocalSentence(text, onEnded);
         });
       } else {
-        if (onEnded) onEnded();
+        // High quality fallback jika OpenAI TTS gagal/error
+        speakLocalSentence(text, onEnded);
       }
     }
 

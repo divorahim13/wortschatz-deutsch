@@ -6324,7 +6324,7 @@
     }
 
     // ==========================================
-    // VERB GRAMMAR PANEL ENGINE & CHIPS GENERATOR (UPGRADED BUG 3 FIX)
+    // VERB GRAMMAR PANEL ENGINE & CHIPS GENERATOR (CLEAN PURE CONJUGATION)
     // ==========================================
     const IRREGULAR_VERB_DB = {
       "heben": { praet: "hob", perf: "gehoben", hilfsverb: "haben" },
@@ -6396,20 +6396,14 @@
       const cat = (card.category || '').toLowerCase();
       if (cat !== 'verben' && cat !== 'verb' && !de.includes('(')) return null;
 
-      // 1. Clean raw infinitive and extract reflexive status
+      // 1. Clean raw infinitive - Strip paren phrases completely
       let rawInf = de.replace(/\([^)]*\)/g, '').replace(/\[[^\]]*\]/g, '').split(',')[0].split('–')[0].split(' - ')[0].trim();
       const isReflexive = de.toLowerCase().includes('sich ') || rawInf.toLowerCase().includes('sich ');
       const cleanInf = rawInf.replace(/^sich\s+/, '').trim();
 
-      // 2. Separate object phrase vs verb word (e.g. "den Hörer ab|heben" -> objectPhrase: "den Hörer", verbWord: "ab|heben")
-      let objectPhrase = "";
-      let verbWord = cleanInf;
-      
-      if (cleanInf.includes(' ')) {
-        const parts = cleanInf.split(' ');
-        verbWord = parts[parts.length - 1];
-        objectPhrase = parts.slice(0, -1).join(' ');
-      }
+      // 2. Extract pure verb word (drop any object words from cleanInf)
+      const tokens = cleanInf.split(/\s+/);
+      const verbWord = tokens[tokens.length - 1];
 
       // 3. Extract separable prefix & root verb
       let prefix = "";
@@ -6443,15 +6437,20 @@
       let partizip2Stem = "";
       let hilfsverb = (dbMatch && dbMatch.hilfsverb) ? dbMatch.hilfsverb : 'haben';
 
+      // Only parse explicit paren forms IF paren contains explicit Präteritum/Perfekt forms, NOT if it's an object phrase
       if (de.includes('(') && de.includes(')')) {
         const inner = de.match(/\(([^)]+)\)/)[1];
-        const parts = inner.split(',').map(s => s.trim());
-        if (parts.length >= 1) praet3SgStem = parts[0];
-        if (parts.length >= 2) {
-          const pm = parts[1].match(/(hat|ist)\s+([a-zäöüß]+)/i);
-          if (pm) {
-            partizip2Stem = pm[2];
-            hilfsverb = pm[1].toLowerCase();
+        if (inner.includes(',')) {
+          const parts = inner.split(',').map(s => s.trim());
+          if (parts.length >= 1 && !parts[0].startsWith('die ') && !parts[0].startsWith('den ') && !parts[0].startsWith('das ')) {
+            praet3SgStem = parts[0];
+          }
+          if (parts.length >= 2) {
+            const pm = parts[1].match(/(hat|ist)\s+([a-zäöüß]+)/i);
+            if (pm) {
+              partizip2Stem = pm[2];
+              hilfsverb = pm[1].toLowerCase();
+            }
           }
         }
       } else if (de.includes(',')) {
@@ -6483,7 +6482,7 @@
         if (!hilfsverb) hilfsverb = dbMatch.hilfsverb;
       }
 
-      // 6. Regular fallback for weak verbs
+      // 6. Regular fallback for weak verbs with proper -et / -t endings
       if (!praet3SgStem) {
         let stem = rootVerb;
         if (stem.endsWith('en')) stem = stem.slice(0, -2);
@@ -6502,14 +6501,15 @@
         let stem = rootVerb;
         if (stem.endsWith('en')) stem = stem.slice(0, -2);
         else if (stem.endsWith('n')) stem = stem.slice(0, -1);
-        partizip2Stem = prefix ? `${prefix}ge${stem}t` : `ge${stem}t`;
+        let pStem = (stem.endsWith('t') || stem.endsWith('d')) ? `${stem}et` : `${stem}t`;
+        partizip2Stem = prefix ? `${prefix}ge${pStem}` : `ge${pStem}`;
       }
 
       // 7. Determine Hilfsverb (sein vs haben)
       const isSeinVerb = (hilfsverb === 'sein') || de.includes('ist ') || /(sein|kommen|gehen|fahren|fliegen|reisen|steigen|laufen|sinken|rutschen|einziehen|umziehen|ausziehen|passieren|geschehen|aufstehen|aufwachen|wachen)/i.test(rootVerb);
       hilfsverb = isSeinVerb ? 'sein' : 'haben';
 
-      // 8. Assemble final ich, wir, and Perfekt forms with objectPhrase & reflexive pronouns
+      // 8. Assemble PURE verb conjugations (NO objectPhrase inserted!)
       let ichVerbPart = praet3SgStem;
       let wirVerbPart = praet3SgStem;
 
@@ -6522,25 +6522,24 @@
         if (vPart.endsWith('e')) vWir = vPart + 'n';
         else if (vPart.endsWith('ß')) vWir = vPart.slice(0, -1) + 'ßen';
 
-        ichVerbPart = objectPhrase ? `${vPart} ${objectPhrase} ${pFix}` : `${vPart} ${pFix}`;
-        wirVerbPart = objectPhrase ? `${vWir} ${objectPhrase} ${pFix}` : `${vWir} ${pFix}`;
+        ichVerbPart = `${vPart} ... ${pFix}`;
+        wirVerbPart = `${vWir} ... ${pFix}`;
       } else {
         let wirForm = praet3SgStem.endsWith('e') ? praet3SgStem + 'n' : praet3SgStem + 'en';
         if (praet3SgStem.endsWith('ß')) wirForm = praet3SgStem.slice(0, -1) + 'ßen';
 
-        ichVerbPart = objectPhrase ? `${praet3SgStem} ${objectPhrase}` : praet3SgStem;
-        wirVerbPart = objectPhrase ? `${wirForm} ${objectPhrase}` : wirForm;
+        ichVerbPart = praet3SgStem;
+        wirVerbPart = wirForm;
       }
 
       let praetIch = isReflexive ? `${ichVerbPart} mich` : ichVerbPart;
       let praetWir = isReflexive ? `${wirVerbPart} uns` : wirVerbPart;
 
-      let fullPerfektParticiple = objectPhrase ? `${objectPhrase} ${partizip2Stem}` : partizip2Stem;
       let perfektText = isReflexive
-        ? (hilfsverb === 'sein' ? `ich bin mich ${fullPerfektParticiple}` : `ich habe mich ${fullPerfektParticiple}`)
-        : (hilfsverb === 'sein' ? `ich bin ${fullPerfektParticiple}` : `ich habe ${fullPerfektParticiple}`);
+        ? (hilfsverb === 'sein' ? `ich bin mich ${partizip2Stem}` : `ich habe mich ${partizip2Stem}`)
+        : (hilfsverb === 'sein' ? `ich bin ${partizip2Stem}` : `ich habe ${partizip2Stem}`);
 
-      const isIrregular = !!dbMatch || de.includes('(') || de.includes(',');
+      const isIrregular = !!dbMatch;
       const fullInfinitive = isReflexive ? `sich ${cleanInf.replace(/\|/g, '')}` : cleanInf.replace(/\|/g, '');
 
       return {

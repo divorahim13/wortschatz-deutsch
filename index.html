@@ -6296,37 +6296,27 @@
     }
 
     // ==========================================
-    // VERB GRAMMAR PANEL ENGINE & CHIPS GENERATOR
-    // ==========================================
-    // ==========================================
-    // VERB GRAMMAR PANEL ENGINE & CHIPS GENERATOR (UPGRADED)
+    // VERB GRAMMAR PANEL ENGINE & CHIPS GENERATOR (UPGRADED BUG 3 FIX)
     // ==========================================
     const IRREGULAR_VERB_DB = {
+      "heben": { praet: "hob", perf: "gehoben", hilfsverb: "haben" },
+      "bieten": { praet: "bot", perf: "geboten", hilfsverb: "haben" },
+      "rufen": { praet: "rief", perf: "gerufen", hilfsverb: "haben" },
+      "fangen": { praet: "fing", perf: "gefangen", hilfsverb: "haben" },
+      "geben": { praet: "gab", perf: "gegeben", hilfsverb: "haben" },
+      "sehen": { praet: "sah", perf: "gesehen", hilfsverb: "haben" },
+      "schließen": { praet: "schloss", perf: "geschlossen", hilfsverb: "haben" },
+      "kommen": { praet: "kam", perf: "gekommen", hilfsverb: "sein" },
+      "ziehen": { praet: "zog", perf: "gezogen", hilfsverb: "sein" },
+      "fahren": { praet: "fuhr", perf: "gefahren", hilfsverb: "sein" },
+      "gehen": { praet: "ging", perf: "gegangen", hilfsverb: "sein" },
+      "stehen": { praet: "stand", perf: "gestanden", hilfsverb: "haben" },
       "halten": { praet: "hielt", perf: "gehalten", hilfsverb: "haben" },
       "unterhalten": { praet: "unterhielt", perf: "unterhalten", hilfsverb: "haben" },
       "verhalten": { praet: "verhielt", perf: "verhalten", hilfsverb: "haben" },
       "behalten": { praet: "behielt", perf: "behalten", hilfsverb: "haben" },
       "erhalten": { praet: "erhielt", perf: "erhalten", hilfsverb: "haben" },
       "aufhalten": { praet: "hielt auf", perf: "aufgehalten", hilfsverb: "haben" },
-      "schalten": { praet: "schaltete", perf: "geschaltet", hilfsverb: "haben" },
-      "ausschalten": { praet: "schaltete aus", perf: "ausgeschaltet", hilfsverb: "haben" },
-      "einschalten": { praet: "schaltete ein", perf: "eingeschaltet", hilfsverb: "haben" },
-      "stehen": { praet: "stand", perf: "gestanden", hilfsverb: "haben" },
-      "verstehen": { praet: "verstand", perf: "verstanden", hilfsverb: "haben" },
-      "aufstehen": { praet: "stand auf", perf: "aufgestanden", hilfsverb: "sein" },
-      "entstehen": { praet: "entstand", perf: "entstanden", hilfsverb: "sein" },
-      "kommen": { praet: "kam", perf: "gekommen", hilfsverb: "sein" },
-      "bekommen": { praet: "bekam", perf: "bekommen", hilfsverb: "haben" },
-      "ankommen": { praet: "kam an", perf: "angekommen", hilfsverb: "sein" },
-      "vorkommen": { praet: "kam vor", perf: "vorgekommen", hilfsverb: "sein" },
-      "zurückkommen": { praet: "kam zurück", perf: "zurückgekommen", hilfsverb: "sein" },
-      "gehen": { praet: "ging", perf: "gegangen", hilfsverb: "sein" },
-      "fahren": { praet: "fuhr", perf: "gefahren", hilfsverb: "sein" },
-      "erfahren": { praet: "erfuhr", perf: "erfahren", hilfsverb: "haben" },
-      "geben": { praet: "gab", perf: "gegeben", hilfsverb: "haben" },
-      "zurückgeben": { praet: "gab zurück", perf: "zurückgegeben", hilfsverb: "haben" },
-      "aufgeben": { praet: "gab auf", perf: "aufgegeben", hilfsverb: "haben" },
-      "ergaben": { praet: "ergab", perf: "ergeben", hilfsverb: "haben" },
       "lassen": { praet: "ließ", perf: "gelassen", hilfsverb: "haben" },
       "verlassen": { praet: "verließ", perf: "verlassen", hilfsverb: "haben" },
       "veranlassen": { praet: "veranlasste", perf: "veranlasst", hilfsverb: "haben" },
@@ -6336,36 +6326,17 @@
       "nehmen": { praet: "nahm", perf: "genommen", hilfsverb: "haben" },
       "übernehmen": { praet: "übernahm", perf: "übernommen", hilfsverb: "haben" },
       "teilnehmen": { praet: "nahm teil", perf: "teilgenommen", hilfsverb: "haben" },
-      "ziehen": { praet: "zog", perf: "gezogen", hilfsverb: "sein" },
-      "einziehen": { praet: "zog ein", perf: "eingezogen", hilfsverb: "sein" },
-      "umziehen": { praet: "zog um", perf: "umgezogen", hilfsverb: "sein" },
-      "ausziehen": { praet: "zog aus", perf: "ausgezogen", hilfsverb: "sein" },
-      "fangen": { praet: "fing", perf: "gefangen", hilfsverb: "haben" },
-      "auffangen": { praet: "fing auf", perf: "aufgefangen", hilfsverb: "haben" },
-      "empfangen": { praet: "empfing", perf: "empfangen", hilfsverb: "haben" },
-      "anfangen": { praet: "fing an", perf: "angefangen", hilfsverb: "haben" },
-      "sehen": { praet: "sah", perf: "gesehen", hilfsverb: "haben" },
-      "aussehen": { praet: "sah aus", perf: "ausgesehen", hilfsverb: "haben" },
-      "fernsehen": { praet: "sah fern", perf: "ferngesehen", hilfsverb: "haben" },
-      "rufen": { praet: "rief", perf: "gerufen", hilfsverb: "haben" },
-      "anrufen": { praet: "rief an", perf: "angerufen", hilfsverb: "haben" },
       "schreiben": { praet: "schrieb", perf: "geschrieben", hilfsverb: "haben" },
       "beschreiben": { praet: "beschrieb", perf: "beschrieben", hilfsverb: "haben" },
       "sprechen": { praet: "sprach", perf: "gesprochen", hilfsverb: "haben" },
       "ansprechen": { praet: "sprach an", perf: "angesprochen", hilfsverb: "haben" },
       "versprechen": { praet: "versprach", perf: "versprochen", hilfsverb: "haben" },
-      "bieten": { praet: "bot", perf: "geboten", hilfsverb: "haben" },
-      "anbieten": { praet: "bot an", perf: "angeboten", hilfsverb: "haben" },
-      "verbieten": { praet: "verbot", perf: "verboten", hilfsverb: "haben" },
       "finden": { praet: "fand", perf: "gefunden", hilfsverb: "haben" },
       "stattfinden": { praet: "fand statt", perf: "stattgefunden", hilfsverb: "haben" },
       "empfinden": { praet: "empfand", perf: "empfunden", hilfsverb: "haben" },
       "treffen": { praet: "traf", perf: "getroffen", hilfsverb: "haben" },
       "tragen": { praet: "trug", perf: "getragen", hilfsverb: "haben" },
       "werfen": { praet: "warf", perf: "geworfen", hilfsverb: "haben" },
-      "schließen": { praet: "schloss", perf: "geschlossen", hilfsverb: "haben" },
-      "anschließen": { praet: "schloss an", perf: "angeschlossen", hilfsverb: "haben" },
-      "beschließen": { praet: "beschloss", perf: "beschlossen", hilfsverb: "haben" },
       "bitten": { praet: "bat", perf: "gebeten", hilfsverb: "haben" },
       "bleiben": { praet: "blieb", perf: "geblieben", hilfsverb: "sein" },
       "fliegen": { praet: "flog", perf: "geflogen", hilfsverb: "sein" },
@@ -6384,7 +6355,11 @@
       "nennen": { praet: "nannte", perf: "genannt", hilfsverb: "haben" },
       "mögen": { praet: "mochte", perf: "gemocht", hilfsverb: "haben" },
       "sitzen": { praet: "saß", perf: "gesessen", hilfsverb: "haben" },
-      "entscheiden": { praet: "entschied", perf: "entschieden", hilfsverb: "haben" }
+      "entscheiden": { praet: "entschied", perf: "entschieden", hilfsverb: "haben" },
+      "geschehen": { praet: "geschah", perf: "geschehen", hilfsverb: "sein" },
+      "einschlafen": { praet: "schlief ein", perf: "eingeschlafen", hilfsverb: "sein" },
+      "erkennen": { praet: "erkannte", perf: "erkannt", hilfsverb: "haben" },
+      "brechen": { praet: "brach", perf: "gebrochen", hilfsverb: "haben" }
     };
 
     function getVerbGrammarDetails(card) {
@@ -6393,113 +6368,155 @@
       const cat = (card.category || '').toLowerCase();
       if (cat !== 'verben' && cat !== 'verb' && !de.includes('(')) return null;
 
-      // 1. Extract infinitive and check reflexive status
-      let rawInf = de.replace(/\([^)]*\)/g, '').replace(/\[[^\]]*\]/g, '').split(',')[0].replace(/\|/g, '').trim();
+      // 1. Clean raw infinitive and extract reflexive status
+      let rawInf = de.replace(/\([^)]*\)/g, '').replace(/\[[^\]]*\]/g, '').split(',')[0].split('–')[0].split(' - ')[0].trim();
       const isReflexive = de.toLowerCase().includes('sich ') || rawInf.toLowerCase().includes('sich ');
+      const cleanInf = rawInf.replace(/^sich\s+/, '').trim();
+
+      // 2. Separate object phrase vs verb word (e.g. "den Hörer ab|heben" -> objectPhrase: "den Hörer", verbWord: "ab|heben")
+      let objectPhrase = "";
+      let verbWord = cleanInf;
       
-      // Base infinitive without "sich"
-      const infNoSich = rawInf.replace(/^sich\s+/, '').trim();
-      const inf = isReflexive ? `sich ${infNoSich}` : infNoSich;
-
-      const isSeparable = de.includes('|') || de.includes(' |') || /^(an|ab|auf|aus|bei|ein|mit|nach|vor|zu|zurück|statt|her|hin|weg)/i.test(infNoSich);
-
-      // 2. Parse explicit forms from comma-separated string or parenthetical
-      let praet3Sg = "";
-      let partizip2 = "";
-
-      if (de.includes('(') && de.includes(')')) {
-        const inner = de.match(/\(([^)]+)\)/)[1];
-        const parts = inner.split(',').map(s => s.trim());
-        if (parts.length >= 1) praet3Sg = parts[0];
-        if (parts.length >= 2) {
-          const pm = parts[1].match(/(hat|ist)\s+([a-zäöüß]+)/i);
-          if (pm) partizip2 = pm[2];
-        }
-      } else if (de.includes(',')) {
-        const parts = de.split(',').map(s => s.trim());
-        if (parts.length >= 3) {
-          praet3Sg = parts[2].replace(/\s+sich/g, '').trim();
-        }
-        if (parts.length >= 4) {
-          const pm = parts[3].match(/(hat|ist)\s+(sich\s+)?([a-zäöüß]+)/i);
-          if (pm) partizip2 = pm[3];
-        }
+      if (cleanInf.includes(' ')) {
+        const parts = cleanInf.split(' ');
+        verbWord = parts[parts.length - 1];
+        objectPhrase = parts.slice(0, -1).join(' ');
       }
 
-      // 3. Lookup in IRREGULAR_VERB_DB if forms not extracted yet
-      let dbMatch = IRREGULAR_VERB_DB[infNoSich];
-      if (!dbMatch) {
-        for (let key in IRREGULAR_VERB_DB) {
-          if (infNoSich.endsWith(key)) {
-            dbMatch = IRREGULAR_VERB_DB[key];
+      // 3. Extract separable prefix & root verb
+      let prefix = "";
+      let rootVerb = verbWord;
+
+      if (verbWord.includes('|')) {
+        const pParts = verbWord.split('|');
+        prefix = pParts[0];
+        rootVerb = pParts.slice(1).join('');
+      } else {
+        const knownPrefixes = ["zurück", "herunter", "vorbei", "hinauf", "aus", "ein", "auf", "an", "ab", "mit", "vor", "nach", "zu", "statt", "fern", "stumm"];
+        for (let p of knownPrefixes) {
+          if (verbWord.startsWith(p) && verbWord.length > p.length) {
+            prefix = p;
+            rootVerb = verbWord.slice(p.length);
             break;
           }
         }
       }
 
-      if (dbMatch) {
-        if (!praet3Sg) praet3Sg = dbMatch.praet;
-        if (!partizip2) partizip2 = dbMatch.perf;
+      const isSeparable = (prefix !== '') || de.includes('|');
+
+      // 4. Lookup root verb in IRREGULAR_VERB_DB
+      let dbMatch = IRREGULAR_VERB_DB[rootVerb];
+      if (!dbMatch) {
+        dbMatch = IRREGULAR_VERB_DB[cleanInf.replace(/\|/g, '')];
       }
 
-      // 4. Determine Hilfsverb
-      const isSeinVerb = (dbMatch && dbMatch.hilfsverb === 'sein') || de.includes('ist ') || /(sein|kommen|gehen|fahren|fliegen|reisen|steigen|laufen|sinken|rutschen|einziehen|umziehen|ausziehen|passieren|geschehen|aufstehen)/i.test(infNoSich);
-      const hilfsverb = isSeinVerb ? 'sein' : 'haben';
+      // 5. Determine 3rd person Präteritum stem & Partizip II
+      let praet3SgStem = "";
+      let partizip2Stem = "";
+      let hilfsverb = (dbMatch && dbMatch.hilfsverb) ? dbMatch.hilfsverb : 'haben';
 
-      // 5. Fallback regular Präteritum & Partizip II if needed
-      if (!praet3Sg) {
-        let stem = infNoSich;
-        if (stem.endsWith('en')) stem = stem.slice(0, -2);
-        else if (stem.endsWith('n')) stem = stem.slice(0, -1);
-
-        if (stem.endsWith('t') || stem.endsWith('d')) {
-          praet3Sg = stem + 'ete';
-          if (!partizip2) partizip2 = 'ge' + stem + 'et';
-        } else {
-          praet3Sg = stem + 'te';
-          if (!partizip2) partizip2 = 'ge' + stem + 't';
+      if (de.includes('(') && de.includes(')')) {
+        const inner = de.match(/\(([^)]+)\)/)[1];
+        const parts = inner.split(',').map(s => s.trim());
+        if (parts.length >= 1) praet3SgStem = parts[0];
+        if (parts.length >= 2) {
+          const pm = parts[1].match(/(hat|ist)\s+([a-zäöüß]+)/i);
+          if (pm) {
+            partizip2Stem = pm[2];
+            hilfsverb = pm[1].toLowerCase();
+          }
+        }
+      } else if (de.includes(',')) {
+        const parts = de.split(',').map(s => s.trim());
+        if (parts.length >= 3) {
+          praet3SgStem = parts[2].replace(/\s+sich/g, '').trim();
+        }
+        if (parts.length >= 4) {
+          const pm = parts[3].match(/(hat|ist)\s+(sich\s+)?([a-zäöüß]+)/i);
+          if (pm) {
+            partizip2Stem = pm[3];
+            hilfsverb = pm[1].toLowerCase();
+          }
         }
       }
 
-      if (!partizip2) {
-        let stem = infNoSich;
+      if (dbMatch) {
+        if (!praet3SgStem) {
+          praet3SgStem = prefix ? `${dbMatch.praet} ${prefix}` : dbMatch.praet;
+        }
+        if (!partizip2Stem) {
+          if (prefix) {
+            const rootPart = dbMatch.perf.startsWith('ge') ? dbMatch.perf.slice(2) : dbMatch.perf;
+            partizip2Stem = `${prefix}ge${rootPart}`;
+          } else {
+            partizip2Stem = dbMatch.perf;
+          }
+        }
+        if (!hilfsverb) hilfsverb = dbMatch.hilfsverb;
+      }
+
+      // 6. Regular fallback for weak verbs
+      if (!praet3SgStem) {
+        let stem = rootVerb;
         if (stem.endsWith('en')) stem = stem.slice(0, -2);
         else if (stem.endsWith('n')) stem = stem.slice(0, -1);
-        partizip2 = 'ge' + stem + 't';
-      }
 
-      // 6. Conjugate ich & wir forms with proper reflexive pronoun handling
-      let praetIchStem = praet3Sg;
-      let praetWirStem = praet3Sg;
-
-      if (praet3Sg.includes(" ")) {
-        const pParts = praet3Sg.split(" ");
-        const vPart = pParts[0];
-        const rest = " " + pParts.slice(1).join(" ");
+        let vPraet = (stem.endsWith('t') || stem.endsWith('d')) ? `${stem}ete` : `${stem}te`;
+        praet3SgStem = prefix ? `${vPraet} ${prefix}` : vPraet;
         
-        let vWir = vPart + "en";
-        if (vPart.endsWith("e")) vWir = vPart + "n";
-        else if (vPart.endsWith("ß")) vWir = vPart.slice(0, -1) + "ßen";
-
-        praetIchStem = `${vPart}${rest}`;
-        praetWirStem = `${vWir}${rest}`;
-      } else {
-        praetWirStem = praet3Sg.endsWith("e") ? praet3Sg + "n" : praet3Sg + "en";
-        if (praet3Sg.endsWith("ß")) praetWirStem = praet3Sg.slice(0, -1) + "ßen";
+        if (!partizip2Stem) {
+          let pStem = (stem.endsWith('t') || stem.endsWith('d')) ? `${stem}et` : `${stem}t`;
+          partizip2Stem = prefix ? `${prefix}ge${pStem}` : `ge${pStem}`;
+        }
       }
 
-      // Conjugate reflexive pronouns (mich for ich, uns for wir)
-      let praetIch = isReflexive ? `${praetIchStem} mich` : praetIchStem;
-      let praetWir = isReflexive ? `${praetWirStem} uns` : praetWirStem;
-      let perfektText = isReflexive 
-        ? (hilfsverb === 'sein' ? `ich bin mich ${partizip2}` : `ich habe mich ${partizip2}`)
-        : (hilfsverb === 'sein' ? `ich bin ${partizip2}` : `ich habe ${partizip2}`);
+      if (!partizip2Stem) {
+        let stem = rootVerb;
+        if (stem.endsWith('en')) stem = stem.slice(0, -2);
+        else if (stem.endsWith('n')) stem = stem.slice(0, -1);
+        partizip2Stem = prefix ? `${prefix}ge${stem}t` : `ge${stem}t`;
+      }
 
-      // 7. Determine Irregular vs Regular
-      const isIrregular = !!dbMatch || de.includes('(') || de.includes(',') || /(sah|ging|kam|blieb|nahm|gab|stand|saß|wurde|wusste|hielt|dachte|kannte|nannte|mochte|gegangen|gekommen|geblieben|gesehen|genommen|gegeben|gestanden|gesessen|geworden|gewusst|gehalten|gedacht)/i.test(praet3Sg + " " + partizip2);
+      // 7. Determine Hilfsverb (sein vs haben)
+      const isSeinVerb = (hilfsverb === 'sein') || de.includes('ist ') || /(sein|kommen|gehen|fahren|fliegen|reisen|steigen|laufen|sinken|rutschen|einziehen|umziehen|ausziehen|passieren|geschehen|aufstehen|aufwachen|wachen)/i.test(rootVerb);
+      hilfsverb = isSeinVerb ? 'sein' : 'haben';
+
+      // 8. Assemble final ich, wir, and Perfekt forms with objectPhrase & reflexive pronouns
+      let ichVerbPart = praet3SgStem;
+      let wirVerbPart = praet3SgStem;
+
+      if (praet3SgStem.includes(' ')) {
+        const pParts = praet3SgStem.split(' ');
+        const vPart = pParts[0];
+        const pFix = pParts.slice(1).join(' ');
+
+        let vWir = vPart + 'en';
+        if (vPart.endsWith('e')) vWir = vPart + 'n';
+        else if (vPart.endsWith('ß')) vWir = vPart.slice(0, -1) + 'ßen';
+
+        ichVerbPart = objectPhrase ? `${vPart} ${objectPhrase} ${pFix}` : `${vPart} ${pFix}`;
+        wirVerbPart = objectPhrase ? `${vWir} ${objectPhrase} ${pFix}` : `${vWir} ${pFix}`;
+      } else {
+        let wirForm = praet3SgStem.endsWith('e') ? praet3SgStem + 'n' : praet3SgStem + 'en';
+        if (praet3SgStem.endsWith('ß')) wirForm = praet3SgStem.slice(0, -1) + 'ßen';
+
+        ichVerbPart = objectPhrase ? `${praet3SgStem} ${objectPhrase}` : praet3SgStem;
+        wirVerbPart = objectPhrase ? `${wirForm} ${objectPhrase}` : wirForm;
+      }
+
+      let praetIch = isReflexive ? `${ichVerbPart} mich` : ichVerbPart;
+      let praetWir = isReflexive ? `${wirVerbPart} uns` : wirVerbPart;
+
+      let fullPerfektParticiple = objectPhrase ? `${objectPhrase} ${partizip2Stem}` : partizip2Stem;
+      let perfektText = isReflexive
+        ? (hilfsverb === 'sein' ? `ich bin mich ${fullPerfektParticiple}` : `ich habe mich ${fullPerfektParticiple}`)
+        : (hilfsverb === 'sein' ? `ich bin ${fullPerfektParticiple}` : `ich habe ${fullPerfektParticiple}`);
+
+      const isIrregular = !!dbMatch || de.includes('(') || de.includes(',');
+      const fullInfinitive = isReflexive ? `sich ${cleanInf.replace(/\|/g, '')}` : cleanInf.replace(/\|/g, '');
 
       return {
-        inf: inf,
+        inf: fullInfinitive,
         meaning: card.indonesia || '',
         verbType: isIrregular ? 'Irregular' : 'Regelmäßig',
         isIrregular: isIrregular,
@@ -6507,7 +6524,7 @@
         praetIch: praetIch,
         praetWir: praetWir,
         perfektText: perfektText,
-        partizip2: partizip2,
+        partizip2: partizip2Stem,
         isSeparable: isSeparable,
         isReflexive: isReflexive
       };

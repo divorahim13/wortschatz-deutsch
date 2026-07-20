@@ -6298,77 +6298,205 @@
     // ==========================================
     // VERB GRAMMAR PANEL ENGINE & CHIPS GENERATOR
     // ==========================================
+    // ==========================================
+    // VERB GRAMMAR PANEL ENGINE & CHIPS GENERATOR (UPGRADED)
+    // ==========================================
+    const IRREGULAR_VERB_DB = {
+      "halten": { praet: "hielt", perf: "gehalten", hilfsverb: "haben" },
+      "unterhalten": { praet: "unterhielt", perf: "unterhalten", hilfsverb: "haben" },
+      "verhalten": { praet: "verhielt", perf: "verhalten", hilfsverb: "haben" },
+      "behalten": { praet: "behielt", perf: "behalten", hilfsverb: "haben" },
+      "erhalten": { praet: "erhielt", perf: "erhalten", hilfsverb: "haben" },
+      "aufhalten": { praet: "hielt auf", perf: "aufgehalten", hilfsverb: "haben" },
+      "schalten": { praet: "schaltete", perf: "geschaltet", hilfsverb: "haben" },
+      "ausschalten": { praet: "schaltete aus", perf: "ausgeschaltet", hilfsverb: "haben" },
+      "einschalten": { praet: "schaltete ein", perf: "eingeschaltet", hilfsverb: "haben" },
+      "stehen": { praet: "stand", perf: "gestanden", hilfsverb: "haben" },
+      "verstehen": { praet: "verstand", perf: "verstanden", hilfsverb: "haben" },
+      "aufstehen": { praet: "stand auf", perf: "aufgestanden", hilfsverb: "sein" },
+      "entstehen": { praet: "entstand", perf: "entstanden", hilfsverb: "sein" },
+      "kommen": { praet: "kam", perf: "gekommen", hilfsverb: "sein" },
+      "bekommen": { praet: "bekam", perf: "bekommen", hilfsverb: "haben" },
+      "ankommen": { praet: "kam an", perf: "angekommen", hilfsverb: "sein" },
+      "vorkommen": { praet: "kam vor", perf: "vorgekommen", hilfsverb: "sein" },
+      "zurückkommen": { praet: "kam zurück", perf: "zurückgekommen", hilfsverb: "sein" },
+      "gehen": { praet: "ging", perf: "gegangen", hilfsverb: "sein" },
+      "fahren": { praet: "fuhr", perf: "gefahren", hilfsverb: "sein" },
+      "erfahren": { praet: "erfuhr", perf: "erfahren", hilfsverb: "haben" },
+      "geben": { praet: "gab", perf: "gegeben", hilfsverb: "haben" },
+      "zurückgeben": { praet: "gab zurück", perf: "zurückgegeben", hilfsverb: "haben" },
+      "aufgeben": { praet: "gab auf", perf: "aufgegeben", hilfsverb: "haben" },
+      "ergaben": { praet: "ergab", perf: "ergeben", hilfsverb: "haben" },
+      "lassen": { praet: "ließ", perf: "gelassen", hilfsverb: "haben" },
+      "verlassen": { praet: "verließ", perf: "verlassen", hilfsverb: "haben" },
+      "veranlassen": { praet: "veranlasste", perf: "veranlasst", hilfsverb: "haben" },
+      "bringen": { praet: "brachte", perf: "gebracht", hilfsverb: "haben" },
+      "mitbringen": { praet: "brachte mit", perf: "mitgebracht", hilfsverb: "haben" },
+      "vorbeibringen": { praet: "brachte vorbei", perf: "vorbeigebracht", hilfsverb: "haben" },
+      "nehmen": { praet: "nahm", perf: "genommen", hilfsverb: "haben" },
+      "übernehmen": { praet: "übernahm", perf: "übernommen", hilfsverb: "haben" },
+      "teilnehmen": { praet: "nahm teil", perf: "teilgenommen", hilfsverb: "haben" },
+      "ziehen": { praet: "zog", perf: "gezogen", hilfsverb: "sein" },
+      "einziehen": { praet: "zog ein", perf: "eingezogen", hilfsverb: "sein" },
+      "umziehen": { praet: "zog um", perf: "umgezogen", hilfsverb: "sein" },
+      "ausziehen": { praet: "zog aus", perf: "ausgezogen", hilfsverb: "sein" },
+      "fangen": { praet: "fing", perf: "gefangen", hilfsverb: "haben" },
+      "auffangen": { praet: "fing auf", perf: "aufgefangen", hilfsverb: "haben" },
+      "empfangen": { praet: "empfing", perf: "empfangen", hilfsverb: "haben" },
+      "anfangen": { praet: "fing an", perf: "angefangen", hilfsverb: "haben" },
+      "sehen": { praet: "sah", perf: "gesehen", hilfsverb: "haben" },
+      "aussehen": { praet: "sah aus", perf: "ausgesehen", hilfsverb: "haben" },
+      "fernsehen": { praet: "sah fern", perf: "ferngesehen", hilfsverb: "haben" },
+      "rufen": { praet: "rief", perf: "gerufen", hilfsverb: "haben" },
+      "anrufen": { praet: "rief an", perf: "angerufen", hilfsverb: "haben" },
+      "schreiben": { praet: "schrieb", perf: "geschrieben", hilfsverb: "haben" },
+      "beschreiben": { praet: "beschrieb", perf: "beschrieben", hilfsverb: "haben" },
+      "sprechen": { praet: "sprach", perf: "gesprochen", hilfsverb: "haben" },
+      "ansprechen": { praet: "sprach an", perf: "angesprochen", hilfsverb: "haben" },
+      "versprechen": { praet: "versprach", perf: "versprochen", hilfsverb: "haben" },
+      "bieten": { praet: "bot", perf: "geboten", hilfsverb: "haben" },
+      "anbieten": { praet: "bot an", perf: "angeboten", hilfsverb: "haben" },
+      "verbieten": { praet: "verbot", perf: "verboten", hilfsverb: "haben" },
+      "finden": { praet: "fand", perf: "gefunden", hilfsverb: "haben" },
+      "stattfinden": { praet: "fand statt", perf: "stattgefunden", hilfsverb: "haben" },
+      "empfinden": { praet: "empfand", perf: "empfunden", hilfsverb: "haben" },
+      "treffen": { praet: "traf", perf: "getroffen", hilfsverb: "haben" },
+      "tragen": { praet: "trug", perf: "getragen", hilfsverb: "haben" },
+      "werfen": { praet: "warf", perf: "geworfen", hilfsverb: "haben" },
+      "schließen": { praet: "schloss", perf: "geschlossen", hilfsverb: "haben" },
+      "anschließen": { praet: "schloss an", perf: "angeschlossen", hilfsverb: "haben" },
+      "beschließen": { praet: "beschloss", perf: "beschlossen", hilfsverb: "haben" },
+      "bitten": { praet: "bat", perf: "gebeten", hilfsverb: "haben" },
+      "bleiben": { praet: "blieb", perf: "geblieben", hilfsverb: "sein" },
+      "fliegen": { praet: "flog", perf: "geflogen", hilfsverb: "sein" },
+      "sinken": { praet: "sank", perf: "gesunken", hilfsverb: "sein" },
+      "steigen": { praet: "stieg", perf: "gestiegen", hilfsverb: "sein" },
+      "einsteigen": { praet: "stieg ein", perf: "eingestiegen", hilfsverb: "sein" },
+      "aussteigen": { praet: "stieg aus", perf: "ausgestiegen", hilfsverb: "sein" },
+      "trinken": { praet: "trank", perf: "getrunken", hilfsverb: "haben" },
+      "waschen": { praet: "wusch", perf: "gewaschen", hilfsverb: "haben" },
+      "wissen": { praet: "wusste", perf: "gewusst", hilfsverb: "haben" },
+      "sein": { praet: "war", perf: "gewesen", hilfsverb: "sein" },
+      "haben": { praet: "hatte", perf: "gehabt", hilfsverb: "haben" },
+      "werden": { praet: "wurde", perf: "geworden", hilfsverb: "sein" },
+      "denken": { praet: "dachte", perf: "gedacht", hilfsverb: "haben" },
+      "kennen": { praet: "kannte", perf: "gekannt", hilfsverb: "haben" },
+      "nennen": { praet: "nannte", perf: "genannt", hilfsverb: "haben" },
+      "mögen": { praet: "mochte", perf: "gemocht", hilfsverb: "haben" },
+      "sitzen": { praet: "saß", perf: "gesessen", hilfsverb: "haben" },
+      "entscheiden": { praet: "entschied", perf: "entschieden", hilfsverb: "haben" }
+    };
+
     function getVerbGrammarDetails(card) {
       if (!card) return null;
       const de = card.deutsch || '';
       const cat = (card.category || '').toLowerCase();
       if (cat !== 'verben' && cat !== 'verb' && !de.includes('(')) return null;
 
-      // Extract infinitive
-      let inf = de.replace(/\([^)]*\)/g, '').replace(/\[[^\]]*\]/g, '').split(',')[0].replace(/\|/g, '').trim();
-      const isReflexive = de.toLowerCase().includes('sich ') || inf.toLowerCase().includes('sich ');
-      const isSeparable = de.includes('|') || de.includes(' |') || /^(an|ab|auf|aus|bei|ein|mit|nach|vor|zu|zurück|statt|her|hin|weg)/i.test(inf);
+      // 1. Extract infinitive and check reflexive status
+      let rawInf = de.replace(/\([^)]*\)/g, '').replace(/\[[^\]]*\]/g, '').split(',')[0].replace(/\|/g, '').trim();
+      const isReflexive = de.toLowerCase().includes('sich ') || rawInf.toLowerCase().includes('sich ');
       
-      // Determine Hilfsverb (sein vs haben)
-      const isSeinVerb = de.includes('ist ') || /(sein|kommen|gehen|fahren|fliegen|reisen|steigen|laufen|sinken|rutschen|einziehen|umziehen|ausziehen|pasieren|geschehen|aufstehen)/i.test(inf);
-      const hilfsverb = isSeinVerb ? 'sein' : 'haben';
+      // Base infinitive without "sich"
+      const infNoSich = rawInf.replace(/^sich\s+/, '').trim();
+      const inf = isReflexive ? `sich ${infNoSich}` : infNoSich;
 
-      // Parse verb details e.g. "sehen (sah, hat gesehen)" or "ein|ziehen, zieht ein, zog ein, ist eingezogen"
-      let praetIch = "";
-      let praetWir = "";
+      const isSeparable = de.includes('|') || de.includes(' |') || /^(an|ab|auf|aus|bei|ein|mit|nach|vor|zu|zurück|statt|her|hin|weg)/i.test(infNoSich);
+
+      // 2. Parse explicit forms from comma-separated string or parenthetical
+      let praet3Sg = "";
       let partizip2 = "";
-
-      // Check for explicit "hat [partizip]" or "ist [partizip]" anywhere in deutsch string
-      const perfMatch = de.match(/(hat|ist)\s+([a-zäöüß]+)/i);
-      if (perfMatch) {
-        partizip2 = perfMatch[2];
-      }
 
       if (de.includes('(') && de.includes(')')) {
         const inner = de.match(/\(([^)]+)\)/)[1];
         const parts = inner.split(',').map(s => s.trim());
-        if (parts.length >= 1) praetIch = parts[0];
+        if (parts.length >= 1) praet3Sg = parts[0];
         if (parts.length >= 2) {
-          const pMatch = parts[1].match(/(hat|ist)\s+([a-zäöüß]+)/i);
-          if (pMatch) partizip2 = pMatch[2];
+          const pm = parts[1].match(/(hat|ist)\s+([a-zäöüß]+)/i);
+          if (pm) partizip2 = pm[2];
         }
       } else if (de.includes(',')) {
         const parts = de.split(',').map(s => s.trim());
-        for (let p of parts) {
-          if (p.includes('zog') || p.includes('kam') || p.includes('stieg') || p.includes('sah') || p.includes('ging')) {
-            praetIch = p;
-          }
-          const pMatch = p.match(/(hat|ist)\s+([a-zäöüß]+)/i);
-          if (pMatch) partizip2 = pMatch[2];
+        if (parts.length >= 3) {
+          praet3Sg = parts[2].replace(/\s+sich/g, '').trim();
+        }
+        if (parts.length >= 4) {
+          const pm = parts[3].match(/(hat|ist)\s+(sich\s+)?([a-zäöüß]+)/i);
+          if (pm) partizip2 = pm[3];
         }
       }
 
-      // Check PRAETERITUM_MAP for exact match
-      const ptInfo = getPraeteritumInfo(card, '');
-      if (ptInfo) {
-        praetIch = ptInfo.ich;
-        praetWir = ptInfo.wir;
+      // 3. Lookup in IRREGULAR_VERB_DB if forms not extracted yet
+      let dbMatch = IRREGULAR_VERB_DB[infNoSich];
+      if (!dbMatch) {
+        for (let key in IRREGULAR_VERB_DB) {
+          if (infNoSich.endsWith(key)) {
+            dbMatch = IRREGULAR_VERB_DB[key];
+            break;
+          }
+        }
       }
 
-      if (!praetIch) {
-        praetIch = inf.endsWith('en') ? inf.slice(0, -2) + 'te' : inf + 'te';
-        praetWir = praetIch + 'n';
+      if (dbMatch) {
+        if (!praet3Sg) praet3Sg = dbMatch.praet;
+        if (!partizip2) partizip2 = dbMatch.perf;
       }
-      if (!praetWir) {
-        praetWir = praetIch.endsWith('e') ? praetIch + 'n' : praetIch + 'en';
+
+      // 4. Determine Hilfsverb
+      const isSeinVerb = (dbMatch && dbMatch.hilfsverb === 'sein') || de.includes('ist ') || /(sein|kommen|gehen|fahren|fliegen|reisen|steigen|laufen|sinken|rutschen|einziehen|umziehen|ausziehen|passieren|geschehen|aufstehen)/i.test(infNoSich);
+      const hilfsverb = isSeinVerb ? 'sein' : 'haben';
+
+      // 5. Fallback regular Präteritum & Partizip II if needed
+      if (!praet3Sg) {
+        let stem = infNoSich;
+        if (stem.endsWith('en')) stem = stem.slice(0, -2);
+        else if (stem.endsWith('n')) stem = stem.slice(0, -1);
+
+        if (stem.endsWith('t') || stem.endsWith('d')) {
+          praet3Sg = stem + 'ete';
+          if (!partizip2) partizip2 = 'ge' + stem + 'et';
+        } else {
+          praet3Sg = stem + 'te';
+          if (!partizip2) partizip2 = 'ge' + stem + 't';
+        }
       }
 
       if (!partizip2) {
-        let cleanStem = inf.replace(/^sich\s+/, '').replace(/\|/g, '');
-        if (cleanStem.endsWith('en')) cleanStem = cleanStem.slice(0, -2);
-        else if (cleanStem.endsWith('n')) cleanStem = cleanStem.slice(0, -1);
-        partizip2 = 'ge' + cleanStem + 't';
+        let stem = infNoSich;
+        if (stem.endsWith('en')) stem = stem.slice(0, -2);
+        else if (stem.endsWith('n')) stem = stem.slice(0, -1);
+        partizip2 = 'ge' + stem + 't';
       }
 
-      // Determine Irregular vs Regular
-      const isIrregular = de.includes('(') || /(sah|ging|kam|blieb|nahm|gab|stand|saß|wurde|wusste|gegangen|gekommen|geblieben|gesehen|genommen|gegeben|gestanden|gesessen|geworden|gewusst)/i.test(praetIch + " " + partizip2);
+      // 6. Conjugate ich & wir forms with proper reflexive pronoun handling
+      let praetIchStem = praet3Sg;
+      let praetWirStem = praet3Sg;
 
-      const perfektText = (hilfsverb === 'sein' ? 'ich bin ' : 'ich habe ') + partizip2;
+      if (praet3Sg.includes(" ")) {
+        const pParts = praet3Sg.split(" ");
+        const vPart = pParts[0];
+        const rest = " " + pParts.slice(1).join(" ");
+        
+        let vWir = vPart + "en";
+        if (vPart.endsWith("e")) vWir = vPart + "n";
+        else if (vPart.endsWith("ß")) vWir = vPart.slice(0, -1) + "ßen";
+
+        praetIchStem = `${vPart}${rest}`;
+        praetWirStem = `${vWir}${rest}`;
+      } else {
+        praetWirStem = praet3Sg.endsWith("e") ? praet3Sg + "n" : praet3Sg + "en";
+        if (praet3Sg.endsWith("ß")) praetWirStem = praet3Sg.slice(0, -1) + "ßen";
+      }
+
+      // Conjugate reflexive pronouns (mich for ich, uns for wir)
+      let praetIch = isReflexive ? `${praetIchStem} mich` : praetIchStem;
+      let praetWir = isReflexive ? `${praetWirStem} uns` : praetWirStem;
+      let perfektText = isReflexive 
+        ? (hilfsverb === 'sein' ? `ich bin mich ${partizip2}` : `ich habe mich ${partizip2}`)
+        : (hilfsverb === 'sein' ? `ich bin ${partizip2}` : `ich habe ${partizip2}`);
+
+      // 7. Determine Irregular vs Regular
+      const isIrregular = !!dbMatch || de.includes('(') || de.includes(',') || /(sah|ging|kam|blieb|nahm|gab|stand|saß|wurde|wusste|hielt|dachte|kannte|nannte|mochte|gegangen|gekommen|geblieben|gesehen|genommen|gegeben|gestanden|gesessen|geworden|gewusst|gehalten|gedacht)/i.test(praet3Sg + " " + partizip2);
 
       return {
         inf: inf,
@@ -6385,7 +6513,7 @@
       };
     }
 
-function renderVerbGrammarPanelHTML(card) {
+    function renderVerbGrammarPanelHTML(card) {
       if (!card) return '';
       const cat = (card.category || '').toLowerCase();
       const de = (card.deutsch || '');

@@ -6706,7 +6706,7 @@
         .replace(/'/g, '&apos;');
     }
 
-    async function prefetchEdgeTTS(text, lang = 'de', isWord = false) {
+async function prefetchEdgeTTS(text, lang = 'de', isWord = false) {
       if (!text) return null;
       const key = text.toLowerCase().trim();
       if (edgeTtsAudioCache[key]) {
@@ -6724,7 +6724,7 @@
 
       const fetchPromise = (async () => {
         try {
-          let audioUrl = null;
+          let blob = null;
           
           if (apiKey) {
             // Official Azure Speech API (If key provided)
@@ -6740,17 +6740,39 @@
             });
 
             if (response.ok) {
-              const blob = await response.blob();
-              audioUrl = URL.createObjectURL(blob);
+              blob = await response.blob();
             }
           }
 
-          if (!audioUrl) {
-            // Ultra-fast High-Quality German Neural TTS Stream (100% Free, Zero Key, Global Availability)
-            const encodedText = encodeURIComponent(input);
-            audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodedText}&tl=de&client=tw-ob`;
+          if (!blob) {
+            // High-Quality German Audio Endpoint 1 (Youdao Native German Voice)
+            try {
+              const encodedText = encodeURIComponent(input);
+              const response = await fetch(`https://dict.youdao.com/dictvoice?audio=${encodedText}&le=de`);
+              if (response.ok) {
+                blob = await response.blob();
+              }
+            } catch (err) {
+              console.warn("Youdao TTS fetch error:", err);
+            }
           }
 
+          if (!blob) {
+            // High-Quality German Audio Endpoint 2 (Google Translate TTS)
+            try {
+              const encodedText = encodeURIComponent(input);
+              const response = await fetch(`https://translate.google.com/translate_tts?ie=UTF-8&q=${encodedText}&tl=de&client=tw-ob`);
+              if (response.ok) {
+                blob = await response.blob();
+              }
+            } catch (err) {
+              console.warn("Google TTS fetch error:", err);
+            }
+          }
+
+          if (!blob) throw new Error("All online TTS endpoints failed");
+
+          const audioUrl = URL.createObjectURL(blob);
           const audio = new Audio(audioUrl);
           edgeTtsAudioCache[key] = audio;
           return audio;
@@ -6765,7 +6787,7 @@
       return fetchPromise;
     }
 
-    async function speakWithEdgeTTS(text, lang = 'de', isWord = false, onEnded = null) {
+        async function speakWithEdgeTTS(text, lang = 'de', isWord = false, onEnded = null) {
       if (!text) {
         if (onEnded) onEnded();
         return;

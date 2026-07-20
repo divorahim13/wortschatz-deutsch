@@ -6385,46 +6385,47 @@
       };
     }
 
-    function renderVerbGrammarPanelHTML(card) {
+function renderVerbGrammarPanelHTML(card) {
+      if (!card) return '';
+      const cat = (card.category || '').toLowerCase();
+      const type = (card.type || '').toLowerCase();
+      const deck = (card.deck || '').toLowerCase();
+      
+      // CONDITIONAL RENDERING: Render ONLY if card is a verb in the Dedicated Präteritum Verb Deck / Mode
+      const isVerb = (cat === 'verben' || cat === 'verb' || type === 'verb');
+      const isPraeteritumDeck = (deck === 'praeteritum' || type === 'verb' && deck === 'praeteritum' || card.isPraeteritum === true || (typeof isPraeteritumMode !== 'undefined' && isPraeteritumMode) || (typeof currentFilterKapitel !== 'undefined' && (currentFilterKapitel === 'praeteritum' || currentFilterKapitel === 'verben')) || (typeof activeDeckMode !== 'undefined' && activeDeckMode === 'praeteritum'));
+
+      // If NOT a Präteritum Verb flashcard in Präteritum deck, do not render panel
+      if (!isVerb || !isPraeteritumDeck) return '';
+
       const details = getVerbGrammarDetails(card);
       if (!details) return '';
 
       const verbTypeBadge = details.isIrregular 
-        ? `<span class="grammar-chip chip-irregular" tabindex="0" title="This verb changes its stem in Präteritum and/or Partizip II.">🟠 Irregular<span class="chip-tooltip"><strong>Unregelmäßig</strong><br>Verb ini mengalami perubahan kata dasar di Präteritum / Partizip II.</span></span>`
-        : `<span class="grammar-chip chip-regular" tabindex="0" title="This verb follows regular conjugation rules.">📙 Regelmäßig<span class="chip-tooltip"><strong>Regelmäßig</strong><br>Verb ini mengikuti aturan konjugasi beraturan (-te, -t).</span></span>`;
+        ? `<span class="grammar-chip chip-irregular" tabindex="0">🟠 Irregular<span class="chip-tooltip"><strong>Unregelmäßig</strong><br>Verb ini mengalami perubahan kata dasar di Präteritum / Partizip II.</span></span>`
+        : `<span class="grammar-chip chip-regular" tabindex="0">📙 Regelmäßig<span class="chip-tooltip"><strong>Regelmäßig</strong><br>Verb ini mengikuti aturan konjugasi beraturan (-te, -t).</span></span>`;
 
       const hilfsverbBadge = (details.hilfsverb === 'sein')
-        ? `<span class="grammar-chip chip-sein" tabindex="0">🟢 Hilfsverb: sein<span class="chip-tooltip"><strong>Hilfsverb: sein</strong><br>Verb ini membentuk Perfekt menggunakan 'sein' (berpindah/berubah).</span></span>`
+        ? `<span class="grammar-chip chip-sein" tabindex="0">🟢 Hilfsverb: sein<span class="chip-tooltip"><strong>Hilfsverb: sein</strong><br>Verb ini membentuk Perfekt menggunakan 'sein'.</span></span>`
         : `<span class="grammar-chip chip-haben" tabindex="0">🟤 Hilfsverb: haben<span class="chip-tooltip"><strong>Hilfsverb: haben</strong><br>Verb ini membentuk Perfekt menggunakan 'haben'.</span></span>`;
 
-      const perfektBadge = `<span class="grammar-chip chip-perfekt" tabindex="0">🟣 Perfekt: ${escapeHTML(details.perfektText)}<span class="chip-tooltip"><strong>Perfekt (Percakapan)</strong><br>Hilfsverb (${details.hilfsverb}) + Partizip II (${details.partizip2})<br><em>Example: ${escapeHTML(details.perfektText)}</em></span></span>`;
+      const praetBadge = `<span class="grammar-chip chip-praeteritum" tabindex="0">🟪 Präteritum: ich ${escapeHTML(details.praetIch)} | wir ${escapeHTML(details.praetWir)}<span class="chip-tooltip"><strong>Präteritum</strong><br>Infinitiv: ${escapeHTML(details.inf)}<br>ich: ${escapeHTML(details.praetIch)}<br>wir: ${escapeHTML(details.praetWir)}</span></span>`;
 
-      const praetBadge = `<span class="grammar-chip chip-praeteritum" tabindex="0">🟪 Präteritum: ${escapeHTML(details.praetIch)}<span class="chip-tooltip"><strong>Präteritum (Tulis/Narasi)</strong><br>ich ${escapeHTML(details.praetIch)}<br>wir ${escapeHTML(details.praetWir)}</span></span>`;
-
-      const trennbarBadge = details.isSeparable
-        ? `<span class="grammar-chip chip-trennbar" tabindex="0">🟡 Trennbar<span class="chip-tooltip"><strong>Trennbar (Terpisah)</strong><br>Awalan kata kerja ini terpisah saat dikonjugasikan di kalimat utama.</span></span>`
-        : `<span class="grammar-chip chip-nicht-trennbar" tabindex="0">🤎 Nicht trennbar<span class="chip-tooltip"><strong>Nicht trennbar</strong><br>Awalan kata kerja ini menyatu dan tidak terpisah.</span></span>`;
-
-      const reflexivBadge = details.isReflexive
-        ? `<span class="grammar-chip chip-reflexiv" tabindex="0">🩷 Reflexiv<span class="chip-tooltip"><strong>Reflexiv</strong><br>Kata kerja ini memerlukan kata ganti refleksif 'sich'.</span></span>`
-        : `<span class="grammar-chip chip-nicht-reflexiv" tabindex="0">🌸 Nicht reflexiv<span class="chip-tooltip"><strong>Nicht reflexiv</strong><br>Kata kerja biasa tanpa kata ganti refleksif.</span></span>`;
+      const perfektBadge = `<span class="grammar-chip chip-perfekt" tabindex="0">🟣 Perfekt: ${escapeHTML(details.perfektText)}<span class="chip-tooltip"><strong>Perfekt</strong><br>Hilfsverb: ${escapeHTML(details.hilfsverb)}<br>Partizip II: ${escapeHTML(details.partizip2)}<br><em>Example: ${escapeHTML(details.perfektText)}</em></span></span>`;
 
       return `
         <div class="verb-grammar-panel">
-          <div class="grammar-panel-title">⚡ GRAMMAR INFORMATION PANEL</div>
           <div class="grammar-chips-grid">
             ${verbTypeBadge}
             ${hilfsverbBadge}
-            ${perfektBadge}
             ${praetBadge}
-            ${trennbarBadge}
-            ${reflexivBadge}
+            ${perfektBadge}
           </div>
         </div>
       `;
     }
 
-    function getSentenceTranslation(sentence) {
+        function getSentenceTranslation(sentence) {
       const parts = sentence.split('|');
       if (parts.length > 1) {
         return parts[1].trim();

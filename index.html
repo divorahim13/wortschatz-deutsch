@@ -5985,11 +5985,18 @@
     };
 
     const PRAETERITUM_MAP = {
+      "zog": { inf: "ziehen", meaning: "menarik / berpindah", ich: "zog", wir: "zogen" },
+      "zogen": { inf: "ziehen", meaning: "menarik / berpindah", ich: "zog", wir: "zogen" },
+      "eingezogen": { inf: "einziehen", meaning: "pindah ke rumah baru", ich: "zog ein", wir: "zogen ein" },
+      "umgezogen": { inf: "umziehen", meaning: "pindah rumah", ich: "zog um", wir: "zogen um" },
+      "ausgezogen": { inf: "ausziehen", meaning: "pindah dari rumah / melepas pakaian", ich: "zog aus", wir: "zogen aus" },
+      "kam": { inf: "kommen", meaning: "datang", ich: "kam", wir: "kamen" },
+      "kamen": { inf: "kommen", meaning: "datang", ich: "kam", wir: "kamen" },
+      "angekommen": { inf: "ankommen", meaning: "tiba / sampai", ich: "kam an", wir: "kamen an" },
+      "vorgekommen": { inf: "vorkommen", meaning: "terjadi / tampak", ich: "kam vor", wir: "kamen vor" },
+      "zurückgekommen": { inf: "zurückkommen", meaning: "kembali", ich: "kam zurück", wir: "kamen zurück" },
       "kontrollierte": { inf: "kontrollieren", meaning: "memeriksa / mengontrol", ich: "kontrollierte", wir: "kontrollierten" },
       "kontrollierten": { inf: "kontrollieren", meaning: "memeriksa / mengontrol", ich: "kontrollierte", wir: "kontrollierten" },
-      "zog": { inf: "einziehen / umziehen", meaning: "pindah ke rumah baru / pindah rumah", ich: "zog ein", wir: "zogen ein" },
-      "zogen": { inf: "einziehen / umziehen", meaning: "pindah ke rumah baru / pindah rumah", ich: "zog ein", wir: "zogen ein" },
-      "eingezogen": { inf: "einziehen", meaning: "pindah ke rumah baru", ich: "zog ein", wir: "zogen ein" },
       "arbeitete": { inf: "arbeiten", meaning: "bekerja", ich: "arbeitete", wir: "arbeiteten" },
       "arbeiteten": { inf: "arbeiten", meaning: "bekerja", ich: "arbeitete", wir: "arbeiteten" },
       "ausdruckte": { inf: "ausdrucken", meaning: "mencetak", ich: "druckte aus", wir: "druckten aus" },
@@ -6038,12 +6045,10 @@
       "hatten": { inf: "haben", meaning: "mempunyai / memiliki", ich: "hatte", wir: "hatten" },
       "heiratete": { inf: "heiraten", meaning: "menikah", ich: "heiratete", wir: "heirateten" },
       "heirateten": { inf: "heiraten", meaning: "menikah", ich: "heiratete", wir: "heirateten" },
-      "hob": { inf: "abheben", meaning: "mengangkat / mengambil uang", ich: "hob ab", wir: "hoben ab" },
-      "hoben": { inf: "abheben", meaning: "mengangkat / mengambil uang", ich: "hob ab", wir: "hoben ab" },
+      "hob": { inf: "heben", meaning: "mengangkat", ich: "hob", wir: "hoben" },
+      "hoben": { inf: "heben", meaning: "mengangkat", ich: "hob", wir: "hoben" },
       "hustete": { inf: "husten", meaning: "batuk", ich: "hustete", wir: "husteten" },
       "husteten": { inf: "husten", meaning: "batuk", ich: "hustete", wir: "husteten" },
-      "kam": { inf: "kommen", meaning: "datang", ich: "kam", wir: "kamen" },
-      "kamen": { inf: "kommen", meaning: "datang", ich: "kam", wir: "kamen" },
       "kaufte": { inf: "kaufen", meaning: "membeli", ich: "kaufte", wir: "kauften" },
       "kauften": { inf: "kaufen", meaning: "membeli", ich: "kaufte", wir: "kauften" },
       "klingelte": { inf: "klingeln", meaning: "berdering", ich: "klingelte", wir: "klingelten" },
@@ -6103,7 +6108,7 @@
       "suchte": { inf: "suchen", meaning: "mencari", ich: "suchte", wir: "suchten" },
       "suchten": { inf: "suchen", meaning: "mencari", ich: "suchte", wir: "suchten" },
       "taute": { inf: "tauen", meaning: "mencair", ich: "taute", wir: "tauten" },
-      "tauten": { inf: "tauen", meaning: "mencair", ich: "taute", wir: "tauten" },
+      "taute": { inf: "tauen", meaning: "mencair", ich: "taute", wir: "tauten" },
       "unterrichtete": { inf: "unterrichten", meaning: "mengajar", ich: "unterrichtete", wir: "unterrichteten" },
       "unterrichteten": { inf: "unterrichten", meaning: "mengajar", ich: "unterrichtete", wir: "unterrichteten" },
       "unterstützte": { inf: "unterstützen", meaning: "mendukung", ich: "unterstützte", wir: "unterstützten" },
@@ -6138,63 +6143,88 @@
       const de = card ? (card.deutsch || '') : '';
       const sentClean = sentenceStr ? sentenceStr.split('|')[0] : (card ? (card.sentence || '').split('|')[0] : '');
 
-      // 1. Check parenthetical Präteritum form in card.deutsch (e.g. "sehen (sah, hat gesehen)")
-      if (de.includes('(') && de.includes(')')) {
-        const inner = de.match(/\(([^)]+)\)/)[1];
-        const parts = inner.split(',').map(s => s.trim());
-        let praetForm = "";
-        if (parts.length >= 2 && !parts[1].startsWith("hat ") && !parts[1].startsWith("ist ")) {
-          praetForm = parts[1];
-        }
-        if (praetForm) {
-          let cleanInf = de.replace(/\([^)]*\)/g, '').replace(/\[[^\]]*\]/g, '').split(',')[0].replace(/\|/g, '').trim();
-          const ichForm = praetForm;
-          let wirForm = praetForm + "en";
-          if (praetForm.endsWith("e")) wirForm = praetForm + "n";
-          else if (praetForm.endsWith("ß")) wirForm = praetForm.slice(0, -1) + "ßen";
-          else if (praetForm.includes(" ")) {
-            const pParts = praetForm.split(" ");
-            const vPart = pParts[0];
-            const rest = pParts.slice(1).join(" ");
-            let vWir = vPart + "en";
-            if (vPart.endsWith("e")) vWir = vPart + "n";
-            else if (vPart.endsWith("ß")) vWir = vPart.slice(0, -1) + "ßen";
-            wirForm = vWir + " " + rest;
-          }
-          const meaning = VERB_MEANINGS[cleanInf.toLowerCase()] || ((card && getCleanTargetWord(card.deutsch).toLowerCase() === cleanInf.toLowerCase()) ? card.indonesia : '');
-          return { inf: cleanInf, meaning: meaning, ich: ichForm, wir: wirForm };
-        }
-      }
-
-      // 2. Tokenize words in sentence
       const textToScan = (sentClean || (de.includes('(') ? '' : de));
       const sentWords = textToScan.match(/[a-zA-ZäöüßÄÖÜ]+/g) || [];
 
-      // 3. Match against trusted PRAETERITUM_MAP
+      const knownPrefixes = ["ein", "um", "aus", "an", "ab", "auf", "bei", "mit", "nach", "vor", "zu", "zurück", "statt", "her", "hin", "weg", "los", "fern", "stumm", "vorbei", "weiter"];
+
+      const specificMeanings = {
+        "einziehen": "pindah ke rumah baru / menempati",
+        "umziehen": "pindah rumah",
+        "ausziehen": "pindah dari rumah / melepas pakaian",
+        "abheben": "mengambil uang / mengangkat",
+        "anrufen": "menelepon",
+        "ankommen": "tiba / sampai",
+        "loskommen": "terlepas / berhasil lolos",
+        "aufstehen": "bangun tidur",
+        "aussehen": "tampak / kelihatan",
+        "stattfinden": "berlangsung / diadakan",
+        "zurückkommen": "kembali / pulang",
+        "mitbringen": "membawa serta",
+        "vorbeibringen": "membawa ke seseorang",
+        "ausbreiten": "merentangkan",
+        "auffangen": "menangkap"
+      };
+
       for (let w of sentWords) {
         const wLower = w.toLowerCase();
         if (PRAETERITUM_MAP[wLower]) {
-          const res = { ...PRAETERITUM_MAP[wLower] };
-          if (!res.meaning) {
-            res.meaning = VERB_MEANINGS[res.inf.toLowerCase()] || '';
+          const baseMatch = { ...PRAETERITUM_MAP[wLower] };
+          
+          // Context Dependency Parsing: Only check prefix at the clause-end position!
+          const clauses = sentClean.split(/[,;]| aber | und | oder /);
+          let targetClause = sentClean;
+          for (let c of clauses) {
+            if (c.toLowerCase().includes(wLower)) {
+              targetClause = c;
+              break;
+            }
           }
-          return res;
+
+          const clauseTokens = targetClause.trim().split(/\s+/);
+          let detectedPrefix = null;
+
+          if (clauseTokens.length > 0) {
+            const lastTokenClean = clauseTokens[clauseTokens.length - 1].replace(/[^\w]/g, '').toLowerCase();
+            if (lastTokenClean !== wLower && knownPrefixes.includes(lastTokenClean)) {
+              detectedPrefix = lastTokenClean;
+            }
+          }
+
+          if (detectedPrefix) {
+            const finalInf = detectedPrefix + baseMatch.inf;
+            const finalMeaning = specificMeanings[finalInf] || `${detectedPrefix} + ${baseMatch.inf}`;
+            const ichForm = `${baseMatch.ich} ${detectedPrefix}`;
+            let wirStem = baseMatch.wir;
+            if (baseMatch.ich.includes(' ')) wirStem = baseMatch.ich.split(' ')[0] + 'en';
+            const wirForm = `${wirStem} ${detectedPrefix}`;
+
+            return {
+              inf: finalInf,
+              meaning: finalMeaning,
+              ich: ichForm,
+              wir: wirForm,
+              prefix: detectedPrefix
+            };
+          }
+
+          if (!baseMatch.meaning) {
+            baseMatch.meaning = VERB_MEANINGS[baseMatch.inf.toLowerCase()] || '';
+          }
+          return baseMatch;
         }
       }
 
-      // 4. Strict dynamic fallback ONLY for true weak Präteritum forms ending in -te, -ten, -test, -tet
+      // Strict dynamic fallback ONLY for true weak Präteritum forms ending in -te, -ten, -test, -tet
       const nonVerbList = ["sehr", "heute", "leute", "bitte", "küste", "torte", "karte", "kette", "liste", "weste", "mitte", "gäste", "nachrichten", "zentralkette", "smarte", "kalten", "kaputten", "konsumenten", "weiteren", "ersten", "zweiten", "dritten", "vierten", "letzten", "nächsten", "neuen", "alten", "großen", "kleinen", "guten", "schlechten", "vielen", "wenigen", "möglichen", "gewohnten", "historischen", "radikalen", "monotone", "echte", "digitale", "kurze", "lange", "öffentliche", "private", "ganze", "ganzen", "eigenen", "eigene", "verschiedene", "verschiedenen", "folgende", "folgenden", "bekannte", "bekannten", "verwandte", "verwandten", "angestellte", "angestellten", "beamte", "beamten"];
 
       for (let w of sentWords) {
         const wLower = w.toLowerCase();
         if (nonVerbList.includes(wLower)) continue;
 
-        // Strict Präteritum suffix check: MUST end in -te, -ten, -test, -tet
         const m = wLower.match(/^([a-zäöüß]{2,})(te|ten|test|tet)$/i);
         if (m) {
           const stem = m[1];
-
-          // Reconstruct candidate infinitives and Präteritum forms
           const candidates = [];
           if (stem.endsWith('t') || stem.endsWith('d')) {
             candidates.push({ inf: stem + 'en', ich: stem + 'ete', wir: stem + 'eten' });
@@ -6257,24 +6287,22 @@
       }
 
       // Step 2: Scan sentence for Präteritum verb words and wrap them with yellow highlight & tooltip
-      const ptInfo = card ? getPraeteritumInfo(card, cleanSentence) : getPraeteritumInfo(null, cleanSentence);
       const sentWords = cleanSentence.match(/[a-zA-ZäöüßÄÖÜ]+/g) || [];
       const ptMatches = [];
+      const addedWords = new Set();
 
       for (let w of sentWords) {
         const wLower = w.toLowerCase();
-        if (PRAETERITUM_MAP[wLower]) {
-          ptMatches.push({ word: w, info: PRAETERITUM_MAP[wLower] });
-        }
-      }
-
-      // If not found in map, use ptInfo
-      if (ptMatches.length === 0 && ptInfo) {
-        for (let w of sentWords) {
-          const wLower = w.toLowerCase();
-          if (wLower === ptInfo.ich.toLowerCase() || wLower === ptInfo.wir.toLowerCase() || wLower.endsWith('te') || wLower.endsWith('ten')) {
-            ptMatches.push({ word: w, info: ptInfo });
-            break;
+        if (PRAETERITUM_MAP[wLower] && !addedWords.has(wLower)) {
+          const info = getPraeteritumInfo(card, cleanSentence);
+          if (info) {
+            ptMatches.push({ word: w, info: info });
+            addedWords.add(wLower);
+            if (info.prefix && !addedWords.has(info.prefix.toLowerCase())) {
+              // Highlight separated prefix particle as well
+              ptMatches.push({ word: info.prefix, info: info });
+              addedWords.add(info.prefix.toLowerCase());
+            }
           }
         }
       }

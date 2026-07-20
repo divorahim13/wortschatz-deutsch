@@ -6225,6 +6225,9 @@
         const m = wLower.match(/^([a-zäöüß]{2,})(te|ten|test|tet)$/i);
         if (m) {
           const stem = m[1];
+          const suffix = m[2];
+          // Infinitives ending in -en whose stem ends in t/d (e.g. husten, kosten, testen) are NOT Präteritum!
+          if (suffix === 'ten' && (stem.endsWith('t') || stem.endsWith('d'))) continue;
           const candidates = [];
           if (stem.endsWith('t') || stem.endsWith('d')) {
             candidates.push({ inf: stem + 'en', ich: stem + 'ete', wir: stem + 'eten' });
@@ -6288,11 +6291,21 @@
 
       // Step 2: Scan sentence for Präteritum verb words and wrap them with yellow highlight & tooltip
       const sentWords = cleanSentence.match(/[a-zA-ZäöüßÄÖÜ]+/g) || [];
+      const sentWordsLower = sentWords.map(x => x.toLowerCase());
+      const modalPraeteritumList = ["musste", "mussten", "musstest", "musstet", "konnte", "konnten", "konntest", "konntet", "durfte", "durften", "durftest", "durftet", "wollte", "wollten", "wolltest", "wolltet", "sollte", "sollten", "solltest", "solltet", "mochte", "mochten", "mochtest", "mochtet"];
+      const hasModalPraeteritum = sentWordsLower.some(w => modalPraeteritumList.includes(w));
+
       const ptMatches = [];
       const addedWords = new Set();
 
       for (let w of sentWords) {
         const wLower = w.toLowerCase();
+
+        // Modal Verb Dependency Parsing Rule: If sentence contains a modal Präteritum, ignore infinitive complements!
+        if (hasModalPraeteritum && !modalPraeteritumList.includes(wLower)) {
+          continue;
+        }
+
         if (PRAETERITUM_MAP[wLower] && !addedWords.has(wLower)) {
           const info = getPraeteritumInfo(card, cleanSentence);
           if (info) {

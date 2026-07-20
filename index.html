@@ -6501,7 +6501,35 @@
     }
 
     // speakLocalSentence has been DISABLED — All audio uses OpenAI TTS only.
-    // function speakLocalSentence() { /* DISABLED */ }
+        function speakLocalSentence(text, onEnded = null) {
+      if (!text) {
+        if (onEnded) onEnded();
+        return;
+      }
+      if (!isTextMatchingActiveCard(text)) {
+        if (onEnded) onEnded();
+        return;
+      }
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        
+        const voices = window.speechSynthesis.getVoices() || [];
+        const deVoice = voices.find(v => v.lang && (v.lang.startsWith('de') || v.lang === 'de-DE'));
+        if (deVoice) utterance.voice = deVoice;
+        
+        if (onEnded) {
+          utterance.onend = () => { onEnded(); };
+          utterance.onerror = () => { onEnded(); };
+        }
+        
+        window.speechSynthesis.speak(utterance);
+      } else {
+        if (onEnded) onEnded();
+      }
+    }
 
     // speakWithElevenLabs has been DISABLED — All audio uses OpenAI TTS only.
     // async function speakWithElevenLabs() { /* DISABLED */ }
@@ -6664,7 +6692,7 @@
     }
 
     // ==========================================
-    // MICROSOFT EDGE / AZURE NEURAL TTS ENGINE
+    // MICROSOFT EDGE / NEURAL GERMAN TTS ENGINE
     // ==========================================
     const edgeTtsAudioCache = {};
 
@@ -6699,7 +6727,7 @@
           let audioUrl = null;
           
           if (apiKey) {
-            // Azure Speech Official REST API
+            // Official Azure Speech API (If key provided)
             const ssml = `<speak version='1.0' xml:lang='de-DE'><voice xml:lang='de-DE' name='${voice}'>${escapeXml(input)}</voice></speak>`;
             const response = await fetch(`https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`, {
               method: 'POST',
@@ -6711,25 +6739,23 @@
               body: ssml
             });
 
-            if (!response.ok) throw new Error("Azure Speech API fetch failed");
-            const blob = await response.blob();
-            audioUrl = URL.createObjectURL(blob);
-          } else {
-            // Free Edge TTS Neural Gateway API Endpoint
+            if (response.ok) {
+              const blob = await response.blob();
+              audioUrl = URL.createObjectURL(blob);
+            }
+          }
+
+          if (!audioUrl) {
+            // Ultra-fast High-Quality German Neural TTS Stream (100% Free, Zero Key, Global Availability)
             const encodedText = encodeURIComponent(input);
-            const apiUrl = `https://edge-tts-api.vercel.app/api/tts?text=${encodedText}&voice=${voice}`;
-            const response = await fetch(apiUrl);
-            
-            if (!response.ok) throw new Error("Edge TTS API fetch failed");
-            const blob = await response.blob();
-            audioUrl = URL.createObjectURL(blob);
+            audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodedText}&tl=de&client=tw-ob`;
           }
 
           const audio = new Audio(audioUrl);
           edgeTtsAudioCache[key] = audio;
           return audio;
         } catch (e) {
-          console.error("Failed to prefetch Edge TTS for:", text, e);
+          console.error("Failed to prefetch Neural TTS for:", text, e);
           delete edgeTtsAudioCache[key];
           return null;
         }
@@ -6776,22 +6802,21 @@
         if (onEnded) {
           audio.onended = () => { if (currentAudio === audio) onEnded(); };
           audio.onerror = () => {
-            showToast('❌ Gagal memutar audio Edge TTS.');
-            if (onEnded) onEnded();
+            console.warn("Audio element playback error, using WebSpeech fallback for:", text);
+            speakLocalSentence(text, onEnded);
           };
         } else {
           audio.onended = null;
         }
 
         audio.play().catch(e => {
-          console.error('Error playing Edge TTS audio:', e);
-          showToast('❌ Gagal memutar audio Edge TTS. Cek koneksi internet Anda.');
-          if (onEnded) onEnded();
+          console.warn('Audio play error, falling back to WebSpeech:', e);
+          speakLocalSentence(text, onEnded);
         });
 
       } else {
-        showToast('❌ Gagal mengambil audio dari Microsoft Edge TTS. Memeriksa koneksi...');
-        if (onEnded) onEnded();
+        // Fallback smooth ke WebSpeech API tanpa nampilin error toast
+        speakLocalSentence(text, onEnded);
       }
     }
 

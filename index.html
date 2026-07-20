@@ -6388,15 +6388,15 @@
 function renderVerbGrammarPanelHTML(card) {
       if (!card) return '';
       const cat = (card.category || '').toLowerCase();
+      const de = (card.deutsch || '');
       const type = (card.type || '').toLowerCase();
       const deck = (card.deck || '').toLowerCase();
-      
-      // CONDITIONAL RENDERING: Render ONLY if card is a verb in the Dedicated Präteritum Verb Deck / Mode
-      const isVerb = (cat === 'verben' || cat === 'verb' || type === 'verb');
-      const isPraeteritumDeck = (deck === 'praeteritum' || type === 'verb' && deck === 'praeteritum' || card.isPraeteritum === true || (typeof isPraeteritumMode !== 'undefined' && isPraeteritumMode) || (typeof currentFilterKapitel !== 'undefined' && (currentFilterKapitel === 'praeteritum' || currentFilterKapitel === 'verben')) || (typeof activeDeckMode !== 'undefined' && activeDeckMode === 'praeteritum'));
 
-      // If NOT a Präteritum Verb flashcard in Präteritum deck, do not render panel
-      if (!isVerb || !isPraeteritumDeck) return '';
+      // Render panel for all German Verb cards (including k3-162, k3-163, etc.)
+      const isVerb = (cat === 'verben' || cat === 'verb' || type === 'verb' || de.includes('('));
+
+      // If NOT a verb card, do not render panel
+      if (!isVerb) return '';
 
       const details = getVerbGrammarDetails(card);
       if (!details) return '';
@@ -6409,9 +6409,9 @@ function renderVerbGrammarPanelHTML(card) {
         ? `<span class="grammar-chip chip-sein" tabindex="0">🟢 Hilfsverb: sein<span class="chip-tooltip"><strong>Hilfsverb: sein</strong><br>Verb ini membentuk Perfekt menggunakan 'sein'.</span></span>`
         : `<span class="grammar-chip chip-haben" tabindex="0">🟤 Hilfsverb: haben<span class="chip-tooltip"><strong>Hilfsverb: haben</strong><br>Verb ini membentuk Perfekt menggunakan 'haben'.</span></span>`;
 
-      const praetBadge = `<span class="grammar-chip chip-praeteritum" tabindex="0">🟪 Präteritum: ich ${escapeHTML(details.praetIch)} | wir ${escapeHTML(details.praetWir)}<span class="chip-tooltip"><strong>Präteritum</strong><br>Infinitiv: ${escapeHTML(details.inf)}<br>ich: ${escapeHTML(details.praetIch)}<br>wir: ${escapeHTML(details.praetWir)}</span></span>`;
+      const praetBadge = `<span class="grammar-chip chip-praeteritum" tabindex="0">🟪 Präteritum: ich ${escapeHTML(details.praetIch)} | wir ${escapeHTML(details.praetWir)}<span class="chip-tooltip"><strong>Präteritum (Narasi/Tulis)</strong><br>Infinitiv: ${escapeHTML(details.inf)}<br>ich: ${escapeHTML(details.praetIch)}<br>wir: ${escapeHTML(details.praetWir)}</span></span>`;
 
-      const perfektBadge = `<span class="grammar-chip chip-perfekt" tabindex="0">🟣 Perfekt: ${escapeHTML(details.perfektText)}<span class="chip-tooltip"><strong>Perfekt</strong><br>Hilfsverb: ${escapeHTML(details.hilfsverb)}<br>Partizip II: ${escapeHTML(details.partizip2)}<br><em>Example: ${escapeHTML(details.perfektText)}</em></span></span>`;
+      const perfektBadge = `<span class="grammar-chip chip-perfekt" tabindex="0">🟣 Perfekt: ${escapeHTML(details.perfektText)}<span class="chip-tooltip"><strong>Perfekt (Percakapan)</strong><br>Hilfsverb: ${escapeHTML(details.hilfsverb)}<br>Partizip II: ${escapeHTML(details.partizip2)}<br><em>Example: ${escapeHTML(details.perfektText)}</em></span></span>`;
 
       return `
         <div class="verb-grammar-panel">
@@ -6425,7 +6425,7 @@ function renderVerbGrammarPanelHTML(card) {
       `;
     }
 
-        function getSentenceTranslation(sentence) {
+    function getSentenceTranslation(sentence) {
       const parts = sentence.split('|');
       if (parts.length > 1) {
         return parts[1].trim();

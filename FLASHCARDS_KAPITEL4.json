@@ -331,7 +331,7 @@
     "vorderseite": "befriedigend",
     "rueckseite": "memuaskan",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Wenn sein Job befriedigender wäre, würde er nicht kündigen.",
     "beispiel_id": "Jika pekerjaannya lebih memuaskan, dia tidak akan mengundurkan diri.",
     "notiz": ""
   },
@@ -339,7 +339,7 @@
     "vorderseite": "qualifiziert",
     "rueckseite": "berkualifikasi, kompeten",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Die Firma sucht qualifizierte Mitarbeiter.",
     "beispiel_id": "Perusahaan mencari karyawan yang berkualifikasi.",
     "notiz": ""
   },
@@ -347,15 +347,15 @@
     "vorderseite": "optimistisch",
     "rueckseite": "optimis",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Mit einer optimistischen Einstellung wäre das Gespräch leichter.",
     "beispiel_id": "Dengan sikap optimis, wawancara itu akan terasa lebih mudah.",
     "notiz": ""
   },
   {
     "vorderseite": "offen",
     "rueckseite": "terbuka",
-    "wortart": "Verb",
-    "beispiel_de": "+",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Sie ist sehr offen für neue Ideen.",
     "beispiel_id": "Dia sangat terbuka terhadap ide-ide baru.",
     "notiz": ""
   },
@@ -363,7 +363,7 @@
     "vorderseite": "menschlich",
     "rueckseite": "manusiawi",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Wenn der Chef menschlicher wäre, würden sich alle wohler fühlen.",
     "beispiel_id": "Jika bos lebih manusiawi, semua orang akan merasa lebih nyaman.",
     "notiz": ""
   },
@@ -371,7 +371,7 @@
     "vorderseite": "locker",
     "rueckseite": "santai, rileks",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Er nimmt alles ziemlich locker.",
     "beispiel_id": "Dia menyikapi segala hal dengan sangat santai.",
     "notiz": ""
   },
@@ -379,7 +379,7 @@
     "vorderseite": "konservativ",
     "rueckseite": "konservatif",
     "wortart": "Adjektiv",
-    "beispiel_de": "netral",
+    "beispiel_de": "Bei einer Bank sollte man sich konservativ anziehen.",
     "beispiel_id": "Di bank seseorang sebaiknya berpakaian konservatif.",
     "notiz": ""
   },
@@ -387,7 +387,7 @@
     "vorderseite": "kommunikativ",
     "rueckseite": "komunikatif",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Für diesen Job müsste man sehr kommunikativ sein.",
     "beispiel_id": "Untuk pekerjaan ini seseorang harus sangat komunikatif.",
     "notiz": ""
   },
@@ -395,7 +395,7 @@
     "vorderseite": "exakt",
     "rueckseite": "tepat, teliti",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Sie arbeitet sehr exakt und gründlich.",
     "beispiel_id": "Dia bekerja dengan sangat teliti dan tepat.",
     "notiz": ""
   },
@@ -403,7 +403,7 @@
     "vorderseite": "speziell",
     "rueckseite": "khusus",
     "wortart": "Adjektiv",
-    "beispiel_de": "netral",
+    "beispiel_de": "Das ist ein spezielles Problem.",
     "beispiel_id": "Ini adalah masalah yang khusus.",
     "notiz": ""
   },
@@ -427,7 +427,7 @@
     "vorderseite": "gerecht",
     "rueckseite": "adil",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Der Richter muss immer gerecht sein.",
     "beispiel_id": "Hakim harus selalu bersikap adil.",
     "notiz": "BEDA dengan fair. Gerecht = adil secara prinsip atau hukum (misalnya vonis hakim). Fair = adil dalam perlakuan sehari-hari atau sportif."
   },
@@ -435,7 +435,7 @@
     "vorderseite": "fair",
     "rueckseite": "adil",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Er behandelt alle Kollegen fair.",
     "beispiel_id": "Dia memperlakukan semua rekan kerja secara adil.",
     "notiz": "BEDA dengan gerecht. Fair = adil dalam perlakuan sehari-hari atau sportif. Gerecht = adil secara prinsip atau hukum."
   },
@@ -443,7 +443,7 @@
     "vorderseite": "höflich",
     "rueckseite": "sopan",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "An Ihrer Stelle würde ich immer höflich bleiben, auch bei unangenehmen Fragen.",
     "beispiel_id": "Jika saya jadi Anda, saya akan selalu tetap sopan, bahkan saat diajukan pertanyaan tidak menyenangkan.",
     "notiz": ""
   },
@@ -451,7 +451,7 @@
     "vorderseite": "realistisch",
     "rueckseite": "realistis",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Eine realistische Einstellung würde dir im Gespräch helfen.",
     "beispiel_id": "Sikap realistis akan membantumu dalam wawancara kerja.",
     "notiz": ""
   },
@@ -467,7 +467,7 @@
     "vorderseite": "engagiert",
     "rueckseite": "berdedikasi, aktif terlibat",
     "wortart": "Adjektiv",
-    "beispiel_de": "+",
+    "beispiel_de": "Jeder Chef würde sich über engagierte Mitarbeiter freuen.",
     "beispiel_id": "Setiap bos akan senang memiliki karyawan yang berdedikasi.",
     "notiz": ""
   },

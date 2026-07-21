@@ -9,7 +9,7 @@
   },
   {
     "vorderseite": "die Chemikerin, die Chemikerinnen",
-    "rueckseite": "ahli kimia",
+    "rueckseite": "ahli kimia wanita",
     "wortart": "Nomen",
     "beispiel_de": "Sie arbeitet als Chemikerin im Labor.",
     "beispiel_id": "Dia bekerja sebagai ahli kimia di laboratorium.",
@@ -49,7 +49,7 @@
   },
   {
     "vorderseite": "die Spezialistin, die Spezialistinnen",
-    "rueckseite": "spesialis",
+    "rueckseite": "spesialis wanita",
     "wortart": "Nomen",
     "beispiel_de": "Sie ist Spezialistin für IT-Sicherheit.",
     "beispiel_id": "Dia adalah spesialis dalam bidang keamanan IT.",
@@ -153,7 +153,7 @@
   },
   {
     "vorderseite": "die Rechtsanwältin, die Rechtsanwältinnen",
-    "rueckseite": "pengacara",
+    "rueckseite": "pengacara wanita",
     "wortart": "Nomen",
     "beispiel_de": "Die Rechtsanwältin spricht mit den Angeklagten.",
     "beispiel_id": "Pengacara wanita itu berbicara dengan para terdakwa.",
@@ -1657,7 +1657,7 @@
   },
   {
     "vorderseite": "die Personalbeauftragte, die Personalbeauftragten",
-    "rueckseite": "staf personalia",
+    "rueckseite": "staf personalia wanita",
     "wortart": "Nomen",
     "beispiel_de": "Karla Schmidt ist Personalbeauftragte bei der Firma.",
     "beispiel_id": "Staf personalia wanita itu menjawab pertanyaan-pertanyaan.",

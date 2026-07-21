@@ -4305,7 +4305,7 @@
     
     
     
-    const CURRENT_DECK_VERSION = 'v2026.07.22_V15';
+    const CURRENT_DECK_VERSION = 'v2026.07.22_V16';
 
     function loadData() {
       const storedVersion = localStorage.getItem('wortschatz_deck_version');
@@ -6716,7 +6716,16 @@
         }
       }
 
-      const isSeparable = (prefix !== '') || de.includes('|');
+      // Check for untrennbare Präfixe (be-, emp-, ent-, er-, ge-, miss-, ver-, zer-) and -ieren verbs
+      const inseparablePrefixes = ["be", "emp", "ent", "er", "ge", "miss", "ver", "zer"];
+      let hasInseparablePrefix = false;
+      for (let ip of inseparablePrefixes) {
+        if (rootVerb.toLowerCase().startsWith(ip) && rootVerb.length > ip.length + 2) {
+          hasInseparablePrefix = true;
+          break;
+        }
+      }
+      const endsWithIeren = rootVerb.toLowerCase().endsWith('ieren');
 
       // 4. Lookup root verb in IRREGULAR_VERB_DB
       let dbMatch = IRREGULAR_VERB_DB[rootVerb];
@@ -6724,37 +6733,36 @@
         dbMatch = IRREGULAR_VERB_DB[cleanInf.replace(/\|/g, '')];
       }
 
-      // 5. Determine 3rd person Präteritum stem & Partizip II
+      // 5. Check explicit Partizip II from deutsch or notiz field
       let praet3SgStem = "";
       let partizip2Stem = "";
-      let hilfsverb = (dbMatch && dbMatch.hilfsverb) ? dbMatch.hilfsverb : 'haben';
+      let hilfsverb = (dbMatch && dbMatch.hilfsverb) ? dbMatch.hilfsverb : '';
 
-      // Only parse explicit paren forms IF paren contains explicit Präteritum/Perfekt forms, NOT if it's an object phrase
+      const fullText = (de + ' ' + (card.notiz || ''));
+      const explicitPartMatch = fullText.match(/(hat|ist)\s+(sich\s+)?([a-zäöüß]+(?:ge[a-zäöüß]+)?(?:ert|t|en))/i);
+      if (explicitPartMatch) {
+        hilfsverb = explicitPartMatch[1].toLowerCase();
+        partizip2Stem = explicitPartMatch[3];
+      }
+
+      const explicitPraetMatch = fullText.match(/Präteritum:\s*([a-zäöüß]+(?:\s+[a-zäöüß]+)?)/i);
+      if (explicitPraetMatch) {
+        praet3SgStem = explicitPraetMatch[1];
+      }
+
       if (de.includes('(') && de.includes(')')) {
         const inner = de.match(/\(([^)]+)\)/)[1];
         if (inner.includes(',')) {
           const parts = inner.split(',').map(s => s.trim());
           if (parts.length >= 1 && !parts[0].startsWith('die ') && !parts[0].startsWith('den ') && !parts[0].startsWith('das ')) {
-            praet3SgStem = parts[0];
+            if (!praet3SgStem) praet3SgStem = parts[0];
           }
           if (parts.length >= 2) {
             const pm = parts[1].match(/(hat|ist)\s+([a-zäöüß]+)/i);
             if (pm) {
-              partizip2Stem = pm[2];
-              hilfsverb = pm[1].toLowerCase();
+              if (!partizip2Stem) partizip2Stem = pm[2];
+              if (!hilfsverb) hilfsverb = pm[1].toLowerCase();
             }
-          }
-        }
-      } else if (de.includes(',')) {
-        const parts = de.split(',').map(s => s.trim());
-        if (parts.length >= 3) {
-          praet3SgStem = parts[2].replace(/\s+sich/g, '').trim();
-        }
-        if (parts.length >= 4) {
-          const pm = parts[3].match(/(hat|ist)\s+(sich\s+)?([a-zäöüß]+)/i);
-          if (pm) {
-            partizip2Stem = pm[3];
-            hilfsverb = pm[1].toLowerCase();
           }
         }
       }
@@ -6774,7 +6782,7 @@
         if (!hilfsverb) hilfsverb = dbMatch.hilfsverb;
       }
 
-      // 6. Regular fallback for weak verbs with proper -et / -t endings
+      // 6. Regular fallback for weak verbs with proper -et / -t endings & inseparable/ieren rules
       if (!praet3SgStem) {
         let stem = rootVerb;
         if (stem.endsWith('en')) stem = stem.slice(0, -2);
@@ -6782,26 +6790,30 @@
 
         let vPraet = (stem.endsWith('t') || stem.endsWith('d')) ? `${stem}ete` : `${stem}te`;
         praet3SgStem = prefix ? `${vPraet} ${prefix}` : vPraet;
-        
-        if (!partizip2Stem) {
-          let pStem = (stem.endsWith('t') || stem.endsWith('d')) ? `${stem}et` : `${stem}t`;
-          partizip2Stem = prefix ? `${prefix}ge${pStem}` : `ge${pStem}`;
-        }
       }
 
       if (!partizip2Stem) {
         let stem = rootVerb;
         if (stem.endsWith('en')) stem = stem.slice(0, -2);
         else if (stem.endsWith('n')) stem = stem.slice(0, -1);
-        let pStem = (stem.endsWith('t') || stem.endsWith('d')) ? `${stem}et` : `${stem}t`;
-        partizip2Stem = prefix ? `${prefix}ge${pStem}` : `ge${pStem}`;
+        let pSuffix = (stem.endsWith('t') || stem.endsWith('d')) ? `${stem}et` : `${stem}t`;
+        
+        if (hasInseparablePrefix || endsWithIeren) {
+          partizip2Stem = prefix ? `${prefix}${pSuffix}` : pSuffix;
+        } else if (prefix) {
+          partizip2Stem = `${prefix}ge${pSuffix}`;
+        } else {
+          partizip2Stem = `ge${pSuffix}`;
+        }
       }
 
       // 7. Determine Hilfsverb (sein vs haben)
-      const isSeinVerb = (hilfsverb === 'sein') || de.includes('ist ') || /(sein|kommen|gehen|fahren|fliegen|reisen|steigen|laufen|sinken|rutschen|einziehen|umziehen|ausziehen|passieren|geschehen|aufstehen|aufwachen|wachen)/i.test(rootVerb);
-      hilfsverb = isSeinVerb ? 'sein' : 'haben';
+      if (!hilfsverb) {
+        const isSeinVerb = de.includes('ist ') || / (sein|kommen|gehen|fahren|fliegen|reisen|steigen|laufen|sinken|rutschen|einziehen|umziehen|ausziehen|passieren|geschehen|aufstehen|aufwachen|wachen) /i.test(rootVerb);
+        hilfsverb = isSeinVerb ? 'sein' : 'haben';
+      }
 
-      // 8. Assemble PURE verb conjugations (NO objectPhrase inserted!)
+      // 8. Assemble PURE verb conjugations
       let ichVerbPart = praet3SgStem;
       let wirVerbPart = praet3SgStem;
 
@@ -6838,58 +6850,16 @@
         inf: fullInfinitive,
         meaning: card.indonesia || '',
         verbType: isIrregular ? 'Irregular' : 'Regelmäßig',
-        isIrregular: isIrregular,
         hilfsverb: hilfsverb,
         praetIch: praetIch,
         praetWir: praetWir,
-        perfektText: perfektText,
         partizip2: partizip2Stem,
-        isSeparable: isSeparable,
-        isReflexive: isReflexive
+        perfektText: perfektText,
+        isIrregular: isIrregular
       };
     }
 
-    function renderVerbGrammarPanelHTML(card) {
-      if (!card) return '';
-      const cat = (card.category || '').toLowerCase();
-      const de = (card.deutsch || '');
-      const type = (card.type || '').toLowerCase();
-      const deck = (card.deck || '').toLowerCase();
-
-      // Render panel for all German Verb cards (including k3-162, k3-163, etc.)
-      const isVerb = (cat === 'verben' || cat === 'verb' || type === 'verb' || de.includes('('));
-
-      // If NOT a verb card, do not render panel
-      if (!isVerb) return '';
-
-      const details = getVerbGrammarDetails(card);
-      if (!details) return '';
-
-      const verbTypeBadge = details.isIrregular 
-        ? `<span class="grammar-chip chip-irregular" tabindex="0">🟠 Irregular<span class="chip-tooltip"><strong>Unregelmäßig</strong><br>Verb ini mengalami perubahan kata dasar di Präteritum / Partizip II.</span></span>`
-        : `<span class="grammar-chip chip-regular" tabindex="0">📙 Regelmäßig<span class="chip-tooltip"><strong>Regelmäßig</strong><br>Verb ini mengikuti aturan konjugasi beraturan (-te, -t).</span></span>`;
-
-      const hilfsverbBadge = (details.hilfsverb === 'sein')
-        ? `<span class="grammar-chip chip-sein" tabindex="0">🟢 Hilfsverb: sein<span class="chip-tooltip"><strong>Hilfsverb: sein</strong><br>Verb ini membentuk Perfekt menggunakan 'sein'.</span></span>`
-        : `<span class="grammar-chip chip-haben" tabindex="0">🟤 Hilfsverb: haben<span class="chip-tooltip"><strong>Hilfsverb: haben</strong><br>Verb ini membentuk Perfekt menggunakan 'haben'.</span></span>`;
-
-      const praetBadge = `<span class="grammar-chip chip-praeteritum" tabindex="0">🟪 Präteritum: ich ${escapeHTML(details.praetIch)} | wir ${escapeHTML(details.praetWir)}<span class="chip-tooltip"><strong>Präteritum (Narasi/Tulis)</strong><br>Infinitiv: ${escapeHTML(details.inf)}<br>ich: ${escapeHTML(details.praetIch)}<br>wir: ${escapeHTML(details.praetWir)}</span></span>`;
-
-      const perfektBadge = `<span class="grammar-chip chip-perfekt" tabindex="0">🟣 Perfekt: ${escapeHTML(details.perfektText)}<span class="chip-tooltip"><strong>Perfekt (Percakapan)</strong><br>Hilfsverb: ${escapeHTML(details.hilfsverb)}<br>Partizip II: ${escapeHTML(details.partizip2)}<br><em>Example: ${escapeHTML(details.perfektText)}</em></span></span>`;
-
-      return `
-        <div class="verb-grammar-panel">
-          <div class="grammar-chips-grid">
-            ${verbTypeBadge}
-            ${hilfsverbBadge}
-            ${praetBadge}
-            ${perfektBadge}
-          </div>
-        </div>
-      `;
-    }
-
-    function getSentenceTranslation(sentence) {
+        function getSentenceTranslation(sentence) {
       const parts = sentence.split('|');
       if (parts.length > 1) {
         return parts[1].trim();

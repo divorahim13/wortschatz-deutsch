@@ -477,7 +477,7 @@
     "wortart": "Nomen",
     "beispiel_de": "Das war keine Absicht, das wollte ich wirklich nicht.",
     "beispiel_id": "Itu tidak disengaja, saya sungguh tidak bermaksud begitu.",
-    "notiz": "Ungkapan: Das war keine Absicht (Itu tidak disengaja)."
+    "notiz": "Ungkapan populer: das war keine Absicht (itu tidak disengaja)."
   },
   {
     "vorderseite": "das Vergnügen (Sg.)",
@@ -521,11 +521,11 @@
   },
   {
     "vorderseite": "das Versehen, die Versehen",
-    "rueckseite": "kekeliruan",
+    "rueckseite": "kekeliruan atau ketidaksengajaan",
     "wortart": "Nomen",
     "beispiel_de": "Aus Versehen hat er den Namen verwechselt.",
     "beispiel_id": "Tanpa sengaja dia menukar nama tersebut.",
-    "notiz": "Ungkapan: aus Versehen (tidak sengaja)."
+    "notiz": "Ungkapan populer: aus Versehen (secara tidak sengaja / tanpa sengaja)."
   },
   {
     "vorderseite": "verzeihen",
@@ -629,7 +629,7 @@
     "wortart": "Nomen",
     "beispiel_de": "Im Augenblick ist die Stelle noch nicht besetzt.",
     "beispiel_id": "Saat ini posisi tersebut masih belum terisi.",
-    "notiz": "Ungkapan: Im Augenblick (saat ini)."
+    "notiz": "Ungkapan populer: im Augenblick (saat ini / untuk saat ini)."
   },
   {
     "vorderseite": "der Faktor, die Faktoren",
@@ -701,7 +701,7 @@
     "wortart": "Verb",
     "beispiel_de": "Stellen Sie lieber eine Stunde früher den Wecker.",
     "beispiel_id": "Pasanglah alarm satu jam lebih awal agar aman.",
-    "notiz": "Digunakan dalam konteks 'den Wecker stellen' (memasang alarm)."
+    "notiz": "Digunakan dalam konteks 'den Wecker stellen' (memasang alarm jam)."
   },
   {
     "vorderseite": "der Kunde, die Kunden",
@@ -889,11 +889,11 @@
   },
   {
     "vorderseite": "der Stand der Dinge",
-    "rueckseite": "keadaan terkini",
+    "rueckseite": "keadaan atau perkembangan terkini",
     "wortart": "Nomen",
     "beispiel_de": "Sie können sich erkundigen, wie der Stand der Dinge ist.",
     "beispiel_id": "Anda bisa menanyakan bagaimana perkembangan keadaan terkini.",
-    "notiz": ""
+    "notiz": "Biasa digunakan dalam dunia kerja untuk menanyakan progres tugas/lamaran."
   },
   {
     "vorderseite": "das PDF-Dokument, die PDF-Dokumente",

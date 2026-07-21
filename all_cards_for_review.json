@@ -7119,7 +7119,7 @@
     "category": "Nomen",
     "level": "B1",
     "chapter": 4,
-    "notiz": "Ungkapan: Das war keine Absicht (Itu tidak disengaja)."
+    "notiz": "Ungkapan populer: das war keine Absicht (itu tidak disengaja)."
   },
   {
     "id": "k4-61",
@@ -7172,12 +7172,12 @@
   {
     "id": "k4-66",
     "deutsch": "das Versehen, die Versehen",
-    "indonesia": "kekeliruan",
+    "indonesia": "kekeliruan atau ketidaksengajaan",
     "sentence": "Aus Versehen hat er den Namen verwechselt. | Tanpa sengaja dia menukar nama tersebut.",
     "category": "Nomen",
     "level": "B1",
     "chapter": 4,
-    "notiz": "Ungkapan: aus Versehen (tidak sengaja)."
+    "notiz": "Ungkapan populer: aus Versehen (secara tidak sengaja / tanpa sengaja)."
   },
   {
     "id": "k4-67",
@@ -7300,7 +7300,7 @@
     "category": "Nomen",
     "level": "B1",
     "chapter": 4,
-    "notiz": "Ungkapan: Im Augenblick (saat ini)."
+    "notiz": "Ungkapan populer: im Augenblick (saat ini / untuk saat ini)."
   },
   {
     "id": "k4-80",
@@ -7382,7 +7382,7 @@
     "category": "Verb",
     "level": "B1",
     "chapter": 4,
-    "notiz": "Digunakan dalam konteks 'den Wecker stellen' (memasang alarm)."
+    "notiz": "Digunakan dalam konteks 'den Wecker stellen' (memasang alarm jam)."
   },
   {
     "id": "k4-89",
@@ -7602,11 +7602,12 @@
   {
     "id": "k4-112",
     "deutsch": "der Stand der Dinge",
-    "indonesia": "keadaan terkini",
+    "indonesia": "keadaan atau perkembangan terkini",
     "sentence": "Sie können sich erkundigen, wie der Stand der Dinge ist. | Anda bisa menanyakan bagaimana perkembangan keadaan terkini.",
     "category": "Nomen",
     "level": "B1",
-    "chapter": 4
+    "chapter": 4,
+    "notiz": "Biasa digunakan dalam dunia kerja untuk menanyakan progres tugas/lamaran."
   },
   {
     "id": "k4-113",

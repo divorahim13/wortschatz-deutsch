@@ -1,0 +1,2354 @@
+[
+  {
+    "vorderseite": "der Briefträger, - / die Briefträgerin, -nen",
+    "rueckseite": "tukang pos",
+    "wortart": "Nomen",
+    "beispiel_de": "Wenn ich Briefträger wäre, würde ich viel Fahrrad fahren.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Chemikerin, -nen / der Chemiker, -",
+    "rueckseite": "ahli kimia",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie arbeitet als Chemikerin im Labor.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Elektroingenieur, -e / die Elektroingenieurin, -nen",
+    "rueckseite": "insinyur elektro",
+    "wortart": "Nomen",
+    "beispiel_de": "Er entwickelt Geräte als Elektroingenieur.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Mechatroniker, - / die Mechatronikerin, -nen",
+    "rueckseite": "ahli mekatronika",
+    "wortart": "Nomen",
+    "beispiel_de": "Mechatroniker kombinieren Mechanik und Elektronik.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Profi, -s",
+    "rueckseite": "profesional, ahli",
+    "wortart": "Nomen",
+    "beispiel_de": "Er ist ein echter Profi in seinem Job.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Schreiner, - / die Schreinerin, -nen",
+    "rueckseite": "tukang kayu",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Schreiner baut Möbel aus Holz.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Spezialistin, -nen / der Spezialist, -en",
+    "rueckseite": "spesialis",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie ist Spezialistin für IT-Sicherheit.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Unternehmer, - / die Unternehmerin, -nen",
+    "rueckseite": "pengusaha",
+    "wortart": "Nomen",
+    "beispiel_de": "Wenn ich genug Geld hätte, würde ich selbst Unternehmer werden.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Bauer, -n / die Bäuerin, -nen",
+    "rueckseite": "petani",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Bauer baut Gemüse an und hat Kühe.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Handwerker, - / die Handwerkerin, -nen",
+    "rueckseite": "tukang, pengrajin",
+    "wortart": "Nomen",
+    "beispiel_de": "Handwerker reparieren Dinge mit den eigenen Händen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Politiker, - / die Politikerin, -nen",
+    "rueckseite": "politisi",
+    "wortart": "Nomen",
+    "beispiel_de": "Die Politikerin diskutiert viel mit anderen Menschen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Reporter, - / die Reporterin, -nen",
+    "rueckseite": "reporter, wartawan",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Reporter berichtet für den Fernsehsender.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Taxifahrer, - / die Taxifahrerin, -nen",
+    "rueckseite": "sopir taksi",
+    "wortart": "Nomen",
+    "beispiel_de": "Taxifahrer bringen Personen von A nach B.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Tierarzt, ¨e / die Tierärztin, -nen",
+    "rueckseite": "dokter hewan",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Tierarzt berät die Besitzer der Tiere.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Arbeitnehmer, - / die Arbeitnehmerin, -nen",
+    "rueckseite": "karyawan, pekerja",
+    "wortart": "Nomen",
+    "beispiel_de": "Arbeitnehmer wechseln heute häufiger den Job.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Arbeitgeber, -",
+    "rueckseite": "pemberi kerja, majikan",
+    "wortart": "Nomen",
+    "beispiel_de": "Wenn der Arbeitgeber flexibler wäre, würden mehr Leute bleiben.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Koch, ¨e / die Köchin, -nen",
+    "rueckseite": "juru masak, koki",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie hat fünf Jahre als Köchin gearbeitet.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Maler, - / die Malerin, -nen",
+    "rueckseite": "tukang cat",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Maler ist einer der Spezialisten unter den Handwerkern.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Homonim: 1) tukang cat (pekerjaan fisik/Handwerker), 2) pelukis (seniman/Künstler)."
+  },
+  {
+    "vorderseite": "der Assistent, -en / die Assistentin, -nen",
+    "rueckseite": "asisten",
+    "wortart": "Nomen",
+    "beispiel_de": "Er war zwei Jahre lang Assistent bei einer Reiseagentur.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Rechtsanwältin, -nen / der Rechtsanwalt, ¨e",
+    "rueckseite": "pengacara",
+    "wortart": "Nomen",
+    "beispiel_de": "Die Rechtsanwältin spricht mit den Angeklagten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Gericht, -e",
+    "rueckseite": "pengadilan",
+    "wortart": "Nomen",
+    "beispiel_de": "Er arbeitet am Gericht.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Homonim penting! 1) pengadilan (hukum), 2) hidangan/masakan (kuliner). Konteks kalimat menentukan."
+  },
+  {
+    "vorderseite": "der Richter, - / die Richterin, -nen",
+    "rueckseite": "hakim",
+    "wortart": "Nomen",
+    "beispiel_de": "Wenn ich Richter wäre, würde ich immer fair urteilen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Urteil, -e",
+    "rueckseite": "putusan, vonis",
+    "wortart": "Nomen",
+    "beispiel_de": "Das Urteil war fair und gerecht.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Verbrechen, -",
+    "rueckseite": "kejahatan",
+    "wortart": "Nomen",
+    "beispiel_de": "Er beschäftigt sich viel mit Verbrechen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Gerichtsverhandlung, -en",
+    "rueckseite": "sidang pengadilan",
+    "wortart": "Nomen",
+    "beispiel_de": "Vor der Gerichtsverhandlung liest er viele Akten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "🔵/der/die Angeklagte, -n",
+    "rueckseite": "terdakwa",
+    "wortart": "Nomen",
+    "beispiel_de": "Er spricht viel mit den Angeklagten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Menschenkenntnis (Sg.)",
+    "rueckseite": "kemampuan menilai karakter orang",
+    "wortart": "Nomen",
+    "beispiel_de": "In diesem Beruf muss man eine gute Menschenkenntnis haben.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Akte, -n",
+    "rueckseite": "berkas, arsip",
+    "wortart": "Nomen",
+    "beispiel_de": "Vor den Gerichtsverhandlungen muss er immer viele Akten lesen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Kontakt mit Menschen",
+    "rueckseite": "kontak dengan orang",
+    "wortart": "Nomen",
+    "beispiel_de": "Als Taxifahrerin hat sie viel Kontakt mit Menschen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "körperlich anstrengend sein",
+    "rueckseite": "melelahkan secara fisik",
+    "wortart": "Redemittel",
+    "beispiel_de": "Die Arbeit als Handwerker kann körperlich anstrengend sein.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Trinkgeld, -er",
+    "rueckseite": "uang tip",
+    "wortart": "Nomen",
+    "beispiel_de": "Taxifahrer bekommen manchmal Trinkgeld.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Analysen machen",
+    "rueckseite": "membuat analisis",
+    "wortart": "Verb",
+    "beispiel_de": "Als Chemikerin macht sie jeden Tag exakte Analysen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Labor, -s",
+    "rueckseite": "laboratorium",
+    "wortart": "Nomen",
+    "beispiel_de": "Wenn sie nicht im Labor arbeiten würde, wäre sie vielleicht Lehrerin.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Studium, Studien",
+    "rueckseite": "studi, kuliah",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie hat ursprünglich Chemie studiert.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "schmutzig werden",
+    "rueckseite": "jadi kotor",
+    "wortart": "Verb",
+    "beispiel_de": "Bei der Arbeit im Freien wird man oft schmutzig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "früh aufstehen",
+    "rueckseite": "bangun pagi-pagi",
+    "wortart": "Verb",
+    "beispiel_de": "Der Bauer muss jeden Tag sehr früh aufstehen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "nachmittags frei haben",
+    "rueckseite": "libur di sore hari",
+    "wortart": "Verb",
+    "beispiel_de": "Manche Berufe haben nachmittags frei.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Tests durchführen",
+    "rueckseite": "melakukan tes",
+    "wortart": "Verb",
+    "beispiel_de": "Im Labor führt sie täglich Tests durch.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "aus\\",
+    "rueckseite": "probieren",
+    "wortart": "Redemittel",
+    "beispiel_de": "mencoba",
+    "beispiel_id": "Frau Mersa hat mehrere Berufe ausprobiert, bevor sie zufrieden war.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Fach, ¨er",
+    "rueckseite": "mata pelajaran, bidang studi",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie mochte das Fach Chemie schon in der Schule.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "ernst nehmen, nahm ernst, hat ernst genommen",
+    "rueckseite": "menganggap serius",
+    "wortart": "Verb",
+    "beispiel_de": "Sie hat ihre Liebe zur Technik ernst genommen und das Fach gewechselt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "aggressiv",
+    "rueckseite": "agresif",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Wenn er nicht so gestresst wäre, wäre er nicht so aggressiv.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "befriedigend",
+    "rueckseite": "memuaskan",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Wenn sein Job befriedigender wäre, würde er nicht kündigen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "qualifiziert",
+    "rueckseite": "berkualifikasi, kompeten",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Die Firma sucht qualifizierte Mitarbeiter.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "optimistisch",
+    "rueckseite": "optimis",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Mit einer optimistischen Einstellung wäre das Gespräch leichter.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "offen",
+    "rueckseite": "terbuka",
+    "wortart": "Verb",
+    "beispiel_de": "+",
+    "beispiel_id": "Sie ist offen für neue Ideen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "menschlich",
+    "rueckseite": "manusiawi",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Wenn der Chef menschlicher wäre, würden alle sich wohler fühlen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "locker",
+    "rueckseite": "santai, rileks",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Er nimmt alles ziemlich locker.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "konservativ",
+    "rueckseite": "konservatif",
+    "wortart": "Adjektiv",
+    "beispiel_de": "netral",
+    "beispiel_id": "Bei einer Bank sollte man sich konservativ anziehen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "kommunikativ",
+    "rueckseite": "komunikatif",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Für diesen Job müsste man sehr kommunikativ sein.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "exakt",
+    "rueckseite": "tepat, teliti",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Sie arbeitet sehr exakt.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "speziell",
+    "rueckseite": "khusus",
+    "wortart": "Adjektiv",
+    "beispiel_de": "netral",
+    "beispiel_id": "Das ist ein spezielles Problem.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "unfreundlich",
+    "rueckseite": "tidak ramah",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Wäre der Kollege nicht so unfreundlich gewesen, hätte sie sich nicht geärgert.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "zornig",
+    "rueckseite": "marah",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Bleiben Sie höflich, auch wenn Sie zornig wären.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "gerecht",
+    "rueckseite": "adil (prinsip/hukum)",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Der Richter muss immer gerecht sein.",
+    "notiz": "BEDA dengan fair. Gerecht = adil secara moral/prinsip/hukum (misal vonis hakim). Fair = adil dalam perlakuan sehari-hari/sportif."
+  },
+  {
+    "vorderseite": "fair",
+    "rueckseite": "adil (perlakuan/sikap)",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Er behandelt alle Kollegen fair.",
+    "notiz": "BEDA dengan gerecht. Fair = adil dalam perlakuan sehari-hari ke sesama (sportif, tidak curang). Gerecht = adil secara prinsip/hukum."
+  },
+  {
+    "vorderseite": "höflich",
+    "rueckseite": "sopan",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "An Ihrer Stelle würde ich immer höflich bleiben, auch bei unangenehmen Fragen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "realistisch",
+    "rueckseite": "realistis",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Eine realistische Einstellung würde dir im Gespräch helfen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "nervös",
+    "rueckseite": "gugup",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Es wäre normal, im Vorstellungsgespräch etwas nervös zu sein.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "engagiert",
+    "rueckseite": "berdedikasi, aktif terlibat",
+    "wortart": "Adjektiv",
+    "beispiel_de": "+",
+    "beispiel_id": "Jeder Chef würde sich über engagierte Mitarbeiter freuen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Absicht, -en",
+    "rueckseite": "niat, maksud",
+    "wortart": "Nomen",
+    "beispiel_de": "Das war keine Absicht, das wollte ich wirklich nicht.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Das war keine Absicht = Itu tidak disengaja. Antonim: mit Absicht / absichtlich."
+  },
+  {
+    "vorderseite": "das Vergnügen (Sg.)",
+    "rueckseite": "kesenangan",
+    "wortart": "Nomen",
+    "beispiel_de": "Er hat Vergnügen am Kontakt mit Menschen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Öffentlichkeit (Sg.)",
+    "rueckseite": "publik, masyarakat umum",
+    "wortart": "Nomen",
+    "beispiel_de": "Politiker sind viel in der Öffentlichkeit.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Verbindung, -en",
+    "rueckseite": "hubungan, koneksi",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie haben eine gute Verbindung zueinander.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Imbiss, -e",
+    "rueckseite": "warung makan cepat saji",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie essen mittags oft am Imbiss.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Gaststätte, -n",
+    "rueckseite": "rumah makan, restoran",
+    "wortart": "Nomen",
+    "beispiel_de": "Das Restaurant liegt neben dem Hauptbahnhof.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Versehen, -",
+    "rueckseite": "kekeliruan",
+    "wortart": "Nomen",
+    "beispiel_de": "Aus Versehen hat er den Namen verwechselt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "aus Versehen = kekeliruan tanpa sengaja. Antonim: absichtlich."
+  },
+  {
+    "vorderseite": "verzeihen, er verzeiht, verzieh, hat verziehen",
+    "rueckseite": "memaafkan",
+    "wortart": "Verb",
+    "beispiel_de": "Verzeihen Sie bitte, das war keine Absicht.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Verba tak beraturan (verzeihen, verzieh, hat verziehen). Sinonim: entschuldigen."
+  },
+  {
+    "vorderseite": "sich irren (in + D.)",
+    "rueckseite": "keliru, salah dalam hal",
+    "wortart": "Verb",
+    "beispiel_de": "Wenn sie sich nicht im Raum geirrt hätte, wäre es nicht peinlich geworden.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "vor\\",
+    "rueckseite": "ziehen, er zieht vor, zog vor, hat vorgezogen",
+    "wortart": "Redemittel",
+    "beispiel_de": "lebih memilih, mengutamakan",
+    "beispiel_id": "Er hätte die Ehrlichkeit vorgezogen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "zweifeln (an + D.)",
+    "rueckseite": "meragukan",
+    "wortart": "Verb",
+    "beispiel_de": "Zweifeln Sie nicht an Ihren Fähigkeiten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "verwechseln",
+    "rueckseite": "tertukar, keliru mengira",
+    "wortart": "Verb",
+    "beispiel_de": "Er hat die Namen der Kollegen verwechselt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Zweck, -e",
+    "rueckseite": "tujuan",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Zweck des Schreibens ist klar.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "zahlreich",
+    "rueckseite": "banyak sekali",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Es gibt zahlreiche Tipps für das Gespräch.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Panne, -n",
+    "rueckseite": "kesalahan/kerusakan kecil",
+    "wortart": "Nomen",
+    "beispiel_de": "Pannen am Arbeitsplatz könnten jedem mal passieren.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Konteks kerja = insiden/kesalahan kecil. Konteks kendaraan = mogok/kerusakan mesin."
+  },
+  {
+    "vorderseite": "unangenehm",
+    "rueckseite": "tidak nyaman, canggung",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Das wäre mir wirklich unangenehm.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "peinlich",
+    "rueckseite": "memalukan",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Das ist mir wirklich peinlich.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Jebakan: peinlich = memalukan (embarrassing), BUKAN menyakitkan (painful)."
+  },
+  {
+    "vorderseite": "schrecklich",
+    "rueckseite": "mengerikan, parah",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Das ist doch schrecklich!",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "schlimm",
+    "rueckseite": "parah, buruk",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Das wäre nicht so schlimm gewesen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "absolut",
+    "rueckseite": "mutlak, benar-benar",
+    "wortart": "Adverb",
+    "beispiel_de": "Eine optimistische Einstellung ist absolut wichtig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Augenblick, -e",
+    "rueckseite": "momen, saat",
+    "wortart": "Nomen",
+    "beispiel_de": "Im Augenblick ist die Stelle noch nicht besetzt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Faktor, -en",
+    "rueckseite": "faktor",
+    "wortart": "Nomen",
+    "beispiel_de": "Das Benehmen ist auch ein wichtiger Faktor bei der Beurteilung.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "gesamt",
+    "rueckseite": "keseluruhan",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Der gesamte Auftritt zählt zum ersten Eindruck.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "möglichst",
+    "rueckseite": "sebisa mungkin",
+    "wortart": "Adverb",
+    "beispiel_de": "Recherchieren Sie möglichst viel über die Firma.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "kürzlich",
+    "rueckseite": "baru-baru ini",
+    "wortart": "Adverb",
+    "beispiel_de": "Kürzlich habe ich etwas Peinliches erlebt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sämtlich",
+    "rueckseite": "seluruh, semua",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Fassen Sie sämtliche Unterlagen in einem Dokument zusammen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "jedoch",
+    "rueckseite": "namun",
+    "wortart": "Adverb",
+    "beispiel_de": "Er hat es versucht, jedoch ohne Erfolg.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "ursprünglich",
+    "rueckseite": "awalnya, aslinya",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Sie hat ursprünglich Chemie studiert.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "selbstverständlich",
+    "rueckseite": "tentu saja, sudah semestinya",
+    "wortart": "Adverb",
+    "beispiel_de": "Auf Ihre Körpersprache sollten Sie selbstverständlich auch achten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "stellen (den Wecker stellen)",
+    "rueckseite": "memasang (alarm)",
+    "wortart": "Redemittel",
+    "beispiel_de": "Stellen Sie lieber eine Stunde früher den Wecker.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "den Wecker stellen = memasang alarm. Verba beraturan."
+  },
+  {
+    "vorderseite": "der Kunde, -n / die Kundin, -nen",
+    "rueckseite": "pelanggan",
+    "wortart": "Nomen",
+    "beispiel_de": "Wenn ein Kollege mit wichtigen Kunden zusammensitzt, sollten Sie leise sein.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "an\\",
+    "rueckseite": "sprechen, sprach an, hat angesprochen",
+    "wortart": "Redemittel",
+    "beispiel_de": "menyapa, menegur",
+    "beispiel_id": "Sie hat die Kollegin falsch angesprochen, weil sie den Namen verwechselt hat.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "schütten",
+    "rueckseite": "menumpahkan",
+    "wortart": "Verb",
+    "beispiel_de": "Aus Versehen hat er Kaffee über das Hemd geschüttet.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "erleben",
+    "rueckseite": "mengalami",
+    "wortart": "Verb",
+    "beispiel_de": "Kürzlich habe ich etwas Peinliches erlebt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Bewerbung, -en",
+    "rueckseite": "lamaran kerja",
+    "wortart": "Nomen",
+    "beispiel_de": "Wenn die Bewerbung aussagekräftiger wäre, hätte er bessere Chancen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Bewerber, - / die Bewerberin, -nen",
+    "rueckseite": "pelamar",
+    "wortart": "Nomen",
+    "beispiel_de": "Jeder Bewerber sollte gut vorbereitet sein.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Personalien (Pl.)",
+    "rueckseite": "data diri",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Lebenslauf enthält Ihre Personalien.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Lebenslauf, ¨e",
+    "rueckseite": "CV, riwayat hidup",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Lebenslauf darf auf keinen Fall fehlen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Bescheinigung, -en",
+    "rueckseite": "surat keterangan",
+    "wortart": "Nomen",
+    "beispiel_de": "Schicken Sie auch Bescheinigungen mit.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Anhang, ¨e",
+    "rueckseite": "lampiran",
+    "wortart": "Nomen",
+    "beispiel_de": "Laden Sie alles als PDF-Anhang hoch.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Zeugnis, -se",
+    "rueckseite": "rapor, sertifikat",
+    "wortart": "Nomen",
+    "beispiel_de": "Man schickt auch Zeugnisse von der Schule mit.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Dua arti: Schulzeugnis = rapor sekolah; Arbeitszeugnis = surat referensi/penilaian kerja dari atasan."
+  },
+  {
+    "vorderseite": "das Bewerbungsschreiben, -",
+    "rueckseite": "surat lamaran",
+    "wortart": "Nomen",
+    "beispiel_de": "Darauf sollte sich das Bewerbungsschreiben konzentrieren.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Bewerbungsfoto, -s",
+    "rueckseite": "foto lamaran",
+    "wortart": "Nomen",
+    "beispiel_de": "Ein Profi sollte das Bewerbungsfoto machen, keine Urlaubsfotos.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Personalabteilung, -en",
+    "rueckseite": "departemen HR",
+    "wortart": "Nomen",
+    "beispiel_de": "Die Personalabteilung öffnet am liebsten nur ein Dokument.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Bewerbungstraining, -s",
+    "rueckseite": "pelatihan melamar kerja",
+    "wortart": "Nomen",
+    "beispiel_de": "Daran kann jeder teilnehmen, auch du.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die E-Mail-Adresse, -n",
+    "rueckseite": "alamat email",
+    "wortart": "Nomen",
+    "beispiel_de": "Man braucht unbedingt eine seriöse E-Mail-Adresse.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "seriös",
+    "rueckseite": "serius, profesional (kesan)",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Die Adresse sollte seriös wirken.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Seriös = impresi profesional/terpercaya. Beda dengan ernst (serius dalam artian tidak bercanda)."
+  },
+  {
+    "vorderseite": "relevant",
+    "rueckseite": "relevan",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Überlegen Sie vorher, welche Zeugnisse wirklich relevant sind.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "aussagekräftig",
+    "rueckseite": "meyakinkan, informatif",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Ohne aussagekräftige Unterlagen wäre die Bewerbung schwächer.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "enthalten, er enthält, enthielt, hat enthalten",
+    "rueckseite": "berisi, mengandung",
+    "wortart": "Verb",
+    "beispiel_de": "Der Lebenslauf enthält alle wichtigen Informationen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich beziehen (auf + A.), bezog sich, hat sich bezogen",
+    "rueckseite": "merujuk, mengacu pada",
+    "wortart": "Verb",
+    "beispiel_de": "Es gibt viele Qualitäten. Darauf sollte sich das Schreiben beziehen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "an\\",
+    "rueckseite": "kommen (auf + A.), kam an, ist angekommen",
+    "wortart": "Redemittel",
+    "beispiel_de": "tergantung pada",
+    "beispiel_id": "Es kommt immer auf eine gute Bewerbung an.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich konzentrieren (auf + A.)",
+    "rueckseite": "fokus pada",
+    "wortart": "Verb",
+    "beispiel_de": "Konzentrieren Sie sich lieber darauf, statt sich zu verzetteln.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "teil\\",
+    "rueckseite": "nehmen (an + D.), nahm teil, hat teilgenommen",
+    "wortart": "Redemittel",
+    "beispiel_de": "ikut serta dalam",
+    "beispiel_id": "Daran kann jeder teilnehmen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "erwarten",
+    "rueckseite": "mengharapkan",
+    "wortart": "Verb",
+    "beispiel_de": "Erwarten Sie nicht, dass sich die Firma sofort meldet.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich melden",
+    "rueckseite": "menghubungi, melapor",
+    "wortart": "Verb",
+    "beispiel_de": "Wenn zwei Wochen vergangen sind, können Sie sich melden.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Stand der Dinge",
+    "rueckseite": "keadaan terkini",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie können sich erkundigen, wie der Stand der Dinge ist.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das PDF-Dokument, -e",
+    "rueckseite": "dokumen PDF",
+    "wortart": "Nomen",
+    "beispiel_de": "Laden Sie nur ein PDF-Dokument hoch, sonst wird es unübersichtlich.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Geburtstag, -e",
+    "rueckseite": "tanggal lahir",
+    "wortart": "Nomen",
+    "beispiel_de": "Im Lebenslauf steht der Geburtstag.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Familienstand (Sg.)",
+    "rueckseite": "status pernikahan",
+    "wortart": "Nomen",
+    "beispiel_de": "Familienstand: ledig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "ledig",
+    "rueckseite": "lajang, belum menikah",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Er ist 39 Jahre alt und ledig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Muttersprache, -n",
+    "rueckseite": "bahasa ibu",
+    "wortart": "Nomen",
+    "beispiel_de": "Deutsch ist seine Muttersprache.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Niveau, -s",
+    "rueckseite": "level, tingkat kemampuan",
+    "wortart": "Nomen",
+    "beispiel_de": "Er hat Englisch auf Niveau C2.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die IT-Kenntnisse (Pl.)",
+    "rueckseite": "kemampuan IT",
+    "wortart": "Nomen",
+    "beispiel_de": "Seine IT-Kenntnisse sind sehr gut.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Abschluss, ¨e",
+    "rueckseite": "kelulusan, gelar",
+    "wortart": "Nomen",
+    "beispiel_de": "Er hat seinen Abschluss mit der Note 1,3 gemacht.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Auslandssemester, -",
+    "rueckseite": "semester luar negeri",
+    "wortart": "Nomen",
+    "beispiel_de": "Er hat ein Auslandssemester in Dublin gemacht.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Abitur (Sg.)",
+    "rueckseite": "ijazah SMA Jerman (syarat kuliah)",
+    "wortart": "Nomen",
+    "beispiel_de": "Er hat sein Abitur mit der Note 2,3 gemacht.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Mittlere Reife (Sg.)",
+    "rueckseite": "ijazah sekolah menengah Jerman",
+    "wortart": "Nomen",
+    "beispiel_de": "Nach der Realschule bekommt man die Mittlere Reife.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Reiseleiter, - / die Reiseleiterin, -nen",
+    "rueckseite": "pemandu wisata",
+    "wortart": "Nomen",
+    "beispiel_de": "Seit 2017 ist er selbstständiger Reiseleiter.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Umgebung, -en",
+    "rueckseite": "sekitar, lingkungan",
+    "wortart": "Nomen",
+    "beispiel_de": "Er macht Stadtführungen in Freiburg und Umgebung.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Kundenbetreuung (Sg.)",
+    "rueckseite": "layanan pelanggan",
+    "wortart": "Nomen",
+    "beispiel_de": "Zu seinen Aufgaben gehörte auch die Kundenbetreuung.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Büroorganisation (Sg.)",
+    "rueckseite": "organisasi kantor",
+    "wortart": "Nomen",
+    "beispiel_de": "Als Assistent war er für die Büroorganisation zuständig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Führung, -en",
+    "rueckseite": "tur berpemandu, panduan",
+    "wortart": "Nomen",
+    "beispiel_de": "Er hat Führungen auf Englisch und Deutsch gemacht.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Reisegruppe, -n",
+    "rueckseite": "grup wisata",
+    "wortart": "Nomen",
+    "beispiel_de": "Er hat viele Reisegruppen betreut.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Stellenbeginn (Sg.)",
+    "rueckseite": "mulai kerja",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie möchten weitere Informationen zum Stellenbeginn.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Lage, -n",
+    "rueckseite": "lokasi, letak",
+    "wortart": "Nomen",
+    "beispiel_de": "Fragen Sie auch nach der Lage des Restaurants.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "beantworten",
+    "rueckseite": "menjawab",
+    "wortart": "Verb",
+    "beispiel_de": "Zu ihren Aufgaben gehört es, E-Mails zu beantworten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Personalchef, -s / die Personalchefin, -nen",
+    "rueckseite": "kepala HR/personalia",
+    "wortart": "Nomen",
+    "beispiel_de": "Rufen Sie den Personalchef an. Mit ihm können Sie sprechen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Vorbereitung, -en",
+    "rueckseite": "persiapan",
+    "wortart": "Nomen",
+    "beispiel_de": "Zur Vorbereitung gehört auch die Planung der Anfahrt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Inserat, -e",
+    "rueckseite": "iklan lowongan",
+    "wortart": "Nomen",
+    "beispiel_de": "Ich habe Ihr Inserat gelesen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Interessent, -en / die Interessentin, -nen",
+    "rueckseite": "peminat, calon pelamar",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Interessent ruft wegen der Anzeige an.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Anzeige, -n",
+    "rueckseite": "iklan",
+    "wortart": "Nomen",
+    "beispiel_de": "Ich rufe wegen Ihrer Anzeige an.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "besetzt",
+    "rueckseite": "terisi (posisi)",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Die Stelle ist noch nicht besetzt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Homonim: 1) posisi pekerjaan terisi, 2) saluran telepon sedang dipakai/sibuk."
+  },
+  {
+    "vorderseite": "her\\",
+    "rueckseite": "stellen",
+    "wortart": "Redemittel",
+    "beispiel_de": "menjalin (kontak)",
+    "beispiel_id": "Kontakt herstellen.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Nachtportier, -s",
+    "rueckseite": "resepsionis malam",
+    "wortart": "Nomen",
+    "beispiel_de": "Wir suchen einen Nachtportier für unser Hotel.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Team, -s",
+    "rueckseite": "tim",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie arbeiten in einem netten Team.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die freie Zeiteinteilung (Sg.)",
+    "rueckseite": "pengaturan waktu bebas",
+    "wortart": "Nomen",
+    "beispiel_de": "Freie Zeiteinteilung zwischen 9 und 19 Uhr.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Stundenlohn, ¨e",
+    "rueckseite": "upah per jam",
+    "wortart": "Nomen",
+    "beispiel_de": "Wie hoch ist der Stundenlohn?",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Rechnung, -en",
+    "rueckseite": "tagihan, invoice",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie schreiben auch Rechnungen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die feste Stelle, -n",
+    "rueckseite": "posisi tetap",
+    "wortart": "Nomen",
+    "beispiel_de": "Er sucht eine feste Stelle.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "nach Absprache",
+    "rueckseite": "sesuai kesepakatan",
+    "wortart": "Redemittel",
+    "beispiel_de": "Arbeitszeit: nach Absprache.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Arbeitserlaubnis, -se",
+    "rueckseite": "izin kerja",
+    "wortart": "Nomen",
+    "beispiel_de": "Man braucht eine Arbeitserlaubnis.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "berufstätig",
+    "rueckseite": "sedang bekerja",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Sind Sie zurzeit berufstätig?",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Teilzeitjob, -s",
+    "rueckseite": "pekerjaan paruh waktu",
+    "wortart": "Nomen",
+    "beispiel_de": "Das ist ein Teilzeitjob für Studierende.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "arbeitslos",
+    "rueckseite": "menganggur",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Wenn er nicht arbeitslos wäre, hätte er mehr Geld.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Anrufer, - / die Anruferin, -nen",
+    "rueckseite": "orang yang menelepon",
+    "wortart": "Nomen",
+    "beispiel_de": "Was sagt der Anrufer zuerst am Telefon?",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Auftritt, -e",
+    "rueckseite": "penampilan, kemunculan",
+    "wortart": "Nomen",
+    "beispiel_de": "Der gesamte Auftritt zählt zum ersten Eindruck.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Geduld (Sg.)",
+    "rueckseite": "kesabaran",
+    "wortart": "Nomen",
+    "beispiel_de": "Hätten Sie etwas mehr Geduld, würde es Sie weniger stressen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Eindruck, ¨e",
+    "rueckseite": "kesan",
+    "wortart": "Nomen",
+    "beispiel_de": "Machen Sie einen guten Eindruck.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "zählen (zu + D.)",
+    "rueckseite": "termasuk, tergolong",
+    "wortart": "Verb",
+    "beispiel_de": "Pünktlichkeit zählt zu den wichtigsten Eigenschaften eines Bewerbers.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Fähigkeit, -en",
+    "rueckseite": "kemampuan",
+    "wortart": "Nomen",
+    "beispiel_de": "Zweifeln Sie nicht an Ihren Fähigkeiten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Einladung, -en",
+    "rueckseite": "undangan",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie haben eine Einladung zum Gespräch bekommen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Anfahrt, -en",
+    "rueckseite": "perjalanan menuju tempat",
+    "wortart": "Nomen",
+    "beispiel_de": "Planen Sie auch die Anfahrt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Stau, -s",
+    "rueckseite": "macet",
+    "wortart": "Nomen",
+    "beispiel_de": "Denken Sie an Staus oder Verkehrsprobleme.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "rechtzeitig",
+    "rueckseite": "tepat waktu",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Wenn Sie rechtzeitig da wären, müssten Sie sich nicht stressen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der erste Eindruck (Sg.)",
+    "rueckseite": "kesan pertama",
+    "wortart": "Nomen",
+    "beispiel_de": "Der erste Eindruck ist sehr wichtig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Kleidung (Sg.)",
+    "rueckseite": "pakaian",
+    "wortart": "Nomen",
+    "beispiel_de": "Ihre Kleidung sollte ordentlich und sauber sein.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "ordentlich",
+    "rueckseite": "rapi",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Ziehen Sie sich ordentlich an.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "zur Branche passen",
+    "rueckseite": "sesuai dengan bidang usaha",
+    "wortart": "Verb",
+    "beispiel_de": "Die Kleidung sollte zur Branche passen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Körpersprache (Sg.)",
+    "rueckseite": "bahasa tubuh",
+    "wortart": "Nomen",
+    "beispiel_de": "Achten Sie auf Ihre Körpersprache.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "steif",
+    "rueckseite": "kaku",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Sitzen Sie nicht zu steif auf dem Stuhl.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "entspannt",
+    "rueckseite": "santai, rileks",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Hängen Sie auch nicht zu entspannt im Sessel.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Körperhaltung (Sg.)",
+    "rueckseite": "postur tubuh",
+    "wortart": "Nomen",
+    "beispiel_de": "Ihre Körperhaltung sollte Interesse zeigen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Aufmerksamkeit (Sg.)",
+    "rueckseite": "perhatian",
+    "wortart": "Nomen",
+    "beispiel_de": "Signalisieren Sie Interesse und Aufmerksamkeit.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Benehmen (Sg.)",
+    "rueckseite": "perilaku, sikap",
+    "wortart": "Nomen",
+    "beispiel_de": "Ihr Benehmen ist auch wichtig für den Eindruck.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich Notizen machen",
+    "rueckseite": "membuat catatan",
+    "wortart": "Verb",
+    "beispiel_de": "Machen Sie sich Notizen im Gespräch, das macht immer einen guten Eindruck.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Interesse, -n",
+    "rueckseite": "ketertarikan, minat",
+    "wortart": "Nomen",
+    "beispiel_de": "Zeigen Sie Interesse am Unternehmen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich verhalten, er verhält sich, verhielt sich, hat sich verhalten",
+    "rueckseite": "bersikap, berperilaku",
+    "wortart": "Verb",
+    "beispiel_de": "Während des Gesprächs sollten Sie sich höflich verhalten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Ergebnis, -se",
+    "rueckseite": "hasil",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie sollten mit einem schlechten Ergebnis rechnen, dann wären Sie nicht so nervös.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "rechnen mit",
+    "rueckseite": "memperhitungkan, siap dengan",
+    "wortart": "Redemittel",
+    "beispiel_de": "Man sollte immer mit schwierigen Fragen rechnen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "nützlich",
+    "rueckseite": "berguna",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Es wäre nützlich, sich vorher mit Freunden auf die Situation vorzubereiten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "auf\\",
+    "rueckseite": "schreiben, schrieb auf, hat aufgeschrieben",
+    "wortart": "Redemittel",
+    "beispiel_de": "mencatat",
+    "beispiel_id": "Es macht keinen guten Eindruck, wenn man während des Gesprächs zu viel aufschreibt.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Stil, -e",
+    "rueckseite": "gaya",
+    "wortart": "Nomen",
+    "beispiel_de": "Überlegen Sie, welcher Stil zum Arbeitgeber passt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich interessieren für",
+    "rueckseite": "tertarik pada",
+    "wortart": "Verb",
+    "beispiel_de": "Ich interessiere mich für die Stelle als ... Wofür interessierst du dich?",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "denken an (+ A.)",
+    "rueckseite": "memikirkan",
+    "wortart": "Verb",
+    "beispiel_de": "Denkst du noch oft an deine alten Kollegen? Ja, ich denke oft an sie.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "warten auf (+ A.)",
+    "rueckseite": "menunggu",
+    "wortart": "Verb",
+    "beispiel_de": "Worauf wartest du noch? Ich warte darauf, dass die Firma sich meldet.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich kümmern um",
+    "rueckseite": "mengurus",
+    "wortart": "Verb",
+    "beispiel_de": "Worum kümmerst du dich? Ich kümmere mich um die Konferenz.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich ärgern über (+ A.)",
+    "rueckseite": "kesal tentang",
+    "wortart": "Verb",
+    "beispiel_de": "Worüber hast du dich geärgert? Manches habe ich mich auch oft geärgert.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "berichten über (+ A.)",
+    "rueckseite": "melaporkan tentang",
+    "wortart": "Verb",
+    "beispiel_de": "Worüber habt ihr gesprochen? Wir haben über das Sommerfest berichtet.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich erinnern an (+ A.)",
+    "rueckseite": "mengingat",
+    "wortart": "Verb",
+    "beispiel_de": "Erinnerst du dich noch daran? Ja, ich erinnere mich gut daran.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich entscheiden für/gegen",
+    "rueckseite": "memutuskan untuk/menolak",
+    "wortart": "Verb",
+    "beispiel_de": "Wofür hast du dich entschieden? Ich habe mich dafür entschieden.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich freuen auf/über (+ A.)",
+    "rueckseite": "senang menantikan/tentang",
+    "wortart": "Verb",
+    "beispiel_de": "Worauf freut ihr euch? Wir freuen uns darauf, dass wir bald ein Sommerfest haben.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "sich freuen AUF (+ Akk) = senang menantikan hal di masa depan. sich freuen ÜBER (+ Akk) = senang atas hal yang sudah terjadi."
+  },
+  {
+    "vorderseite": "sich melden bei",
+    "rueckseite": "menghubungi",
+    "wortart": "Verb",
+    "beispiel_de": "Ich melde mich bei Ihnen nächste Woche.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "träumen von",
+    "rueckseite": "bermimpi tentang",
+    "wortart": "Verb",
+    "beispiel_de": "Wovon träumen Svenja und Tom? Sie träumen davon, einen tollen Job zu finden.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "verzichten auf (+ A.)",
+    "rueckseite": "merelakan, melepaskan",
+    "wortart": "Verb",
+    "beispiel_de": "Worauf würdest du nie verzichten? Ich würde auf keinen Fall auf Geschäftsreisen verzichten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich vorbereiten auf (+ A.)",
+    "rueckseite": "mempersiapkan diri untuk",
+    "wortart": "Verb",
+    "beispiel_de": "Worauf bereiten Sie sich vor? Ich bereite mich darauf vor, gute Antworten zu geben.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich eignen für",
+    "rueckseite": "cocok, sesuai untuk",
+    "wortart": "Verb",
+    "beispiel_de": "Das würde sich nicht für eine Bewerbung eignen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "gehören zu",
+    "rueckseite": "termasuk ke dalam",
+    "wortart": "Verb",
+    "beispiel_de": "Das gehört zu den wichtigsten Unterlagen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich erkundigen (nach + D.)",
+    "rueckseite": "menanyakan info tentang",
+    "wortart": "Verb",
+    "beispiel_de": "Danach können Sie sich nach zwei Wochen erkundigen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Arbeitsplatz, ¨e",
+    "rueckseite": "tempat kerja",
+    "wortart": "Nomen",
+    "beispiel_de": "Junge Menschen wechseln häufig den Arbeitsplatz.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "🔵/der/die Angestellte, -n",
+    "rueckseite": "karyawan",
+    "wortart": "Nomen",
+    "beispiel_de": "Angestellte möchten am liebsten eigene Entscheidungen treffen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Firma, Firmen",
+    "rueckseite": "perusahaan",
+    "wortart": "Nomen",
+    "beispiel_de": "Für Unternehmen wäre es günstiger, wenn weniger Mitarbeiter kündigen würden.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "die Firma cenderung untuk bisnis kecil-menengah/personal; das Unternehmen lebih formal/netral (bisa skala besar)."
+  },
+  {
+    "vorderseite": "das Unternehmen, -",
+    "rueckseite": "perusahaan",
+    "wortart": "Nomen",
+    "beispiel_de": "Das Unternehmen möchte, dass sich alle wohlfühlen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "🔵/der/die Mitarbeiter/in, - / -nen",
+    "rueckseite": "rekan kerja, karyawan",
+    "wortart": "Verb",
+    "beispiel_de": "Die Firma fragt ihre Mitarbeiter regelmäßig, was sie verbessern kann.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "eine Entscheidung treffen",
+    "rueckseite": "mengambil keputusan",
+    "wortart": "Verb",
+    "beispiel_de": "Sie möchten eigene Entscheidungen treffen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "zufrieden sein (mit)",
+    "rueckseite": "puas (dengan)",
+    "wortart": "Redemittel",
+    "beispiel_de": "Man sollte immer wieder zeigen, dass man zufrieden ist.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Familienfreundlichkeit (Sg.)",
+    "rueckseite": "keramahan terhadap keluarga",
+    "wortart": "Nomen",
+    "beispiel_de": "Familienfreundlichkeit ist überhaupt sehr wichtig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Personalbeauftragte, -n",
+    "rueckseite": "staf personalia, HR",
+    "wortart": "Nomen",
+    "beispiel_de": "Karla Schmidt ist Personalbeauftragte bei der Firma.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Kindergarten, ¨",
+    "rueckseite": "TK",
+    "wortart": "Nomen",
+    "beispiel_de": "Wenn jemand seine Kinder abholen muss, ist das kein Problem.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Fitness-Studio, -s",
+    "rueckseite": "pusat kebugaran",
+    "wortart": "Nomen",
+    "beispiel_de": "Im Haus gibt es keinen Platz für ein Fitness-Studio.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Gesundheit (Sg.)",
+    "rueckseite": "kesehatan",
+    "wortart": "Nomen",
+    "beispiel_de": "Für uns ist die Gesundheit unserer Angestellten wichtig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Kantine, -n",
+    "rueckseite": "kantin",
+    "wortart": "Nomen",
+    "beispiel_de": "In der Kantine bieten wir günstige Gerichte an.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "kostenlos / umsonst",
+    "rueckseite": "gratis",
+    "wortart": "Redemittel",
+    "beispiel_de": "Obst ist für alle umsonst.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich wohlfühlen",
+    "rueckseite": "merasa nyaman",
+    "wortart": "Verb",
+    "beispiel_de": "Wenn die Firma familienfreundlicher wäre, würden sich alle wohler fühlen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Gehalt, ¨er",
+    "rueckseite": "gaji",
+    "wortart": "Nomen",
+    "beispiel_de": "Wenn das Gehalt höher wäre, wäre sie noch zufriedener.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "flexibel",
+    "rueckseite": "fleksibel",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Viele wünschen sich flexible Arbeitszeiten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Herausforderung, -en",
+    "rueckseite": "tantangan",
+    "wortart": "Nomen",
+    "beispiel_de": "Ohne neue Herausforderungen würde die Arbeit langweilig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "eine Rolle spielen",
+    "rueckseite": "berperan",
+    "wortart": "Verb",
+    "beispiel_de": "Das Einkommen spielt nicht die größte Rolle.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "ab\\",
+    "rueckseite": "holen, holte ab, hat abgeholt",
+    "wortart": "Redemittel",
+    "beispiel_de": "menjemput",
+    "beispiel_id": "Wenn ihre Kinder mal früher abgeholt werden müssen, ist das kein Problem.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "verbessern",
+    "rueckseite": "memperbaiki, meningkatkan",
+    "wortart": "Verb",
+    "beispiel_de": "Die Firma fragt, was sie verbessern kann.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "an deiner/Ihrer Stelle",
+    "rueckseite": "kalau saya jadi kamu/Anda",
+    "wortart": "Redemittel",
+    "beispiel_de": "An deiner Stelle würde ich noch mal mit Frau Gessner sprechen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Überstunden machen",
+    "rueckseite": "lembur",
+    "wortart": "Verb",
+    "beispiel_de": "Du solltest nicht immer Überstunden machen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "den Termin verschieben",
+    "rueckseite": "menunda jadwal/janji",
+    "wortart": "Verb",
+    "beispiel_de": "Sie könnte den Termin verschieben, dann hättest du mehr Zeit.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "gestresst sein",
+    "rueckseite": "stres",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Wenn Boris nicht so gestresst wäre, wäre die Pause lustiger.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der digitale Nomade, -n",
+    "rueckseite": "nomaden digital",
+    "wortart": "Nomen",
+    "beispiel_de": "Digitale Nomaden reisen um die Welt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "online Geld verdienen",
+    "rueckseite": "menghasilkan uang online",
+    "wortart": "Verb",
+    "beispiel_de": "Sie verdienen online Geld.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "um die Welt reisen",
+    "rueckseite": "keliling dunia",
+    "wortart": "Verb",
+    "beispiel_de": "Sie können um die Welt reisen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "schnelles Internet brauchen",
+    "rueckseite": "butuh internet cepat",
+    "wortart": "Verb",
+    "beispiel_de": "Man braucht schnelles Internet und einen Laptop.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "an keinem festen Ort bleiben",
+    "rueckseite": "tidak menetap di satu tempat",
+    "wortart": "Verb",
+    "beispiel_de": "Sie bleiben an keinem festen Ort.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Netzwerk, -e",
+    "rueckseite": "jaringan",
+    "wortart": "Nomen",
+    "beispiel_de": "Man möchte Netzwerke bilden.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "sich gegenseitig beraten",
+    "rueckseite": "saling memberi saran",
+    "wortart": "Verb",
+    "beispiel_de": "Die Menschen beraten sich gegenseitig.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Austausch (Sg.)",
+    "rueckseite": "pertukaran (informasi)",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie sind auf den Austausch mit anderen angewiesen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "vermissen",
+    "rueckseite": "merindukan",
+    "wortart": "Verb",
+    "beispiel_de": "Er vermisst feste Freunde.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "unabhängig von Ort und Zeit arbeiten",
+    "rueckseite": "kerja bebas dari tempat & waktu",
+    "wortart": "Verb",
+    "beispiel_de": "Er kann unabhängig von Ort und Zeit arbeiten.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "verlassen, er verlässt, verließ, hat verlassen",
+    "rueckseite": "meninggalkan",
+    "wortart": "Verb",
+    "beispiel_de": "Man kann den Ort nicht so schnell verlassen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Co-Working-Space, -s",
+    "rueckseite": "ruang kerja bersama",
+    "wortart": "Nomen",
+    "beispiel_de": "In dem Co-Working-Space kann er Leute treffen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Bekanntschaft, -en",
+    "rueckseite": "perkenalan, kenalan",
+    "wortart": "Nomen",
+    "beispiel_de": "Er möchte Bekanntschaften machen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Sicherheit (Sg.)",
+    "rueckseite": "keamanan",
+    "wortart": "Nomen",
+    "beispiel_de": "Man muss nach Sicherheit suchen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Vorstellung + das Gespräch",
+    "rueckseite": "das Vorstellungsgespräch",
+    "wortart": "Nomen",
+    "beispiel_de": "wawancara kerja",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "parken + der Platz",
+    "rueckseite": "der Parkplatz",
+    "wortart": "Verb",
+    "beispiel_de": "tempat parkir",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "hoch + das Haus",
+    "rueckseite": "das Hochhaus",
+    "wortart": "Verb",
+    "beispiel_de": "gedung tinggi",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "hoch + die Schule",
+    "rueckseite": "die Hochschule",
+    "wortart": "Verb",
+    "beispiel_de": "perguruan tinggi",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Fremdsprache, -n",
+    "rueckseite": "bahasa asing",
+    "wortart": "Nomen",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Krankheit, -en",
+    "rueckseite": "penyakit",
+    "wortart": "Nomen",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Computerkurs, -e",
+    "rueckseite": "kursus komputer",
+    "wortart": "Nomen",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Lernerfahrung, -en",
+    "rueckseite": "pengalaman belajar",
+    "wortart": "Nomen",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Schwimmkurs, -e",
+    "rueckseite": "kursus renang",
+    "wortart": "Nomen",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Großstadt, ¨e",
+    "rueckseite": "kota besar",
+    "wortart": "Nomen",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Gesellschaft (Sg.)",
+    "rueckseite": "masyarakat",
+    "wortart": "Nomen",
+    "beispiel_de": "Ein Politiker arbeitet für die Gesellschaft.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Ereignis, -se",
+    "rueckseite": "peristiwa",
+    "wortart": "Nomen",
+    "beispiel_de": "Ein Reporter berichtet von Ereignissen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Fernsehsender, -",
+    "rueckseite": "stasiun TV",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie arbeitet für einen Fernsehsender.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Kuh, ¨e",
+    "rueckseite": "sapi",
+    "wortart": "Nomen",
+    "beispiel_de": "Der Bauer hat siebzehn Kühe.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "anstrengend",
+    "rueckseite": "melelahkan",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Die Arbeit in der Landwirtschaft ist anstrengend, aber ihm gefällt es.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Gerät, -e",
+    "rueckseite": "alat, perangkat",
+    "wortart": "Nomen",
+    "beispiel_de": "Das Unternehmen stellt große Geräte her.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "entwickeln",
+    "rueckseite": "mengembangkan",
+    "wortart": "Verb",
+    "beispiel_de": "Er plant und entwickelt neue Geräte.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Werkstatt, ¨en",
+    "rueckseite": "bengkel",
+    "wortart": "Nomen",
+    "beispiel_de": "Viele Handwerker haben eine eigene Werkstatt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "reparieren",
+    "rueckseite": "memperbaiki",
+    "wortart": "Verb",
+    "beispiel_de": "Handwerker machen Dinge selbst oder reparieren sie.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "das Ziel, -e",
+    "rueckseite": "tujuan",
+    "wortart": "Nomen",
+    "beispiel_de": "Mein Ziel ist es, immer fair zu urteilen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "kompliziert",
+    "rueckseite": "rumit",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Meistens ist die Situation vor Gericht kompliziert.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "meistens",
+    "rueckseite": "kebanyakan, biasanya",
+    "wortart": "Adverb",
+    "beispiel_de": "Meistens ist die Situation kompliziert.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Anlage, -n",
+    "rueckseite": "lampiran (dokumen) / instalasi (mesin)",
+    "wortart": "Nomen",
+    "beispiel_de": "Das Unternehmen stellt Geräte und Anlagen her.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": "Homonim: 1) lampiran dokumen email, 2) instalasi pabrik/mesin, 3) investasi finansial."
+  },
+  {
+    "vorderseite": "aus\\",
+    "rueckseite": "tragen, er trägt aus, trug aus, hat ausgetragen",
+    "wortart": "Redemittel",
+    "beispiel_de": "mengantar (paket/koran)",
+    "beispiel_id": "Er trägt jeden Morgen Pakete aus.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "zu\\",
+    "rueckseite": "stellen",
+    "wortart": "Redemittel",
+    "beispiel_de": "mengantarkan sampai ke penerima",
+    "beispiel_id": "Sie stellt die Pakete direkt beim Kunden zu.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "ab\\",
+    "rueckseite": "schreiben, schrieb ab, hat abgeschrieben",
+    "wortart": "Redemittel",
+    "beispiel_de": "mencatat, menyalin data",
+    "beispiel_id": "Nach der Lieferung muss er alles genau abschreiben.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Landwirtschaft (Sg.)",
+    "rueckseite": "pertanian",
+    "wortart": "Nomen",
+    "beispiel_de": "Die Arbeit in der Landwirtschaft ist anstrengend.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Industrie, -n",
+    "rueckseite": "industri",
+    "wortart": "Nomen",
+    "beispiel_de": "Er arbeitet in der Industrie.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Branche, -n",
+    "rueckseite": "bidang, sektor usaha",
+    "wortart": "Nomen",
+    "beispiel_de": "Ihre Firma gehört zu den führenden Anbietern dieser Branche.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Weiterbildung, -en",
+    "rueckseite": "pelatihan lanjutan",
+    "wortart": "Nomen",
+    "beispiel_de": "Ich habe an einer Weiterbildung teilgenommen.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "der Anbieter, -",
+    "rueckseite": "penyedia, provider",
+    "wortart": "Nomen",
+    "beispiel_de": "Ihre Firma gehört zu den führenden Anbietern für diese Software.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "führend",
+    "rueckseite": "terkemuka",
+    "wortart": "Adjektiv",
+    "beispiel_de": "Das ist einer der führenden Anbieter am Markt.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "die Dauer (Sg.)",
+    "rueckseite": "durasi",
+    "wortart": "Nomen",
+    "beispiel_de": "Das kommt etwas auf die Dauer der Reise an.",
+    "beispiel_id": "Kalimat contoh ini relevan dengan dunia kerja.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Entschuldigung! / Verzeihung!",
+    "rueckseite": "Maaf!",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Entschuldigen/Verzeihen Sie bitte.",
+    "rueckseite": "Mohon maaf.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Das wollte ich nicht.",
+    "rueckseite": "Itu bukan maksud saya.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Das war keine Absicht.",
+    "rueckseite": "Itu tidak disengaja.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Das ist mir wirklich unangenehm/peinlich.",
+    "rueckseite": "Ini benar-benar canggung/memalukan buat saya.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": "Jebakan: peinlich = memalukan (embarrassing), BUKAN menyakitkan (painful)."
+  },
+  {
+    "vorderseite": "(Es) Tut mir (sehr/schrecklich) leid.",
+    "rueckseite": "Saya sangat menyesal.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Bitte. / Schon gut.",
+    "rueckseite": "Sama-sama. / Gapapa kok.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Kein Problem.",
+    "rueckseite": "Gak masalah.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Das macht doch nichts.",
+    "rueckseite": "Itu gak masalah kok.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Das ist (doch) nicht so schlimm.",
+    "rueckseite": "Itu gak seburuk itu kok.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Das kann doch (jedem) mal passieren.",
+    "rueckseite": "Itu bisa terjadi ke siapa aja kok.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Ich rufe wegen Ihrer Anzeige an.",
+    "rueckseite": "Saya telepon soal iklan lowongan anda.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Ich habe Ihr Inserat gelesen.",
+    "rueckseite": "Saya sudah baca iklan lowongan anda.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Ich interessiere mich für die Stelle als ...",
+    "rueckseite": "Saya tertarik dengan posisi sebagai...",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Ich habe gelesen, dass Sie ... suchen. Ist das noch aktuell?",
+    "rueckseite": "Saya baca anda mencari... apakah masih berlaku?",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Ich hätte da noch eine Frage zu ...",
+    "rueckseite": "Saya masih ada pertanyaan soal...",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Ich würde gern wissen, ...",
+    "rueckseite": "Saya ingin tahu...",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Können Sie mir auch sagen, ...?",
+    "rueckseite": "Bisa tolong kasih tahu saya...?",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Ja, die Stelle ist noch nicht besetzt.",
+    "rueckseite": "Ya, posisinya masih kosong.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": "Homonim: 1) posisi pekerjaan terisi, 2) saluran telepon sedang dipakai/sibuk."
+  },
+  {
+    "vorderseite": "Haben Sie denn schon in diesem Bereich gearbeitet?",
+    "rueckseite": "Apakah anda sudah pernah kerja di bidang ini?",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Am besten vereinbaren wir einen Termin. Passt Ihnen ...?",
+    "rueckseite": "Sebaiknya kita buat janji. Apakah cocok...?",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Ich würde vorschlagen, Sie kommen persönlich bei uns vorbei.",
+    "rueckseite": "Saya sarankan anda datang langsung ke kami.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  },
+  {
+    "vorderseite": "Schicken Sie uns doch bitte Ihre Bewerbungsunterlagen.",
+    "rueckseite": "Tolong kirimkan berkas lamaran anda.",
+    "wortart": "Redemittel",
+    "beispiel_de": "Im Berufsleben muss man flexibel bleiben.",
+    "beispiel_id": "Dalam dunia kerja, seseorang harus tetap fleksibel.",
+    "notiz": ""
+  }
+]

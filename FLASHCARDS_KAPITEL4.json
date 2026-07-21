@@ -304,14 +304,6 @@
     "notiz": ""
   },
   {
-    "vorderseite": "aus",
-    "rueckseite": "probieren",
-    "wortart": "Adjektiv",
-    "beispiel_de": "mencoba",
-    "beispiel_id": "Frau Mersa hat mehrere Berufe ausprobiert, bevor sie zufrieden war.",
-    "notiz": ""
-  },
-  {
     "vorderseite": "das Fach, die Fächer",
     "rueckseite": "mata pelajaran atau bidang studi",
     "wortart": "Nomen",
@@ -552,14 +544,6 @@
     "notiz": "Reflexives Verb dengan preposisi in (Dativ)."
   },
   {
-    "vorderseite": "vor",
-    "rueckseite": "ziehen, er zieht vor, zog vor, hat vorgezogen",
-    "wortart": "Adjektiv",
-    "beispiel_de": "lebih memilih, mengutamakan",
-    "beispiel_id": "Er hätte die Ehrlichkeit vorgezogen.",
-    "notiz": ""
-  },
-  {
     "vorderseite": "zweifeln an (Dativ)",
     "rueckseite": "meragukan",
     "wortart": "Verb",
@@ -728,14 +712,6 @@
     "notiz": "Bentuk feminin: die Kundin, die Kundinnen. der Kunde termasuk n-Deklination."
   },
   {
-    "vorderseite": "an",
-    "rueckseite": "sprechen, sprach an, hat angesprochen",
-    "wortart": "Adjektiv",
-    "beispiel_de": "menyapa, menegur",
-    "beispiel_id": "Sie hat die Kollegin falsch angesprochen, weil sie den Namen verwechselt hat.",
-    "notiz": ""
-  },
-  {
     "vorderseite": "schütten",
     "rueckseite": "menumpahkan",
     "wortart": "Verb",
@@ -894,14 +870,6 @@
     "beispiel_de": "Konzentrieren Sie sich lieber darauf, statt sich zu verzetteln.",
     "beispiel_id": "Lebih baik Anda fokus pada hal itu daripada terpecah konsentrasi.",
     "notiz": "Reflexives Verb dengan preposisi auf (Akkusativ)."
-  },
-  {
-    "vorderseite": "teil",
-    "rueckseite": "nehmen (an + D.), nahm teil, hat teilgenommen",
-    "wortart": "Adjektiv",
-    "beispiel_de": "ikut serta dalam",
-    "beispiel_id": "Daran kann jeder teilnehmen.",
-    "notiz": ""
   },
   {
     "vorderseite": "erwarten",
@@ -1133,14 +1101,6 @@
     "wortart": "Adjektiv",
     "beispiel_de": "Die Stelle ist noch nicht besetzt.",
     "beispiel_id": "Posisi tersebut masih belum terisi.",
-    "notiz": ""
-  },
-  {
-    "vorderseite": "her",
-    "rueckseite": "stellen",
-    "wortart": "Adjektiv",
-    "beispiel_de": "menjalin (kontak)",
-    "beispiel_id": "Kontakt herstellen.",
     "notiz": ""
   },
   {
@@ -1440,14 +1400,6 @@
     "notiz": ""
   },
   {
-    "vorderseite": "auf",
-    "rueckseite": "schreiben, schrieb auf, hat aufgeschrieben",
-    "wortart": "Adjektiv",
-    "beispiel_de": "mencatat",
-    "beispiel_id": "Es macht keinen guten Eindruck, wenn man während des Gesprächs zu viel aufschreibt.",
-    "notiz": ""
-  },
-  {
     "vorderseite": "der Stil, die Stile",
     "rueckseite": "gaya",
     "wortart": "Nomen",
@@ -1733,14 +1685,6 @@
     "wortart": "Verb",
     "beispiel_de": "Das Einkommen spielt nicht die größte Rolle.",
     "beispiel_id": "Uang berperan dalam keputusannya.",
-    "notiz": ""
-  },
-  {
-    "vorderseite": "ab",
-    "rueckseite": "holen, holte ab, hat abgeholt",
-    "wortart": "Adjektiv",
-    "beispiel_de": "menjemput",
-    "beispiel_id": "Wenn ihre Kinder mal früher abgeholt werden müssen, ist das kein Problem.",
     "notiz": ""
   },
   {
@@ -2080,14 +2024,6 @@
     "notiz": "Homonim: 1) lampiran dokumen, 2) instalasi mesin atau pabrik, 3) investasi."
   },
   {
-    "vorderseite": "zu",
-    "rueckseite": "stellen",
-    "wortart": "Adjektiv",
-    "beispiel_de": "mengantarkan sampai ke penerima",
-    "beispiel_id": "Sie stellt die Pakete direkt beim Kunden zu.",
-    "notiz": ""
-  },
-  {
     "vorderseite": "die Landwirtschaft (Sg.)",
     "rueckseite": "pertanian",
     "wortart": "Nomen",
@@ -2326,5 +2262,93 @@
     "beispiel_de": "Schicken Sie uns doch bitte Ihre Bewerbungsunterlagen per E-Mail.",
     "beispiel_id": "Tolong kirimkan berkas lamaran Anda melalui email.",
     "notiz": ""
+  },
+  {
+    "vorderseite": "ausprobieren",
+    "rueckseite": "mencoba",
+    "wortart": "Verb",
+    "beispiel_de": "Frau Mersa hat mehrere Berufe ausprobiert, bevor sie zufrieden war.",
+    "beispiel_id": "Ibu Mersa mencoba beberapa profesi sebelum dia merasa puas.",
+    "notiz": "Trennbares Verb, Präfix: aus-. Präteritum: probierte aus. Partizip II: hat ausprobiert."
+  },
+  {
+    "vorderseite": "vorziehen",
+    "rueckseite": "lebih memilih atau mengutamakan",
+    "wortart": "Verb",
+    "beispiel_de": "Er hätte die Ehrlichkeit vorgezogen.",
+    "beispiel_id": "Dia akan lebih memilih kejujuran.",
+    "notiz": "Trennbares Verb, Präfix: vor-. Präteritum: zog vor. Partizip II: hat vorgezogen."
+  },
+  {
+    "vorderseite": "ansprechen",
+    "rueckseite": "menyapa atau menegur",
+    "wortart": "Verb",
+    "beispiel_de": "Sie hat die Kollegin falsch angesprochen, weil sie den Namen verwechselt hat.",
+    "beispiel_id": "Dia menyapa rekan kerjanya dengan nama yang salah karena namanya tertukar.",
+    "notiz": "Trennbares Verb, Präfix: an-. Präteritum: sprach an. Partizip II: hat angesprochen."
+  },
+  {
+    "vorderseite": "ankommen auf (Akkusativ)",
+    "rueckseite": "tergantung pada",
+    "wortart": "Verb",
+    "beispiel_de": "Es kommt immer auf eine gute Bewerbung an.",
+    "beispiel_id": "Hal itu selalu tergantung pada lamaran kerja yang baik.",
+    "notiz": "Trennbares Verb, Präfix: an-. Präteritum: kam an. Partizip II: ist angekommen. Digunakan dalam ungkapan 'Es kommt auf ... an' (tergantung pada)."
+  },
+  {
+    "vorderseite": "teilnehmen an (Dativ)",
+    "rueckseite": "ikut serta dalam",
+    "wortart": "Verb",
+    "beispiel_de": "Daran kann jeder teilnehmen, auch du.",
+    "beispiel_id": "Siapa saja bisa ikut serta di dalamnya, termasuk kamu.",
+    "notiz": "Trennbares Verb, Präfix: teil-. Präteritum: nahm teil. Partizip II: hat teilgenommen."
+  },
+  {
+    "vorderseite": "herstellen",
+    "rueckseite": "memproduksi atau menjalin kontak",
+    "wortart": "Verb",
+    "beispiel_de": "Die Firma stellt Präzisionswerkzeuge her.",
+    "beispiel_id": "Perusahaan itu memproduksi alat-alat presisi.",
+    "notiz": "Trennbares Verb, Präfix: her-. Präteritum: stellte her. Partizip II: hat hergestellt."
+  },
+  {
+    "vorderseite": "aufschreiben",
+    "rueckseite": "mencatat",
+    "wortart": "Verb",
+    "beispiel_de": "Schreiben Sie wichtige Punkte sofort auf.",
+    "beispiel_id": "Catatlah poin-poin penting secara langsung.",
+    "notiz": "Trennbares Verb, Präfix: auf-. Präteritum: schrieb auf. Partizip II: hat aufgeschrieben."
+  },
+  {
+    "vorderseite": "abholen",
+    "rueckseite": "menjemput",
+    "wortart": "Verb",
+    "beispiel_de": "Sie muss das Kind vom Kindergarten abholen.",
+    "beispiel_id": "Dia harus menjemput anaknya dari TK.",
+    "notiz": "Trennbares Verb, Präfix: ab-. Präteritum: holte ab. Partizip II: hat abgeholt."
+  },
+  {
+    "vorderseite": "austragen",
+    "rueckseite": "mengantar paket atau koran",
+    "wortart": "Verb",
+    "beispiel_de": "Er trägt jeden Morgen Zeitungen aus.",
+    "beispiel_id": "Dia mengantar koran setiap pagi.",
+    "notiz": "Trennbares Verb, Präfix: aus-. Präteritum: trug aus. Partizip II: hat ausgetragen."
+  },
+  {
+    "vorderseite": "zustellen",
+    "rueckseite": "mengantarkan sampai ke penerima",
+    "wortart": "Verb",
+    "beispiel_de": "Der Postbote stellt das Paket persönlich zu.",
+    "beispiel_id": "Petugas pos mengantarkan paket itu secara pribadi.",
+    "notiz": "Trennbares Verb, Präfix: zu-. Präteritum: stellte zu. Partizip II: hat zugestellt."
+  },
+  {
+    "vorderseite": "abschreiben",
+    "rueckseite": "mencatat atau menyalin data",
+    "wortart": "Verb",
+    "beispiel_de": "Nach der Lieferung muss er die Daten abschreiben.",
+    "beispiel_id": "Setelah pengiriman dia harus menyalin data tersebut.",
+    "notiz": "Trennbares Verb, Präfix: ab-. Präteritum: schrieb ab. Partizip II: hat abgeschrieben."
   }
 ]

@@ -131,7 +131,7 @@
     "vorderseite": "der Koch, die Köche",
     "rueckseite": "juru masak atau koki",
     "wortart": "Nomen",
-    "beispiel_de": "Sie hat fünf Jahre als Köchin gearbeitet.",
+    "beispiel_de": "Er hat fünf Jahre als Koch gearbeitet.",
     "beispiel_id": "Dia telah bekerja selama lima tahun sebagai koki.",
     "notiz": "Bentuk feminin: die Köchin, die Köchinnen."
   },
@@ -515,8 +515,8 @@
     "vorderseite": "die Gaststätte, die Gaststätten",
     "rueckseite": "rumah makan atau restoran",
     "wortart": "Nomen",
-    "beispiel_de": "Das Restaurant liegt neben dem Hauptbahnhof.",
-    "beispiel_id": "Restoran itu terletak di samping stasiun kereta utama.",
+    "beispiel_de": "Die Gaststätte liegt neben dem Hauptbahnhof.",
+    "beispiel_id": "Rumah makan itu terletak di samping stasiun kereta utama.",
     "notiz": ""
   },
   {
@@ -811,8 +811,8 @@
     "vorderseite": "das Bewerbungstraining, die Bewerbungstrainings",
     "rueckseite": "pelatihan melamar kerja",
     "wortart": "Nomen",
-    "beispiel_de": "Daran kann jeder teilnehmen, auch du.",
-    "beispiel_id": "Siapa saja bisa ikut serta dalam pelatihan lamaran kerja, termasuk kamu.",
+    "beispiel_de": "Das Bewerbungstraining hilft den Bewerbern sehr.",
+    "beispiel_id": "Pelatihan melamar kerja itu sangat membantu para pelamar.",
     "notiz": ""
   },
   {
@@ -1507,8 +1507,8 @@
     "vorderseite": "sich vorbereiten auf (Akkusativ)",
     "rueckseite": "mempersiapkan diri untuk",
     "wortart": "Verb",
-    "beispiel_de": "Worauf bereiten Sie sich vor? Ich bereite mich darauf vor, gute Antworten zu geben.",
-    "beispiel_id": "Dia mempersiapkan diri secara seksama untuk wawancara.",
+    "beispiel_de": "Er bereitet sich gründlich auf das Vorstellungsgespräch vor.",
+    "beispiel_id": "Dia mempersiapkan diri secara seksama untuk wawancara kerja.",
     "notiz": "Trennbares reflexives Verb, Präfix: vor-. Präteritum: bereitete sich vor. Partizip II: hat sich vorbereitet."
   },
   {
@@ -1555,8 +1555,8 @@
     "vorderseite": "die Firma, die Firmen",
     "rueckseite": "perusahaan",
     "wortart": "Nomen",
-    "beispiel_de": "Für Unternehmen wäre es günstiger, wenn weniger Mitarbeiter kündigen würden.",
-    "beispiel_id": "Perusahaan itu memproduksi mesin-mesin berkualitas tinggi.",
+    "beispiel_de": "Unsere Firma stellt hochwertige Maschinen her.",
+    "beispiel_id": "Perusahaan kami memproduksi mesin-mesin berkualitas tinggi.",
     "notiz": "die Firma cenderung untuk bisnis kecil-menengah. das Unternehmen lebih formal."
   },
   {
@@ -1579,7 +1579,7 @@
     "vorderseite": "eine Entscheidung treffen",
     "rueckseite": "mengambil keputusan",
     "wortart": "Verb",
-    "beispiel_de": "Sie möchten eigene Entscheidungen treffen.",
+    "beispiel_de": "Der Chef muss heute eine wichtige Entscheidung treffen.",
     "beispiel_id": "Bos harus mengambil keputusan penting hari ini.",
     "notiz": ""
   },
@@ -1683,8 +1683,8 @@
     "vorderseite": "eine Rolle spielen",
     "rueckseite": "berperan",
     "wortart": "Verb",
-    "beispiel_de": "Das Einkommen spielt nicht die größte Rolle.",
-    "beispiel_id": "Uang berperan dalam keputusannya.",
+    "beispiel_de": "Geld spielt eine wichtige Rolle bei seiner Entscheidung.",
+    "beispiel_id": "Uang berperan penting dalam keputusannya.",
     "notiz": ""
   },
   {

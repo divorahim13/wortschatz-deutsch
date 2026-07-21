@@ -323,7 +323,7 @@
     "vorderseite": "aggressiv",
     "rueckseite": "agresif",
     "wortart": "Adjektiv",
-    "beispiel_de": "Das Wort aggressiv ist im Berufsleben wichtig.",
+    "beispiel_de": "Sein aggressives Verhalten stört die Kollegen im Büro.",
     "beispiel_id": "Perilakunya yang agresif mengganggu rekan kerja di kantor.",
     "notiz": ""
   },
@@ -411,7 +411,7 @@
     "vorderseite": "unfreundlich",
     "rueckseite": "tidak ramah",
     "wortart": "Adjektiv",
-    "beispiel_de": "Das Wort unfreundlich ist im Berufsleben wichtig.",
+    "beispiel_de": "Ein unfreundlicher Mitarbeiter schadet dem Ruf der Firma.",
     "beispiel_id": "Karyawan yang tidak ramah merugikan reputasi perusahaan.",
     "notiz": ""
   },
@@ -419,7 +419,7 @@
     "vorderseite": "zornig",
     "rueckseite": "marah",
     "wortart": "Adjektiv",
-    "beispiel_de": "Das Wort zornig ist im Berufsleben wichtig.",
+    "beispiel_de": "Der Kunde war sehr zornig über die verspätete Lieferung.",
     "beispiel_id": "Pelanggan itu sangat marah atas pengiriman yang terlambat.",
     "notiz": ""
   },
@@ -459,7 +459,7 @@
     "vorderseite": "nervös",
     "rueckseite": "gugup",
     "wortart": "Adjektiv",
-    "beispiel_de": "Das Wort nervös ist im Berufsleben wichtig.",
+    "beispiel_de": "Sie war vor dem Vorstellungsgespräch ein wenig nervös.",
     "beispiel_id": "Dia merasa sedikit gugup sebelum wawancara kerja.",
     "notiz": ""
   },
@@ -1875,7 +1875,7 @@
     "vorderseite": "die Fremdsprache, die Fremdsprachen",
     "rueckseite": "bahasa asing",
     "wortart": "Nomen",
-    "beispiel_de": "Das Wort die Fremdsprache ist im Berufsleben wichtig.",
+    "beispiel_de": "Er spricht zwei Fremdsprachen fließend.",
     "beispiel_id": "Dia berbicara dua bahasa asing dengan fasih.",
     "notiz": ""
   },
@@ -1883,23 +1883,23 @@
     "vorderseite": "die Krankheit, die Krankheiten",
     "rueckseite": "penyakit",
     "wortart": "Nomen",
-    "beispiel_de": "Das Wort die Krankheit ist im Berufsleben wichtig.",
-    "beispiel_id": "Karena sakit dia tinggal di rumah dua hari.",
+    "beispiel_de": "Wegen Krankheit blieb er zwei Tage zu Hause.",
+    "beispiel_id": "Karena sakit dia tinggal di rumah selama dua hari.",
     "notiz": ""
   },
   {
     "vorderseite": "der Computerkurs, die Computerkurse",
     "rueckseite": "kursus komputer",
     "wortart": "Nomen",
-    "beispiel_de": "Das Wort der Computerkurs ist im Berufsleben wichtig.",
-    "beispiel_id": "Dia menghadiri kursus komputer di malam hari.",
+    "beispiel_de": "Er besucht abends einen Computerkurs.",
+    "beispiel_id": "Dia mengikuti kursus komputer di malam hari.",
     "notiz": ""
   },
   {
     "vorderseite": "die Lernerfahrung, die Lernerfahrungen",
     "rueckseite": "pengalaman belajar",
     "wortart": "Nomen",
-    "beispiel_de": "Das Wort die Lernerfahrung ist im Berufsleben wichtig.",
+    "beispiel_de": "Das Praktikum war eine gute Lernerfahrung.",
     "beispiel_id": "Magang itu merupakan pengalaman belajar yang baik.",
     "notiz": ""
   },
@@ -1907,7 +1907,7 @@
     "vorderseite": "der Schwimmkurs, die Schwimmkurse",
     "rueckseite": "kursus renang",
     "wortart": "Nomen",
-    "beispiel_de": "Das Wort der Schwimmkurs ist im Berufsleben wichtig.",
+    "beispiel_de": "Im Sommer macht das Kind einen Schwimmkurs.",
     "beispiel_id": "Di musim panas anak itu mengikuti kursus renang.",
     "notiz": ""
   },
@@ -1915,7 +1915,7 @@
     "vorderseite": "die Großstadt, die Großstädte",
     "rueckseite": "kota besar",
     "wortart": "Nomen",
-    "beispiel_de": "Das Wort die Großstadt ist im Berufsleben wichtig.",
+    "beispiel_de": "In einer Großstadt gibt es viele Jobchancen.",
     "beispiel_id": "Di kota besar terdapat banyak peluang kerja.",
     "notiz": ""
   },

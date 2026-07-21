@@ -200,12 +200,12 @@
     "notiz": ""
   },
   {
-    "vorderseite": "🔵 atau der atau die Angeklagte, -n",
+    "vorderseite": "der Angeklagte, die Angeklagten",
     "rueckseite": "terdakwa",
-    "wortart": "Adjektiv",
+    "wortart": "Nomen",
     "beispiel_de": "Er spricht viel mit den Angeklagten.",
-    "beispiel_id": "Contoh penggunaan kata '🔵 atau der atau die Angeklagte' dalam kalimat.",
-    "notiz": ""
+    "beispiel_id": "Dia banyak berbicara dengan para terdakwa.",
+    "notiz": "Bentuk feminin: die Angeklagte, die Angeklagten. Mengikuti deklination kata sifat."
   },
   {
     "vorderseite": "die Menschenkenntnis (Sg.)",
@@ -888,14 +888,6 @@
     "notiz": "Reflexives Verb dengan preposisi auf (Akkusativ). Unregelmäßig. Präteritum: bezog sich. Partizip II: hat sich bezogen."
   },
   {
-    "vorderseite": "an",
-    "rueckseite": "kommen (auf + A.), kam an, ist angekommen",
-    "wortart": "Adjektiv",
-    "beispiel_de": "tergantung pada",
-    "beispiel_id": "Es kommt immer auf eine gute Bewerbung an.",
-    "notiz": ""
-  },
-  {
     "vorderseite": "sich konzentrieren auf (Akkusativ)",
     "rueckseite": "fokus pada",
     "wortart": "Verb",
@@ -1520,15 +1512,15 @@
     "notiz": "Reflexives Verb dengan preposisi an (Akkusativ)."
   },
   {
-    "vorderseite": "sich entscheiden für atau gegen (Akkusativ)",
+    "vorderseite": "sich entscheiden für (Akkusativ)",
     "rueckseite": "memutuskan untuk atau menolak",
     "wortart": "Verb",
     "beispiel_de": "Wofür hast du dich entschieden? Ich habe mich dafür entschieden.",
     "beispiel_id": "Dia telah memutuskan untuk mengambil posisi baru tersebut.",
-    "notiz": "Reflexives Verb. Unregelmäßig. Präteritum: entschied sich. Partizip II: hat sich entschieden."
+    "notiz": "Reflexives Verb. Unregelmäßig. Präteritum: entschied sich. Partizip II: hat sich entschieden. Bisa juga: sich entscheiden gegen (Akkusativ)."
   },
   {
-    "vorderseite": "sich freuen auf atau über (Akkusativ)",
+    "vorderseite": "sich freuen auf (Akkusativ)",
     "rueckseite": "senang menantikan atau gembira tentang hal yang terjadi",
     "wortart": "Verb",
     "beispiel_de": "Worauf freut ihr euch? Wir freuen uns darauf, dass wir bald ein Sommerfest haben.",
@@ -1600,12 +1592,12 @@
     "notiz": ""
   },
   {
-    "vorderseite": "🔵 atau der atau die Angestellte, -n",
+    "vorderseite": "der Angestellte, die Angestellten",
     "rueckseite": "karyawan",
-    "wortart": "Adjektiv",
-    "beispiel_de": "Angestellte möchten am liebsten eigene Entscheidungen treffen.",
-    "beispiel_id": "Contoh penggunaan kata '🔵 atau der atau die Angestellte' dalam kalimat.",
-    "notiz": ""
+    "wortart": "Nomen",
+    "beispiel_de": "Der Angestellte arbeitet seit drei Jahren in dieser Firma.",
+    "beispiel_id": "Karyawan itu telah bekerja selama tiga tahun di perusahaan ini.",
+    "notiz": "Bentuk feminin: die Angestellte, die Angestellten. Mengikuti deklination kata sifat."
   },
   {
     "vorderseite": "die Firma, die Firmen",
@@ -1624,12 +1616,12 @@
     "notiz": ""
   },
   {
-    "vorderseite": "🔵 atau der atau die Mitarbeiter atau in, - atau -nen",
-    "rueckseite": "rekan kerja, karyawan",
-    "wortart": "Verb",
-    "beispiel_de": "Die Firma fragt ihre Mitarbeiter regelmäßig, was sie verbessern kann.",
-    "beispiel_id": "Contoh penggunaan kata '🔵 atau der atau die Mitarbeiter atau in' dalam kalimat.",
-    "notiz": ""
+    "vorderseite": "der Mitarbeiter, die Mitarbeiter",
+    "rueckseite": "karyawan atau rekan kerja",
+    "wortart": "Nomen",
+    "beispiel_de": "Die Firma fragt ihre Mitarbeiter regelmäßig nach Feedback.",
+    "beispiel_id": "Perusahaan secara rutin menanyakan umpan balik kepada para karyawannya.",
+    "notiz": "Bentuk feminin: die Mitarbeiterin, die Mitarbeiterinnen."
   },
   {
     "vorderseite": "eine Entscheidung treffen",
@@ -1643,8 +1635,8 @@
     "vorderseite": "zufrieden sein (mit)",
     "rueckseite": "puas (dengan)",
     "wortart": "Adjektiv",
-    "beispiel_de": "Man sollte immer wieder zeigen, dass man zufrieden ist.",
-    "beispiel_id": "Contoh penggunaan kata 'zufrieden sein (mit)' dalam kalimat.",
+    "beispiel_de": "Sie ist sehr zufrieden mit ihrem Gehalt.",
+    "beispiel_id": "Dia sangat puas dengan gajinya.",
     "notiz": ""
   },
   {
@@ -1696,11 +1688,11 @@
     "notiz": ""
   },
   {
-    "vorderseite": "kostenlos atau umsonst",
+    "vorderseite": "kostenlos",
     "rueckseite": "gratis",
     "wortart": "Adjektiv",
-    "beispiel_de": "Obst ist für alle umsonst.",
-    "beispiel_id": "Contoh penggunaan kata 'kostenlos atau umsonst' dalam kalimat.",
+    "beispiel_de": "Kaffee und Obst sind im Büro kostenlos.",
+    "beispiel_id": "Kopi dan buah-buahan gratis di kantor.",
     "notiz": "Sinonim: umsonst. Umsonst juga bisa berarti 'sia-sia' tergantung konteks."
   },
   {
@@ -1760,12 +1752,12 @@
     "notiz": ""
   },
   {
-    "vorderseite": "an deiner Stelle atau an Ihrer Stelle",
+    "vorderseite": "an deiner Stelle",
     "rueckseite": "kalau saya jadi kamu atau Anda",
     "wortart": "Redemittel",
-    "beispiel_de": "An deiner Stelle würde ich noch mal mit Frau Gessner sprechen.",
-    "beispiel_id": "Contoh penggunaan kata 'an deiner Stelle atau an Ihrer Stelle' dalam kalimat.",
-    "notiz": ""
+    "beispiel_de": "An deiner Stelle würde ich den Chef fragen.",
+    "beispiel_id": "Kalau saya jadi kamu, saya akan bertanya kepada bos.",
+    "notiz": "Dapat juga digunakan secara formal: an Ihrer Stelle."
   },
   {
     "vorderseite": "Überstunden machen",
@@ -1904,35 +1896,35 @@
     "notiz": "Hanya digunakan dalam bentuk tunggal."
   },
   {
-    "vorderseite": "die Vorstellung + das Gespräch",
-    "rueckseite": "das Vorstellungsgespräch",
+    "vorderseite": "das Vorstellungsgespräch, die Vorstellungsgespräche",
+    "rueckseite": "wawancara kerja",
     "wortart": "Nomen",
-    "beispiel_de": "wawancara kerja",
-    "beispiel_id": "Contoh penggunaan kata 'die Vorstellung + das Gespräch' dalam kalimat.",
+    "beispiel_de": "Morgen habe ich ein wichtiges Vorstellungsgespräch.",
+    "beispiel_id": "Besok saya ada wawancara kerja yang penting.",
     "notiz": ""
   },
   {
-    "vorderseite": "parken + der Platz",
-    "rueckseite": "der Parkplatz",
-    "wortart": "Adjektiv",
-    "beispiel_de": "tempat parkir",
-    "beispiel_id": "Contoh penggunaan kata 'parken + der Platz' dalam kalimat.",
+    "vorderseite": "der Parkplatz, die Parkplätze",
+    "rueckseite": "tempat parkir",
+    "wortart": "Nomen",
+    "beispiel_de": "Vor dem Firmengebäude gibt es viele Parkplätze.",
+    "beispiel_id": "Di depan gedung perusahaan terdapat banyak tempat parkir.",
     "notiz": ""
   },
   {
-    "vorderseite": "hoch + das Haus",
-    "rueckseite": "das Hochhaus",
-    "wortart": "Adjektiv",
-    "beispiel_de": "gedung tinggi",
-    "beispiel_id": "Contoh penggunaan kata 'hoch + das Haus' dalam kalimat.",
+    "vorderseite": "das Hochhaus, die Hochhäuser",
+    "rueckseite": "gedung tinggi",
+    "wortart": "Nomen",
+    "beispiel_de": "Das Büro befindet sich im zehnten Stock eines Hochhauses.",
+    "beispiel_id": "Kantornya berada di lantai sepuluh sebuah gedung tinggi.",
     "notiz": ""
   },
   {
-    "vorderseite": "hoch + die Schule",
-    "rueckseite": "die Hochschule",
-    "wortart": "Adjektiv",
-    "beispiel_de": "perguruan tinggi",
-    "beispiel_id": "Contoh penggunaan kata 'hoch + die Schule' dalam kalimat.",
+    "vorderseite": "die Hochschule, die Hochschulen",
+    "rueckseite": "perguruan tinggi",
+    "wortart": "Nomen",
+    "beispiel_de": "Sie studiert an einer bekannten Hochschule.",
+    "beispiel_id": "Dia berkuliah di perguruan tinggi ternama.",
     "notiz": ""
   },
   {
@@ -2088,27 +2080,11 @@
     "notiz": "Homonim: 1) lampiran dokumen, 2) instalasi mesin atau pabrik, 3) investasi."
   },
   {
-    "vorderseite": "aus",
-    "rueckseite": "tragen, er trägt aus, trug aus, hat ausgetragen",
-    "wortart": "Adjektiv",
-    "beispiel_de": "mengantar (paket/koran)",
-    "beispiel_id": "Er trägt jeden Morgen Pakete aus.",
-    "notiz": ""
-  },
-  {
     "vorderseite": "zu",
     "rueckseite": "stellen",
     "wortart": "Adjektiv",
     "beispiel_de": "mengantarkan sampai ke penerima",
     "beispiel_id": "Sie stellt die Pakete direkt beim Kunden zu.",
-    "notiz": ""
-  },
-  {
-    "vorderseite": "ab",
-    "rueckseite": "schreiben, schrieb ab, hat abgeschrieben",
-    "wortart": "Adjektiv",
-    "beispiel_de": "mencatat, menyalin data",
-    "beispiel_id": "Nach der Lieferung muss er alles genau abschreiben.",
     "notiz": ""
   },
   {
@@ -2168,12 +2144,12 @@
     "notiz": "Hanya digunakan dalam bentuk tunggal."
   },
   {
-    "vorderseite": "Entschuldigung atau Verzeihung",
+    "vorderseite": "Entschuldigung",
     "rueckseite": "Maaf atau Permisi",
     "wortart": "Redemittel",
     "beispiel_de": "Entschuldigung, wo befindet sich die Personalabteilung?",
     "beispiel_id": "Maaf, di mana letak departemen HR?",
-    "notiz": ""
+    "notiz": "Bisa juga: Verzeihung."
   },
   {
     "vorderseite": "Entschuldigen Sie bitte",
@@ -2200,28 +2176,28 @@
     "notiz": ""
   },
   {
-    "vorderseite": "Das ist mir wirklich unangenehm atau peinlich",
+    "vorderseite": "Das ist mir wirklich unangenehm",
     "rueckseite": "Ini benar-benar canggung atau memalukan buat saya",
     "wortart": "Redemittel",
     "beispiel_de": "Das ist mir wirklich peinlich, dass ich mich im Raum geirrt habe.",
     "beispiel_id": "Ini benar-benar memalukan buat saya karena saya salah ruangan.",
-    "notiz": "Peinlich = memalukan (embarrassing)."
+    "notiz": "Bisa juga: Das ist mir wirklich peinlich. Peinlich = memalukan."
   },
   {
-    "vorderseite": "(Es) Tut mir (sehr atau schrecklich) leid.",
+    "vorderseite": "Es tut mir leid",
     "rueckseite": "Saya sangat menyesal.",
     "wortart": "Redemittel",
     "beispiel_de": "Es tut mir sehr leid für die verspätete Rückmeldung.",
     "beispiel_id": "Saya sangat menyesal atas umpan balik yang terlambat ini.",
-    "notiz": ""
+    "notiz": "Dapat diperkuat: Es tut mir sehr leid / schrecklich leid."
   },
   {
-    "vorderseite": "Bitte atau Schon gut",
+    "vorderseite": "Schon gut",
     "rueckseite": "Sama-sama atau Tidak apa-apa",
     "wortart": "Redemittel",
     "beispiel_de": "Schon gut, machen Sie sich deswegen keine Sorgen.",
     "beispiel_id": "Tidak apa-apa kok, jangan khawatir tentang hal itu.",
-    "notiz": ""
+    "notiz": "Bisa juga: Bitte / Kein Problem."
   },
   {
     "vorderseite": "Kein Problem",
@@ -2235,8 +2211,8 @@
     "vorderseite": "Das macht doch nichts.",
     "rueckseite": "Itu gak masalah kok.",
     "wortart": "Redemittel",
-    "beispiel_de": "Das Wort Das macht doch nichts. ist im Berufsleben wichtig.",
-    "beispiel_id": "Contoh penggunaan kata 'Das macht doch nichts.' dalam kalimat.",
+    "beispiel_de": "Das macht doch nichts, wir lösen das Problem gemeinsam.",
+    "beispiel_id": "Itu tidak masalah kok, kita selesaikan masalah ini bersama.",
     "notiz": ""
   },
   {

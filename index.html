@@ -6682,6 +6682,26 @@
       "brechen": { praet: "brach", perf: "gebrochen", hilfsverb: "haben" }
     };
 
+    function renderVerbGrammarPanelHTML(card) {
+      if (typeof getVerbGrammarDetails !== 'function') return '';
+      const g = getVerbGrammarDetails(card);
+      if (!g) return '';
+      return `
+        <div class="verb-grammar-panel" style="margin-top: 12px; padding: 10px 14px; background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; font-size: 0.82rem; text-align: left;">
+          <div style="font-weight: 600; color: var(--accent-text); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+            <span>Verb Grammatik (${escapeHTML(g.verbType)})</span>
+            <span style="opacity: 0.85; font-size: 0.75rem;">Hilfsverb: <strong style="color: var(--text-primary);">${escapeHTML(g.hilfsverb)}</strong></span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; color: var(--text-secondary);">
+            <div><strong>Präteritum (ich):</strong> ${escapeHTML(g.praetIch)}</div>
+            <div><strong>Präteritum (wir):</strong> ${escapeHTML(g.praetWir)}</div>
+            <div><strong>Partizip II:</strong> ${escapeHTML(g.partizip2)}</div>
+            <div><strong>Perfekt:</strong> ${escapeHTML(g.perfektText)}</div>
+          </div>
+        </div>
+      `;
+    }
+
     function getVerbGrammarDetails(card) {
       if (!card) return null;
       const de = card.deutsch || '';

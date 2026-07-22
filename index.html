@@ -151,22 +151,38 @@
 
     nav {
       display: flex;
-      gap: 6px;
+      gap: 4px;
+      align-items: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+    }
+    nav::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-btn {
       background: none;
       border: 1px solid transparent;
       color: var(--text-secondary);
-      padding: 8px 14px;
+      padding: 6px 12px;
       border-radius: 99px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      white-space: nowrap;
+      flex-shrink: 0;
       transition: all var(--transition-speed) ease;
+    }
+
+    .fc-rating-filter-btn, .rl-tab-btn {
+      width: auto !important;
+      flex: 0 0 auto !important;
+      white-space: nowrap;
     }
 
     .nav-btn:hover {
@@ -530,6 +546,13 @@
     .btn-secondary:hover {
       background-color: var(--bg-secondary);
       border-color: var(--border-focus);
+    }
+
+    .fc-rating-filter-btn, .rl-tab-btn, .btn-auto, .fc-filter-btn-group .btn {
+      width: auto !important;
+      flex: 0 0 auto !important;
+      display: inline-flex !important;
+      white-space: nowrap !important;
     }
 
     .btn svg {
@@ -2099,6 +2122,7 @@
         <span class="brand-title">Wortschatz</span>
         <span class="brand-badge">B1-C1</span>
         <span id="sync-indicator" style="display: none; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.65rem; font-weight: 600; padding: 2px 8px; border-radius: 99px; align-items: center; gap: 4px; margin-left: 6px;"></span>
+        <button onclick="copySyncLinkToClipboard()" title="Sinkronkan antar HP / Laptop" style="background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.3); color: var(--accent-text); padding: 2px 8px; border-radius: 99px; font-size: 0.7rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; margin-left: 4px; white-space: nowrap;">📲 Sync HP/PC</button>
       </a>
       <nav id="main-nav">
         <button id="nav-dashboard" class="nav-btn active" onclick="switchView('dashboard')">
@@ -2115,7 +2139,7 @@
         </button>
         <button id="nav-rating-list" class="nav-btn" onclick="switchView('rating-list')">
           <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-          List Rating (1-4)
+          Rating (1-4)
         </button>
         <button id="nav-schedule" class="nav-btn" onclick="switchView('schedule')">
           <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -2123,7 +2147,7 @@
         </button>
         <button id="nav-input" class="nav-btn" onclick="switchView('input')">
           <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          Tambah Kata
+          + Kata
         </button>
         <button id="nav-settings" class="nav-btn" onclick="switchView('settings')">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
@@ -2131,7 +2155,7 @@
         </button>
         <button id="nav-backup" class="nav-btn" onclick="switchView('backup')">
           <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-          Backup
+          Sync & Backup
         </button>
       </nav>
     </div>
@@ -2223,8 +2247,7 @@
               <div>
                 <label for="filter-level" style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Niveau (Tingkat)</label>
                 <select id="filter-level" class="input-field" onchange="updateFilterKapitelDropdown(); updateDashboardStats();">
-                  <option value="ALL">Semua Niveau</option>
-                  <option value="B1">B1</option>
+                  <option value="B1" selected>B1</option>
                   <option value="B2">B2</option>
                   <option value="C1">C1</option>
                 </select>
@@ -2232,8 +2255,7 @@
               <div>
                 <label for="filter-chapter" style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Kapitel (Bab)</label>
                 <select id="filter-chapter" class="input-field" onchange="updateDashboardStats();">
-                  <option value="ALL">Semua Kapitel</option>
-                  <option value="1">Kapitel 1</option>
+                  <option value="1" selected>Kapitel 1</option>
                   <option value="2">Kapitel 2</option>
                   <option value="3">Kapitel 3</option>
                   <option value="4">Kapitel 4</option>
@@ -2297,8 +2319,7 @@
             <div>
               <label for="study-filter-level" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Niveau (Tingkat)</label>
               <select id="study-filter-level" class="input-field" onchange="syncStudyFiltersToDashboard()">
-                <option value="ALL">Semua Niveau</option>
-                <option value="B1">B1</option>
+                <option value="B1" selected>B1</option>
                 <option value="B2">B2</option>
                 <option value="C1">C1</option>
               </select>
@@ -2306,8 +2327,7 @@
             <div>
               <label for="study-filter-chapter" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Kapitel (Bab)</label>
               <select id="study-filter-chapter" class="input-field" onchange="syncStudyFiltersToDashboard()">
-                <option value="ALL">Semua Kapitel</option>
-                <option value="1">Kapitel 1</option>
+                <option value="1" selected>Kapitel 1</option>
                 <option value="2">Kapitel 2</option>
                 <option value="3">Kapitel 3</option>
                 <option value="4">Kapitel 4</option>
@@ -2498,8 +2518,7 @@
           <div>
             <label for="flashcard-filter-level" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Niveau (Tingkat)</label>
             <select id="flashcard-filter-level" class="input-field" onchange="updateFlashcardDeck()">
-              <option value="ALL">Semua Niveau</option>
-              <option value="B1">B1</option>
+              <option value="B1" selected>B1</option>
               <option value="B2">B2</option>
               <option value="C1">C1</option>
             </select>
@@ -2507,8 +2526,7 @@
           <div>
             <label for="flashcard-filter-chapter" style="font-size: 0.72rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Kapitel (Bab)</label>
             <select id="flashcard-filter-chapter" class="input-field" onchange="updateFlashcardDeck()">
-              <option value="ALL">Semua Kapitel</option>
-              <option value="1">Kapitel 1</option>
+              <option value="1" selected>Kapitel 1</option>
               <option value="2">Kapitel 2</option>
               <option value="3">Kapitel 3</option>
               <option value="4">Kapitel 4</option>
@@ -2573,11 +2591,16 @@
 
         </div>
 
-        <!-- Mark All Button -->
-        <button class="btn btn-secondary" onclick="markAllAsMemorized()" style="width: 100%; padding: 10px; font-size: 0.8rem; border-color: rgba(16,185,129,0.3); color: #10b981; background-color: rgba(16,185,129,0.02); display: flex; align-items: center; justify-content: center; gap: 6px;">
-          <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; stroke: currentColor; stroke-width: 2.5; fill: none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          Centang Semua Kata di Bab Ini (Masuk Spaced Repetition)
-        </button>
+        <!-- Mark All & Reset Rating Buttons -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px;">
+          <button class="btn btn-secondary" onclick="markAllAsMemorized()" style="padding: 8px; font-size: 0.78rem; border-color: rgba(16,185,129,0.3); color: #10b981; background-color: rgba(16,185,129,0.02); display: flex; align-items: center; justify-content: center; gap: 4px;">
+            <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: currentColor; stroke-width: 2.5; fill: none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Centang Bab Ini
+          </button>
+          <button class="btn btn-secondary" onclick="resetCurrentChapterRatings()" style="padding: 8px; font-size: 0.78rem; border-color: rgba(239,68,68,0.3); color: #ef4444; background-color: rgba(239,68,68,0.02); display: flex; align-items: center; justify-content: center; gap: 4px;">
+            🗑️ Reset Rating Bab Ini
+          </button>
+        </div>
       </div>
 
       <!-- Flashcard Arena -->
@@ -2739,9 +2762,14 @@
         <h2 class="panel-title" style="margin-bottom: 16px; font-size: 1.15rem; display: flex; align-items: center; justify-content: space-between;">
           <span style="display: flex; align-items: center; gap: 8px;">
             <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: var(--accent); stroke-width: 2.5;"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-            Daftar Kartu Berdasarkan Penilaian Rating (1-4)
+            Daftar Kartu Berdasarkan Penilaian Rating (1-4) — <span id="rl-current-kapitel-title" style="color: var(--accent-text); font-weight: 700;">B1 Kapitel 1</span>
           </span>
-          <span id="rl-total-count-badge" class="brand-badge" style="font-size: 0.8rem; padding: 4px 10px;">0 Kata</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button class="btn btn-secondary" onclick="resetCurrentChapterRatings()" style="padding: 4px 10px; font-size: 0.78rem; color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">
+              🗑️ Reset Rating Kapitel Ini
+            </button>
+            <span id="rl-total-count-badge" class="brand-badge" style="font-size: 0.8rem; padding: 4px 10px;">0 Kata</span>
+          </div>
         </h2>
 
         <!-- Filters Row -->
@@ -2749,8 +2777,7 @@
           <div>
             <label for="rl-filter-level" style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Niveau (Tingkat)</label>
             <select id="rl-filter-level" class="input-field" onchange="renderRatingListView()">
-              <option value="ALL">Semua Niveau</option>
-              <option value="B1">B1</option>
+              <option value="B1" selected>B1</option>
               <option value="B2">B2</option>
               <option value="C1">C1</option>
             </select>
@@ -2758,11 +2785,10 @@
           <div>
             <label for="rl-filter-chapter" style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Kapitel (Bab)</label>
             <select id="rl-filter-chapter" class="input-field" onchange="renderRatingListView()">
-              <option value="ALL">Semua Kapitel</option>
-              <option value="1">Kapitel 1</option>
+              <option value="1" selected>Kapitel 1</option>
               <option value="2">Kapitel 2</option>
               <option value="3">Kapitel 3</option>
-              <option value="4" selected>Kapitel 4</option>
+              <option value="4">Kapitel 4</option>
               <option value="5">Kapitel 5</option>
               <option value="6">Kapitel 6</option>
               <option value="7">Kapitel 7</option>
@@ -3096,9 +3122,11 @@
             <label for="settings-gist-id" style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Gist ID (Biarkan kosong untuk membuat baru secara otomatis)</label>
             <input type="text" id="settings-gist-id" class="input-field" style="text-align: left; font-family: monospace;" placeholder="Masukkan Gist ID jika sudah ada...">
           </div>
-          <div style="display: flex; gap: 10px;">
-            <button class="btn" style="flex: 1;" onclick="saveGitHubGistSettings()">Hubungkan & Sinkronkan</button>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn" style="flex: 1; min-width: 160px;" onclick="saveGitHubGistSettings()">Hubungkan & Sinkronkan</button>
             <button class="btn btn-secondary" style="width: auto; padding: 0 16px;" onclick="syncFromGistNow()">Ambil dari Cloud</button>
+            <button class="btn btn-secondary" style="width: auto; padding: 0 16px; border-color: rgba(139, 92, 246, 0.4); color: var(--accent-text);" onclick="copySyncLinkToClipboard()">📋 Link Sync HP & Laptop</button>
+            <button class="btn btn-secondary" style="width: auto; padding: 0 16px;" onclick="forceReloadAndResetCache()">⚡ Reset Cache</button>
           </div>
           <div id="github-sync-status" style="font-size: 0.8rem; text-align: center; color: var(--text-muted); margin-top: 4px;"></div>
         </div>
@@ -4293,6 +4321,17 @@
     // ONLOAD INITIALIZATION & ONE-TIME API KEY
     // ==========================================
     window.addEventListener('DOMContentLoaded', () => {
+      // Auto-connect Cloud Sync if URL contains syncToken and syncId parameters (shared from device A)
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlToken = urlParams.get('syncToken') || urlParams.get('gistToken');
+      const urlGistId = urlParams.get('syncId') || urlParams.get('gistId');
+      if (urlToken && urlGistId) {
+        localStorage.setItem('github_gist_token', urlToken);
+        localStorage.setItem('github_gist_id', urlGistId);
+        const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+        showToast("Tersambung ke Cloud Sync via Link!");
+      }
       // Always apply provided API credentials (hardcoded in code by user request)
       const KEY_SECRET = '';
       if (KEY_SECRET && KEY_SECRET.startsWith('sk-')) {
@@ -4319,6 +4358,7 @@
       }
 
       loadData();
+      if (typeof autoCloudSyncPull === 'function') autoCloudSyncPull(true);
       updateFilterKapitelDropdown(); // Init Kapitel options
       updateStreak();
       updateDashboardStats();
@@ -4370,6 +4410,11 @@
       const storedGistId = localStorage.getItem('github_gist_id') || '';
       document.getElementById('settings-gist-id').value = storedGistId;
       updateSyncIndicator();
+
+      // Auto fetch cloud progress on startup if connected
+      if (storedGistToken && storedGistId) {
+        syncFromGistNow().catch(err => console.log("Auto sync on boot:", err));
+      }
 
       // Auto fill bulk input with example placeholder text
       document.getElementById('bulk-paste-area').placeholder = 
@@ -4914,6 +4959,13 @@
       renderRatingListView();
     }
 
+    function playWordAudioDirect(word, category = '') {
+      const cleanWord = typeof getTTSGermanWord === 'function' ? getTTSGermanWord(word, category) : word;
+      if (typeof speakTTS === 'function') {
+        speakTTS(cleanWord, 'de', true);
+      }
+    }
+
     function renderRatingListView() {
       const lvlSelect = document.getElementById('rl-filter-level');
       const chSelect = document.getElementById('rl-filter-chapter');
@@ -4923,6 +4975,11 @@
       const ch = chSelect.value;
       const tbody = document.getElementById('rl-table-body');
       if (!tbody) return;
+
+      const titleBadge = document.getElementById('rl-current-kapitel-title');
+      if (titleBadge) {
+        titleBadge.textContent = `${lvl} Kapitel ${ch}`;
+      }
 
       const baseCards = cards.filter(c => {
         const lvlMatch = (lvl === 'ALL' || c.level === lvl);
@@ -4947,7 +5004,7 @@
       document.getElementById('rl-count-good').textContent = countGood;
       document.getElementById('rl-count-easy').textContent = countEasy;
       document.getElementById('rl-count-unrated').textContent = countUnrated;
-      document.getElementById('rl-total-count-badge').textContent = `${baseCards.length} Kata Sesuai Filter`;
+      document.getElementById('rl-total-count-badge').textContent = `${baseCards.length} Kata (${lvl} K${ch})`;
 
       const filteredCards = baseCards.filter(c => {
         const rating = getLastRatingForCard(c.id);
@@ -4965,7 +5022,7 @@
         tbody.innerHTML = `
           <tr>
             <td colspan="5" style="padding: 30px; text-align: center; color: var(--text-muted);">
-              Tidak ada kata yang sesuai dengan filter rating ini.
+              Tidak ada kata yang sesuai dengan filter rating ini di ${lvl} Kapitel ${ch}.
             </td>
           </tr>
         `;
@@ -4985,18 +5042,31 @@
           badgeHTML = `<span style="color: #38bdf8; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.75rem;">🔵 [4] Mudah (Sangat Mudah)</span>`;
         }
 
+        const safeWord = escapeHTML(c.deutsch).replace(/'/g, "\\'");
+        const safeCat = escapeHTML(c.category || '').replace(/'/g, "\\'");
+
         const tr = document.createElement('tr');
         tr.style.borderBottom = '1px solid var(--border-muted)';
 
         tr.innerHTML = `
-          <td style="padding: 12px 16px; font-weight: 600;">${formatGermanWordHTML(c.deutsch)}</td>
+          <td style="padding: 12px 16px; font-weight: 600;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button class="btn btn-secondary" title="Dengarkan Audio" onclick="event.stopPropagation(); playWordAudioDirect('${safeWord}', '${safeCat}');" style="padding: 2px 7px; font-size: 0.75rem; line-height: 1;">
+                🔊
+              </button>
+              <span>${formatGermanWordHTML(c.deutsch)}</span>
+            </div>
+          </td>
           <td style="padding: 12px 16px; color: var(--text-secondary);">${escapeHTML(c.indonesia)}</td>
           <td style="padding: 12px 16px; text-align: center;"><span class="card-badge" style="font-size: 0.7rem;">${c.level} • K${c.chapter}</span></td>
           <td style="padding: 12px 16px; text-align: center;">${badgeHTML}</td>
           <td style="padding: 12px 16px; text-align: center;">
-            <button class="btn btn-secondary" onclick="openSingleCardInFlashcard('${c.id}')" style="padding: 4px 8px; font-size: 0.75rem; border-color: rgba(139,92,246,0.3); color: var(--accent-text);">
-              Review Kartu Ini
-            </button>
+            <div style="display: flex; gap: 6px; justify-content: center; align-items: center;">
+              <button class="btn btn-secondary" onclick="openSingleCardInFlashcard('${c.id}')" style="padding: 4px 8px; font-size: 0.75rem; border-color: rgba(139,92,246,0.3); color: var(--accent-text);">
+                Review
+              </button>
+              ${rating ? `<button class="btn btn-secondary" onclick="resetSingleCardRating('${c.id}', event)" title="Hapus Status Rating" style="padding: 4px 8px; font-size: 0.75rem; border-color: rgba(239,68,68,0.3); color: #ef4444;">🗑️ Hapus</button>` : ''}
+            </div>
           </td>
         `;
         tbody.appendChild(tr);
@@ -5015,6 +5085,66 @@
       }
       switchView('flashcard');
       renderFlashcard();
+    }
+
+    function resetSingleCardRating(cardId, event) {
+      if (event) event.stopPropagation();
+      
+      const dbCardIndex = cards.findIndex(c => c.id === cardId);
+      if (dbCardIndex !== -1) {
+        cards[dbCardIndex].step = -1;
+        cards[dbCardIndex].repetition = 0;
+        cards[dbCardIndex].interval = 0;
+        cards[dbCardIndex].ef = 2.5;
+        cards[dbCardIndex].dueDate = new Date().toISOString();
+      }
+
+      // Remove all history entries for this card
+      reviewHistory = reviewHistory.filter(h => h.cardId !== cardId);
+
+      saveCards();
+      saveHistory();
+
+      updateDashboardStats();
+      updateFlashcardDeck();
+      if (typeof renderRatingListView === 'function') renderRatingListView();
+
+      showToast("Status rating kartu berhasil dihapus!");
+    }
+
+    function resetCurrentChapterRatings() {
+      const lvlSelect = document.getElementById('rl-filter-level') || document.getElementById('flashcard-filter-level');
+      const chSelect = document.getElementById('rl-filter-chapter') || document.getElementById('flashcard-filter-chapter');
+      if (!lvlSelect || !chSelect) return;
+
+      const lvl = lvlSelect.value;
+      const ch = chSelect.value;
+
+      if (!confirm(`Hapus SEMUA status rating untuk ${lvl} Kapitel ${ch}?`)) return;
+
+      const targetCards = cards.filter(c => c.level === lvl && c.chapter.toString() === ch.toString());
+      const targetIds = new Set(targetCards.map(c => c.id));
+
+      cards.forEach(c => {
+        if (targetIds.has(c.id)) {
+          c.step = -1;
+          c.repetition = 0;
+          c.interval = 0;
+          c.ef = 2.5;
+          c.dueDate = new Date().toISOString();
+        }
+      });
+
+      reviewHistory = reviewHistory.filter(h => !targetIds.has(h.cardId));
+
+      saveCards();
+      saveHistory();
+
+      updateDashboardStats();
+      updateFlashcardDeck();
+      if (typeof renderRatingListView === 'function') renderRatingListView();
+
+      showToast(`Status rating ${lvl} Kapitel ${ch} telah dihapus!`);
     }
 
     // ==========================================
@@ -5474,9 +5604,12 @@
             </div>
             <div class="flashcard-word-item-id" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${card.indonesia}</div>
           </div>
-          <button class="check-toggle" title="${isMemorized ? 'Keluarkan dari Spaced Repetition' : 'Centang sebagai Hafal (Masuk Spaced Repetition)'}" onclick="toggleSpacedRepetition('${card.id}', event)" style="background: none; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            ${checkIcon}
-          </button>
+          <div style="display: flex; align-items: center; gap: 4px; flex-shrink: 0;">
+            <button class="check-toggle" title="${isMemorized ? 'Keluarkan dari Spaced Repetition' : 'Centang sebagai Hafal (Masuk Spaced Repetition)'}" onclick="toggleSpacedRepetition('${card.id}', event)" style="background: none; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center;">
+              ${checkIcon}
+            </button>
+            ${lastRating ? `<button title="Hapus Status Rating Kartu Ini" onclick="resetSingleCardRating('${card.id}', event)" style="background: none; border: none; cursor: pointer; padding: 4px; color: #ef4444; font-size: 0.8rem; display: flex; align-items: center; justify-content: center;">🗑️</button>` : ''}
+          </div>
         `;
         
         grid.appendChild(item);
@@ -8877,7 +9010,89 @@ async function prefetchEdgeTTS(text, lang = 'de', isWord = false) {
       ind.style.transition = '';
     }
 
+    // ==========================================
+    // ZERO-TOUCH AUTOMATIC CLOUD SYNC ENGINE
+    // ==========================================
+    let autoCloudSyncDebounce = null;
+    let autoSyncLastTimestamp = parseInt(localStorage.getItem('auto_sync_last_ts') || '0', 10);
+
+    function getAutoSyncChannelKey() {
+      let channel = localStorage.getItem('auto_sync_channel');
+      if (!channel) {
+        channel = 'wortschatz_divo_default';
+        localStorage.setItem('auto_sync_channel', channel);
+      }
+      return channel;
+    }
+
+    async function autoCloudSyncPush() {
+      const channel = getAutoSyncChannelKey();
+      const ts = Date.now();
+      autoSyncLastTimestamp = ts;
+      localStorage.setItem('auto_sync_last_ts', ts.toString());
+
+      const payload = {
+        updatedAt: ts,
+        cards: cards,
+        history: reviewHistory,
+        streak: localStorage.getItem('streak') || '0',
+        lastReviewDate: localStorage.getItem('lastReviewDate') || ''
+      };
+
+      updateSyncIndicator('syncing');
+
+      try {
+        await fetch(`https://kvdb.io/8V5zP3N4sLqK9wXe2M1A7/${encodeURIComponent(channel)}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        updateSyncIndicator('synced');
+      } catch (e) {
+        // Fallback silently if offline
+      }
+    }
+
+    async function autoCloudSyncPull(force = false) {
+      const channel = getAutoSyncChannelKey();
+      try {
+        const res = await fetch(`https://kvdb.io/8V5zP3N4sLqK9wXe2M1A7/${encodeURIComponent(channel)}?t=${Date.now()}`);
+        if (!res.ok) return;
+        const data = await res.json();
+
+        if (data && data.updatedAt && (force || data.updatedAt > autoSyncLastTimestamp)) {
+          autoSyncLastTimestamp = data.updatedAt;
+          localStorage.setItem('auto_sync_last_ts', data.updatedAt.toString());
+
+          if (Array.isArray(data.cards) && data.cards.length > 0) {
+            cards = data.cards;
+            localStorage.setItem('wortschatz_cards', JSON.stringify(cards));
+          }
+          if (Array.isArray(data.history)) {
+            reviewHistory = data.history;
+            localStorage.setItem('wortschatz_history', JSON.stringify(reviewHistory));
+          }
+          if (data.streak) localStorage.setItem('streak', data.streak);
+          if (data.lastReviewDate) localStorage.setItem('lastReviewDate', data.lastReviewDate);
+
+          updateDashboardStats();
+          updateFlashcardDeck();
+          if (typeof renderRatingListView === 'function') renderRatingListView();
+          updateSyncIndicator('synced');
+        }
+      } catch (e) {
+        // Silently ignore network errors during automatic background polling
+      }
+    }
+
     function queueGistSync() {
+      // Trigger automatic zero-touch cloud sync
+      if (autoCloudSyncDebounce) clearTimeout(autoCloudSyncDebounce);
+      autoCloudSyncDebounce = setTimeout(() => {
+        autoCloudSyncPush();
+      }, 1500);
+
+      // Trigger Gist sync if configured
       const token = localStorage.getItem('github_gist_token');
       const gistId = localStorage.getItem('github_gist_id');
       if (!token || !gistId) return;
@@ -8887,8 +9102,15 @@ async function prefetchEdgeTTS(text, lang = 'de', isWord = false) {
       
       gistSyncTimeout = setTimeout(() => {
         forcePushToGist().catch(e => console.error("Auto-sync Gist failed:", e));
-      }, 3000); // Trigger sync 3 seconds after last save action
+      }, 3000);
     }
+
+    // Auto Pull on Window Focus & Tab Switch & Periodic 10s Timer
+    window.addEventListener('focus', () => autoCloudSyncPull());
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) autoCloudSyncPull();
+    });
+    setInterval(() => autoCloudSyncPull(), 10000);
 
     async function forcePushToGist() {
       const token = localStorage.getItem('github_gist_token');
@@ -9083,6 +9305,41 @@ async function prefetchEdgeTTS(text, lang = 'de', isWord = false) {
     function launchSessionFromSetup() {
       syncStudyFiltersToDashboard();
       launchSession();
+    }
+
+    function copySyncLinkToClipboard() {
+      const token = localStorage.getItem('github_gist_token');
+      const gistId = localStorage.getItem('github_gist_id');
+      if (!token || !gistId) {
+        showToast("Hubungkan Cloud Sync (GitHub Gist) terlebih dahulu di menu Sync & Backup!");
+        switchView('backup');
+        return;
+      }
+      const baseUrl = window.location.origin + window.location.pathname;
+      const syncUrl = `${baseUrl}?syncToken=${encodeURIComponent(token)}&syncId=${encodeURIComponent(gistId)}`;
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(syncUrl).then(() => {
+          showToast("Link Sync tersalin! Buka link ini di HP/Laptop lain untuk sinkronisasi otomatis.");
+        }).catch(() => {
+          prompt("Salin link sync ini untuk dibuka di HP/Laptop lain:", syncUrl);
+        });
+      } else {
+        prompt("Salin link sync me ini untuk dibuka di HP/Laptop lain:", syncUrl);
+      }
+    }
+
+    function forceReloadAndResetCache() {
+      showToast("Memperbarui cache & sinkronisasi data...");
+      if (localStorage.getItem('github_gist_token') && localStorage.getItem('github_gist_id')) {
+        syncFromGistNow().then(() => {
+          window.location.reload(true);
+        }).catch(() => {
+          window.location.reload(true);
+        });
+      } else {
+        window.location.reload(true);
+      }
     }
   </script>
 

@@ -1463,10 +1463,21 @@
 
     /* Rating Buttons */
     #fc-rating-group {
-      display: none; width: 100%; max-width: 540px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%; max-width: 540px;
       margin: 10px auto 0 auto; gap: 8px;
+      min-height: 58px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
     }
-    #fc-rating-group.visible { display: flex; }
+    #fc-rating-group.visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
     .fc-rate-btn {
       flex: 1; padding: 10px 6px; border-radius: 10px;
       border: 1px solid transparent; font-family: 'Outfit', sans-serif;
@@ -7154,8 +7165,10 @@
     function getVerbGrammarDetails(card) {
       if (!card) return null;
       const de = card.deutsch || '';
-      const cat = (card.category || '').toLowerCase();
-      if (cat !== 'verben' && cat !== 'verb' && !de.includes('(')) return null;
+      const cat = (card.category || '').trim().toLowerCase();
+      
+      // Strict verb check: Only process if category is explicitly verb or verben
+      if (cat !== 'verben' && cat !== 'verb') return null;
 
       // 1. Clean raw infinitive - Strip paren phrases completely
       let rawInf = de.replace(/\([^)]*\)/g, '').replace(/\[[^\]]*\]/g, '').split(',')[0].split('–')[0].split(' - ')[0].trim();

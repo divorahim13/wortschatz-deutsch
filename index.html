@@ -2119,6 +2119,33 @@
         <button class="btn btn-secondary" onclick="closeResetModal()">Batal</button>
         <button class="btn" style="background-color: var(--error);" onclick="confirmResetDatabase()">Reset Total</button>
       </div>
+  </div>
+
+  <!-- Modal Cari / Lompat Nomor Kartu -->
+  <div id="jump-card-modal-overlay" class="modal-overlay">
+    <div class="modal" style="max-width: 420px; width: 90%;">
+      <div class="modal-title" style="display: flex; align-items: center; justify-content: space-between;">
+        <span>🔍 Cari / Lompat ke Nomor Kartu</span>
+        <button onclick="closeJumpCardModal()" style="background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+      <div class="modal-desc" style="margin-top: 10px;">
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">
+          Masukkan nomor urut kartu (antara <strong>1</strong> hingga <strong id="jump-card-max-num">0</strong>) untuk melompat langsung ke kartu tersebut:
+        </p>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <input type="number" id="jump-card-number-input" min="1" placeholder="Contoh: 171" style="flex: 1; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border-muted); background: var(--bg-surface); color: var(--text-primary); font-size: 1rem; font-weight: 600;" oninput="updateJumpCardPreview()" onkeydown="handleJumpCardKeydown(event)">
+          <button class="btn btn-primary" onclick="executeJumpCard()" style="padding: 10px 16px; font-weight: 600; font-size: 0.9rem;">
+            🚀 Lompat
+          </button>
+        </div>
+        <!-- Card Preview Box -->
+        <div id="jump-card-preview-box" style="margin-top: 12px; padding: 10px 12px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-muted); border-radius: 10px; font-size: 0.82rem; min-height: 48px; display: flex; flex-direction: column; justify-content: center; text-align: left;">
+          <span style="color: var(--text-muted);">Hasil pratinjau kartu akan tampil di sini...</span>
+        </div>
+      </div>
+      <div class="modal-actions" style="margin-top: 16px; display: flex; justify-content: flex-end; gap: 8px;">
+        <button class="btn btn-secondary" onclick="closeJumpCardModal()">Batal</button>
+      </div>
     </div>
   </div>
 
@@ -2622,8 +2649,13 @@
           <div id="fc-progress-bar-outer">
             <div id="fc-progress-bar-fill"></div>
           </div>
-          <div id="fc-progress-stats">
-            <span id="fc-progress-text">0 / 0 Kartu</span>
+          <div id="fc-progress-stats" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="fc-progress-text" onclick="openJumpCardModal()" title="Klik untuk lompat ke nomor kartu tertentu" style="cursor: pointer; font-weight: 600; color: var(--text-primary); border-bottom: 1px dashed var(--accent-color); padding-bottom: 1px;">0 / 0 Kartu</span>
+              <button class="btn btn-sm btn-auto" onclick="openJumpCardModal()" style="padding: 3px 9px; font-size: 0.75rem; background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3); color: #c084fc; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Cari atau Lompat ke Nomor Kartu">
+                🔍 Cari No. Kartu
+              </button>
+            </div>
             <span id="fc-progress-rated">0 dinilai hari ini</span>
           </div>
         </div>
@@ -4871,6 +4903,101 @@
       fill.style.width = pct.toFixed(1) + '%';
       text.textContent = `${flashcardIndex + 1} / ${flashcardList.length} Kartu`;
       if (rated) rated.textContent = `${fcTodayRatedCount} dinilai hari ini`;
+    }
+
+    // ==========================================
+    // CARI & LOMPAT NOMOR KARTU (JUMP TO CARD)
+    // ==========================================
+    function openJumpCardModal() {
+      const modal = document.getElementById('jump-card-modal-overlay');
+      const maxEl = document.getElementById('jump-card-max-num');
+      const input = document.getElementById('jump-card-number-input');
+
+      if (!modal || !flashcardList) return;
+
+      if (maxEl) maxEl.textContent = flashcardList.length;
+
+      if (input) {
+        input.value = flashcardIndex >= 0 ? (flashcardIndex + 1) : 1;
+        input.max = flashcardList.length;
+      }
+
+      modal.classList.add('active');
+
+      setTimeout(() => {
+        if (input) {
+          input.focus();
+          input.select();
+        }
+        updateJumpCardPreview();
+      }, 100);
+    }
+
+    function closeJumpCardModal() {
+      const modal = document.getElementById('jump-card-modal-overlay');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function updateJumpCardPreview() {
+      const input = document.getElementById('jump-card-number-input');
+      const preview = document.getElementById('jump-card-preview-box');
+      if (!input || !preview || !flashcardList) return;
+
+      const num = parseInt(input.value, 10);
+      if (isNaN(num) || num < 1 || num > flashcardList.length) {
+        preview.innerHTML = `<span style="color: #ef4444;">⚠️ Harap masukkan nomor valid antara 1 dan ${flashcardList.length}</span>`;
+        return;
+      }
+
+      const targetCard = flashcardList[num - 1];
+      if (!targetCard) {
+        preview.innerHTML = `<span style="color: #ef4444;">❌ Kartu tidak ditemukan</span>`;
+        return;
+      }
+
+      const levelStr = targetCard.level || 'B1';
+      const chapStr = targetCard.chapter ? `Kapitel ${targetCard.chapter}` : '';
+
+      preview.innerHTML = `
+        <div style="font-weight: 700; color: var(--accent-color); font-size: 0.88rem;">
+          Kartu #${num} dari ${flashcardList.length} (${escapeHTML(levelStr)} ${escapeHTML(chapStr)})
+        </div>
+        <div style="color: var(--text-primary); font-size: 0.88rem; margin-top: 3px;">
+          <strong>${escapeHTML(targetCard.deutsch)}</strong> = <span style="color: var(--text-secondary);">${escapeHTML(targetCard.indonesia)}</span>
+        </div>
+      `;
+    }
+
+    function handleJumpCardKeydown(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        executeJumpCard();
+      } else if (event.key === 'Escape') {
+        closeJumpCardModal();
+      }
+    }
+
+    function executeJumpCard() {
+      const input = document.getElementById('jump-card-number-input');
+      if (!input || !flashcardList) return;
+
+      const num = parseInt(input.value, 10);
+      if (isNaN(num) || num < 1 || num > flashcardList.length) {
+        showToast(`⚠️ Harap masukkan nomor valid antara 1 dan ${flashcardList.length}`);
+        return;
+      }
+
+      flashcardIndex = num - 1;
+      closeJumpCardModal();
+
+      if (typeof isCardFlipped !== 'undefined' && isCardFlipped) {
+        const inner = document.getElementById('free-flashcard-inner');
+        if (inner) inner.style.transform = 'rotateY(0deg)';
+        isCardFlipped = false;
+      }
+
+      renderFlashcard();
+      showToast(`📍 Berhasil meloncat ke Kartu #${num}`);
     }
 
     // ==========================================

@@ -2113,6 +2113,10 @@
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
           Flashcard
         </button>
+        <button id="nav-rating-list" class="nav-btn" onclick="switchView('rating-list')">
+          <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          List Rating (1-4)
+        </button>
         <button id="nav-schedule" class="nav-btn" onclick="switchView('schedule')">
           <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           Jadwal
@@ -2700,12 +2704,115 @@
 
       <!-- Interactive Word List under Flashcards -->
       <div class="flashcard-word-list-panel">
-        <h3 class="flashcard-list-title">
-          <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: var(--accent); stroke-width: 2.5;"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-          Daftar Kata (<span id="flashcard-list-count">0</span>)
-        </h3>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;">
+          <h3 class="flashcard-list-title" style="margin-bottom: 0;">
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: var(--accent); stroke-width: 2.5;"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            Daftar Kata (<span id="flashcard-list-count">0</span>)
+          </h3>
+
+          <!-- Filter Sub-page Rating Kartu dalam Kapitel -->
+          <div class="fc-filter-btn-group" style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button class="btn btn-secondary fc-rating-filter-btn active" id="fc-filter-btn-all" onclick="filterFlashcardDeckByRating('all')" style="padding: 4px 10px; font-size: 0.78rem;">
+              Semua
+            </button>
+            <button class="btn btn-secondary fc-rating-filter-btn" id="fc-filter-btn-again" onclick="filterFlashcardDeckByRating('again')" style="padding: 4px 10px; font-size: 0.78rem; color: #ef4444; border-color: rgba(239,68,68,0.3);">
+              🔴 [1] Lagi (<span id="count-filter-again">0</span>)
+            </button>
+            <button class="btn btn-secondary fc-rating-filter-btn" id="fc-filter-btn-hard" onclick="filterFlashcardDeckByRating('hard')" style="padding: 4px 10px; font-size: 0.78rem; color: #f59e0b; border-color: rgba(245,158,11,0.3);">
+              🟠 [2] Sulit (<span id="count-filter-hard">0</span>)
+            </button>
+            <button class="btn btn-secondary fc-rating-filter-btn" id="fc-filter-btn-difficult" onclick="filterFlashcardDeckByRating('difficult')" style="padding: 4px 10px; font-size: 0.78rem; color: #c084fc; border-color: rgba(192,132,252,0.3);">
+              ⚠️ Perlu Diulang (<span id="count-filter-difficult">0</span>)
+            </button>
+          </div>
+        </div>
+
         <div class="flashcard-word-grid" id="flashcard-word-grid">
           <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- View: Daftar Wortschatz Berdasarkan Rating (1-4) -->
+    <section id="rating-list-view" class="view-section" style="width: 100%;">
+      <div class="dashboard-panel" style="max-width: 1000px; margin: 0 auto;">
+        <h2 class="panel-title" style="margin-bottom: 16px; font-size: 1.15rem; display: flex; align-items: center; justify-content: space-between;">
+          <span style="display: flex; align-items: center; gap: 8px;">
+            <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: var(--accent); stroke-width: 2.5;"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            Daftar Kartu Berdasarkan Penilaian Rating (1-4)
+          </span>
+          <span id="rl-total-count-badge" class="brand-badge" style="font-size: 0.8rem; padding: 4px 10px;">0 Kata</span>
+        </h2>
+
+        <!-- Filters Row -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; background: var(--bg-secondary); padding: 14px; border-radius: 12px; border: 1px solid var(--border-muted);">
+          <div>
+            <label for="rl-filter-level" style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Niveau (Tingkat)</label>
+            <select id="rl-filter-level" class="input-field" onchange="renderRatingListView()">
+              <option value="ALL">Semua Niveau</option>
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="C1">C1</option>
+            </select>
+          </div>
+          <div>
+            <label for="rl-filter-chapter" style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 6px;">Kapitel (Bab)</label>
+            <select id="rl-filter-chapter" class="input-field" onchange="renderRatingListView()">
+              <option value="ALL">Semua Kapitel</option>
+              <option value="1">Kapitel 1</option>
+              <option value="2">Kapitel 2</option>
+              <option value="3">Kapitel 3</option>
+              <option value="4" selected>Kapitel 4</option>
+              <option value="5">Kapitel 5</option>
+              <option value="6">Kapitel 6</option>
+              <option value="7">Kapitel 7</option>
+              <option value="8">Kapitel 8</option>
+              <option value="9">Kapitel 9</option>
+              <option value="10">Kapitel 10</option>
+              <option value="11">Kapitel 11</option>
+              <option value="12">Kapitel 12</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Rating Category Tabs -->
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; border-bottom: 1px solid var(--border-muted); padding-bottom: 12px;">
+          <button class="btn btn-secondary rl-tab-btn active" id="rl-tab-all" onclick="selectRatingListTab('all')" style="font-size: 0.82rem;">
+            📋 Semua Kartu (<span id="rl-count-all">0</span>)
+          </button>
+          <button class="btn btn-secondary rl-tab-btn" id="rl-tab-again" onclick="selectRatingListTab('again')" style="font-size: 0.82rem; color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">
+            🔴 [1] Lagi / Tidak Ingat (<span id="rl-count-again">0</span>)
+          </button>
+          <button class="btn btn-secondary rl-tab-btn" id="rl-tab-hard" onclick="selectRatingListTab('hard')" style="font-size: 0.82rem; color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">
+            🟠 [2] Sulit / Hampir Ingat (<span id="rl-count-hard">0</span>)
+          </button>
+          <button class="btn btn-secondary rl-tab-btn" id="rl-tab-good" onclick="selectRatingListTab('good')" style="font-size: 0.82rem; color: #10b981; border-color: rgba(16, 185, 129, 0.3);">
+            🟢 [3] Bagus / Ingat (<span id="rl-count-good">0</span>)
+          </button>
+          <button class="btn btn-secondary rl-tab-btn" id="rl-tab-easy" onclick="selectRatingListTab('easy')" style="font-size: 0.82rem; color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">
+            🔵 [4] Mudah / Sangat Mudah (<span id="rl-count-easy">0</span>)
+          </button>
+          <button class="btn btn-secondary rl-tab-btn" id="rl-tab-unrated" onclick="selectRatingListTab('unrated')" style="font-size: 0.82rem; color: var(--text-muted); border-color: var(--border-muted);">
+            ⚪ Belum Pernah Rated (<span id="rl-count-unrated">0</span>)
+          </button>
+        </div>
+
+        <!-- Table View of Rated Words -->
+        <div style="overflow-x: auto; background-color: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border-muted);">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border-muted); color: var(--text-secondary); background-color: rgba(255,255,255,0.02);">
+                <th style="padding: 12px 16px;">Kata Jerman</th>
+                <th style="padding: 12px 16px;">Arti Indonesia</th>
+                <th style="padding: 12px 16px; text-align: center;">Niveau & Kapitel</th>
+                <th style="padding: 12px 16px; text-align: center;">Rating Terakhir</th>
+                <th style="padding: 12px 16px; text-align: center;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="rl-table-body">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -4420,6 +4527,10 @@
         renderScheduleTable();
       }
 
+      if (viewId === 'rating-list') {
+        renderRatingListView();
+      }
+
       if (viewId === 'flashcard') {
         flashcardFlipped = false;
         const container = document.getElementById('free-flashcard-container');
@@ -4745,6 +4856,27 @@
       }
       flashcardList[flashcardIndex] = { ...dbCard };
 
+      // Refresh filter counts and word grid
+      const lvl = document.getElementById('flashcard-filter-level').value;
+      const ch = document.getElementById('flashcard-filter-chapter').value;
+      const baseCards = cards.filter(c => {
+        const lvlMatch = (lvl === 'ALL' || c.level === lvl);
+        const chMatch = (ch === 'ALL' || c.chapter.toString() === ch);
+        return lvlMatch && chMatch;
+      });
+
+      let againCount = 0, hardCount = 0, difficultCount = 0;
+      baseCards.forEach(c => {
+        const lastRating = getLastRatingForCard(c.id);
+        if (lastRating === 'again') againCount++;
+        if (lastRating === 'hard') hardCount++;
+        if (lastRating === 'again' || lastRating === 'hard') difficultCount++;
+      });
+      document.getElementById('count-filter-again').textContent = againCount;
+      document.getElementById('count-filter-hard').textContent = hardCount;
+      document.getElementById('count-filter-difficult').textContent = difficultCount;
+      renderFlashcardWordGrid();
+
       const gradeLabels = { again: 'Lagi', hard: 'Sulit', good: 'Bagus', easy: 'Mudah' };
       showToast(`${gradeLabels[grade]} — Review berikutnya: ${dbCard.interval} hari`);
 
@@ -4770,16 +4902,185 @@
     }
 
     // ==========================================
+    // RATING LIST VIEW (DEDICATED PAGE FOR RATINGS 1-4)
+    // ==========================================
+    let currentRatingListTab = 'all';
+
+    function selectRatingListTab(tab) {
+      currentRatingListTab = tab;
+      document.querySelectorAll('.rl-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeTab = document.getElementById(`rl-tab-${tab}`);
+      if (activeTab) activeTab.classList.add('active');
+      renderRatingListView();
+    }
+
+    function renderRatingListView() {
+      const lvlSelect = document.getElementById('rl-filter-level');
+      const chSelect = document.getElementById('rl-filter-chapter');
+      if (!lvlSelect || !chSelect) return;
+
+      const lvl = lvlSelect.value;
+      const ch = chSelect.value;
+      const tbody = document.getElementById('rl-table-body');
+      if (!tbody) return;
+
+      const baseCards = cards.filter(c => {
+        const lvlMatch = (lvl === 'ALL' || c.level === lvl);
+        const chMatch = (ch === 'ALL' || c.chapter.toString() === ch);
+        return lvlMatch && chMatch;
+      });
+
+      let countAgain = 0, countHard = 0, countGood = 0, countEasy = 0, countUnrated = 0;
+
+      baseCards.forEach(c => {
+        const rating = getLastRatingForCard(c.id);
+        if (rating === 'again') countAgain++;
+        else if (rating === 'hard') countHard++;
+        else if (rating === 'good') countGood++;
+        else if (rating === 'easy') countEasy++;
+        else countUnrated++;
+      });
+
+      document.getElementById('rl-count-all').textContent = baseCards.length;
+      document.getElementById('rl-count-again').textContent = countAgain;
+      document.getElementById('rl-count-hard').textContent = countHard;
+      document.getElementById('rl-count-good').textContent = countGood;
+      document.getElementById('rl-count-easy').textContent = countEasy;
+      document.getElementById('rl-count-unrated').textContent = countUnrated;
+      document.getElementById('rl-total-count-badge').textContent = `${baseCards.length} Kata Sesuai Filter`;
+
+      const filteredCards = baseCards.filter(c => {
+        const rating = getLastRatingForCard(c.id);
+        if (currentRatingListTab === 'again') return rating === 'again';
+        if (currentRatingListTab === 'hard') return rating === 'hard';
+        if (currentRatingListTab === 'good') return rating === 'good';
+        if (currentRatingListTab === 'easy') return rating === 'easy';
+        if (currentRatingListTab === 'unrated') return rating === null;
+        return true; // 'all'
+      });
+
+      tbody.innerHTML = '';
+
+      if (filteredCards.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" style="padding: 30px; text-align: center; color: var(--text-muted);">
+              Tidak ada kata yang sesuai dengan filter rating ini.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filteredCards.forEach(c => {
+        const rating = getLastRatingForCard(c.id);
+        let badgeHTML = '<span style="color: var(--text-muted); font-size: 0.75rem;">Belum Pernah</span>';
+        if (rating === 'again') {
+          badgeHTML = `<span style="color: #ef4444; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.75rem;">🔴 [1] Lagi (Tidak Ingat)</span>`;
+        } else if (rating === 'hard') {
+          badgeHTML = `<span style="color: #f59e0b; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.75rem;">🟠 [2] Sulit (Hampir Ingat)</span>`;
+        } else if (rating === 'good') {
+          badgeHTML = `<span style="color: #10b981; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.75rem;">🟢 [3] Bagus (Ingat)</span>`;
+        } else if (rating === 'easy') {
+          badgeHTML = `<span style="color: #38bdf8; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.75rem;">🔵 [4] Mudah (Sangat Mudah)</span>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid var(--border-muted)';
+
+        tr.innerHTML = `
+          <td style="padding: 12px 16px; font-weight: 600;">${formatGermanWordHTML(c.deutsch)}</td>
+          <td style="padding: 12px 16px; color: var(--text-secondary);">${escapeHTML(c.indonesia)}</td>
+          <td style="padding: 12px 16px; text-align: center;"><span class="card-badge" style="font-size: 0.7rem;">${c.level} • K${c.chapter}</span></td>
+          <td style="padding: 12px 16px; text-align: center;">${badgeHTML}</td>
+          <td style="padding: 12px 16px; text-align: center;">
+            <button class="btn btn-secondary" onclick="openSingleCardInFlashcard('${c.id}')" style="padding: 4px 8px; font-size: 0.75rem; border-color: rgba(139,92,246,0.3); color: var(--accent-text);">
+              Review Kartu Ini
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openSingleCardInFlashcard(cardId) {
+      const targetCard = cards.find(c => c.id === cardId);
+      if (!targetCard) return;
+      document.getElementById('flashcard-filter-level').value = targetCard.level;
+      document.getElementById('flashcard-filter-chapter').value = targetCard.chapter.toString();
+      updateFlashcardDeck();
+      const cardIdx = flashcardList.findIndex(c => c.id === cardId);
+      if (cardIdx !== -1) {
+        flashcardIndex = cardIdx;
+      }
+      switchView('flashcard');
+      renderFlashcard();
+    }
+
+    // ==========================================
     // CORE FLASHCARD FUNCTIONS (UPGRADED)
     // ==========================================
+    let currentRatingFilter = 'all';
+
+    function getLastRatingForCard(cardId) {
+      for (let i = reviewHistory.length - 1; i >= 0; i--) {
+        if (reviewHistory[i].cardId === cardId && reviewHistory[i].source === 'flashcard') {
+          return reviewHistory[i].status;
+        }
+      }
+      return null;
+    }
+
+    function filterFlashcardDeckByRating(mode) {
+      currentRatingFilter = mode;
+      
+      document.querySelectorAll('.fc-rating-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.opacity = '0.7';
+      });
+      const activeBtn = document.getElementById(`fc-filter-btn-${mode}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.style.opacity = '1';
+      }
+
+      updateFlashcardDeck();
+    }
+
     function updateFlashcardDeck() {
       const lvl = document.getElementById('flashcard-filter-level').value;
       const ch = document.getElementById('flashcard-filter-chapter').value;
 
-      flashcardList = cards.filter(c => {
+      // Base filtered cards in chapter/level
+      const baseCards = cards.filter(c => {
         const lvlMatch = (lvl === 'ALL' || c.level === lvl);
         const chMatch = (ch === 'ALL' || c.chapter.toString() === ch);
         return lvlMatch && chMatch;
+      });
+
+      // Calculate rating counts for current chapter/level
+      let againCount = 0;
+      let hardCount = 0;
+      let difficultCount = 0;
+
+      baseCards.forEach(c => {
+        const lastRating = getLastRatingForCard(c.id);
+        if (lastRating === 'again') againCount++;
+        if (lastRating === 'hard') hardCount++;
+        if (lastRating === 'again' || lastRating === 'hard') difficultCount++;
+      });
+
+      document.getElementById('count-filter-again').textContent = againCount;
+      document.getElementById('count-filter-hard').textContent = hardCount;
+      document.getElementById('count-filter-difficult').textContent = difficultCount;
+
+      // Filter flashcardList by current rating filter mode
+      flashcardList = baseCards.filter(c => {
+        const lastRating = getLastRatingForCard(c.id);
+        if (currentRatingFilter === 'again') return lastRating === 'again';
+        if (currentRatingFilter === 'hard') return lastRating === 'hard';
+        if (currentRatingFilter === 'difficult') return lastRating === 'again' || lastRating === 'hard';
+        return true; // 'all'
       });
 
       // Apply shuffle if enabled
@@ -5148,6 +5449,18 @@
           ? `<svg viewBox="0 0 24 24" style="width: 16px; height: 16px; stroke: #10b981; fill: none; stroke-width: 3.5;"><polyline points="20 6 9 17 4 12"></polyline></svg>` 
           : `<svg viewBox="0 0 24 24" style="width: 16px; height: 16px; stroke: var(--text-muted); fill: none; stroke-width: 2;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>`;
 
+        const lastRating = getLastRatingForCard(card.id);
+        let ratingBadgeHTML = '';
+        if (lastRating === 'again') {
+          ratingBadgeHTML = `<span style="font-size: 0.65rem; color: #ef4444; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); padding: 1px 4px; border-radius: 4px; margin-left: 6px; font-weight: 600;">Lagi</span>`;
+        } else if (lastRating === 'hard') {
+          ratingBadgeHTML = `<span style="font-size: 0.65rem; color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25); padding: 1px 4px; border-radius: 4px; margin-left: 6px; font-weight: 600;">Sulit</span>`;
+        } else if (lastRating === 'good') {
+          ratingBadgeHTML = `<span style="font-size: 0.65rem; color: #10b981; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); padding: 1px 4px; border-radius: 4px; margin-left: 6px; font-weight: 600;">Bagus</span>`;
+        } else if (lastRating === 'easy') {
+          ratingBadgeHTML = `<span style="font-size: 0.65rem; color: #38bdf8; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.25); padding: 1px 4px; border-radius: 4px; margin-left: 6px; font-weight: 600;">Mudah</span>`;
+        }
+
         item.style.display = 'flex';
         item.style.flexDirection = 'row';
         item.style.alignItems = 'center';
@@ -5155,7 +5468,10 @@
         
         item.innerHTML = `
           <div style="flex: 1; min-width: 0; padding-right: 8px;">
-            <div class="flashcard-word-item-de" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${card.deutsch}</div>
+            <div class="flashcard-word-item-de" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; items-center;">
+              <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${card.deutsch}</span>
+              ${ratingBadgeHTML}
+            </div>
             <div class="flashcard-word-item-id" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${card.indonesia}</div>
           </div>
           <button class="check-toggle" title="${isMemorized ? 'Keluarkan dari Spaced Repetition' : 'Centang sebagai Hafal (Masuk Spaced Repetition)'}" onclick="toggleSpacedRepetition('${card.id}', event)" style="background: none; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">

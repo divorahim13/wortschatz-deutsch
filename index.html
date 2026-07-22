@@ -1465,9 +1465,9 @@
     #fc-rating-group {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      width: 100%; max-width: 540px;
-      margin: 10px auto 0 auto; gap: 8px;
-      min-height: 58px;
+      width: 100%;
+      margin: 12px 0 4px 0;
+      gap: 8px;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -2725,30 +2725,30 @@
                   <div style="font-size: 0.75rem; color: var(--text-muted); padding: 4px 6px; margin-top: 4px; text-align: center; width: 100%;">
                     Nilai dirimu sendiri menggunakan tombol di bawah
                   </div>
+
+                  <!-- SM-2 Self Rating Buttons (inside back of card) -->
+                  <div id="fc-rating-group" role="group" aria-label="Rating kartu">
+                    <button class="fc-rate-btn again" onclick="rateFlashcard('again')" title="Tekan 1">
+                      Lagi
+                      <small>[1] Tidak ingat</small>
+                    </button>
+                    <button class="fc-rate-btn hard" onclick="rateFlashcard('hard')" title="Tekan 2">
+                      Sulit
+                      <small>[2] Hampir ingat</small>
+                    </button>
+                    <button class="fc-rate-btn good" onclick="rateFlashcard('good')" title="Tekan 3">
+                      Bagus
+                      <small>[3] Ingat</small>
+                    </button>
+                    <button class="fc-rate-btn easy" onclick="rateFlashcard('easy')" title="Tekan 4">
+                      Mudah
+                      <small>[4] Sangat mudah</small>
+                    </button>
+                  </div>
                 </div>
               </div>
 
             </div>
-          </div>
-
-          <!-- SM-2 Self Rating Buttons (shown after flip) -->
-          <div id="fc-rating-group" role="group" aria-label="Rating kartu">
-            <button class="fc-rate-btn again" onclick="rateFlashcard('again')" title="Tekan 1">
-              Lagi
-              <small>[1] Tidak ingat</small>
-            </button>
-            <button class="fc-rate-btn hard" onclick="rateFlashcard('hard')" title="Tekan 2">
-              Sulit
-              <small>[2] Hampir ingat</small>
-            </button>
-            <button class="fc-rate-btn good" onclick="rateFlashcard('good')" title="Tekan 3">
-              Bagus
-              <small>[3] Ingat</small>
-            </button>
-            <button class="fc-rate-btn easy" onclick="rateFlashcard('easy')" title="Tekan 4">
-              Mudah
-              <small>[4] Sangat mudah</small>
-            </button>
           </div>
 
           <!-- Navigation Controls -->
@@ -4064,7 +4064,7 @@
       { id: "k4-65", deutsch: "die Gaststätte, die Gaststätten", indonesia: "rumah makan", sentence: "Die Gaststätte liegt neben dem Hauptbahnhof. | Rumah makan itu terletak di samping stasiun kereta utama.", category: "Nomen", level: "B1", chapter: 4 },
       { id: "k4-66", deutsch: "das Versehen, die Versehen", indonesia: "kekeliruan", sentence: "Aus Versehen hat er den Namen verwechselt. | Tanpa sengaja dia menukar nama tersebut.", category: "Nomen", level: "B1", chapter: 4, notiz: "Ungkapan populer: aus Versehen (secara tidak sengaja / tanpa sengaja)." },
       { id: "k4-67", deutsch: "verzeihen", indonesia: "memaafkan", sentence: "Verzeihen Sie bitte, das war keine Absicht. | Mohon maafkan saya, itu sungguh tidak disengaja.", category: "Verb", level: "B1", chapter: 4, notiz: "Unregelmäßiges Verb. Präteritum: verzieh. Partizip II: hat verziehen." },
-      { id: "k4-68", deutsch: "sich irren in (Dativ)", indonesia: "keliru", sentence: "Wenn sie sich nicht im Raum geirrt hätte, wäre es nicht peinlich geworden. | Jika dia tidak salah ruangan, jalannya acara tidak akan menjadi canggung.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi in (Dativ)." },
+      { id: "k4-68", deutsch: "sich irren in + Dat.", indonesia: "keliru", sentence: "Wenn sie sich nicht im Raum geirrt hätte, wäre es nicht peinlich geworden. | Jika dia tidak salah ruangan, jalannya acara tidak akan menjadi canggung.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi in (Dativ)." },
       { id: "k4-69", deutsch: "zweifeln an + Dat.", indonesia: "meragukan", sentence: "Zweifeln Sie nicht an Ihren Fähigkeiten. | Jangan ragu atas kemampuan Anda sendiri.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi an (Dativ)." },
       { id: "k4-70", deutsch: "verwechseln", indonesia: "tertukar", sentence: "Er hat die Namen der Kollegen verwechselt. | Dia menukar nama rekan-rekan kerjanya.", category: "Verb", level: "B1", chapter: 4 },
       { id: "k4-71", deutsch: "der Zweck, die Zwecke", indonesia: "tujuan", sentence: "Der Zweck des Schreibens ist klar. | Tujuan dari surat tersebut sudah jelas.", category: "Nomen", level: "B1", chapter: 4 },
@@ -4104,7 +4104,7 @@
       { id: "k4-105", deutsch: "relevant", indonesia: "relevan", sentence: "Überlegen Sie vorher, welche Zeugnisse wirklich relevant sind. | Pertimbangkan terlebih dahulu sertifikat mana yang benar-benar relevan.", category: "Adjektiv", level: "B1", chapter: 4 },
       { id: "k4-106", deutsch: "aussagekräftig", indonesia: "meyakinkan, informatif", sentence: "Ohne aussagekräftige Unterlagen wäre die Bewerbung schwächer. | Tanpa dokumen yang meyakinkan, lamaran kerja akan menjadi lebih lemah.", category: "Adjektiv", level: "B1", chapter: 4 },
       { id: "k4-107", deutsch: "enthalten", indonesia: "berisi", sentence: "Der Lebenslauf enthält alle wichtigen Informationen. | Daftar riwayat hidup berisi semua informasi penting.", category: "Verb", level: "B1", chapter: 4, notiz: "Unregelmäßiges Verb. Präteritum: enthielt. Partizip II: hat enthalten." },
-      { id: "k4-108", deutsch: "sich beziehen auf (Akkusativ)", indonesia: "merujuk", sentence: "Es gibt viele Qualitäten. Darauf sollte sich das Schreiben beziehen. | Ada banyak kualifikasi. Surat tersebut harus merujuk pada hal itu.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi auf (Akkusativ). Unregelmäßig. Präteritum: bezog sich. Partizip II: hat sich bezogen." },
+      { id: "k4-108", deutsch: "sich beziehen auf + Akk.", indonesia: "merujuk", sentence: "Es gibt viele Qualitäten. Darauf sollte sich das Schreiben beziehen. | Ada banyak kualifikasi. Surat tersebut harus merujuk pada hal itu.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi auf (Akkusativ). Unregelmäßig. Präteritum: bezog sich. Partizip II: hat sich bezogen." },
       { id: "k4-109", deutsch: "sich konzentrieren auf + Akk.", indonesia: "fokus pada", sentence: "Konzentrieren Sie sich lieber darauf, statt sich zu verzetteln. | Lebih baik Anda fokus pada hal itu daripada terpecah konsentrasi.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi auf (Akkusativ)." },
       { id: "k4-110", deutsch: "erwarten", indonesia: "mengharapkan", sentence: "Erwarten Sie nicht, dass sich die Firma sofort meldet. | Jangan berharap perusahaan akan langsung menghubungi Anda.", category: "Verb", level: "B1", chapter: 4 },
       { id: "k4-111", deutsch: "sich melden", indonesia: "menghubungi", sentence: "Wenn zwei Wochen vergangen sind, können Sie sich melden. | Jika dua minggu telah berlalu, Anda bisa menghubungi mereka.", category: "Verb", level: "B1", chapter: 4 },
@@ -4150,7 +4150,7 @@
       { id: "k4-151", deutsch: "der Auftritt, die Auftritte", indonesia: "penampilan", sentence: "Der gesamte Auftritt zählt zum ersten Eindruck. | Keseluruhan penampilan menentukan kesan pertama.", category: "Nomen", level: "B1", chapter: 4 },
       { id: "k4-152", deutsch: "die Geduld (Sg.)", indonesia: "kesabaran", sentence: "Hätten Sie etwas mehr Geduld, würde es Sie weniger stressen. | Jika Anda memiliki lebih banyak kesabaran, itu akan mengurangi stres Anda.", category: "Nomen", level: "B1", chapter: 4, notiz: "Hanya digunakan dalam bentuk tunggal." },
       { id: "k4-153", deutsch: "der Eindruck, die Eindrücke", indonesia: "kesan", sentence: "Machen Sie einen guten Eindruck. | Buatlah kesan yang baik.", category: "Nomen", level: "B1", chapter: 4 },
-      { id: "k4-154", deutsch: "zählen zu (Dativ)", indonesia: "termasuk", sentence: "Pünktlichkeit zählt zu den wichtigsten Eigenschaften eines Bewerbers. | Ketepatan waktu tergolong sebagai salah satu sifat terpenting seorang pelamar.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi zu (Dativ)." },
+      { id: "k4-154", deutsch: "zählen zu + Dat.", indonesia: "termasuk", sentence: "Pünktlichkeit zählt zu den wichtigsten Eigenschaften eines Bewerbers. | Ketepatan waktu tergolong sebagai salah satu sifat terpenting seorang pelamar.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi zu (Dativ)." },
       { id: "k4-155", deutsch: "die Fähigkeit, die Fähigkeiten", indonesia: "kemampuan", sentence: "Zweifeln Sie nicht an Ihren Fähigkeiten. | Jangan ragu atas kemampuan Anda sendiri.", category: "Nomen", level: "B1", chapter: 4 },
       { id: "k4-156", deutsch: "die Einladung, die Einladungen", indonesia: "undangan", sentence: "Sie haben eine Einladung zum Gespräch bekommen. | Anda telah mendapatkan undangan untuk wawancara kerja.", category: "Nomen", level: "B1", chapter: 4 },
       { id: "k4-157", deutsch: "die Anfahrt, die Anfahrten", indonesia: "perjalanan menuju tempat", sentence: "Planen Sie auch die Anfahrt. | Rencanakan juga perjalanan menuju lokasi.", category: "Nomen", level: "B1", chapter: 4 },
@@ -4173,22 +4173,22 @@
       { id: "k4-174", deutsch: "rechnen mit + Dat.", indonesia: "memperhitungkan", sentence: "Man sollte immer mit schwierigen Fragen rechnen. | Seseorang harus memperhitungkan pertanyaan-pertanyaan yang sulit.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi mit (Dativ)." },
       { id: "k4-175", deutsch: "nützlich", indonesia: "berguna", sentence: "Es wäre nützlich, sich vorher mit Freunden auf die Situation vorzubereiten. | Informasi ini sangat berguna bagi kami.", category: "Adjektiv", level: "B1", chapter: 4 },
       { id: "k4-176", deutsch: "der Stil, die Stile", indonesia: "gaya", sentence: "Überlegen Sie, welcher Stil zum Arbeitgeber passt. | Pilihlah gaya yang sesuai dengan perusahaan.", category: "Nomen", level: "B1", chapter: 4 },
-      { id: "k4-177", deutsch: "sich interessieren für (Akkusativ)", indonesia: "tertarik pada", sentence: "Ich interessiere mich für die Stelle als ... Wofür interessierst du dich? | Saya tertarik pada posisi di bidang pemasaran.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi für (Akkusativ)." },
+      { id: "k4-177", deutsch: "sich interessieren für + Akk.", indonesia: "tertarik pada", sentence: "Ich interessiere mich für die Stelle als ... Wofür interessierst du dich? | Saya tertarik pada posisi di bidang pemasaran.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi für (Akkusativ)." },
       { id: "k4-178", deutsch: "denken an + Akk.", indonesia: "memikirkan", sentence: "Denkst du noch oft an deine alten Kollegen? Ja, ich denke oft an sie. | Pikirkan atau ingatlah dokumen-dokumen untuk besok.", category: "Verb", level: "B1", chapter: 4, notiz: "Unregelmäßiges Verb dengan preposisi an (Akkusativ). Präteritum: dachte an. Partizip II: hat an gedacht." },
       { id: "k4-179", deutsch: "warten auf + Akk.", indonesia: "menunggu", sentence: "Worauf wartest du noch? Ich warte darauf, dass die Firma sich meldet. | Kami menunggu umpan balik dari pemberi kerja.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi auf (Akkusativ)." },
-      { id: "k4-180", deutsch: "sich kümmern um (Akkusativ)", indonesia: "mengurus", sentence: "Worum kümmerst du dich? Ich kümmere mich um die Konferenz. | Dia mengurus pertanyaan-pertanyaan pelanggan.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi um (Akkusativ)." },
-      { id: "k4-181", deutsch: "sich ärgern über (Akkusativ)", indonesia: "kesal tentang", sentence: "Worüber hast du dich geärgert? Manches habe ich mich auch oft geärgert. | Dia kesal tentang kesalahan di dalam email.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi über (Akkusativ)." },
-      { id: "k4-182", deutsch: "berichten über (Akkusativ)", indonesia: "melaporkan tentang", sentence: "Worüber habt ihr gesprochen? Wir haben über das Sommerfest berichtet. | Reporter itu melaporkan peristiwa tersebut.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi über (Akkusativ)." },
+      { id: "k4-180", deutsch: "sich kümmern um + Akk.", indonesia: "mengurus", sentence: "Worum kümmerst du dich? Ich kümmere mich um die Konferenz. | Dia mengurus pertanyaan-pertanyaan pelanggan.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi um (Akkusativ)." },
+      { id: "k4-181", deutsch: "sich ärgern über + Akk.", indonesia: "kesal tentang", sentence: "Worüber hast du dich geärgert? Manches habe ich mich auch oft geärgert. | Dia kesal tentang kesalahan di dalam email.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi über (Akkusativ)." },
+      { id: "k4-182", deutsch: "berichten über + Akk.", indonesia: "melaporkan tentang", sentence: "Worüber habt ihr gesprochen? Wir haben über das Sommerfest berichtet. | Reporter itu melaporkan peristiwa tersebut.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi über (Akkusativ)." },
       { id: "k4-183", deutsch: "sich erinnern an + Akk.", indonesia: "mengingat", sentence: "Erinnerst du dich noch daran? Ja, ich erinnere mich gut daran. | Apakah kalian ingat tentang wawancara kerja itu?", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi an (Akkusativ)." },
-      { id: "k4-184", deutsch: "sich entscheiden für (Akkusativ)", indonesia: "memutuskan untuk", sentence: "Wofür hast du dich entschieden? Ich habe mich dafür entschieden. | Dia telah memutuskan untuk mengambil posisi baru tersebut.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb. Unregelmäßig. Präteritum: entschied sich. Partizip II: hat sich entschieden. Bisa juga: sich entscheiden gegen (Akkusativ)." },
+      { id: "k4-184", deutsch: "sich entscheiden für + Akk.", indonesia: "memutuskan untuk", sentence: "Wofür hast du dich entschieden? Ich habe mich dafür entschieden. | Dia telah memutuskan untuk mengambil posisi baru tersebut.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb. Unregelmäßig. Präteritum: entschied sich. Partizip II: hat sich entschieden. Bisa juga: sich entscheiden gegen (Akkusativ)." },
       { id: "k4-185", deutsch: "sich freuen auf + Akk.", indonesia: "senang menantikan", sentence: "Worauf freut ihr euch? Wir freuen uns darauf, dass wir bald ein Sommerfest haben. | Kami senang menantikan pesta musim panas di kantor.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb. sich freuen auf + Akk. = senang menantikan hal di masa depan. sich freuen über (Akkusativ) = senang atas hal yang sudah terjadi." },
-      { id: "k4-186", deutsch: "sich melden bei (Dativ)", indonesia: "menghubungi", sentence: "Ich melde mich bei Ihnen nächste Woche. | Silakan hubungi Bapak Müller.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi bei (Dativ)." },
-      { id: "k4-187", deutsch: "träumen von (Dativ)", indonesia: "bermimpi tentang", sentence: "Wovon träumen Svenja und Tom? Sie träumen davon, einen tollen Job zu finden. | Dia bermimpi tentang pekerjaan di luar negeri.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi von (Dativ)." },
+      { id: "k4-186", deutsch: "sich melden bei + Dat.", indonesia: "menghubungi", sentence: "Ich melde mich bei Ihnen nächste Woche. | Silakan hubungi Bapak Müller.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi bei (Dativ)." },
+      { id: "k4-187", deutsch: "träumen von + Dat.", indonesia: "bermimpi tentang", sentence: "Wovon träumen Svenja und Tom? Sie träumen davon, einen tollen Job zu finden. | Dia bermimpi tentang pekerjaan di luar negeri.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi von (Dativ)." },
       { id: "k4-188", deutsch: "verzichten auf + Akk.", indonesia: "merelakan", sentence: "Worauf würdest du nie verzichten? Ich würde auf keinen Fall auf Geschäftsreisen verzichten. | Apa yang tidak akan pernah ingin kamu lepaskan? Aku sama sekali tidak akan mau melepaskan perjalanan dinas.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi auf (Akkusativ)." },
-      { id: "k4-189", deutsch: "sich vorbereiten auf (Akkusativ)", indonesia: "mempersiapkan diri untuk", sentence: "Er bereitet sich gründlich auf das Vorstellungsgespräch vor. | Dia mempersiapkan diri secara seksama untuk wawancara kerja.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares reflexives Verb, Präfix: vor-. Präteritum: bereitete sich vor. Partizip II: hat sich vorbereitet." },
-      { id: "k4-190", deutsch: "sich eignen für (Akkusativ)", indonesia: "cocok", sentence: "Das würde sich nicht für eine Bewerbung eignen. | Sertifikat itu sangat cocok untuk lamaran kerja.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi für (Akkusativ)." },
+      { id: "k4-189", deutsch: "sich vorbereiten auf + Akk.", indonesia: "mempersiapkan diri untuk", sentence: "Er bereitet sich gründlich auf das Vorstellungsgespräch vor. | Dia mempersiapkan diri secara seksama untuk wawancara kerja.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares reflexives Verb, Präfix: vor-. Präteritum: bereitete sich vor. Partizip II: hat sich vorbereitet." },
+      { id: "k4-190", deutsch: "sich eignen für + Akk.", indonesia: "cocok", sentence: "Das würde sich nicht für eine Bewerbung eignen. | Sertifikat itu sangat cocok untuk lamaran kerja.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi für (Akkusativ)." },
       { id: "k4-191", deutsch: "gehören zu + Dat.", indonesia: "termasuk ke dalam", sentence: "Das gehört zu den wichtigsten Unterlagen. | Surat lamaran termasuk ke dalam dokumen-dokumen.", category: "Verb", level: "B1", chapter: 4, notiz: "Verba dengan preposisi zu (Dativ)." },
-      { id: "k4-192", deutsch: "sich erkundigen nach (Dativ)", indonesia: "menanyakan info tentang", sentence: "Danach können Sie sich nach zwei Wochen erkundigen. | Dia menanyakan tentang status perkembangan lamarannya.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi nach (Dativ)." },
+      { id: "k4-192", deutsch: "sich erkundigen nach + Dat.", indonesia: "menanyakan info tentang", sentence: "Danach können Sie sich nach zwei Wochen erkundigen. | Dia menanyakan tentang status perkembangan lamarannya.", category: "Verb", level: "B1", chapter: 4, notiz: "Reflexives Verb dengan preposisi nach (Dativ)." },
       { id: "k4-193", deutsch: "der Arbeitsplatz, die Arbeitsplätze", indonesia: "tempat kerja", sentence: "Junge Menschen wechseln häufig den Arbeitsplatz. | Tempat kerja baru saya sangat modern.", category: "Nomen", level: "B1", chapter: 4 },
       { id: "k4-194", deutsch: "der Angestellte, die Angestellten", indonesia: "karyawan", sentence: "Der Angestellte arbeitet seit drei Jahren in dieser Firma. | Karyawan itu telah bekerja selama tiga tahun di perusahaan ini.", category: "Nomen", level: "B1", chapter: 4, notiz: "Bentuk feminin: die Angestellte, die Angestellten. Mengikuti deklination kata sifat." },
       { id: "k4-195", deutsch: "die Firma, die Firmen", indonesia: "perusahaan", sentence: "Unsere Firma stellt hochwertige Maschinen her. | Perusahaan kami memproduksi mesin-mesin berkualitas tinggi.", category: "Nomen", level: "B1", chapter: 4, notiz: "die Firma cenderung untuk bisnis kecil-menengah. das Unternehmen lebih formal." },
@@ -4283,7 +4283,7 @@
       { id: "k4-284", deutsch: "ausprobieren", indonesia: "mencoba", sentence: "Frau Mersa hat mehrere Berufe ausprobiert, bevor sie zufrieden war. | Ibu Mersa mencoba beberapa profesi sebelum dia merasa puas.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares Verb, Präfix: aus-. Präteritum: probierte aus. Partizip II: hat ausprobiert." },
       { id: "k4-285", deutsch: "vorziehen", indonesia: "lebih memilih", sentence: "Er hätte die Ehrlichkeit vorgezogen. | Dia akan lebih memilih kejujuran.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares Verb, Präfix: vor-. Präteritum: zog vor. Partizip II: hat vorgezogen." },
       { id: "k4-286", deutsch: "ansprechen", indonesia: "menyapa", sentence: "Sie hat die Kollegin falsch angesprochen, weil sie den Namen verwechselt hat. | Dia menyapa rekan kerjanya dengan nama yang salah karena namanya tertukar.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares Verb, Präfix: an-. Präteritum: sprach an. Partizip II: hat angesprochen." },
-      { id: "k4-287", deutsch: "ankommen auf (Akkusativ)", indonesia: "tergantung pada", sentence: "Es kommt immer auf eine gute Bewerbung an. | Hal itu selalu tergantung pada lamaran kerja yang baik.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares Verb, Präfix: an-. Präteritum: kam an. Partizip II: ist angekommen. Digunakan dalam ungkapan 'Es kommt auf ... an' (tergantung pada)." },
+      { id: "k4-287", deutsch: "ankommen auf + Akk.", indonesia: "tergantung pada", sentence: "Es kommt immer auf eine gute Bewerbung an. | Hal itu selalu tergantung pada lamaran kerja yang baik.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares Verb, Präfix: an-. Präteritum: kam an. Partizip II: ist angekommen. Digunakan dalam ungkapan 'Es kommt auf ... an' (tergantung pada)." },
       { id: "k4-288", deutsch: "teilnehmen an + Dat.", indonesia: "ikut serta dalam", sentence: "Daran kann jeder teilnehmen, auch du. | Siapa saja bisa ikut serta di dalamnya, termasuk kamu.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares Verb, Präfix: teil-. Präteritum: nahm teil. Partizip II: hat teilgenommen." },
       { id: "k4-289", deutsch: "herstellen", indonesia: "memproduksi", sentence: "Die Firma stellt Präzisionswerkzeuge her. | Perusahaan itu memproduksi alat-alat presisi.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares Verb, Präfix: her-. Präteritum: stellte her. Partizip II: hat hergestellt." },
       { id: "k4-290", deutsch: "aufschreiben", indonesia: "mencatat", sentence: "Schreiben Sie wichtige Punkte sofort auf. | Catatlah poin-poin penting secara langsung.", category: "Verb", level: "B1", chapter: 4, notiz: "Trennbares Verb, Präfix: auf-. Präteritum: schrieb auf. Partizip II: hat aufgeschrieben." },
@@ -4501,7 +4501,7 @@
     
     
     
-    const CURRENT_DECK_VERSION = 'v2026.07.22_V21';
+    const CURRENT_DECK_VERSION = 'v2026.07.22_V22';
 
     function loadData() {
       const storedVersion = localStorage.getItem('wortschatz_deck_version');

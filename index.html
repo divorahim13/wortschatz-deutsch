@@ -4220,7 +4220,7 @@
       { id: "k4-204", deutsch: "die Gesundheit (Sg.)", indonesia: "kesehatan", sentence: "Für uns ist die Gesundheit unserer Angestellten wichtig. | Kesehatan para pekerja berada di urutan pertama.", category: "Nomen", level: "B1", chapter: 4, notiz: "Hanya digunakan dalam bentuk tunggal." },
       { id: "k4-205", deutsch: "die Kantine, die Kantinen", indonesia: "kantin", sentence: "In der Kantine bieten wir günstige Gerichte an. | Makanan di kantin rasanya sangat enak.", category: "Nomen", level: "B1", chapter: 4 },
       { id: "k4-206", deutsch: "kostenlos", indonesia: "gratis", sentence: "Kaffee und Obst sind im Büro kostenlos. | Kopi dan buah-buahan gratis di kantor.", category: "Adjektiv", level: "B1", chapter: 4, notiz: "Sinonim: umsonst. Umsonst juga bisa berarti 'sia-sia' tergantung konteks." },
-      { id: "k4-207", deutsch: "sich wohlfühlen", indonesia: "merasa nyaman", sentence: "Wenn die Firma familienfreundlicher wäre, würden sich alle wohler fühlen. | Dia merasa sangat nyaman di tempat kerja baru.", category: "Verb", level: "B1", chapter: 4 },
+      { id: "k4-207", deutsch: "sich wohlfühlen", indonesia: "merasa nyaman", sentence: "Wenn die Firma familienfreundlicher wäre, würden sich alle wohler fühlen. | Jika perusahaan itu lebih ramah keluarga, semua orang akan merasa lebih nyaman.", category: "Verb", level: "B1", chapter: 4 },
       { id: "k4-208", deutsch: "das Gehalt, die Gehälter", indonesia: "gaji", sentence: "Wenn das Gehalt höher wäre, wäre sie noch zufriedener. | Gaji ditransfer pada akhir bulan.", category: "Nomen", level: "B1", chapter: 4 },
       { id: "k4-209", deutsch: "flexibel", indonesia: "fleksibel", sentence: "Viele wünschen sich flexible Arbeitszeiten. | Jam kerja yang fleksibel membantu banyak keluarga.", category: "Adjektiv", level: "B1", chapter: 4 },
       { id: "k4-210", deutsch: "die Herausforderung, die Herausforderungen", indonesia: "tantangan", sentence: "Ohne neue Herausforderungen würde die Arbeit langweilig. | Tugas baru itu adalah tantangan besar.", category: "Nomen", level: "B1", chapter: 4 },
@@ -4518,7 +4518,7 @@
     
     
     
-    const CURRENT_DECK_VERSION = 'v2026.07.22_V26';
+    const CURRENT_DECK_VERSION = 'v2026.07.22_V27';
 
     function loadData() {
       const storedVersion = localStorage.getItem('wortschatz_deck_version');
@@ -7110,7 +7110,7 @@
       const textToScan = (sentClean || (de.includes('(') ? '' : de));
       const sentWords = textToScan.match(/[a-zA-ZäöüßÄÖÜ]+/g) || [];
 
-      const knownPrefixes = ["ein", "um", "aus", "an", "ab", "auf", "bei", "mit", "nach", "vor", "zu", "zurück", "statt", "her", "hin", "weg", "los", "fern", "stumm", "vorbei", "weiter"];
+      const knownPrefixes = ["kennenlernen", "herunter", "hinein", "heraus", "hinauf", "hinunter", "vorbei", "zurück", "zusammen", "weiterhin", "weiter", "wieder", "kennen", "sauber", "statt", "stumm", "bekannt", "gleich", "fertig", "kaputt", "leicht", "schwer", "trocken", "drann", "wohl", "hoch", "fest", "frei", "teil", "fern", "raus", "rein", "rauf", "runter", "fort", "heim", "nach", "aus", "ein", "auf", "an", "ab", "mit", "vor", "zu", "weg", "los", "um", "bei", "her", "hin"];
 
       const specificMeanings = {
         "einziehen": "pindah ke rumah baru / menempati",
@@ -7374,7 +7374,7 @@
       return `
         <div class="verb-grammar-panel" style="margin-top: 12px; padding: 8px 12px; background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; font-size: 0.82rem; text-align: left;">
           <div style="font-weight: 600; color: var(--accent-text); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding-bottom: 6px;">
-            <span>Infinitiv: <strong style="color: var(--text-primary);">${escapeHTML(g.inf)}</strong></span>
+            <span>Infinitiv: <strong style="color: var(--text-primary);">${escapeHTML(g.inf)}</strong> ${g.isReflexive ? '<span style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #34d399; padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; margin-left: 4px; font-weight: 600;">✓ Reflexiv</span>' : ''}</span>
             ${g.prepCaseHTML ? `<span style="background: rgba(139, 92, 246, 0.18); border: 1px solid rgba(139, 92, 246, 0.3); padding: 2px 8px; border-radius: 6px; font-weight: 700; color: #c084fc;">Feste Präposition: ${escapeHTML(g.prepCaseHTML)}</span>` : `<span style="opacity: 0.85; font-size: 0.75rem;">(${escapeHTML(g.verbType)})</span>`}
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; color: var(--text-secondary);">
@@ -7428,7 +7428,7 @@
         prefix = pParts[0];
         rootVerb = pParts.slice(1).join('');
       } else {
-        const knownPrefixes = ["zurück", "herunter", "vorbei", "hinauf", "aus", "ein", "auf", "an", "ab", "mit", "vor", "nach", "zu", "statt", "fern", "stumm"];
+        const knownPrefixes = ["kennenlernen", "herunter", "hinein", "heraus", "hinauf", "hinunter", "vorbei", "zurück", "zusammen", "weiterhin", "weiter", "wieder", "kennen", "sauber", "statt", "stumm", "bekannt", "gleich", "fertig", "kaputt", "leicht", "schwer", "trocken", "drann", "wohl", "hoch", "fest", "frei", "teil", "fern", "raus", "rein", "rauf", "runter", "fort", "heim", "nach", "aus", "ein", "auf", "an", "ab", "mit", "vor", "zu", "weg", "los", "um", "bei", "her", "hin"];
         for (let p of knownPrefixes) {
           if (verbWord.startsWith(p) && verbWord.length > p.length) {
             prefix = p;
@@ -7561,7 +7561,8 @@
         praetWir: praetWir,
         partizip2: partizip2Stem,
         perfektText: perfektText,
-        isIrregular: isIrregular
+        isIrregular: isIrregular,
+        isReflexive: isReflexive
       };
     }
 

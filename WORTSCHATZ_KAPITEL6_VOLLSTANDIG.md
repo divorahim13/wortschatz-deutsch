@@ -3,7 +3,7 @@
 
 **Legenda Artikel:** 🔵 der (maskulin) | 🔴 die (feminin) | 🟢 das (neutral)
 
-> **Catatan struktur:** Bagian A–H = Lernwortschatz RESMI (ÜB hal. 76-77), urutan sesuai buku, WAJIB dikuasai duluan. Bagian I dst. = materi tambahan dari teks/latihan. File ini akan terus di-UPDATE sepanjang kapitel — kata baru ditambahkan sebagai bagian baru, tidak duplikat.
+> **Catatan struktur:** Bagian A–H = Lernwortschatz RESMI (ÜB hal. 76-77), urutan sesuai buku, WAJIB dikuasai duluan. Bagian I–Q = materi tambahan hasil ekstraksi detail dari SETIAP halaman KB, ÜB, dan transkrip Hörtexte (bukan cuma kata-kata bercetak tebal — termasuk kata di kalimat contoh, dialog, instruksi soal, dan teks bacaan). File ini akan terus di-UPDATE sepanjang kapitel — kata baru ditambahkan sebagai bagian baru, tidak duplikat.\n>\n> ⚠️ **Total 483 kata jauh di atas kapasitas hafalan harian (25-30 kata/hari).** Jangan coba hafal semua sekaligus — pakai file ini sebagai REPOSITORY LENGKAP untuk direferensikan, dan tetap ambil 25-30 kata/hari sesuai urutan sesi (Bagian A-H duluan karena resmi, sisanya menyesuaikan materi yang sedang dibahas).
 
 ---
 
@@ -20,6 +20,11 @@
 - J. Aus den Hörtexten (33 kata, Audio 1.45–1.49 KB Kapitel 6)
 - K. Wortbildung -heit/-keit (9 kata, ÜB hal. 74)
 - L. Weitere Wörter aus Texten und Übungen (30 kata, KB 68/71/72 + ÜB 71/78)
+- M. Weitere n-Deklination Nomen (25 kata, dari Grammatikbox KB 73 & ÜB 69)
+- N. Person, Alltag, Arbeit & Karriere (98 kata)
+- O. Stadt, Wohnen & Mobilität (78 kata)
+- P. Wissenschaft, Wetter & Reisen (52 kata)
+- Q. Freizeit, Zuhause & Alltagsausdrücke (42 kata)
 - **Redemittel** (etwas bewerten, Vermutungen, Wünsche, Veränderungen, Vorfreude)
 
 ---
@@ -277,6 +282,331 @@
 | 🔴 die Sachertorte, -n | kue coklat khas Austria | Landeskunde D-A-CH |
 | 🔵 der Nachname, -n *(n-Dekl., Genitiv: -ns)* | nama keluarga | |
 
+## M. Weitere n-Deklination Nomen
+*(dari Grammatikbox KB S.73 & ÜB S.69 — semua Nomen ini ambil Endung -(e)n di semua Kasus kecuali Nominativ Singular)*
+
+| Deutsch | Indonesia | Konteks/Contoh |
+|---|---|---|
+| 🔵 der Bär, -en *(n-Dekl.!)* | beruang |  |
+| 🔵 der Mensch, -en *(n-Dekl.!)* | manusia |  |
+| 🔵 der Name, -n *(n-Dekl., Genitiv: -ns)* | nama |  |
+| 🔵 der Experte, -n *(n-Dekl.!)* | ahli |  |
+| 🔵 der Herr, -en *(n-Dekl.!)* | tuan, pria |  |
+| 🔵 der Nachbar, -n *(n-Dekl.!)* | tetangga |  |
+| 🔵 der Bauer, -n *(n-Dekl.!)* | petani |  |
+| 🔵 der Fotograf, -en *(n-Dekl.!)* | fotografer |  |
+| 🔵 der Kunde, -n *(n-Dekl.!)* | pelanggan |  |
+| 🔵 der Journalist, -en *(n-Dekl.!)* | jurnalis |  |
+| 🔵 der Architekt, -en *(n-Dekl.!)* | arsitek |  |
+| 🔵 der Student, -en *(n-Dekl.!)* | mahasiswa |  |
+| 🔵 der Automat, -en *(n-Dekl.!)* | mesin otomatis |  |
+| 🔵 der Tourist, -en *(n-Dekl.!)* | turis |  |
+| 🔵 der Pädagoge, -n *(n-Dekl.!)* | pendidik (pria) |  |
+| 🔵 der Komponist, -en *(n-Dekl.!)* | komposer |  |
+| 🔵 der Junge, -n *(n-Dekl.!)* | anak laki-laki |  |
+| 🔵 der Polizist, -en *(n-Dekl.!)* | polisi |  |
+| 🔵 der Präsident, -en *(n-Dekl.!)* | presiden |  |
+| 🔵 der Kandidat, -en *(n-Dekl.!)* | kandidat |  |
+| 🔵 der Assistent, -en *(n-Dekl.!)* | asisten |  |
+| 🔵 der Türke, -n *(n-Dekl.!)* | orang Turki |  |
+| 🔵 der Lieferant, -en *(n-Dekl.!)* | pemasok |  |
+| 🔵 der Postbote, -n *(n-Dekl.!)* | tukang pos |  |
+| 🔵 der Favorit, -en *(n-Dekl.!)* | favorit |  |
+
+## N. Person, Alltag, Arbeit & Karriere
+*(dari KB Blick nach vorn S.66, Wincent-Weiss-Biografie S.71, Radiosendung S.67, ÜB S.67/68/69)*
+
+| Deutsch | Indonesia | Konteks/Contoh |
+|---|---|---|
+| 🔵 der Ratschlag, -e (Uml.) | saran |  |
+| 🔴 die Erwartung, -en | harapan |  |
+| leben | hidup, tinggal |  |
+| bezahlen | membayar |  |
+| 🔵 der Kollege, -n / die Kollegin, -nen | rekan kerja |  |
+| 🟢 das Büro, -s | kantor |  |
+| persönlich | pribadi |  |
+| 🟢 das Handy, -s | ponsel |  |
+| 🔴 die Meinung, -en | pendapat | *Meiner Meinung nach ...* |
+| 🟢 das Geschäft, -e | toko |  |
+| 🔵 der Laden, -e (Uml.) | toko |  |
+| aus\|sehen, er sieht aus, sah aus, hat ausgesehen | terlihat |  |
+| günstig | murah, terjangkau |  |
+| beliebt | populer, disukai |  |
+| 🔴 die Arbeitswelt (Sg.) | dunia kerja |  |
+| sich verändern | berubah |  |
+| 🔴 die Energie, -n | energi |  |
+| 🟢 das Konzert, -e | konser |  |
+| 🔵 der Chef, -s / die Chefin, -nen | atasan, bos |  |
+| 🔵 der Flur, -e | lorong |  |
+| 🟢 das E-Bike, -s | sepeda listrik |  |
+| 🔵 der E-Book-Reader, - | e-reader |  |
+| 🔵 der Termin, -e | janji temu |  |
+| 🟢 das Gespräch, -e | percakapan |  |
+| 🔵 der Haushalt, -e | rumah tangga |  |
+| 🔴 die Hausarbeit, -en | pekerjaan rumah tangga |  |
+| 🔴 die Schule, -n | sekolah |  |
+| tauschen | bertukar |  |
+| diskutieren | berdiskusi |  |
+| realistisch | realistis |  |
+| 🟢 das Studium, Studien | studi, kuliah |  |
+| 🔴 die Mittagspause, -n | jam istirahat siang |  |
+| 🔵 der Spaziergang, -e (Uml.) | jalan-jalan |  |
+| spontan | spontan |  |
+| besuchen | mengunjungi |  |
+| sich erholen | beristirahat, memulihkan diri |  |
+| überraschen | mengejutkan |  |
+| draußen | di luar |  |
+| 🔴 die Zeitangabe, -n | keterangan waktu |  |
+| an\|fangen, er fängt an, fing an, hat angefangen | memulai |  |
+| sich vorstellen | membayangkan |  |
+| 🔵 der Gegensatz, -e (Uml.) | kontras, kebalikan | *im Gegensatz zu* |
+| insgesamt | secara keseluruhan |  |
+| 🔴 die Stelle, -n | bagian, tempat |  |
+| 🔵 der Strom (Sg.) | listrik, arus |  |
+| 🔵 der Hausbewohner, - | penghuni rumah |  |
+| 🔴 die Beziehung, -en | hubungan |  |
+| 🔵 der Alltag (Sg.) | keseharian |  |
+| verzichten (auf + Akk.) | merelakan, melepaskan |  |
+| 🔴 die Nähe (Sg.) | kedekatan | *in der Nähe* |
+| sich unterhalten (mit + D.), er unterhält sich, unterhielt sich, hat sich unterhalten | mengobrol |  |
+| 🔵 der Bewohner, - | penghuni |  |
+| 🔵 der Sänger, - / die Sängerin, -nen | penyanyi |  |
+| geboren werden | lahir |  |
+| 🔴 die Karriere, -n | karier |  |
+| inzwischen | sementara itu |  |
+| erhalten, er erhält, erhielt, hat erhalten | menerima |  |
+| 🟢 das Mitglied, -er | anggota |  |
+| 🔴 die Tätigkeit, -en | kegiatan, pekerjaan |  |
+| 🔵 der Synchronsprecher, - | pengisi suara dubbing |  |
+| 🟢 das Abitur (Sg.) | ujian akhir SMA Jerman |  |
+| ziehen (nach + D.), er zieht, zog, ist gezogen | pindah (ke) |  |
+| 🔴 die Freizeit (Sg.) | waktu luang |  |
+| am liebsten | paling suka |  |
+| beruflich | profesional, terkait pekerjaan |  |
+| privat | pribadi |  |
+| 🔴 die Angabe, -n | keterangan, data |  |
+| 🔵 der Bauch, -e (Uml.) | perut | *auf den Bauch hören* (idiom) |
+| recherchieren | meriset |  |
+| 🔵 der Stil, -e | gaya |  |
+| 🔴 die Stimme, -n | suara |  |
+| 🔵 der Mitarbeiter, - / die Mitarbeiterin, -nen | karyawan |  |
+| kostenlos | gratis |  |
+| 🟢 das Getränk, -e | minuman |  |
+| 🔴 die Gleitzeit (Sg.) | jam kerja fleksibel |  |
+| 🔴 die Weiterbildung, -en | pelatihan lanjutan |  |
+| 🟢 das Gehalt, -er (Uml.) | gaji |  |
+| 🔴 die Altersvorsorge (Sg.) | dana pensiun |  |
+| 🔴 die Kinderbetreuung (Sg.) | penitipan anak |  |
+| 🔵 der Dienstwagen, - | mobil dinas |  |
+| 🟢 das Vorstellungsgespräch, -e | wawancara kerja |  |
+| 🔴 die Reihenfolge, -n | urutan |  |
+| 🔴 die Geschichte, -n | cerita |  |
+| passend | cocok, sesuai |  |
+| ungeduldig | tidak sabar |  |
+| erledigen | menyelesaikan |  |
+| an\|rufen, er ruft an, rief an, hat angerufen | menelepon |  |
+| zurück\|rufen, er ruft zurück, rief zurück, hat zurückgerufen | menelepon balik |  |
+| verbringen, er verbringt, verbrachte, hat verbracht | menghabiskan (waktu) |  |
+| sich ernähren | makan, menjaga pola makan |  |
+| gesund | sehat |  |
+| aus\|geben, er gibt aus, gab aus, hat ausgegeben | mengeluarkan uang |  |
+| regelmäßig | teratur |  |
+| vergessen, er vergisst, vergaß, hat vergessen | lupa |  |
+| unternehmen, er unternimmt, unternahm, hat unternommen | melakukan (kegiatan) |  |
+| klappen (ugs.) | berhasil |  |
+| 🔴 die Lust (Sg.) | keinginan, mood | *Lust haben* |
+| sich merken | mengingat |  |
+
+## O. Stadt, Wohnen & Mobilität
+*(dari KB Stadt der Zukunft S.68-69, Plattform 2 S.74-76, ÜB Stadtführung Hamburg S.71-72)*
+
+| Deutsch | Indonesia | Konteks/Contoh |
+|---|---|---|
+| 🔵 der Sportverein, -e | klub olahraga |  |
+| 🔵 der See, -n | danau |  |
+| 🔴 die Universität, -en | universitas |  |
+| 🟢 das Stadtfest, -e | festival kota |  |
+| 🟢 das Museum, Museen | museum |  |
+| sich interessieren für + Akk. | tertarik pada |  |
+| 🟢 das Theater, - | teater |  |
+| 🔵 der Hafen, - (Uml.) | pelabuhan |  |
+| 🔵 der Clown, -s | badut |  |
+| 🟢 das Krankenhaus, -er (Uml.) | rumah sakit |  |
+| 🔵 der Kindergarten, - (Uml.) | taman kanak-kanak |  |
+| 🔵 der Bereich, -e | bidang, area |  |
+| 🔴 die Führung, -en | tur berpemandu |  |
+| 🔴 die Ware, -n | barang |  |
+| leer | kosong |  |
+| teuer | mahal |  |
+| 🟢 das Konzerthaus, -er (Uml.) | gedung konser |  |
+| 🟢 das Orchester, - | orkestra |  |
+| 🔵 der Kuchen, - | kue |  |
+| 🔵 der Cousin, -s | sepupu |  |
+| 🔴 die Mitte (Sg.) | tengah |  |
+| 🔵 der Stock, Stockwerke | lantai (bangunan) |  |
+| schenken | memberi hadiah |  |
+| üben | berlatih |  |
+| zu\|hören | mendengarkan |  |
+| 🔴 die Stadtplanerin, -nen | perencana kota (P) |  |
+| 🔴 die Blume, -n | bunga |  |
+| 🔴 die Präsentation, -en | presentasi |  |
+| gratulieren | mengucapkan selamat |  |
+| 🔵 der Geburtstag, -e | ulang tahun |  |
+| 🔴 die Baustelle, -n | lokasi konstruksi |  |
+| erklären | menjelaskan |  |
+| 🟢 das Projekt, -e | proyek |  |
+| präsentieren | mempresentasikan |  |
+| 🟢 das Restaurant, -s | restoran |  |
+| sich vorbereiten | mempersiapkan diri |  |
+| 🔴 die Stadtentwicklung (Sg.) | pengembangan kota |  |
+| 🔵 der Büroraum, -e (Uml.) | ruang kantor |  |
+| 🔵 der Vortrag, -e (Uml.) | presentasi, ceramah |  |
+| 🔴 die Straße, -n | jalan |  |
+| 🟢 das Verkehrsmittel, - | moda transportasi |  |
+| 🔵 der Politiker, - / die Politikerin, -nen | politisi |  |
+| 🔴 die Veranstaltung, -en | acara |  |
+| 🔴 die Kultur, -en | budaya |  |
+| 🔵 der Wunsch, -e (Uml.) | keinginan, harapan |  |
+| häufig | sering |  |
+| 🟢 das Prozent, -e | persen |  |
+| 🔵 der Raum, -e (Uml.) | ruang |  |
+| knapp | sempit, terbatas |  |
+| 🟢 das Konzept, -e | konsep |  |
+| 🟢 das Privatauto, -s | mobil pribadi |  |
+| 🔴 die Ausnahme, -n | pengecualian |  |
+| leihen, er leiht, lieh, hat geliehen | meminjam |  |
+| autonom | otonom |  |
+| gemeinsam | bersama |  |
+| 🟢 das Ziel, -e | tujuan |  |
+| 🔵 der Fußweg, -e | jalur pejalan kaki |  |
+| 🔵 der Radweg, -e | jalur sepeda |  |
+| sich bewegen | bergerak |  |
+| 🔵 der Fußgänger, - | pejalan kaki |  |
+| 🔵 der Parkplatz, -e (Uml.) | tempat parkir |  |
+| nutzen | menggunakan |  |
+| 🔵 der Trend, -s | tren |  |
+| sich gegenseitig unterstützen | saling mendukung |  |
+| zusammen\|leben | hidup bersama |  |
+| 🔴 die Grünfläche, -n | ruang hijau |  |
+| gleichzeitig | secara bersamaan |  |
+| verbessern | memperbaiki |  |
+| 🟢 das Teilen (Sg.) | berbagi (nominalisasi verb) |  |
+| bequem | nyaman |  |
+| 🔴 die Wohnform, -en | bentuk hunian |  |
+| 🔵 der Arbeitsort, -e | tempat kerja |  |
+| 🔴 die Erholungsmöglichkeit, -en | kesempatan berekreasi |  |
+| bieten, er bietet, bot, hat geboten | menawarkan |  |
+| 🔴 die Ökobilanz, -en | neraca ekologis |  |
+| 🔵 der Arbeitsplatz, -e (Uml.) | tempat kerja |  |
+| 🔵 der Wohnort, -e | tempat tinggal |  |
+| 🔴 die WG, -s (Wohngemeinschaft) | rumah kos bersama |  |
+
+## P. Wissenschaft, Wetter & Reisen
+*(dari KB Wettersatelliten S.72, Sprachmittlung/D-A-CH-Quiz S.78-79)*
+
+| Deutsch | Indonesia | Konteks/Contoh |
+|---|---|---|
+| 🔴 die Wettervorhersage, -n | prakiraan cuaca |  |
+| die Daten (Pl.) | data |  |
+| erstellen | membuat, menyusun |  |
+| 🔵 der Mitgliedsstaat, -en (Uml.) | negara anggota |  |
+| 🔵 der Weltraum (Sg.) | luar angkasa |  |
+| 🔵 der Meter, - | meter |  |
+| 🔴 die Erde (Sg.) | bumi |  |
+| kreisen | berputar, mengorbit |  |
+| sammeln | mengumpulkan |  |
+| 🔴 die Forschung (Sg.) | riset |  |
+| 🔵 der Wissenschaftler, - / die Wissenschaftlerin, -nen | ilmuwan |  |
+| weiter\|geben, er gibt weiter, gab weiter, hat weitergegeben | meneruskan |  |
+| 🟢 das Gepäck (Sg.) | bagasi |  |
+| 🟢 das Stofftier, -e | boneka binatang |  |
+| 🔵 der Grund, -e (Uml.) | alasan |  |
+| 🔵 der Glücksbringer, - | jimat keberuntungan |  |
+| allein | sendirian |  |
+| sich fühlen | merasa |  |
+| verschicken | mengirim |  |
+| schmal | sempit |  |
+| breit | lebar |  |
+| 🔵 der Rekord, -e | rekor |  |
+| mittelalterlich | abad pertengahan |  |
+| 🔵 der Brief, -e | surat |  |
+| 🟢 das Paket, -e | paket |  |
+| 🔴 die Gegend, -en | daerah |  |
+| südlich | selatan |  |
+| verbieten, er verbietet, verbot, hat verboten | melarang |  |
+| speziell | khusus |  |
+| 🟢 das Flugzeug, -e | pesawat |  |
+| 🟢 das Pferd, -e | kuda |  |
+| 🟢 das Schiff, -e | kapal |  |
+| pro Kopf | per kapita |  |
+| 🟢 das Gebäude, - | gedung |  |
+| 🔴 die Grenze, -n | perbatasan |  |
+| 🔵 der Bahnhof, -e (Uml.) | stasiun |  |
+| 🔴 die Sahne (Sg.) | krim |  |
+| 🔵 der Wecker, - | jam weker |  |
+| 🔵 der Zentimeter, - | sentimeter |  |
+| 🔵 der Kaiserschmarrn (Sg.) *(AT)* | hidangan pancake manis Austria | Landeskunde |
+| 🔵 der Beruf, -e | profesi, pekerjaan |  |
+| 🔵 der Schneider, - | penjahit |  |
+| 🔴 die Grube, -n | lubang |  |
+| 🟢 das Loch, -er (Uml.) | lubang |  |
+| 🔵 der Boden, - (Uml.) | tanah, lantai |  |
+| 🔴 die Höhe, -n | ketinggian |  |
+| schlafen, er schläft, schlief, hat geschlafen | tidur |  |
+| essen, er isst, aß, hat gegessen | makan |  |
+| 🔵 der Hotelbesitzer, - | pemilik hotel |  |
+| 🔴 die Grenzsituation, -en | situasi perbatasan |  |
+| 🔴 die Steuer, -n | pajak |  |
+| zahlen | membayar |  |
+
+## Q. Freizeit, Zuhause & Alltagsausdrücke
+*(dari KB Musik-Übung S.74, ÜB S.68/73, Aussprache-Übung ss/ß S.67)*
+
+| Deutsch | Indonesia | Konteks/Contoh |
+|---|---|---|
+| 🟢 das Wohnzimmer, - | ruang tamu |  |
+| 🟢 das Arbeitszimmer, - | ruang kerja |  |
+| gemütlich | nyaman, hangat |  |
+| fern\|sehen, er sieht fern, sah fern, hat ferngesehen | menonton TV |  |
+| 🔵 der Gast, -e (Uml.) | tamu |  |
+| 🔴 die Geige, -n | biola (sinonim Violine) |  |
+| 🔴 die Gitarre, -n | gitar |  |
+| 🟢 das Klavier, -e | piano (sinonim Piano) |  |
+| 🔵 der Opa, -s | kakek |  |
+| entspannen | bersantai |  |
+| 🔴 die Klamotten (Pl., ugs.) | pakaian |  |
+| 🔴 die Sorge, -n | kekhawatiran |  |
+| 🔴 die Tiefe, -n | kedalaman |  |
+| 🔵 der Wahnsinn (Sg., ugs.) | kegilaan | *das ist der Wahnsinn* (idiom) |
+| 🔴 die Mail, -s | email |  |
+| 🔴 die Zeitschrift, -en | majalah |  |
+| 🔵 der Gesprächspartner, - / die Gesprächspartnerin, -nen | lawan bicara |  |
+| 🔴 die Situation, -en | situasi |  |
+| 🟢 das Bild, -er | gambar |  |
+| 🟢 das Thema, Themen | tema |  |
+| zusätzlich | tambahan |  |
+| 🔵 der Schlaf (Sg.) | tidur (kata benda) |  |
+| 🔵 der Tee, -s | teh |  |
+| spannend | menegangkan, seru |  |
+| 🔵 der Traum, -e (Uml.) | mimpi |  |
+| 🟢 das Lachen (Sg.) | tawa |  |
+| 🔴 die Liebe (Sg.) | cinta |  |
+| 🔴 die Freundlichkeit (Sg.) | keramahan |  |
+| 🟢 das Lebensmittel, - | bahan makanan |  |
+| 🟢 das Übergewicht (Sg.) | kelebihan berat badan |  |
+| genießen, er genießt, genoss, hat genossen | menikmati |  |
+| lassen, er lässt, ließ, hat gelassen | membiarkan |  |
+| passen | cocok |  |
+| 🔵 der Schluss, -e (Uml.) | akhir, kesimpulan |  |
+| 🔵 der Gruß, -e (Uml.) | salam |  |
+| 🔵 der Spaß (Sg.) | kesenangan |  |
+| süß | manis |  |
+| hässlich | jelek |  |
+| heiß | panas |  |
+| grüßen | menyapa, memberi salam |  |
+| interessieren | menarik minat |  |
+| wissen, er weiß, wusste, hat gewusst | tahu |  |
+
 ---
 
 ## Redemittel
@@ -314,6 +644,11 @@ Im Vergleich zu heute wird ... | Anders als jetzt ... | Es soll ... werden.
 | J. Aus den Hörtexten | 33 |
 | K. Wortbildung -heit/-keit | 9 |
 | L. Weitere Wörter aus Texten/Übungen | 30 |
-| **TOTAL** | **188** |
+| M. Weitere n-Deklination Nomen | 25 |
+| N. Person, Alltag, Arbeit & Karriere | 98 |
+| O. Stadt, Wohnen & Mobilität | 78 |
+| P. Wissenschaft, Wetter & Reisen | 52 |
+| Q. Freizeit, Zuhause & Alltagsausdrücke | 42 |
+| **TOTAL** | **483** |
 
 *Aturan hafalan: max 25-30 kata baru/hari, sisanya spaced repetition. 5-8 kata baru wajib dipakai aktif di kalimat (Tagebuch/latihan grammar).*

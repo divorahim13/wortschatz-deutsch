@@ -18,6 +18,8 @@
 - H. Andere wichtige Wörter und Wendungen (24 kata)
 - I. Zeitausdrücke: Vergangenheit–Gegenwart–Zukunft (17 kata, dari KB Ü1c hal. 66)
 - J. Aus den Hörtexten (33 kata, Audio 1.45–1.49 KB Kapitel 6)
+- K. Wortbildung -heit/-keit (9 kata, ÜB hal. 74)
+- L. Weitere Wörter aus Texten und Übungen (30 kata, KB 68/71/72 + ÜB 71/78)
 - **Redemittel** (etwas bewerten, Vermutungen, Wünsche, Veränderungen, Vorfreude)
 
 ---
@@ -224,6 +226,57 @@
 | sparen | menghemat | |
 | 🔵 der Gewohnheitstier, -e | makhluk kebiasaan | *Der Mensch ist ein Gewohnheitstier.* (idiom) |
 
+## K. Wortbildung -heit/-keit
+*(ÜB hal. 74 — dari Adjektiv jadi Nomen, Artikel selalu die. Setelah Adjektiv berakhiran -ig/-lich pakai -keit)*
+
+| Deutsch | Indonesia | Dari Adjektiv |
+|---|---|---|
+| 🔴 die Möglichkeit, -en | kemungkinan | möglich |
+| 🔴 die Krankheit, -en | penyakit | krank |
+| 🔴 die Schönheit, -en | keindahan | schön |
+| 🔴 die Fähigkeit, -en | kemampuan | fähig |
+| 🔴 die Sicherheit (Sg.) | keamanan | sicher |
+| 🔴 die Zufriedenheit (Sg.) | kepuasan | zufrieden |
+| 🔴 die Aufmerksamkeit, -en | perhatian | aufmerksam |
+| 🔴 die Wirklichkeit, -en | kenyataan | wirklich |
+| 🔴 die Gesundheit (Sg.) | kesehatan | gesund |
+
+## L. Weitere Wörter aus Texten und Übungen
+*(dari KB "Blick nach vorn" S.66, "Stadt der Zukunft" S.68, "Wettersatelliten" S.72; ÜB Stadtführung Hamburg S.71, D-A-CH-Quiz S.78)*
+
+| Deutsch | Indonesia | Konteks/Contoh |
+|---|---|---|
+| 🔴 die Drohne, -n | drone | |
+| 🔵 der Roboter, - | robot | |
+| her\|stellen | memproduksi | *Fleisch im Labor herstellen* |
+| fliegen, er fliegt, flog, ist geflogen | terbang | |
+| 🔵 der Kontakt, -e | kontak | *der persönliche Kontakt* |
+| 🔵 der Fingerabdruck, -e (Uml.) | sidik jari | *mit dem Fingerabdruck bezahlen* |
+| überzeugt sein (von + D.) | yakin akan | *Ich bin davon überzeugt, dass ...* |
+| 🟢 das Bargeld (Sg.) | uang tunai | |
+| 🔴 die Kartenzahlung, -en | pembayaran kartu | |
+| 🔵 der Satellit, -en *(n-Dekl.!)* | satelit | |
+| 🔴 die Übertragung, -en | transmisi, siaran | |
+| 🔴 die Rakete, -n | roket | |
+| 🔵 der Wetterdienst, -e | layanan cuaca | |
+| 🔴 die Temperatur, -en | suhu | |
+| 🟢 das Weltall (Sg.) | ruang angkasa | |
+| 🔴 die Kamera, -s | kamera | |
+| 🔴 die Wolke, -n | awan | |
+| 🔵 der Wind, -e | angin | |
+| 🔴 die Erforschung (Sg.) | penelitian | *die Erforschung des Klimawandels* |
+| 🔵 der Klimawandel (Sg.) | perubahan iklim | |
+| präzise | presisi, tepat | |
+| kontrollieren | mengontrol | |
+| 🔵 der Container, - | kontainer | |
+| 🔴 die Brücke, -n | jembatan | |
+| 🔴 die Wasserstraße, -n | jalur air | |
+| 🔴 die Melange, -n *(AT)* | kopi Wina dgn susu berbusa | Landeskunde D-A-CH |
+| 🔵 der Einspänner, - *(AT)* | kopi hitam + krim kocok | Landeskunde D-A-CH |
+| 🔵 der Braune, -n *(AT)* | kopi dengan susu | Landeskunde D-A-CH |
+| 🔴 die Sachertorte, -n | kue coklat khas Austria | Landeskunde D-A-CH |
+| 🔵 der Nachname, -n *(n-Dekl., Genitiv: -ns)* | nama keluarga | |
+
 ---
 
 ## Redemittel
@@ -259,6 +312,8 @@ Im Vergleich zu heute wird ... | Anders als jetzt ... | Es soll ... werden.
 | H. Andere wichtige Wörter | 24 |
 | I. Zeitausdrücke | 17 |
 | J. Aus den Hörtexten | 33 |
-| **TOTAL** | **149** |
+| K. Wortbildung -heit/-keit | 9 |
+| L. Weitere Wörter aus Texten/Übungen | 30 |
+| **TOTAL** | **188** |
 
 *Aturan hafalan: max 25-30 kata baru/hari, sisanya spaced repetition. 5-8 kata baru wajib dipakai aktif di kalimat (Tagebuch/latihan grammar).*
